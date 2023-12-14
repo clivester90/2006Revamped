@@ -1785,7 +1785,7 @@ public class ItemAssistant {
 		if (!CastleWars.deleteCastleWarsItems(player, itemID)) {
 			return false;
 		}
-		if (player.otherBank == true) {
+		if (player.otherBank) {
 			player.getPacketSender().closeAllWindows();
 			player.getPacketSender().sendMessage("You can't bank while viewing someones bank!");
 			player.otherBank = false;
@@ -2583,7 +2583,7 @@ public class ItemAssistant {
 		for (int i = 0; i < GameConstants.ITEM_LIMIT; i++) {
 			if (GameEngine.itemHandler.itemList[i] != null) {
 				if (GameEngine.itemHandler.itemList[i].itemName == NotedName) {
-					if (GameEngine.itemHandler.itemList[i].itemDescription.startsWith("Swap this note at any bank for a") == false) {
+					if (!GameEngine.itemHandler.itemList[i].itemDescription.startsWith("Swap this note at any bank for a")) {
 						newId = GameEngine.itemHandler.itemList[i].itemId;
 						break;
 					}

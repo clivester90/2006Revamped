@@ -6,6 +6,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
+import com.rebotted.game.content.gamemode.Mode;
+import com.rebotted.game.content.gamemode.ModeType;
 import com.rebotted.util.Misc;
 
 public class PlayerSave {
@@ -54,7 +56,7 @@ public class PlayerSave {
 			Misc.println(playerName + ": error loading file.");
 			return 3;
 		}
-		while (EndOfFile == false && line != null) {
+		while (!EndOfFile && line != null) {
 			line = line.trim();
 			int spot = line.indexOf("=");
 			if (spot > -1) {
@@ -90,6 +92,20 @@ public class PlayerSave {
 								break;
 							case "character-rights":
 								player.playerRights = Integer.parseInt(token2);
+								break;
+							case "character-mode":
+								ModeType type;
+								try {
+									if (token2.equals("NONE")) {
+										token2 = "REGULAR";
+									}
+									type = Enum.valueOf(ModeType.class, token2);
+								} catch (NullPointerException | IllegalArgumentException e) {
+									e.printStackTrace();
+									break;
+								}
+								Mode mode = Mode.forType(type);
+								player.setMode(mode);
 								break;
 							case "last-ip":
 								player.lastConnectedFrom = token2;
@@ -232,6 +248,9 @@ public class PlayerSave {
 								break;
 							case "tutorial-progress":
 								player.tutorialProgress = Integer.parseInt(token2);
+								break;
+							case "tutorial-completed":
+								player.completedTutorial = Boolean.parseBoolean(token2);
 								break;
 							case "strongHold":
 								player.strongHold = Boolean.parseBoolean(token2);
@@ -565,6 +584,10 @@ public class PlayerSave {
 			characterfile.newLine();
 			characterfile.write("character-rights = " + player.playerRights);
 			characterfile.newLine();
+			if (player.getMode() != null) {
+				characterfile.write("mode = " + player.getMode().getType().name());
+				characterfile.newLine();
+			}
 			characterfile.write("last-ip = " + player.connectedFrom);
 			characterfile.newLine();
 			characterfile.write("isBot = " + player.isBot);
@@ -649,17 +672,19 @@ public class PlayerSave {
 			characterfile.newLine();
 			characterfile.write("SlayerMaster = " + player.SlayerMaster);
 			characterfile.newLine();
-			String music = "";
+			StringBuilder music = new StringBuilder();
 			for (boolean element : player.getPlayList().unlocked) {
-				music += element + "\t";
+				music.append(element).append("\t");
 			}
-			characterfile.write("music = " + music.trim());
+			characterfile.write("music = " + music.toString().trim());
 			characterfile.newLine();
 			characterfile.write("randomActions = " + player.randomActions);
 			characterfile.newLine();
 			characterfile.write("blackMarks = " + player.blackMarks);
 			characterfile.newLine();
 			characterfile.write("tutorial-progress = " + player.tutorialProgress);
+			characterfile.newLine();
+			characterfile.write("tutorial-completed = " + player.completedTutorial);
 			characterfile.newLine();
 			characterfile.write("skull-timer = " + player.skullTimer);
 			characterfile.newLine();
@@ -767,11 +792,11 @@ public class PlayerSave {
 			characterfile.newLine();
 			characterfile.write("fightMode = " + player.fightMode);
 			characterfile.newLine();
-			String voidStatus = "";
+			StringBuilder voidStatus = new StringBuilder();
 			for (int voidS : player.voidStatus){
-				voidStatus += voidS + "\t";
+				voidStatus.append(voidS).append("\t");
 			}
-			characterfile.write("void = " + voidStatus.trim());
+			characterfile.write("void = " + voidStatus.toString().trim());
 			characterfile.newLine();
 			characterfile.newLine();
 

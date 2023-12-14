@@ -67,7 +67,7 @@ public class UseItem {
 		}
 		break;
 		case 8689:
-			if (c.milking == false) {
+			if (!c.milking) {
 				MilkCow.milk(c);
 			}
 			break;
@@ -199,9 +199,9 @@ public class UseItem {
 			player.getItemAssistant().deleteItem(7051, 1);
 			player.getItemAssistant().addItem(7053, 1);
 		}
-		int firemakingItems[] = {590, 7329, 7330, 7331};
+		int[] firemakingItems = {590, 7329, 7330, 7331};
 		for (int i = 0; i < firemakingItems.length; i++) {
-			if (itemUsed == firemakingItems[i] || useWith == firemakingItems[i] && player.isFiremaking == false) {
+			if (itemUsed == firemakingItems[i] || useWith == firemakingItems[i] && !player.isFiremaking) {
 				Firemaking.attemptFire(player, itemUsed, useWith, player.absX, player.absY, false);
 			} else if (itemUsed == firemakingItems[i] || useWith == firemakingItems[i] && player.isFiremaking) {
 				player.getPacketSender().sendMessage("You can't do that, you are already firemaking.");

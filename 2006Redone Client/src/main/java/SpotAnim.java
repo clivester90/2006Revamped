@@ -80,7 +80,7 @@ public final class SpotAnim {
 		anInt411 = 128;
 	}
 
-	public static SpotAnim cache[];
+	public static SpotAnim[] cache;
 	private int anInt404;
 	private int anInt405;
 	private int anInt406;

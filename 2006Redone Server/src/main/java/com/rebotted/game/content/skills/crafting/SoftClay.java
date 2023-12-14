@@ -25,14 +25,14 @@ public class SoftClay {
 		CycleEventHandler.getSingleton().addEvent(player, new CycleEvent() {
 	        @Override
 	            public void execute(CycleEventContainer container) {
-				if (player.getItemAssistant().playerHasItem(CLAY) && player.isSpinning == true) {
+				if (player.getItemAssistant().playerHasItem(CLAY) && player.isSpinning) {
 					player.startAnimation(896);
 					player.getItemAssistant().deleteItem(CLAY, 1);
 					player.getItemAssistant().addItem(SOFT_CLAY, 1);
 					player.doAmount--;
 					RandomEventHandler.addRandom(player);
 					player.getPacketSender().sendMessage("You turn the clay into soft clay.");
-					if (player.disconnected || player.isSpinning == false || player.doAmount == 0) {
+					if (player.disconnected || !player.isSpinning || player.doAmount == 0) {
 						container.stop();
 						return;
 					}

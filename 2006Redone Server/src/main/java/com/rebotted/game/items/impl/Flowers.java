@@ -17,7 +17,7 @@ public class Flowers {
 	/**
 	 * Constants & boolean checker
 	 */
-	private final int FLOWER_IDS[] = { 2980, 2981, 2982, 2983, 2984, 2985,
+	private final int[] FLOWER_IDS = { 2980, 2981, 2982, 2983, 2984, 2985,
 			2986, 2987, 2988 };
 
 	/**

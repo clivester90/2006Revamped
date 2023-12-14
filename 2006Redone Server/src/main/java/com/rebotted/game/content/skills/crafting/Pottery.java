@@ -89,7 +89,7 @@ public class Pottery {
 					c.getPacketSender().sendMessage("You need soft clay to do this.");
 				}
 
-				if (c.isPotCrafting == false) {
+				if (!c.isPotCrafting) {
 					container.stop();
 				}
 
@@ -147,7 +147,7 @@ public class Pottery {
 					player.doAmount--;
 				}
 
-				if (player.isPotCrafting == false
+				if (!player.isPotCrafting
 						|| !player.getItemAssistant().playerHasItem(startId)
 						|| player.playerLevel[12] < level) {
 					container.stop();

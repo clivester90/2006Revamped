@@ -31,7 +31,7 @@ final class Decompressor {
 			if (j1 <= 0 || j1 > dataFile.length() / 520L) {
 				return null;
 			}
-			byte abyte0[] = new byte[i1];
+			byte[] abyte0 = new byte[i1];
 			int k1 = 0;
 			for (int l1 = 0; k1 < i1; l1++) {
 				if (j1 == 0) {
@@ -74,7 +74,7 @@ final class Decompressor {
 		}
 	}
 
-	public synchronized boolean method234(int i, byte abyte0[], int j)
+	public synchronized boolean method234(int i, byte[] abyte0, int j)
 	{
 		boolean flag = method235(true, j, i, abyte0);
 		if(!flag)
@@ -82,7 +82,7 @@ final class Decompressor {
 		return flag;
 	}
 
-	private synchronized boolean method235(boolean flag, int j, int k, byte abyte0[]) {
+	private synchronized boolean method235(boolean flag, int j, int k, byte[] abyte0) {
 		try {
 			int l;
 			if (flag) {

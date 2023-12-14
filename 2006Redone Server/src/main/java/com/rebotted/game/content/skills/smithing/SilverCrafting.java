@@ -113,7 +113,7 @@ public class SilverCrafting {
 				public void execute(CycleEventContainer container) {
 					if (amnt == 0
 							|| !player.getItemAssistant().playerHasItem(
-									SILVER_BAR) || player.isCrafting == false) {
+									SILVER_BAR) || !player.isCrafting) {
 						container.stop();
 						return;
 					}

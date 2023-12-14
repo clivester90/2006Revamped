@@ -302,7 +302,7 @@ public class ShopAssistant {
 				break;
 		}
 
-		if (canSellItem == false) {
+		if (!canSellItem) {
 			player.getPacketSender().sendMessage("You can't sell " + ItemAssistant.getItemName(removeId).toLowerCase() + " to this store.");
 		} else {
 			int ShopValue = (int) Math.floor(getItemShopValue(unNotedItemID, 1, true));
@@ -377,7 +377,7 @@ public class ShopAssistant {
 					canSellToStore = ShopHandler.playerOwnsStore(player.shopId, player);
 					break;
 			}
-			if (canSellToStore == false) {
+			if (!canSellToStore) {
 				player.getItemAssistant();
 				player.getPacketSender().sendMessage("You can't sell " + itemName + " to this store.");
 				return false;
@@ -453,7 +453,7 @@ public class ShopAssistant {
 				Added = true;
 			}
 		}
-		if (Added == false) {
+		if (!Added) {
 			for (int i = 0; i < ShopHandler.shopItems[player.shopId].length; i++) {
 				if (ShopHandler.shopItems[player.shopId][i] == 0) {
 					ShopHandler.shopItems[player.shopId][i] = itemID + 1;
@@ -484,7 +484,7 @@ public class ShopAssistant {
 		return itemID;
 	}
 
-	private static final int FISHING_ITEMS[] = {383, 371, 377, 359, 321, 341, 353, 345, 327, 317};
+	private static final int[] FISHING_ITEMS = {383, 371, 377, 359, 321, 341, 353, 345, 327, 317};
 
 	public boolean buyItem(int itemID, int fromSlot, int amount) {
 		int shopID = player.shopId;

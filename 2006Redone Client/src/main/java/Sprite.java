@@ -17,7 +17,7 @@ public final class Sprite extends DrawingArea {
 		anInt1442 = anInt1443 = 0;
 	}
 
-	public Sprite(byte abyte0[], Component component) {
+	public Sprite(byte[] abyte0, Component component) {
 		try {
 			// Image image =
 			// Toolkit.getDefaultToolkit().getImage(signlink.findcachedir()+"mopar.jpg");
@@ -46,7 +46,7 @@ public final class Sprite extends DrawingArea {
 		trimWidth = stream_1.readUnsignedWord();
 		trimHeight = stream_1.readUnsignedWord();
 		int j = stream_1.readUnsignedByte();
-		int ai[] = new int[j];
+		int[] ai = new int[j];
 		for (int k = 0; k < j - 1; k++) {
 			ai[k + 1] = stream_1.read3Bytes();
 			if (ai[k + 1] == 0) {
@@ -131,7 +131,7 @@ public final class Sprite extends DrawingArea {
 		height = trimHeight;
 		anInt1442 = 0;
 		anInt1443 = 0;*/
-		int ai[] = new int[trimWidth * trimHeight];
+		int[] ai = new int[trimWidth * trimHeight];
 		for (int j = 0; j < height; j++) {
 			for (int k = 0; k < width; k++)
 				ai[(j + anInt1443) * trimWidth + (k + anInt1442)] = pixels[j
@@ -184,7 +184,7 @@ public final class Sprite extends DrawingArea {
 		}
 	}
 
-	private void method347(int i, int j, int k, int l, int i1, int k1, int ai[], int ai1[]) {
+	private void method347(int i, int j, int k, int l, int i1, int k1, int[] ai, int[] ai1) {
 		int l1 = -(j >> 2);
 		j = -(j & 3);
 		for (int i2 = -k; i2 < 0; i2++) {
@@ -283,7 +283,7 @@ public final class Sprite extends DrawingArea {
 		}
 	}
 
-	private void method349(int ai[], int ai1[], int j, int k, int l, int i1, int j1, int k1) {
+	private void method349(int[] ai, int[] ai1, int j, int k, int l, int i1, int j1, int k1) {
 		int i;// was parameter
 		int l1 = -(l >> 2);
 		l = -(l & 3);
@@ -330,7 +330,7 @@ public final class Sprite extends DrawingArea {
 
 	}
 
-	private void method351(int i, int j, int ai[], int ai1[], int l, int i1, int j1, int k1, int l1) {
+	private void method351(int i, int j, int[] ai, int[] ai1, int l, int i1, int j1, int k1, int l1) {
 		int k;// was parameter
 		int j2 = 256 - k1;
 		for (int k2 = -i1; k2 < 0; k2++) {
@@ -349,7 +349,7 @@ public final class Sprite extends DrawingArea {
 		}
 	}
 
-	public void method352(int i, int j, int ai[], int k, int ai1[], int i1, int j1, int k1, int l1, int i2) {
+	public void method352(int i, int j, int[] ai, int k, int[] ai1, int i1, int j1, int k1, int l1, int i2) {
 		try {
 			int j2 = -l1 / 2;
 			int k2 = -i / 2;
@@ -461,7 +461,7 @@ public final class Sprite extends DrawingArea {
 		}
 	}
 
-	private void method355(int ai[], int i, byte abyte0[], int j, int ai1[], int k, int l, int i1, int j1, int k1) {
+	private void method355(int[] ai, int i, byte[] abyte0, int j, int[] ai1, int k, int l, int i1, int j1, int k1) {
 		int l1 = -(i >> 2);
 		i = -(i & 3);
 		for (int j2 = -j; j2 < 0; j2++) {
@@ -507,7 +507,7 @@ public final class Sprite extends DrawingArea {
 
 	}
 
-	public int pixels[];
+	public int[] pixels;
 	public int width;
 	public int height;
 	private int anInt1442;

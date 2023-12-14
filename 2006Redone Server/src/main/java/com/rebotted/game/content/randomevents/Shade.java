@@ -13,7 +13,7 @@ public class Shade {
 
 	public static void spawnShade(Player c) {
 		for (int[] element : shade) {
-			if (c.shadeSpawned == false) {
+			if (!c.shadeSpawned) {
 			if (c.combatLevel >= element[0]
 					&& c.combatLevel <= element[1]) {
 				NpcHandler

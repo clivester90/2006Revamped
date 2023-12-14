@@ -13,7 +13,7 @@ public final class Class36 {
 
 	}
 
-	public static void method529(byte abyte0[]) {
+	public static void method529(byte[] abyte0) {
 		Stream stream = new Stream(abyte0);
 		stream.currentOffset = abyte0.length - 8;
 		int i = stream.readUnsignedWord();
@@ -37,10 +37,10 @@ public final class Class36 {
 		stream_5.currentOffset = i1;
 		Class18 class18 = new Class18(stream_5);
 		int k1 = stream_1.readUnsignedWord();
-		int ai[] = new int[500];
-		int ai1[] = new int[500];
-		int ai2[] = new int[500];
-		int ai3[] = new int[500];
+		int[] ai = new int[500];
+		int[] ai1 = new int[500];
+		int[] ai2 = new int[500];
+		int[] ai3 = new int[500];
 		for (int l1 = 0; l1 < k1; l1++) {
 			int i2 = stream_1.readUnsignedWord();
 			Class36 class36 = aClass36Array635[i2] = new Class36();
@@ -133,10 +133,10 @@ public final class Class36 {
 	public int anInt636;
 	public Class18 aClass18_637;
 	public int anInt638;
-	public int anIntArray639[];
-	public int anIntArray640[];
-	public int anIntArray641[];
-	public int anIntArray642[];
+	public int[] anIntArray639;
+	public int[] anIntArray640;
+	public int[] anIntArray641;
+	public int[] anIntArray642;
 	private static boolean[] aBooleanArray643;
 
 }

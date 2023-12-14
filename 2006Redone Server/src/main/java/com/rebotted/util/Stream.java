@@ -7,7 +7,7 @@ public class Stream {
 	public Stream() {
 	}
 
-	public Stream(byte abyte0[]) {
+	public Stream(byte[] abyte0) {
 		buffer = abyte0;
 		currentOffset = 0;
 	}
@@ -149,21 +149,21 @@ public class Stream {
 		buffer[currentOffset++] = (byte) (i >> 8);
 	}
 
-	public void readBytes_reverse(byte abyte0[], int i, int j) {
+	public void readBytes_reverse(byte[] abyte0, int i, int j) {
 		for (int k = j + i - 1; k >= j; k--) {
 			abyte0[k] = buffer[currentOffset++];
 		}
 
 	}
 
-	public void writeBytes_reverse(byte abyte0[], int i, int j) {
+	public void writeBytes_reverse(byte[] abyte0, int i, int j) {
 		ensureCapacity(i);
 		for (int k = j + i - 1; k >= j; k--) {
 			buffer[currentOffset++] = abyte0[k];
 		}
 	}
 
-	public void readBytes_reverseA(byte abyte0[], int i, int j) {
+	public void readBytes_reverseA(byte[] abyte0, int i, int j) {
 		ensureCapacity(i);
 		for (int k = j + i - 1; k >= j; k--) {
 			abyte0[k] = (byte) (buffer[currentOffset++] - 128);
@@ -171,7 +171,7 @@ public class Stream {
 
 	}
 
-	public void writeBytes_reverseA(byte abyte0[], int i, int j) {
+	public void writeBytes_reverseA(byte[] abyte0, int i, int j) {
 		ensureCapacity(i);
 		for (int k = j + i - 1; k >= j; k--) {
 			buffer[currentOffset++] = (byte) (abyte0[k] + 128);
@@ -186,7 +186,7 @@ public class Stream {
 
 	private static final int frameStackSize = 10;
 	private int frameStackPtr = -1;
-	private final int frameStack[] = new int[frameStackSize];
+	private final int[] frameStack = new int[frameStackSize];
 
 	public void createFrameVarSize(int id) {
 		ensureCapacity(3);
@@ -285,7 +285,7 @@ public class Stream {
 		buffer[currentOffset++] = 10;
 	}
 
-	public void writeBytes(byte abyte0[], int i, int j) {
+	public void writeBytes(byte[] abyte0, int i, int j) {
 		ensureCapacity(i);
 		for (int k = j; k < j + i; k++) {
 			buffer[currentOffset++] = abyte0[k];
@@ -345,7 +345,7 @@ public class Stream {
 		return new String(buffer, i, currentOffset - i - 1);
 	}
 
-	public void readBytes(byte abyte0[], int i, int j) {
+	public void readBytes(byte[] abyte0, int i, int j) {
 		for (int k = j; k < j + i; k++) {
 			abyte0[k] = buffer[currentOffset++];
 		}
@@ -383,11 +383,11 @@ public class Stream {
 		currentOffset = (bitPosition + 7) / 8;
 	}
 
-	public byte buffer[] = null;
+	public byte[] buffer = null;
 	public int currentOffset = 0;
 	public int bitPosition = 0;
 
-	public static int bitMaskOut[] = new int[32];
+	public static int[] bitMaskOut = new int[32];
 	static {
 		for (int i = 0; i < 32; i++) {
 			bitMaskOut[i] = (1 << i) - 1;

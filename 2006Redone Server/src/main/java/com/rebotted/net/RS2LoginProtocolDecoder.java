@@ -138,7 +138,7 @@ public class RS2LoginProtocolDecoder extends CumulativeProtocolDecoder {
 					}
 					String name = readRS2String(rsaBuffer);
 					String pass = readRS2String(rsaBuffer);
-					int sessionKey[] = new int[4];
+					int[] sessionKey = new int[4];
 					sessionKey[0] = (int) (clientSessionKey >> 32);
 					sessionKey[1] = (int) clientSessionKey;
 					sessionKey[2] = (int) (serverSessionKey >> 32);

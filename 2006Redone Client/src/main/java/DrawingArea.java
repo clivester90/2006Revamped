@@ -4,7 +4,7 @@
 
 public class DrawingArea extends NodeSub {
 
-	public static void initDrawingArea(int i, int j, int ai[]) {
+	public static void initDrawingArea(int i, int j, int[] ai) {
 		pixels = ai;
 		width = j;
 		height = i;
@@ -219,7 +219,7 @@ public class DrawingArea extends NodeSub {
 	DrawingArea() {
 	}
 
-	public static int pixels[];
+	public static int[] pixels;
 	public static int width;
 	public static int height;
 	public static int topY;

@@ -116,7 +116,7 @@ final class Texture extends DrawingArea {
 		if (anIntArrayArray1479[i] != null) {
 			return anIntArrayArray1479[i];
 		}
-		int ai[];
+		int[] ai;
 		if (anInt1477 > 0) {
 			ai = anIntArrayArray1478[--anInt1477];
 			anIntArrayArray1478[anInt1477] = null;
@@ -135,7 +135,7 @@ final class Texture extends DrawingArea {
 		}
 		anIntArrayArray1479[i] = ai;
 		Background background = aBackgroundArray1474s[i];
-		int ai1[] = anIntArrayArray1483[i];
+		int[] ai1 = anIntArrayArray1483[i];
 		if (lowMem) {
 			aBooleanArray1475[i] = false;
 			for (int i1 = 0; i1 < 4096; i1++) {
@@ -250,7 +250,7 @@ final class Texture extends DrawingArea {
 
 		for (int l = 0; l < 50; l++) {
 			if (aBackgroundArray1474s[l] != null) {
-				int ai[] = aBackgroundArray1474s[l].anIntArray1451;
+				int[] ai = aBackgroundArray1474s[l].anIntArray1451;
 				anIntArrayArray1483[l] = new int[ai.length];
 				for (int j1 = 0; j1 < ai.length; j1++) {
 					anIntArrayArray1483[l][j1] = method373(ai[j1], d);
@@ -674,7 +674,7 @@ final class Texture extends DrawingArea {
 		}
 	}
 
-	private static void method375(int ai[], int i, int l, int i1, int j1, int k1) {
+	private static void method375(int[] ai, int i, int l, int i1, int j1, int k1) {
 		int j;// was parameter
 		int k;// was parameter
 		if (aBoolean1464) {
@@ -1094,7 +1094,7 @@ final class Texture extends DrawingArea {
 		}
 	}
 
-	private static void method377(int ai[], int i, int j, int l, int i1) {
+	private static void method377(int[] ai, int i, int j, int l, int i1) {
 		int k;// was parameter
 		if (aBoolean1462) {
 			if (i1 > DrawingArea.centerX) {
@@ -1138,7 +1138,7 @@ final class Texture extends DrawingArea {
 	}
 
 	public static void method378(int i, int j, int k, int l, int i1, int j1, int k1, int l1, int i2, int j2, int k2, int l2, int i3, int j3, int k3, int l3, int i4, int j4, int k4) {
-		int ai[] = method371(k4);
+		int[] ai = method371(k4);
 		aBoolean1463 = !aBooleanArray1475[k4];
 		k2 = j2 - k2;
 		j3 = i3 - j3;
@@ -1655,7 +1655,7 @@ final class Texture extends DrawingArea {
 		}
 	}
 
-	private static void method379(int ai[], int ai1[], int k, int l, int i1, int j1, int k1, int l1, int i2, int j2, int k2, int l2, int i3) {
+	private static void method379(int[] ai, int[] ai1, int k, int l, int i1, int j1, int k1, int l1, int i2, int j2, int k2, int l2, int i3) {
 		int i = 0;// was parameter
 		int j = 0;// was parameter
 		if (l >= i1) {
@@ -2034,19 +2034,19 @@ final class Texture extends DrawingArea {
 	public static int textureInt2;
 	private static int[] anIntArray1468;
 	public static final int[] anIntArray1469;
-	public static int anIntArray1470[];
-	public static int anIntArray1471[];
-	public static int lineOffsets[];
+	public static int[] anIntArray1470;
+	public static int[] anIntArray1471;
+	public static int[] lineOffsets;
 	private static int anInt1473;
-	public static Background aBackgroundArray1474s[] = new Background[50];
+	public static Background[] aBackgroundArray1474s = new Background[50];
 	private static boolean[] aBooleanArray1475 = new boolean[50];
 	private static int[] anIntArray1476 = new int[50];
 	private static int anInt1477;
 	private static int[][] anIntArrayArray1478;
 	private static int[][] anIntArrayArray1479 = new int[50][];
-	public static int anIntArray1480[] = new int[50];
+	public static int[] anIntArray1480 = new int[50];
 	public static int anInt1481;
-	public static int anIntArray1482[] = new int[0x10000];
+	public static int[] anIntArray1482 = new int[0x10000];
 	private static int[][] anIntArrayArray1483 = new int[50][];
 
 	static {

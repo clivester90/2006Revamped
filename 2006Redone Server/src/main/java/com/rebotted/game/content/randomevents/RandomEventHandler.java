@@ -40,7 +40,7 @@ public class RandomEventHandler {
 			resetEvent(c);
 			break;
 		case 1:
-		if (c.chickenSpawned == false) {
+		if (!c.chickenSpawned) {
 			EvilChicken.spawnChicken(c);
 			resetEvent(c);
 		}

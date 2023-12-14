@@ -91,7 +91,7 @@ public final class OnDemandFetcher extends OnDemandFetcherParent implements Runn
 			}
 			if (expectedSize > 0 && available >= expectedSize) {
 				waiting = true;
-				byte abyte0[] = ioBuffer;
+				byte[] abyte0 = ioBuffer;
 				int i1 = 0;
 				if (current != null) {
 					abyte0 = current.buffer;
@@ -131,9 +131,9 @@ public final class OnDemandFetcher extends OnDemandFetcherParent implements Runn
 	}
 
 	public void start(StreamLoader streamLoader, Game client1) {
-		String as[] = {"model_version", "anim_version", "midi_version", "map_version"};
+		String[] as = {"model_version", "anim_version", "midi_version", "map_version"};
 		for (int i = 0; i < 4; i++) {
-			byte abyte0[] = streamLoader.getDataForName(as[i]);
+			byte[] abyte0 = streamLoader.getDataForName(as[i]);
 			int j = abyte0.length / 2;
 			Stream stream = new Stream(abyte0);
 			versions[i] = new int[j];
@@ -144,9 +144,9 @@ public final class OnDemandFetcher extends OnDemandFetcherParent implements Runn
 
 		}
 
-		String as1[] = {"model_crc", "anim_crc", "midi_crc", "map_crc"};
+		String[] as1 = {"model_crc", "anim_crc", "midi_crc", "map_crc"};
 		for (int k = 0; k < 4; k++) {
-			byte abyte1[] = streamLoader.getDataForName(as1[k]);
+			byte[] abyte1 = streamLoader.getDataForName(as1[k]);
 			int i1 = abyte1.length / 4;
 			Stream stream_1 = new Stream(abyte1);
 			crcs[k] = new int[i1];
@@ -156,7 +156,7 @@ public final class OnDemandFetcher extends OnDemandFetcherParent implements Runn
 
 		}
 
-		byte abyte2[] = streamLoader.getDataForName("model_index");
+		byte[] abyte2 = streamLoader.getDataForName("model_index");
 		int j1 = versions[0].length;
 		modelIndices = new byte[j1];
 		for (int k1 = 0; k1 < j1; k1++) {
@@ -479,7 +479,7 @@ public final class OnDemandFetcher extends OnDemandFetcherParent implements Runn
 		if (versions[i][j] == 0) {
 			return;
 		}
-		byte abyte0[] = clientInstance.decompressors[i + 1].decompress(j);
+		byte[] abyte0 = clientInstance.decompressors[i + 1].decompress(j);
 		if (crcMatches(versions[i][j], crcs[i][j], abyte0)) {
 			return;
 		}
@@ -539,7 +539,7 @@ public final class OnDemandFetcher extends OnDemandFetcherParent implements Runn
 		}
 		while (onDemandData != null) {
 			waiting = true;
-			byte abyte0[] = null;
+			byte[] abyte0 = null;
 			if (clientInstance.decompressors[0] != null) {
 				abyte0 = clientInstance.decompressors[onDemandData.dataType + 1].decompress(onDemandData.ID);
 			}
@@ -589,7 +589,7 @@ public final class OnDemandFetcher extends OnDemandFetcherParent implements Runn
 				}
 			}
 			for (int j = 0; j < 4; j++) {
-				byte abyte0[] = fileStatus[j];
+				byte[] abyte0 = fileStatus[j];
 				int k = abyte0.length;
 				for (int l = 0; l < k; l++) {
 					if (abyte0[l] == anInt1332) {

@@ -469,7 +469,7 @@ public final class ObjectDef {
 	private static int[] streamIndices;
 	public boolean aBoolean757;
 	public int anInt758;
-	public int childrenIDs[];
+	public int[] childrenIDs;
 	private int anInt760;
 	public int anInt761;
 	public boolean aBoolean762;
@@ -485,7 +485,7 @@ public final class ObjectDef {
 	public int anInt774;
 	public int anInt775;
 	private int[] anIntArray776;
-	public byte description[];
+	public byte[] description;
 	public boolean hasActions;
 	public boolean aBoolean779;
 	public static MRUNodes mruNodes2 = new MRUNodes(30);
@@ -494,6 +494,6 @@ public final class ObjectDef {
 	private int anInt783;
 	private int[] modifiedModelColors;
 	public static MRUNodes mruNodes1 = new MRUNodes(500);
-	public String actions[];
+	public String[] actions;
 
 }

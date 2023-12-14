@@ -86,7 +86,7 @@ public class OtherObjects {
 			player.turnPlayerTo(player.objectX, player.objectY);
 			coords[0] = player.objectX;
 			coords[1] = player.objectY;
-			if (player.desertWarning == false && player.getY() == 3117) {
+			if (!player.desertWarning && player.getY() == 3117) {
 				DesertHeat.showWarning(player);
 				player.desertWarning = true;
 			}

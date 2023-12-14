@@ -133,7 +133,7 @@ public class WeaponPoison {
 	public static void execute(final Player player, int itemUse, int useWith) {
 		final Weapon weapon = Weapon.weapon.get(useWith);
 		if (weapon != null) {
-			for (int element[] : weapon.getNewItemId()) {
+			for (int[] element : weapon.getNewItemId()) {
 				if (itemUse == element[0]) {
 					player.getPacketSender().sendMessage("You make a " + ItemAssistant.getItemName(element[1]) + ".");
 					player.getItemAssistant().deleteItem(element[0], player.getItemAssistant().getItemSlot(element[0]), 1);

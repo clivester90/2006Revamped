@@ -176,7 +176,7 @@ public class ShopHandler {
         } catch (IOException ioexception) {
             Misc.println(FileName + ": error loading file.");
         }
-        while (EndOfFile == false && line != null) {
+        while (!EndOfFile && line != null) {
             line = line.trim();
             int spot = line.indexOf("=");
             if (spot > -1) {

@@ -24,7 +24,7 @@ public class Superheat {
 	};
 
 	public static boolean superHeatItem(Player player, int itemID) {
-		for (int smelt[] : SMELT) {
+		for (int[] smelt : SMELT) {
 			if (itemID == smelt[0]) {
 				if (!player.getItemAssistant().playerHasItem(smelt[2], smelt[3])) {
 					if (itemID == 440 && smelt[2] == 453) {

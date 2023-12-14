@@ -55,7 +55,7 @@ public class PrivateMessaging implements PacketType {
 
 		case SEND_PM:
 			long sendMessageToFriendId = player.getInStream().readQWord();
-			byte pmchatText[] = new byte[100];
+			byte[] pmchatText = new byte[100];
 			int pmchatTextSize = (byte) (packetSize - 8);
 			player.getInStream().readBytes(pmchatText, pmchatTextSize, 0);
 			String word = Misc.textUnpack(pmchatText, player.packetSize - 2).toLowerCase();// used

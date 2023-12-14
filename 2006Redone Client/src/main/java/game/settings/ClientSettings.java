@@ -1,7 +1,9 @@
+package game.settings;
+
 import java.math.BigInteger;
 
 /**
- * ClientSettings
+ * game.settings.ClientSettings
  * @author Andrew (I'm A Boss on Rune-Server and Mr Extremez on Mopar & Runelocus)
  */
 
@@ -11,7 +13,7 @@ public class ClientSettings {
 	/**
 	 * The Servers Name
 	 */
-	public final static String SERVER_NAME = "2006rebotted";
+	public final static String SERVER_NAME = "Runescape";
 	/**
 	 * The Servers Website
 	 */

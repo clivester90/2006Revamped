@@ -121,13 +121,13 @@ public final class Animation {
 		anInt365 = 2;
 	}
 
-	public static Animation anims[];
+	public static Animation[] anims;
 	public int anInt352;
-	public int anIntArray353[];
-	public int anIntArray354[];
+	public int[] anIntArray353;
+	public int[] anIntArray354;
 	private int[] anIntArray355;
 	public int anInt356;
-	public int anIntArray357[];
+	public int[] anIntArray357;
 	public boolean aBoolean358;
 	public int anInt359;
 	public int anInt360;

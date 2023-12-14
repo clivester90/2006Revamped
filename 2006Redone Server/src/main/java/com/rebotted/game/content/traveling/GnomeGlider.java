@@ -25,7 +25,7 @@ public class GnomeGlider {
 			}
 		} else {
 			for (int i = 0; i < getLength(); i++) {
-				if (player.gliderOpen == false && getButton(i) == button) {
+				if (!player.gliderOpen && getButton(i) == button) {
 					player.getPacketSender().sendMessage("You have improperly opened the glider.");
 				}
 			}

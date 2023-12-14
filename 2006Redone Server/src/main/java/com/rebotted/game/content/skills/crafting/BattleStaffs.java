@@ -48,7 +48,7 @@ public class BattleStaffs {
 		for (final battleStaffs b : battleStaffs.values()) {
 			if ((itemUsed == b.getOrb() && usedWith == 1391) || (itemUsed == 1391 && usedWith == b.getOrb())) {
 				if (player.getItemAssistant().playerHasItem(1391) && player.getItemAssistant().playerHasItem(b.getOrb())) {
-					if (player.isCrafting == true) {
+					if (player.isCrafting) {
 						return;
 					}
 					if (player.playerLevel[12] < b.getLevelReq()) {
@@ -61,7 +61,7 @@ public class BattleStaffs {
 					CycleEventHandler.getSingleton().addEvent(player, new CycleEvent() {
 						@Override
 						public void execute(CycleEventContainer container) {
-							if (player.isCrafting == true && player != null) {
+							if (player.isCrafting && player != null) {
 								if (!player.getItemAssistant().playerHasItem(1391, 1)) {
 									player.getPacketSender().sendMessage("You have run out of battlestaffs.");
 									container.stop();

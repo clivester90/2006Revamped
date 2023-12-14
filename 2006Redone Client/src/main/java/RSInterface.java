@@ -1,3 +1,5 @@
+import game.settings.ClientSettings;
+
 public final class RSInterface {
 
 	public void swapInventoryItems(int i, int j) {
@@ -9,7 +11,7 @@ public final class RSInterface {
 		invStackSizes[j] = k;
 	}
 	
-	public static void unpack(StreamLoader streamLoader, TextDrawingArea textDrawingAreas[], StreamLoader streamLoader_1) {
+	public static void unpack(StreamLoader streamLoader, TextDrawingArea[] textDrawingAreas, StreamLoader streamLoader_1) {
 		aMRUNodes_238 = new MRUNodes(50000);
 		Stream stream = new Stream(streamLoader.getDataForName("data"));
 		int i = -1;
@@ -325,11 +327,11 @@ public final class RSInterface {
 
 	public Sprite sprite1;
 	public int anInt208;
-	public Sprite sprites[];
-	public static RSInterface interfaceCache[];
-	public int anIntArray212[];
+	public Sprite[] sprites;
+	public static RSInterface[] interfaceCache;
+	public int[] anIntArray212;
 	public int anInt214;
-	public int spritesX[];
+	public int[] spritesX;
 	public int anInt216;
 	public int atActionType;
 	public String spellName;
@@ -339,8 +341,8 @@ public final class RSInterface {
 	public String selectedActionName;
 	public boolean aBoolean223;
 	public int scrollPosition;
-	public String actions[];
-	public int valueIndexArray[][];
+	public String[] actions;
+	public int[][] valueIndexArray;
 	public boolean aBoolean227;
 	public String enabledText;
 	public int anInt230;
@@ -353,19 +355,19 @@ public final class RSInterface {
 	public int spellUsableOn;
 	private static MRUNodes aMRUNodes_238;
 	public int anInt239;
-	public int children[];
-	public int childX[];
+	public int[] children;
+	public int[] childX;
 	public boolean usableItemInterface;
 	public TextDrawingArea textDrawingAreas;
 	public int invSpritePadY;
-	public int anIntArray245[];
+	public int[] anIntArray245;
 	public int anInt246;
-	public int spritesY[];
+	public int[] spritesY;
 	public String disabledText;
 	public boolean isInventoryInterface;
 	public int id;
-	public int invStackSizes[];
-	public int inv[];
+	public int[] invStackSizes;
+	public int[] inv;
 	public byte aByte254;
 	private int anInt255;
 	private int anInt256;
@@ -386,6 +388,6 @@ public final class RSInterface {
 	public int anInt269;
 	public int anInt270;
 	public int anInt271;
-	public int childY[];
+	public int[] childY;
 
 }

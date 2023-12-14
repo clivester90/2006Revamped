@@ -56,7 +56,7 @@ public class DesertHeat {
 	
 	private static int getClothes(Player player) {
 		int temp = 0;
-	    for (int element[] : CLOTHES) {
+	    for (int[] element : CLOTHES) {
 			if (player.playerEquipment[element[1]] == element[0]) {
 				temp += 1;
 			}

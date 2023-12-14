@@ -10,7 +10,7 @@ import com.thoughtworks.xstream.XStream;
 public class XStreamUtil {
 	
 	private static XStreamUtil instance = new XStreamUtil();
-	private static XStream xStream = new XStream();
+	private static final XStream xStream = new XStream();
 	
 	public static XStreamUtil getInstance() {
 		return instance;
@@ -25,12 +25,9 @@ public class XStreamUtil {
 	}
 	
     public static void writeXML(Object object, File file) throws IOException {
-        FileOutputStream out = new FileOutputStream(file);
-        try {
+        try (FileOutputStream out = new FileOutputStream(file)) {
             xStream.toXML(object, out);
             out.flush();
-        } finally {
-            out.close();
         }
     }
 

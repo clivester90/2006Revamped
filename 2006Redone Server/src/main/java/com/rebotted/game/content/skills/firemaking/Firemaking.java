@@ -25,14 +25,14 @@ public class Firemaking {
 	}
 	
 	public static void attemptFire(final Player c, final int itemUsed, final int usedWith, final int x, final int y, final boolean groundObject) {
-		int firemakingItems[] = {590, 7329, 7330, 7331};
+		int[] firemakingItems = {590, 7329, 7330, 7331};
 		for (int i = 0; i < firemakingItems.length; i++) {
 		if (c.pickedUpFiremakingLog) {
 			c.getPacketSender().sendMessage("You can't do that!");
 			c.pickedUpFiremakingLog = false;
 			return;
 		}
-		if (c.isFiremaking && c.logLit == false) {
+		if (c.isFiremaking && !c.logLit) {
 			return;
 		}
 		if (!SkillHandler.FIREMAKING) {
@@ -69,13 +69,13 @@ public class Firemaking {
 						c.getDialogueHandler().chatboxText("", "Your character is now attempting to light the fire.", "This should only take a few seconds.", "", "Please wait");
 						c.getPacketSender().chatbox(6179);
 					}
-					if (groundObject == false) {
+					if (!groundObject) {
 						c.getItemAssistant().deleteItem(logId, c.getItemAssistant().getItemSlot(logId), 1);
 						GameEngine.itemHandler.createGroundItem(c, logId, c.absX, c.absY, 1, c.playerId);
 					}
 					cycle = 3 + Misc.random(6);
 				} else {
-					if (groundObject == false) {
+					if (!groundObject) {
 						c.getItemAssistant().deleteItem(logId, c.getItemAssistant().getItemSlot(logId), 1);
 					}
 				}

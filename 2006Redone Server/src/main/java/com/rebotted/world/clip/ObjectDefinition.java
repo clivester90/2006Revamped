@@ -293,7 +293,7 @@ public final class ObjectDefinition {
 	public int type;
 	public boolean aBoolean757;
 	public int anInt758;
-	public int childrenIDs[];
+	public int[] childrenIDs;
 	public int anInt761;
 	public boolean aBoolean762;
 	public boolean aBoolean764;
@@ -304,13 +304,13 @@ public final class ObjectDefinition {
 	public int anInt774;
 	public int anInt775;
 	private int[] anIntArray776;
-	public byte description[];
+	public byte[] description;
 	public boolean hasActions;
 	public boolean aBoolean779;
 	public int anInt781;
 	private static ObjectDefinition[] cache;
 	private int[] modifiedModelColors;
-	public String actions[];
+	public String[] actions;
 	private static MemoryArchive archive;
 
 }

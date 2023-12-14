@@ -7,7 +7,7 @@ final class Class21 {
 	public Class21() {
 	}
 
-	public byte aByteArray368[];
+	public byte[] aByteArray368;
 	public int anInt369;
 	public int anInt370;
 	public int anInt371;

@@ -41,7 +41,7 @@ public class GenieLamp {
 			{ 11010, 10 }, { 11012, 11 }, { 11006, 12 }, { 11009, 13 },
 			{ 11008, 14 }, { 11004, 15 }, { 11003, 16 }, { 11005, 17 },
 			{ 47002, 18 }, { 54090, 19 }, { 11007, 20 }, };
-	public String statName[] = { "attack", "defence", "strength", "hitpoints",
+	public String[] statName = { "attack", "defence", "strength", "hitpoints",
 			"range", "prayer", "magic", "cooking", "woodcutting", "fletching",
 			"fishing", "firemaking", "crafting", "smithing", "mining",
 			"herblore", "agility", "thieving", "slayer", "farming",

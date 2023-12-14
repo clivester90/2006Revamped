@@ -8,7 +8,7 @@ public class SkillInterfaces {
 
 	public int selected;
 
-	private final int item[] = new int[40];
+	private final int[] item = new int[40];
 
 	public SkillInterfaces(Player player) {
 		c = player;
@@ -138,7 +138,7 @@ public class SkillInterfaces {
 	 *            []
 	 * @return Used to place the item on the interface
 	 */
-	private void writeInterfaceItem(int id[]) {
+	private void writeInterfaceItem(int[] id) {
 		synchronized (c) {
 			c.outStream.createFrameVarSizeWord(53);
 			c.outStream.writeWord(8847); // 8847

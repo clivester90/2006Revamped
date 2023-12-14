@@ -33,7 +33,7 @@ final class TextClass {
 				return "invalid_name";
 			}
 			int i = 0;
-			char ac[] = new char[12];
+			char[] ac = new char[12];
 			while (l != 0L) {
 				long l1 = l;
 				l /= 37L;
@@ -62,7 +62,7 @@ final class TextClass {
 
 	public static String fixName(String s) {
 		if (s.length() > 0) {
-			char ac[] = s.toCharArray();
+			char[] ac = s.toCharArray();
 			for (int j = 0; j < ac.length; j++) {
 				if (ac[j] == '_') {
 					ac[j] = ' ';

@@ -18,7 +18,7 @@ public class TreeSpirit {
 	
 	public static void spawnTreeSpirit(Player p) {
 		for (int[] element : treeSpirit) {
-			if (p.treeSpiritSpawned == false) {
+			if (!p.treeSpiritSpawned) {
 			if (p.combatLevel >= element[0] && p.combatLevel <= element[1]) {
 				NpcHandler.spawnNpc(p, element[2], p.absX + Misc.random(1),
 						p.absY + Misc.random(1), p.heightLevel, 0, element[3],

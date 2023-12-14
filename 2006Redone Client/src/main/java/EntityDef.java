@@ -53,7 +53,7 @@ public final class EntityDef {
 		if (flag1) {
 			return null;
 		}
-		Model aclass30_sub2_sub4_sub6s[] = new Model[anIntArray73.length];
+		Model[] aclass30_sub2_sub4_sub6s = new Model[anIntArray73.length];
 		for (int j = 0; j < anIntArray73.length; j++) {
 			aclass30_sub2_sub4_sub6s[j] = Model.method462(anIntArray73[j]);
 		}
@@ -117,7 +117,7 @@ public final class EntityDef {
 		stream = null;
 	}
 
-	public Model method164(int j, int k, int ai[]) {
+	public Model method164(int j, int k, int[] ai) {
 		if (childrenIDs != null) {
 			EntityDef entityDef = method161();
 			if (entityDef == null) {
@@ -138,7 +138,7 @@ public final class EntityDef {
 			if (flag) {
 				return null;
 			}
-			Model aclass30_sub2_sub4_sub6s[] = new Model[anIntArray94.length];
+			Model[] aclass30_sub2_sub4_sub6s = new Model[anIntArray94.length];
 			for (int j1 = 0; j1 < anIntArray94.length; j1++) {
 				aclass30_sub2_sub4_sub6s[j1] = Model.method462(anIntArray94[j1]);
 			}
@@ -305,7 +305,7 @@ public final class EntityDef {
 	private static Stream stream;
 	public int combatLevel;
 	public String name;
-	public String actions[];
+	public String[] actions;
 	public int anInt67;
 	public byte aByte68;
 	private int[] anIntArray70;
@@ -323,8 +323,8 @@ public final class EntityDef {
 	private int anInt85;
 	private int anInt86;
 	public boolean aBoolean87;
-	public int childrenIDs[];
-	public byte description[];
+	public int[] childrenIDs;
+	public byte[] description;
 	private int anInt91;
 	private int anInt92;
 	public boolean aBoolean93;

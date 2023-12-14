@@ -11,15 +11,15 @@ public enum SkillConstants {
 	FISHING(true), FIREMAKING(true), CRAFTING(true), SMITHING(true), MINING(true), 
 	HERBLORE(true), AGILITY(true), THIEVING(true), SLAYER(true), FARMING(true), RUNECRAFTING(true);
 	
-	private SkillConstants(boolean skillEnabled) {
+	SkillConstants(boolean skillEnabled) {
 		this.skillEnabled = skillEnabled;
 	}
 	
-	private boolean skillEnabled;
+	private final boolean skillEnabled;
 	
 	public static boolean getEnabled(int id) {
 		for (final SkillConstants skillConstants : SkillConstants.values()) {
-			if (skillConstants.ordinal() == id && skillConstants.skillEnabled == true) {
+			if (skillConstants.ordinal() == id && skillConstants.skillEnabled) {
 				return true;
 			}
 		}

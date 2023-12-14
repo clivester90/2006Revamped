@@ -9,6 +9,11 @@ import java.util.Map;
 import java.util.Queue;
 
 import com.everythingrs.hiscores.Hiscores;
+import com.rebotted.game.content.gamemode.Mode;
+import com.rebotted.game.content.gamemode.ModeType;
+import com.rebotted.game.content.gamemode.RegularMode;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.mina.common.IoSession;
 import com.rebotted.GameConstants;
 import com.rebotted.GameEngine;
@@ -96,7 +101,7 @@ import com.rebotted.world.ObjectManager;
 
 public abstract class Player {
 	
-	public byte buffer[] = null;
+	public byte[] buffer = null;
 	public String lastConnectedFrom;
 	private Compost compost = new Compost(this);
 	private Allotments allotment = new Allotments(this);
@@ -163,6 +168,10 @@ public abstract class Player {
 	private GateHandler gateHandler = new GateHandler();
 	private SingleGates singleGates = new SingleGates();
 	private DoubleGates doubleGates = new DoubleGates();
+
+	@Getter
+	@Setter
+	public Mode mode = new RegularMode(ModeType.STANDARD);
 	public int lastMainFrameInterface = -1; //Possibly used in future to prevent packet exploits
 	
 	public boolean isPreaching() {
@@ -457,7 +466,7 @@ public abstract class Player {
 	public int totalShopItems;
 	
 	public boolean stopPlayer(boolean stop) {
-		return (stop ? stopPlayerPacket == true : stopPlayerPacket == false);
+		return (stop == stopPlayerPacket);
 	}
 	
 	public long objectDelay;
@@ -570,7 +579,7 @@ public abstract class Player {
 		}
 	}
 
-	public static final int PACKET_SIZES[] = { 0, 0, 0, 1, -1, 0, 0, 0, 0, 0, // 0
+	public static final int[] PACKET_SIZES = { 0, 0, 0, 1, -1, 0, 0, 0, 0, 0, // 0
 			0, 0, 0, 0, 8, 0, 6, 2, 2, 0, // 10
 			0, 2, 0, 6, 0, 12, 0, 0, 0, 0, // 20
 			0, 0, 0, 0, 0, 8, 4, 0, 0, 2, // 30
@@ -888,7 +897,7 @@ public abstract class Player {
 
 		if (System.currentTimeMillis() - duelDelay > 800 && duelCount > 0) {
 			if (duelCount != 1) {
-				forcedChat("" + --duelCount);
+				forcedChat(String.valueOf(--duelCount));
 				duelDelay = System.currentTimeMillis();
 			} else {
 				damageTaken = new int[GameConstants.MAX_PLAYERS];
@@ -1402,6 +1411,8 @@ public abstract class Player {
 			spawnedHealers, cannonX = 0, cannonY = 0,
 			playerShopId;
 
+	public boolean completedTutorial = tutorialProgress == 36;
+
 	public double playerEnergy = 100;
 
 	public Pets getSummon() {
@@ -1410,7 +1421,7 @@ public abstract class Player {
 
 	private final Pets pets = new Pets();
 
-	public int removedTasks[] = { -1, -1, -1, -1 };
+	public int[] removedTasks = { -1, -1, -1, -1 };
 
 	public boolean isRunning() {
 		return isNewWalkCmdIsRunning() || isRunning2 && isMoving;
@@ -1482,7 +1493,7 @@ public abstract class Player {
 		return barrowsNpcDead[id];
 	}
 
-	private final boolean barrowsNpcDead[] = new boolean[6];
+	private final boolean[] barrowsNpcDead = new boolean[6];
 
 	public int ectofuntusBoneUsed;
 	public String ectofuntusBoneCrusherState = "Empty";
@@ -1513,7 +1524,7 @@ public abstract class Player {
 	public int[] pouches = new int[4];
 	public final int[] POUCH_SIZE = { 3, 6, 9, 12 };
 	public boolean[] invSlot = new boolean[28], equipSlot = new boolean[14];
-	public long friends[] = new long[200], ignores[] = new long[200];
+	public long[] friends = new long[200], ignores = new long[200];
 	public double specAmount = 0;
 	public double specAccuracy = 1;
 	public double specDamage = 1;
@@ -1654,7 +1665,7 @@ public abstract class Player {
 	public boolean takeAsNote;
 	public int combatLevel;
 	public boolean saveFile;
-	public int playerAppearance[] = new int[13];
+	public int[] playerAppearance = new int[13];
 	public int actionID;
 	public int wearItemTimer, wearId, wearSlot, interfaceId;
 	public int XremoveSlot, XinterfaceID, XremoveID, Xamount;
@@ -1693,17 +1704,11 @@ public abstract class Player {
    }
 
    public boolean inTrawlerBoat() {
-       if(inArea(2808, 2811,3415,3425)) {
-           return true;
-       }
-       return false;
+	   return inArea(2808, 2811, 3415, 3425);
    }
 
    public boolean inTrawlerGame() {
-       if(inArea(2808, 2811,3415,3425)) {
-           return true;
-       }
-       return false;
+	   return inArea(2808, 2811, 3415, 3425);
    }
 
    public long lastFishingTrawlerInteraction;
@@ -1728,31 +1733,19 @@ public abstract class Player {
 
 	public boolean inCw() {
 		Client c = (Client) this;
-		if (CastleWars.isInCwWait(c) || CastleWars.isInCw(c)) {
-			return true;
-		}
-		return false;
+		return CastleWars.isInCwWait(c) || CastleWars.isInCw(c);
 	}
 
 	public boolean inBarrows() {
-		if (absX > 3520 && absX < 3598 && absY > 9653 && absY < 9750) {
-			return true;
-		}
-		return false;
+		return absX > 3520 && absX < 3598 && absY > 9653 && absY < 9750;
 	}
 
 	public boolean inArea(int x, int y, int x1, int y1) {
-		if (absX > x && absX < x1 && absY < y && absY > y1) {
-			return true;
-		}
-		return false;
+		return absX > x && absX < x1 && absY < y && absY > y1;
 	}
 
 	public boolean inKqArea() {
-		if (absX >= 3467  && absX <= 3506 && absY >= 9477 && absY <= 9513) {
-			return true;
-		}
-		return false;
+		return absX >= 3467 && absX <= 3506 && absY >= 9477 && absY <= 9513;
 	}
 
 	public boolean inWild() {
@@ -1772,9 +1765,12 @@ public abstract class Player {
 	}
 
 	public boolean inPlayerShopArea() {
-		return isInArea(2938, 3389, 3059, 3329) || // Falador
-				isInArea(3172, 3449, 3270, 3384) || // Varrock
-				isInArea(3200, 3256, 3237, 3201) || // Lumbridge
+		// Falador
+		// Varrock
+		// Lumbridge
+		return isInArea(2938, 3389, 3059, 3329) ||
+				isInArea(3172, 3449, 3270, 3384) ||
+				isInArea(3200, 3256, 3237, 3201) ||
 				isInArea(2716, 3498, 2735, 3480) ||
 				isInArea(3075, 3513, 3106, 3466) ||
 				isInArea(3074, 3262, 3102, 3239) ||
@@ -1785,30 +1781,20 @@ public abstract class Player {
 				isInArea(3386, 3264, 3348, 3286) ||
 				isInArea(2797, 3454, 2838, 3430) ||
 				isInArea(2546, 3157, 2512, 3176) ||
-				isInArea(2451, 3408, 2425, 3437) ||
-				false;
+				isInArea(2451, 3408, 2425, 3437);
 	}
 
 	public boolean duelingArena() {
-		if (absX > 3331 && absX < 3391 && absY > 3242 && absY < 3260) {
-			return true;
-		}
-		return false;
+		return absX > 3331 && absX < 3391 && absY > 3242 && absY < 3260;
 	}
 
 
 	 public boolean playerIsBusy() {
-        if (isShopping || inTrade || openDuel || isBanking || duelStatus == 1) {
-            return true;
-        }
-        return false;
+		 return isShopping || inTrade || openDuel || isBanking || duelStatus == 1;
 	 }
 
 	public boolean inDuelArena() {
-		if (absX > 3322 && absX < 3394 && absY > 3195 && absY < 3291 || absX > 3311 && absX < 3323 && absY > 3223 && absY < 3248) {
-			return true;
-		}
-		return false;
+		return absX > 3322 && absX < 3394 && absY > 3195 && absY < 3291 || absX > 3311 && absX < 3323 && absY > 3223 && absY < 3248;
 	}
 
 	public boolean isInArea(final int x1, final int y1, final int x2, final int y2) {
@@ -1844,12 +1830,12 @@ public abstract class Player {
 	public String playerPass = null;
 	public int playerRights;
 	public PlayerHandler handler = null;
-	public int playerItems[] = new int[28];
-	public int playerItemsN[] = new int[28];
-	public int bankItems[] = new int[ItemConstants.BANK_SIZE];
-	public int bankItemsN[] = new int[ItemConstants.BANK_SIZE];
+	public int[] playerItems = new int[28];
+	public int[] playerItemsN = new int[28];
+	public int[] bankItems = new int[ItemConstants.BANK_SIZE];
+	public int[] bankItemsN = new int[ItemConstants.BANK_SIZE];
 	// used for player owned shops
-	public int bankItemsV[] = new int[ItemConstants.BANK_SIZE];
+	public int[] bankItemsV = new int[ItemConstants.BANK_SIZE];
 	public boolean bankNotes = false;
 	public boolean shouldSave = false;
 
@@ -1992,16 +1978,16 @@ public abstract class Player {
 	}
 
 	public static final int maxPlayerListSize = GameConstants.MAX_PLAYERS;
-	public Player playerList[] = new Player[maxPlayerListSize];
+	public Player[] playerList = new Player[maxPlayerListSize];
 	public int playerListSize = 0;
 
-	public byte playerInListBitmap[] = new byte[GameConstants.MAX_PLAYERS + 7 >> 3];
+	public byte[] playerInListBitmap = new byte[GameConstants.MAX_PLAYERS + 7 >> 3];
 
 	public static final int maxNPCListSize = NpcHandler.MAX_NPCS;
-	public Npc npcList[] = new Npc[maxNPCListSize];
+	public Npc[] npcList = new Npc[maxNPCListSize];
 	public int npcListSize = 0;
 
-	public byte npcInListBitmap[] = new byte[NpcHandler.MAX_NPCS + 7 >> 3];
+	public byte[] npcInListBitmap = new byte[NpcHandler.MAX_NPCS + 7 >> 3];
 
 	public boolean withinDistance(Player otherPlr) {
 		if (heightLevel != otherPlr.heightLevel) {
@@ -2052,8 +2038,8 @@ public abstract class Player {
 	public boolean updateRequired = true;
 
 	public final int walkingQueueSize = 50;
-	public int walkingQueueX[] = new int[walkingQueueSize],
-			walkingQueueY[] = new int[walkingQueueSize];
+	public int[] walkingQueueX = new int[walkingQueueSize],
+			walkingQueueY = new int[walkingQueueSize];
 	public int wQueueReadPtr = 0;
 	public int wQueueWritePtr = 0;
 	public boolean isRunning = true;
@@ -2323,7 +2309,7 @@ public abstract class Player {
 		}
 	}
 
-	public byte cachedPropertiesBitmap[] = new byte[GameConstants.MAX_PLAYERS + 7 >> 3];
+	public byte[] cachedPropertiesBitmap = new byte[GameConstants.MAX_PLAYERS + 7 >> 3];
 
 	public void addNewNPC(Npc npc, Stream str, Stream updateBlock) {
 		int id = npc.npcId;
@@ -2561,7 +2547,7 @@ public abstract class Player {
 	}
 
 	private boolean chatTextUpdateRequired = false;
-	private byte chatText[] = new byte[4096];
+	private byte[] chatText = new byte[4096];
 	private byte chatTextSize = 0;
 	private int chatTextColor = 0;
 	private int chatTextEffects = 0;
@@ -2618,10 +2604,7 @@ public abstract class Player {
 	public boolean wearing2h() {
 		Client c = (Client) this;
 		String s = ItemAssistant.getItemName(c.playerEquipment[c.playerWeapon]);
-		if (s.contains("2h")) {
-			return true;
-		}
-		return false;
+		return s.contains("2h");
 	}
 
 	/**
@@ -2818,12 +2801,12 @@ public abstract class Player {
 		getNextPlayerMovement();
 	}
 
-	private int newWalkCmdX[] = new int[walkingQueueSize];
-	private int newWalkCmdY[] = new int[walkingQueueSize];
+	private int[] newWalkCmdX = new int[walkingQueueSize];
+	private int[] newWalkCmdY = new int[walkingQueueSize];
 	public int newWalkCmdSteps = 0;
 	private boolean newWalkCmdIsRunning = false;
-	protected int travelBackX[] = new int[walkingQueueSize];
-	protected int travelBackY[] = new int[walkingQueueSize];
+	protected int[] travelBackX = new int[walkingQueueSize];
+	protected int[] travelBackY = new int[walkingQueueSize];
 	protected int numTravelBackSteps = 0;
 
 	public void preProcessing() {
@@ -3024,7 +3007,7 @@ public abstract class Player {
 		return chatTextUpdateRequired;
 	}
 
-	public void setChatText(byte chatText[]) {
+	public void setChatText(byte[] chatText) {
 		this.chatText = chatText;
 	}
 
@@ -3040,7 +3023,7 @@ public abstract class Player {
 		return chatTextColor;
 	}
 
-	public void setNewWalkCmdX(int newWalkCmdX[]) {
+	public void setNewWalkCmdX(int[] newWalkCmdX) {
 		this.newWalkCmdX = newWalkCmdX;
 	}
 
@@ -3048,7 +3031,7 @@ public abstract class Player {
 		return newWalkCmdX;
 	}
 
-	public void setNewWalkCmdY(int newWalkCmdY[]) {
+	public void setNewWalkCmdY(int[] newWalkCmdY) {
 		this.newWalkCmdY = newWalkCmdY;
 	}
 

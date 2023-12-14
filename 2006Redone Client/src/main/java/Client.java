@@ -1,3 +1,5 @@
+import game.settings.ClientSettings;
+
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 

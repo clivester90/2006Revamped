@@ -13,7 +13,7 @@ public class Zombie {
 
 	public static void spawnZombie(Player c) {
 		for (int[] element : zombie) {
-			if (c.zombieSpawned == false) {
+			if (!c.zombieSpawned) {
 			if (c.combatLevel >= element[0] && c.combatLevel <= element[1]) {
 				NpcHandler.spawnNpc(c, element[2], c.absX + Misc.random(1),
 						c.absY + Misc.random(1), c.heightLevel, 0, element[3],

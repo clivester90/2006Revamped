@@ -15,7 +15,7 @@ public class EvilChicken {
 
 	public static void spawnChicken(Player c) {
 		for (int[] aChicken : chicken) {
-			if (c.chickenSpawned == false) {
+			if (!c.chickenSpawned) {
 				if (c.combatLevel >= aChicken[0] && c.combatLevel <= aChicken[1]) {
 					NpcHandler.spawnNpc(c, aChicken[2], c.absX + Misc.random(1), c.absY + Misc.random(1), c.heightLevel, 0, aChicken[3], aChicken[4], aChicken[5], aChicken[6], true, false);
 					c.chickenSpawned = true;

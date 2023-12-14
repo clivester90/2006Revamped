@@ -4,7 +4,7 @@
 
 final class ObjectManager {
 
-	public ObjectManager(byte abyte0[][][], int ai[][][]) {
+	public ObjectManager(byte[][][] abyte0, int[][][] ai) {
 		anInt145 = 99;
 		anInt146 = 104;
 		anInt147 = 104;
@@ -31,7 +31,7 @@ final class ObjectManager {
 		return l >> 19 & 0xff;
 	}
 
-	public final void method171(CollisionMap aclass11[], WorldController worldController) {
+	public final void method171(CollisionMap[] aclass11, WorldController worldController) {
 		for (int j = 0; j < 4; j++) {
 			for (int k = 0; k < 104; k++) {
 				for (int i1 = 0; i1 < 104; i1++) {
@@ -64,7 +64,7 @@ final class ObjectManager {
 			anInt133 = 16;
 		}
 		for (int l = 0; l < 4; l++) {
-			byte abyte0[][] = aByteArrayArrayArray134[l];
+			byte[][] abyte0 = aByteArrayArrayArray134[l];
 			byte byte0 = 96;
 			char c = '\u0300';
 			byte byte1 = -50;
@@ -824,7 +824,7 @@ final class ObjectManager {
 		return class46.method577(j);
 	}
 
-	public final void method179(int i, int j, CollisionMap aclass11[], int l, int i1, byte abyte0[], int j1, int k1, int l1) {
+	public final void method179(int i, int j, CollisionMap[] aclass11, int l, int i1, byte[] abyte0, int j1, int k1, int l1) {
 		for (int i2 = 0; i2 < 8; i2++) {
 			for (int j2 = 0; j2 < 8; j2++) {
 				if (l + i2 > 0 && l + i2 < 103 && l1 + j2 > 0 && l1 + j2 < 103) {
@@ -850,7 +850,7 @@ final class ObjectManager {
 
 	}
 
-	public final void method180(byte abyte0[], int i, int j, int k, int l, CollisionMap aclass11[]) {
+	public final void method180(byte[] abyte0, int i, int j, int k, int l, CollisionMap[] aclass11) {
 		for (int i1 = 0; i1 < 4; i1++) {
 			for (int j1 = 0; j1 < 64; j1++) {
 				for (int k1 = 0; k1 < 64; k1++) {
@@ -939,7 +939,7 @@ final class ObjectManager {
 		}
 	}
 
-	public final void method183(CollisionMap aclass11[], WorldController worldController, int i, int j, int k, int l, byte abyte0[], int i1, int j1, int k1) {
+	public final void method183(CollisionMap[] aclass11, WorldController worldController, int i, int j, int k, int l, byte[] abyte0, int i1, int j1, int k1) {
 		label0 : {
 			Stream stream = new Stream(abyte0);
 			int l1 = -1;
@@ -1030,7 +1030,7 @@ final class ObjectManager {
 		return (i & 0xff80) + j;
 	}
 
-	public static void method188(WorldController worldController, int i, int j, int k, int l, CollisionMap class11, int ai[][][], int i1, int j1, int k1) {
+	public static void method188(WorldController worldController, int i, int j, int k, int l, CollisionMap class11, int[][][] ai, int i1, int j1, int k1) {
 		int l1 = ai[l][i1][j];
 		int i2 = ai[l][i1 + 1][j];
 		int j2 = ai[l][i1 + 1][j + 1];
@@ -1290,7 +1290,7 @@ final class ObjectManager {
 		return bool;
 	}
 
-	public final void method190(int i, CollisionMap aclass11[], int j, WorldController worldController, byte abyte0[]) {
+	public final void method190(int i, CollisionMap[] aclass11, int j, WorldController worldController, byte[] abyte0) {
 		label0 : {
 			Stream stream = new Stream(abyte0);
 			int l = -1;
@@ -1344,17 +1344,17 @@ final class ObjectManager {
 	private final byte[][][] aByteArrayArrayArray134;
 	private final int[][][] anIntArrayArrayArray135;
 	private final byte[][][] aByteArrayArrayArray136;
-	private static final int anIntArray137[] = {1, 0, -1, 0};
+	private static final int[] anIntArray137 = {1, 0, -1, 0};
 	private final int[][] anIntArrayArray139;
-	private static final int anIntArray140[] = {16, 32, 64, 128};
+	private static final int[] anIntArray140 = {16, 32, 64, 128};
 	private final byte[][][] aByteArrayArrayArray142;
-	private static final int anIntArray144[] = {0, -1, 0, 1};
+	private static final int[] anIntArray144 = {0, -1, 0, 1};
 	static int anInt145 = 99;
 	private final int anInt146;
 	private final int anInt147;
 	private final byte[][][] aByteArrayArrayArray148;
 	private final byte[][][] aByteArrayArrayArray149;
 	static boolean lowMem = true;
-	private static final int anIntArray152[] = {1, 2, 4, 8};
+	private static final int[] anIntArray152 = {1, 2, 4, 8};
 
 }

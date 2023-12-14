@@ -36,7 +36,7 @@ public class Runecrafting {
 		c.getPacketSender().sendMessage("You need to travel " + Y + "-" + X + ".");
 	}
 	
-	public final static int RC_DATA[][] = {
+	public final static int[][] RC_DATA = {
 			{ 1438, 5527, 2478}, // air
 			{ 1448, 5529, 2479 }, // mind
 			{ 1444, 5531, 2480 }, // water

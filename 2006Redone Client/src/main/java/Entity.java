@@ -143,7 +143,7 @@ public class Entity extends Animable {
 	public int turnDirection;
 	int anInt1511;
 	int anInt1512;
-	int anInt1513;
+	int spokenColour;
 	final int[] hitArray;
 	final int[] hitMarkTypes;
 	final int[] hitsLoopCycle;
@@ -161,7 +161,7 @@ public class Entity extends Animable {
 	int anInt1528;
 	int anInt1529;
 	int anInt1530;
-	int anInt1531;
+	int spokenEffect;
 	public int loopCycleStatus;
 	public int currentHealth;
 	public int maxHealth;

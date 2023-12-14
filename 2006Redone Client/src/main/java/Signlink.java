@@ -336,7 +336,7 @@ public final class Signlink implements Runnable {
 		threadreq = runnable;
 	}
 
-	public static synchronized boolean wavesave(byte abyte0[], int i) {
+	public static synchronized boolean wavesave(byte[] abyte0, int i) {
 		if (i > 0x1e8480) {
 			return false;
 		}
@@ -363,7 +363,7 @@ public final class Signlink implements Runnable {
 		}
 	}
 
-	public static synchronized void saveMidi(byte abyte0[], int i) {
+	public static synchronized void saveMidi(byte[] abyte0, int i) {
 		if (i > 0x1e8480) {
 			return;
 		}
@@ -406,7 +406,7 @@ public final class Signlink implements Runnable {
 	public static Midi midii = new Midi();
     private static int savelen;
     private static String saveReq = null;
-    private static byte savebuf[] = null;
+    private static byte[] savebuf = null;
     public static boolean play;
     private static int midiPos;
     public static String midi = null;

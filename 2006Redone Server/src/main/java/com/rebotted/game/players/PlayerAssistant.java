@@ -264,10 +264,10 @@ public class PlayerAssistant {
         requestUpdates();
     }
 	    
-	public int backupItems[] = new int[ItemConstants.BANK_SIZE];
-	public int backupItemsN[] = new int[ItemConstants.BANK_SIZE];
-	public int backupInvItems[] = new int[28];
-	public int backupInvItemsN[] = new int[28];
+	public int[] backupItems = new int[ItemConstants.BANK_SIZE];
+	public int[] backupItemsN = new int[ItemConstants.BANK_SIZE];
+	public int[] backupInvItems = new int[28];
+	public int[] backupInvItemsN = new int[28];
 
 	public void otherInv(Client c, Client o) {
 		if (o == c || o == null || c == null)
@@ -936,11 +936,11 @@ public class PlayerAssistant {
 				Client t = (Client) player;
 				if (t.absX >= x1 && t.absX <= x2 && t.absY >= y1
 						&& t.absY <= y2) {
-					int hit = t.playerLevel[GameConstants.HITPOINTS] / hp;
+					int hit = t.playerLevel[SkillData.HITPOINTS.getId()] / hp;
 					t.setHitDiff2(hit);
 					t.setHitUpdateRequired2(true);
-					t.playerLevel[GameConstants.HITPOINTS] -= hit;
-					t.getPlayerAssistant().refreshSkill(GameConstants.HITPOINTS);
+					t.playerLevel[SkillData.HITPOINTS.getId()] -= hit;
+					t.getPlayerAssistant().refreshSkill(SkillData.HITPOINTS.getId());
 					t.updateRequired = true;
 				}
 			}
@@ -1915,7 +1915,9 @@ public class PlayerAssistant {
 		if (player.tutorialProgress < 36 && player.playerLevel[skill] == 3 && GameConstants.TUTORIAL_ISLAND) {
 			return false;
 		}
-		amount *= GameConstants.XP_RATE;
+
+		amount *= player.getMode().is5x() ? 5 : 75;
+
 		int oldLevel = getLevelForXP(player.playerXP[skill]);
 		player.playerXP[skill] += amount;
 		if (oldLevel < getLevelForXP(player.playerXP[skill])) {
@@ -2058,12 +2060,12 @@ public class PlayerAssistant {
 			player.poisonDamage = 0;
 			return;
 		}
-		if (System.currentTimeMillis() - player.lastPoisonSip > player.poisonImmune && player.poison == false) {
+		if (System.currentTimeMillis() - player.lastPoisonSip > player.poisonImmune && !player.poison) {
 			player.getPacketSender().sendMessage("You have been poisoned.");
 			player.poisonDamage = damage;
 			player.poison = true;
 		}
-		if (player.poisonDamage == 0 && player.isDead == false) {
+		if (player.poisonDamage == 0 && !player.isDead) {
 			player.getPacketSender().sendMessage("The poison has worn off.");
 			player.poison = false;
 		}

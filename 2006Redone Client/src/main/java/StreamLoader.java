@@ -4,12 +4,12 @@
 
 final class StreamLoader {
 
-	public StreamLoader(byte abyte0[]) {
+	public StreamLoader(byte[] abyte0) {
 		Stream stream = new Stream(abyte0);
 		int i = stream.read3Bytes();
 		int j = stream.read3Bytes();
 		if (j != i) {
-			byte abyte1[] = new byte[i];
+			byte[] abyte1 = new byte[i];
 			Class13.method225(abyte1, i, abyte0, j, 6);
 			aByteArray726 = abyte1;
 			stream = new Stream(aByteArray726);
@@ -34,7 +34,7 @@ final class StreamLoader {
 	}
 
 	public byte[] getDataForName(String s) {
-		byte abyte0[] = null; // was a parameter
+		byte[] abyte0 = null; // was a parameter
 		int i = 0;
 		s = s.toUpperCase();
 		for (int j = 0; j < s.length(); j++) {

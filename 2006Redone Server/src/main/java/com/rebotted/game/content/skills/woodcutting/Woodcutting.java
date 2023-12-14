@@ -131,7 +131,7 @@ public class Woodcutting {
 			return;
 		}
 
-		for (int axes[] : Axe_Settings) {
+		for (int[] axes : Axe_Settings) {
 			int type = axes[0];
 			if ( player.getItemAssistant().playerHasItem(type) || player.playerEquipment[player.playerWeapon] == type) {
 				gotAxe = true;
@@ -143,7 +143,7 @@ public class Woodcutting {
 			player.getPacketSender().sendMessage("You need an axe to cut the station.");
 			return;
 		}
-		for (int axes[] : Axe_Settings) {
+		for (int[] axes : Axe_Settings) {
 			int type = axes[0];
 			int level = axes[1];
 			int anim = axes[3];
@@ -181,7 +181,7 @@ public class Woodcutting {
 	}
 
 	public void fixAxe(final Player player) {
-		for (int fix[] : FIX_AXE) {
+		for (int[] fix : FIX_AXE) {
 			int axeHandle = fix[0];
 			int axeHead = fix[1];
 			final int fixedAxe = fix[2];
@@ -321,7 +321,7 @@ public class Woodcutting {
 					if (p.isWoodcutting) {
 						BirdNest.birdNests(p);
 					}
-					if (p.isWoodcutting && p.tutorialProgress >= 36 && p.treeSpiritSpawned == false) {
+					if (p.isWoodcutting && p.tutorialProgress >= 36 && !p.treeSpiritSpawned) {
 						RandomEventHandler.addRandom(p);
 					}
 					if (p.isWoodcutting && Misc.random(350) == 69 && p.tutorialProgress >= 36 && p.randomEventsEnabled) {

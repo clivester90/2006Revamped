@@ -243,7 +243,7 @@ public class DwarfCannon {
 				player.getPacketSender().sendMessage("Your cannon has run out of cannonballs.");
 				return;
 			}
-			if (myBalls >= 1 && rotating == false) {
+			if (myBalls >= 1 && !rotating) {
 				shoot();
 			} else if (myBalls >= 1 && rotating) {
 				player.getPacketSender().sendMessage("Your cannon is already shooting.");
@@ -290,7 +290,7 @@ public class DwarfCannon {
 					if (totalRotations >= 2) {
 						justClicked = false;
 					}
-					if(rotating == false) {
+					if(!rotating) {
 						e.stop();
 					}
 					if (myBalls < 1) {

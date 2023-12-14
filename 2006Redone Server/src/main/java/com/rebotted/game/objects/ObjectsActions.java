@@ -823,7 +823,7 @@ public class ObjectsActions {
                 break;
 
             case 8689:
-                if (player.milking == false) {
+                if (!player.milking) {
                     MilkCow.milk(player);
                 }
                 break;
@@ -940,7 +940,7 @@ public class ObjectsActions {
                         player.getDialogueHandler().sendStatement(
                                 "You have died and have already beat this step",
                                 "you may continue.");
-                    } else if (player.diedOnTut == false) {
+                    } else if (!player.diedOnTut) {
                         player.getPlayerAssistant().movePlayer(player.absX - 1,
                                 player.absY, 0);
                         player.getDialogueHandler().sendDialogues(3020, -1);
@@ -973,7 +973,7 @@ public class ObjectsActions {
                         PassDoor.passThroughDoor(player, 3017, 3, 0, 0, -1, 0, 0);
                         player.getDialogueHandler().sendStatement("You have died and have already beat this step", "you may continue.");
                         player.getPacketSender().createArrow(3072, 3090, player.getH(), 2);
-                    } else if (player.diedOnTut == false && Position.checkPosition(player, 3079, 3084, 0)) {
+                    } else if (!player.diedOnTut && Position.checkPosition(player, 3079, 3084, 0)) {
                         PassDoor.passThroughDoor(player, 3017, 3, 0, 0, -1, 0, 0);
                         player.getPacketSender().drawHeadicon(1, 3, 0, 0);
                     }
@@ -1095,7 +1095,7 @@ public class ObjectsActions {
                 } else if (Position.checkPosition(player, 3097, 3107, 0) && player.diedOnTut) {
                     player.getPacketSender().createArrow(3089, 3092, player.getH(), 2);
                     player.getDialogueHandler().sendStatement("You have died and have already beat this step", "you may continue.");
-                } else if (player.tutorialProgress < 2 && player.diedOnTut != true) {
+                } else if (player.tutorialProgress < 2 && !player.diedOnTut) {
                     player.getPacketSender().sendMessage("You aren't on this step yet.");
                     return;
                 }
@@ -1145,7 +1145,7 @@ public class ObjectsActions {
                                     "onto the next step.");
                     player.getPacketSender().createArrow(3111, 9518,
                             player.getH(), 2);
-                } else if (player.diedOnTut == false && player.tutorialProgress >= 21 && (player.getY() == 9502 || player.getY() == 9503)) {
+                } else if (!player.diedOnTut && player.tutorialProgress >= 21 && (player.getY() == 9502 || player.getY() == 9503)) {
                     player.getPacketSender().chatbox(6180);
                     player.getDialogueHandler()
                             .chatboxText(
@@ -1392,7 +1392,7 @@ public class ObjectsActions {
                         player.getDialogueHandler().sendStatement(
                                 "You have died and have already beat this step",
                                 "you may continue.");
-                    } else if (player.diedOnTut == false) {
+                    } else if (!player.diedOnTut) {
                         player.getDialogueHandler().sendDialogues(3051, -1);
                         player.startAnimation(828);
                         player.getPlayerAssistant().movePlayer(3088, 9520, 0);
@@ -1795,7 +1795,7 @@ public class ObjectsActions {
                 break;
 
             case 2614:
-                if (player.vampSlayer == 3 && player.clickedVamp == false) {
+                if (player.vampSlayer == 3 && !player.clickedVamp) {
                     NpcHandler.spawnNpc(player, 757, player.getX(), player.getY(), 0, 0, 50, 10, 30, 30, true, true);
                     player.getPacketSender().sendMessage("You will need a stake and hammer to attack count draynor.");
                     player.clickedVamp = true;

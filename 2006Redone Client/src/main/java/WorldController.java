@@ -4,7 +4,7 @@
 
 final class WorldController {
 
-	public WorldController(int ai[][][]) {
+	public WorldController(int[][][] ai) {
 		int i = 104;// was parameter
 		int j = 104;// was parameter
 		int k = 4;// was parameter
@@ -672,7 +672,7 @@ final class WorldController {
 	private void method308(Model model, Model model_1, int i, int j, int k, boolean flag) {
 		anInt488++;
 		int l = 0;
-		int ai[] = model_1.anIntArray1627;
+		int[] ai = model_1.anIntArray1627;
 		int i1 = model_1.anInt1626;
 		for (int j1 = 0; j1 < model.anInt1626; j1++) {
 			Class33 class33 = model.aClass33Array1425[j1];
@@ -725,7 +725,7 @@ final class WorldController {
 
 	}
 
-	public void method309(int ai[], int i, int k, int l, int i1) {
+	public void method309(int[] ai, int i, int k, int l, int i1) {
 		int j = 512;// was parameter
 		Ground class30_sub3 = groundArray[k][l][i1];
 		if (class30_sub3 == null) {
@@ -755,8 +755,8 @@ final class WorldController {
 		int i2 = class40.anInt685;
 		int j2 = class40.anInt686;
 		int k2 = class40.anInt687;
-		int ai1[] = anIntArrayArray489[l1];
-		int ai2[] = anIntArrayArray490[i2];
+		int[] ai1 = anIntArrayArray489[l1];
+		int[] ai2 = anIntArrayArray490[i2];
 		int l2 = 0;
 		if (j2 != 0) {
 			for (int i3 = 0; i3 < 4; i3++) {
@@ -787,14 +787,14 @@ final class WorldController {
 
 	}
 
-	public static void method310(int i, int j, int k, int l, int ai[]) {
+	public static void method310(int i, int j, int k, int l, int[] ai) {
 		anInt495 = 0;
 		anInt496 = 0;
 		anInt497 = k;
 		anInt498 = l;
 		anInt493 = k / 2;
 		anInt494 = l / 2;
-		boolean aflag[][][][] = new boolean[9][32][53][53];
+		boolean[][][][] aflag = new boolean[9][32][53][53];
 		for (int i1 = 128; i1 <= 384; i1 += 32) {
 			for (int j1 = 0; j1 < 2048; j1 += 64) {
 				anInt458 = Model.modelIntArray1[i1];
@@ -923,7 +923,7 @@ final class WorldController {
 		method319();
 		anInt446 = 0;
 		for (int k1 = anInt442; k1 < anInt437; k1++) {
-			Ground aclass30_sub3[][] = groundArray[k1];
+			Ground[][] aclass30_sub3 = groundArray[k1];
 			for (int i2 = anInt449; i2 < anInt450; i2++) {
 				for (int k2 = anInt451; k2 < anInt452; k2++) {
 					Ground class30_sub3 = aclass30_sub3[i2][k2];
@@ -946,7 +946,7 @@ final class WorldController {
 		}
 
 		for (int l1 = anInt442; l1 < anInt437; l1++) {
-			Ground aclass30_sub3_1[][] = groundArray[l1];
+			Ground[][] aclass30_sub3_1 = groundArray[l1];
 			for (int l2 = -25; l2 <= 0; l2++) {
 				int i3 = anInt453 + l2;
 				int k3 = anInt453 - l2;
@@ -994,7 +994,7 @@ final class WorldController {
 		}
 
 		for (int j2 = anInt442; j2 < anInt437; j2++) {
-			Ground aclass30_sub3_2[][] = groundArray[j2];
+			Ground[][] aclass30_sub3_2 = groundArray[j2];
 			for (int j3 = -25; j3 <= 0; j3++) {
 				int l3 = anInt453 + j3;
 				int j4 = anInt453 - j3;
@@ -1058,7 +1058,7 @@ final class WorldController {
 			int j = class30_sub3_1.anInt1309;
 			int k = class30_sub3_1.anInt1307;
 			int l = class30_sub3_1.anInt1310;
-			Ground aclass30_sub3[][] = groundArray[k];
+			Ground[][] aclass30_sub3 = groundArray[k];
 			if (class30_sub3_1.aBoolean1322) {
 				if (flag) {
 					if (k > 0) {
@@ -1686,7 +1686,7 @@ final class WorldController {
 
 	private void method319() {
 		int j = anIntArray473[anInt447];
-		Class47 aclass47[] = aClass47ArrayArray474[anInt447];
+		Class47[] aclass47 = aClass47ArrayArray474[anInt447];
 		anInt475 = 0;
 		for (int k = 0; k < j; k++) {
 			Class47 class47 = aclass47[k];

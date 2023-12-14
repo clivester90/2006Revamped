@@ -5,7 +5,7 @@ import com.rebotted.util.Misc;
 
 public class TreasureTrails {
 
-	public static int lowLevelReward[] = {
+	public static int[] lowLevelReward = {
 			// Weapons
 			853, // Maple shortbow
 			851, // Maple longbow
@@ -96,7 +96,7 @@ public class TreasureTrails {
 			6548, // Nurse hat
 			6665, // Mudskipper hat
 	};
-	public static int mediumLevelReward[] = {
+	public static int[] mediumLevelReward = {
 			// Weapons
 			1329, // Mithril scimitar
 			1331, // Adamant scimitar
@@ -135,7 +135,7 @@ public class TreasureTrails {
 			2651, // Pirate's hat
 			2631, //Highwayman mask
 	};
-	public static int highLevelReward[] = {
+	public static int[] highLevelReward = {
 			// Weapons
 			1333, // Rune scimitar
 			1229, // Rune dagger(p)
@@ -253,7 +253,7 @@ public class TreasureTrails {
 			1040, // Yellow partyhat
 	};
 
-	public static int lowLevelStacks[] = {
+	public static int[] lowLevelStacks = {
 			995, // Coins
 			380, // Lobster
 			555, // Water rune
@@ -267,7 +267,7 @@ public class TreasureTrails {
 			5617, // Iron arrow(p+)
 			5623, // Iron arrow(p++)
 	};
-	public static int mediumLevelStacks[] = {
+	public static int[] mediumLevelStacks = {
 			995, // Coins
 			374, // Swordfish
 			890, // Adamant arrow
@@ -279,7 +279,7 @@ public class TreasureTrails {
 			562, // Chaos rune
 			564, // Cosmic rune
 	};
-	public static int highLevelStacks[] = {
+	public static int[] highLevelStacks = {
 			995, // Coins
 			386, // Shark
 			892, // Rune arrow

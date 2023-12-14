@@ -17,7 +17,7 @@ public class Fishing extends SkillHandler {
 		if (Misc.random(350) == 5) {
 			RiverTroll.spawnRiverTroll(client);
 		}
-		if (RiverTroll.hasRiverTroll == false) {
+		if (!RiverTroll.hasRiverTroll) {
 			RandomEventHandler.addRandom(client);
 		}
 	}

@@ -12,9 +12,9 @@ import com.rebotted.world.GlobalDropsHandler;
 
 public class PlayerHandler {
 
-	public static Player players[] = new Player[GameConstants.MAX_PLAYERS];
+	public static Player[] players = new Player[GameConstants.MAX_PLAYERS];
 	public static int playerCount = 0, playerShopCount = 0;
-	public static String playersCurrentlyOn[] = new String[GameConstants.MAX_PLAYERS];
+	public static String[] playersCurrentlyOn = new String[GameConstants.MAX_PLAYERS];
 	public static boolean updateAnnounced;
 	public static boolean updateRunning;
 	public static int updateSeconds;
@@ -294,7 +294,7 @@ public class PlayerHandler {
 		int size = plr.npcListSize;
 		plr.npcListSize = 0;
 		for (int i = 0; i < size; i++) {
-			if (plr.rebuildNPCList == false && plr.withinDistance(plr.npcList[i])) {
+			if (!plr.rebuildNPCList && plr.withinDistance(plr.npcList[i])) {
 				plr.npcList[i].updateNPCMovement(str);
 				plr.npcList[i].appendNPCUpdateBlock(updateBlock);
 				plr.npcList[plr.npcListSize++] = plr.npcList[i];
@@ -310,9 +310,9 @@ public class PlayerHandler {
 		for (Npc i : NpcHandler.npcs) {
 			if (i != null) {
 				int id = i.npcId;
-				if (plr.rebuildNPCList == false
+				if (!plr.rebuildNPCList
 						&& (plr.npcInListBitmap[id >> 3] & 1 << (id & 7)) != 0) {
-				} else if (plr.withinDistance(i) == false) {
+				} else if (!plr.withinDistance(i)) {
 				} else {
 					plr.addNewNPC(i, str, updateBlock);
 				}
@@ -406,7 +406,7 @@ public class PlayerHandler {
 	private void removePlayer(Player plr) {
 		if (plr.privateChat != 2) {
 			for (int i = 1; i < PlayerHandler.players.length; i++) {
-				if (players[i] == null || players[i].isActive == false) {
+				if (players[i] == null || !players[i].isActive) {
 					continue;
 				}
 				Client o = (Client) PlayerHandler.players[i];

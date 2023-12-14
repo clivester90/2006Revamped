@@ -707,7 +707,7 @@ public class NpcActions {
 			break;
 
 		case 379:
-			if (player.bananas == 0 || player.luthas == false) {
+			if (player.bananas == 0 || !player.luthas) {
 				player.getDialogueHandler().sendDialogues(8, npcType);
 			} else if (player.bananas > 0) {
 				player.getDialogueHandler().sendDialogues(4, npcType);

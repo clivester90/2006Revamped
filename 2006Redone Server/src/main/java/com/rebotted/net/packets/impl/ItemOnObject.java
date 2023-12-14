@@ -171,13 +171,13 @@ public class ItemOnObject implements PacketType {
 			player.getItemAssistant().addItem(1712, amount);
 		}
 
-		if (itemId == 954 && objectId == 3827 && player.rope == false) {
+		if (itemId == 954 && objectId == 3827 && !player.rope) {
 			player.getPacketSender().object(3828, 3227, 3108, 0, 0, 10);
 			Region.addObject(3828, 3227, 3108, 0, 0, 0, false);
 			player.rope = true;
 		}
 
-		if (itemId == 954 && objectId == 3830 && player.rope2 == false) {
+		if (itemId == 954 && objectId == 3830 && !player.rope2) {
 			player.getPacketSender().object(3828, 3509, 9497, 2, 0, 10);
 			Region.addObject(3828, 3509, 9497, 2, 0, 0, false);
 			player.rope2 = true;

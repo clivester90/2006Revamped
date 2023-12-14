@@ -15,8 +15,8 @@ public class RiverTroll {
 
 	public static void spawnRiverTroll(Player client) {
 		for (int[] element : riverTroll) {
-			if (hasRiverTroll == false) {
-			if (client.combatLevel >= element[0] && client.combatLevel <= element[1] && hasRiverTroll == false) {
+			if (!hasRiverTroll) {
+			if (client.combatLevel >= element[0] && client.combatLevel <= element[1] && !hasRiverTroll) {
 				NpcHandler.spawnNpc(client, element[2], client.absX + Misc.random(1), client.absY + Misc.random(1), client.heightLevel, 0, element[3], element[4], client.playerLevel[client.playerAttack] * 2, client.playerLevel[client.playerDefence] * 2, true, false);
 					client.randomActions = 0;
 					hasRiverTroll = true;

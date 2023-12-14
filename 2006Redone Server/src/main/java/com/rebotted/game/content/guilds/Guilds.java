@@ -124,7 +124,7 @@ public class Guilds {
 			break;
 		case 2392:
 		case 2391:
-			if (hasCompletedLegends == false && player.playerRights < 3) {
+			if (!hasCompletedLegends && player.playerRights < 3) {
 				player.getDialogueHandler().sendStatement("You need to complete Legends Quest to enter this guild!");
 				player.nextChat = 0;
 				return false;

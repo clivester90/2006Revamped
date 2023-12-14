@@ -4647,13 +4647,13 @@ public class DialogueHandler {
 
 			case 1349:
 				if (player.absY > 3485 && player.absY < 3489
-						&& player.hasPaid != true) {
+						&& !player.hasPaid) {
 					sendNpcChat2(
 							"Hello, are you interested in traveling up the river",
 							"for 50 coins?", player.talkingNpc,
 							NpcHandler.getNpcListName(player.talkingNpc));
 					player.nextChat = 1350;
-				} else if (player.hasPaid != true) {
+				} else if (!player.hasPaid) {
 					sendNpcChat2(
 							"Hello, are you interested in traveling back down the river",
 							"for 50 coins?", player.talkingNpc,
@@ -6061,6 +6061,7 @@ public class DialogueHandler {
 
 			case 3116:
 				player.getPacketSender().showInterface(3559);
+				player.completedTutorial = true;
 				player.canChangeAppearance = true;
 				player.closeTutorialInterface = true;
 				player.nextChat = 0;

@@ -70,7 +70,7 @@ public class DesertCactus {
 		c.startAnimation(CUTTING_ANIMATION);
 		c.getPacketSender().sendMessage("You slash away the cactus.");
 		GameEngine.objectHandler.createAnObject(c, DRY_CACTUS, obX, obY, c.heightLevel, -1);
-		for (int element[] : FILLS) {
+		for (int[] element : FILLS) {
 			if (c.getItemAssistant().playerHasItem(element[0])) {
 				c.getItemAssistant().deleteItem(element[0], c.getItemAssistant().getItemSlot(element[0]), 1);
 				c.getItemAssistant().addItem(element[1], 1);

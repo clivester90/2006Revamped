@@ -9,7 +9,7 @@ import com.rebotted.game.players.Player;
 public class OrbCharging {
 
 	public static void chargeOrbs(final Player player, final int spellId, final int objectId) {
-		if (player.isCrafting == true) {
+		if (player.isCrafting) {
 			return;
 		}
 		for (final Orb l : Orb.values()) {
@@ -27,7 +27,7 @@ public class OrbCharging {
 					CycleEventHandler.getSingleton().addEvent(player, new CycleEvent() {
 						@Override
 						public void execute(CycleEventContainer container) {
-							if (player.isCrafting == true && player != null) {
+							if (player.isCrafting && player != null) {
 								if (!player.getItemAssistant().playerHasItem(567, 1)) {
 									player.getPacketSender().sendMessage("You have run out of unpowered orbs.");
 									container.stop();

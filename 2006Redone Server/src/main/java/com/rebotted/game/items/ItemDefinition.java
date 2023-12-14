@@ -9,7 +9,7 @@ import org.json.JSONObject;
 
 public class ItemDefinition {
 
-	public static ItemDefinition getDefs()[] {
+	public static ItemDefinition[] getDefs() {
         return definitions;
     }
 

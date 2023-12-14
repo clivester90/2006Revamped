@@ -53,7 +53,7 @@ public final class VarBit {
 		aBoolean651 = false;
 	}
 
-	public static VarBit cache[];
+	public static VarBit[] cache;
 	public int anInt648;
 	public int anInt649;
 	public int anInt650;

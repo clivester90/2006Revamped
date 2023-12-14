@@ -68,7 +68,7 @@ public class Walking implements PacketType {
 			player.isSmithing = false;
 		}
 		SkillHandler.resetSkills(player);
-		if (player.closeTutorialInterface == false && player.tutorialProgress == 36) {
+		if (!player.closeTutorialInterface && player.tutorialProgress == 36) {
 			player.getDialogueHandler().sendDialogues(3116, player.npcType);
 		}
 		if (player.gliderOpen) {
@@ -77,13 +77,13 @@ public class Walking implements PacketType {
 		if (player.isBanking) {
 			player.isBanking = false;
 		}
-		if (player.canWalkTutorial == false && player.tutorialProgress < 36) {
+		if (!player.canWalkTutorial && player.tutorialProgress < 36) {
 			return;
 		}
 		if (player.followId > 0 || player.followId2 > 0) {
 			player.getPlayerAssistant().resetFollow();
 		}
-		if (player.getPlayerAction().checkWalking() == false) {
+		if (!player.getPlayerAction().checkWalking()) {
 			return;
 		}
 		if (packetType == 248 || packetType == 164) {

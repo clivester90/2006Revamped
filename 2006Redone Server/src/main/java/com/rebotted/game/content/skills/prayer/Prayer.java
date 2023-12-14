@@ -57,9 +57,9 @@ public class Prayer {
 
 	private static void handleBones(final Player c, int i, int slot) {
 		if(c.randomEventsEnabled) {
-			if (Misc.random(300) == 4 && c.shadeSpawned == false) {
+			if (Misc.random(300) == 4 && !c.shadeSpawned) {
 				Zombie.spawnZombie(c);
-			} else if (Misc.random(300) == 2 && c.zombieSpawned == false) {
+			} else if (Misc.random(300) == 2 && !c.zombieSpawned) {
 				Shade.spawnShade(c);
 			}
 		}

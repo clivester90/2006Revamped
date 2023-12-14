@@ -44,7 +44,7 @@ public class ActivatePrayers {
 				case 0:
 				case 5:
 				case 13:
-					if (player.getPrayer().prayerActive[i] == false) {
+					if (!player.getPrayer().prayerActive[i]) {
 						for (int j = 0; j < defencePrayer.length; j++) {
 							if (defencePrayer[j] != i) {
 								player.getPrayer().prayerActive[defencePrayer[j]] = false;
@@ -57,7 +57,7 @@ public class ActivatePrayers {
 				case 1:
 				case 6:
 				case 14:
-					if (player.getPrayer().prayerActive[i] == false) {
+					if (!player.getPrayer().prayerActive[i]) {
 						for (int j = 0; j < strengthPrayer.length; j++) {
 							if (strengthPrayer[j] != i) {
 								player.getPrayer().prayerActive[strengthPrayer[j]] = false;
@@ -82,7 +82,7 @@ public class ActivatePrayers {
 				case 2:
 				case 7:
 				case 15:
-					if (player.getPrayer().prayerActive[i] == false) {
+					if (!player.getPrayer().prayerActive[i]) {
 						for (int j = 0; j < attackPrayer.length; j++) {
 							if (attackPrayer[j] != i) {
 								player.getPrayer().prayerActive[attackPrayer[j]] = false;
@@ -107,7 +107,7 @@ public class ActivatePrayers {
 				case 3:// range prays
 				case 11:
 				case 19:
-					if (player.getPrayer().prayerActive[i] == false) {
+					if (!player.getPrayer().prayerActive[i]) {
 						for (int j = 0; j < attackPrayer.length; j++) {
 							if (attackPrayer[j] != i) {
 								player.getPrayer().prayerActive[attackPrayer[j]] = false;
@@ -137,7 +137,7 @@ public class ActivatePrayers {
 				case 4:
 				case 12:
 				case 20:
-					if (player.getPrayer().prayerActive[i] == false) {
+					if (!player.getPrayer().prayerActive[i]) {
 						for (int j = 0; j < attackPrayer.length; j++) {
 							if (attackPrayer[j] != i) {
 								player.getPrayer().prayerActive[attackPrayer[j]] = false;
@@ -205,7 +205,7 @@ public class ActivatePrayers {
 					break;
 				case 24:
 				case 25:
-					if (player.getPrayer().prayerActive[i] == false) {
+					if (!player.getPrayer().prayerActive[i]) {
 						for (int j = 0; j < attackPrayer.length; j++) {
 							if (attackPrayer[j] != i) {
 								player.getPrayer().prayerActive[attackPrayer[j]] = false;
@@ -241,7 +241,7 @@ public class ActivatePrayers {
 				}
 
 				if (!headIcon) {
-					if (player.getPrayer().prayerActive[i] == false) {
+					if (!player.getPrayer().prayerActive[i]) {
 						player.getPrayer().prayerActive[i] = true;
 						player.getPacketSender().sendConfig(
 								player.getPrayer().PRAYER_GLOW[i], 1);
@@ -251,7 +251,7 @@ public class ActivatePrayers {
 								player.getPrayer().PRAYER_GLOW[i], 0);
 					}
 				} else {
-					if (player.getPrayer().prayerActive[i] == false) {
+					if (!player.getPrayer().prayerActive[i]) {
 						player.getPrayer().prayerActive[i] = true;
 						player.getPacketSender().sendConfig(
 								player.getPrayer().PRAYER_GLOW[i], 1);

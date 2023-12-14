@@ -155,7 +155,7 @@ public class Trawler extends GroupMinigame {
         public int getAvaliableWallSize() {
                 int toReturn = 0;
                 for (int j = 0; j < wall_status.length; j++) {
-                        if (wall_status[j] == false) {
+                        if (!wall_status[j]) {
                                 toReturn++;
                         }
                 }
@@ -170,7 +170,7 @@ public class Trawler extends GroupMinigame {
                 int[] toReturn = new int[getAvaliableWallSize()];
                 int index = 0;
                 for (int j = 0; j < wall_status.length; j++) {
-                        if (wall_status[j] == false) {
+                        if (!wall_status[j]) {
                                 toReturn[index] = j;
                                 index++;
                         }

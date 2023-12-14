@@ -165,7 +165,7 @@ public final class Flo {
 		aBoolean393 = true;
 	}
 
-	public static Flo cache[];
+	public static Flo[] cache;
 	public int anInt390;
 	public int anInt391;
 	public boolean aBoolean393;

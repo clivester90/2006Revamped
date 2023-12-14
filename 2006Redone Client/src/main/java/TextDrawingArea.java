@@ -44,8 +44,8 @@ public final class TextDrawingArea extends DrawingArea {
 				}
 
 			}
-			if (j1 > anInt1497 && l < 128) {
-				anInt1497 = j1;
+			if (j1 > yOffset && l < 128) {
+				yOffset = j1;
 			}
 			anIntArray1494[l] = 1;
 			anIntArray1496[l] = i1 + 2;
@@ -75,16 +75,16 @@ public final class TextDrawingArea extends DrawingArea {
 		}
 	}
 
-	public void method380(String s, int i, int j, int k) {
+	public void drawText(String s, int i, int j, int k) {
 		method385(j, s, k, i - method384(s));
 	}
 
-	public void drawText(int i, String s, int k, int l) {
-		method385(i, s, k, l - method384(s) / 2);
+	public void drawText(int colour, String s, int xPos, int yPos) {
+		method385(colour, s, xPos, yPos - method384(s) / 2);
 	}
 
-	public void method382(int i, int j, String s, int l, boolean flag) {
-		method389(flag, j - getTextWidth(s) / 2, i, s, l);
+	public void drawText(int colour, int xPos, String s, int yPos, boolean flag) {
+		method389(flag, xPos - getTextWidth(s) / 2, colour, s, yPos);
 	}
 
 	public int getTextWidth(String s) {
@@ -118,7 +118,7 @@ public final class TextDrawingArea extends DrawingArea {
 		if (s == null) {
 			return;
 		}
-		j -= anInt1497;
+		j -= yOffset;
 		for (int i1 = 0; i1 < s.length(); i1++) {
 			char c = s.charAt(i1);
 			if (c != ' ') {
@@ -133,7 +133,7 @@ public final class TextDrawingArea extends DrawingArea {
 			return;
 		}
 		j -= method384(s) / 2;
-		l -= anInt1497;
+		l -= yOffset;
 		for (int i1 = 0; i1 < s.length(); i1++) {
 			char c = s.charAt(i1);
 			if (c != ' ') {
@@ -149,7 +149,7 @@ public final class TextDrawingArea extends DrawingArea {
 			return;
 		}
 		i -= method384(s) / 2;
-		k -= anInt1497;
+		k -= yOffset;
 		for (int i1 = 0; i1 < s.length(); i1++) {
 			char c = s.charAt(i1);
 			if (c != ' ') {
@@ -169,7 +169,7 @@ public final class TextDrawingArea extends DrawingArea {
 			d = 0.0D;
 		}
 		l -= method384(s) / 2;
-		k -= anInt1497;
+		k -= yOffset;
 		for (int k1 = 0; k1 < s.length(); k1++) {
 			char c = s.charAt(k1);
 			if (c != ' ') {
@@ -186,7 +186,7 @@ public final class TextDrawingArea extends DrawingArea {
 		if (s == null) {
 			return;
 		}
-		k -= anInt1497;
+		k -= yOffset;
 		for (int i1 = 0; i1 < s.length(); i1++) {
 			if (s.charAt(i1) == '@' && i1 + 4 < s.length() && s.charAt(i1 + 4) == '@') {
 				int j1 = getColorByName(s.substring(i1 + 1, i1 + 4));
@@ -210,7 +210,7 @@ public final class TextDrawingArea extends DrawingArea {
 			}
 		}
 		if (aBoolean1499) {
-			DrawingArea.method339(k + (int) (anInt1497 * 0.69999999999999996D), 0x800000, i - l, l);
+			DrawingArea.method339(k + (int) (yOffset * 0.69999999999999996D), 0x800000, i - l, l);
 		}
 	}
 
@@ -220,7 +220,7 @@ public final class TextDrawingArea extends DrawingArea {
 		}
 		aRandom1498.setSeed(k);
 		int j1 = 192 + (aRandom1498.nextInt() & 0x1f);
-		i1 -= anInt1497;
+		i1 -= yOffset;
 		for (int k1 = 0; k1 < s.length(); k1++) {
 			if (s.charAt(k1) == '@' && k1 + 4 < s.length() && s.charAt(k1 + 4) == '@') {
 				int l1 = getColorByName(s.substring(k1 + 1, k1 + 4));
@@ -244,67 +244,48 @@ public final class TextDrawingArea extends DrawingArea {
 	}
 
 	private int getColorByName(String s) {
-		if (s.equals("red")) {
+		if (s.equals("red"))
 			return 0xff0000;
-		}
-		if (s.equals("gre")) {
+		if (s.equals("gre"))
 			return 65280;
-		}
-		if (s.equals("blu")) {
+		if (s.equals("blu"))
 			return 255;
-		}
-		if (s.equals("yel")) {
+		if (s.equals("yel"))
 			return 0xffff00;
-		}
-		if (s.equals("cya")) {
+		if (s.equals("cya"))
 			return 65535;
-		}
-		if (s.equals("mag")) {
+		if (s.equals("mag"))
 			return 0xff00ff;
-		}
-		if (s.equals("whi")) {
+		if (s.equals("whi"))
 			return 0xffffff;
-		}
-		if (s.equals("bla")) {
+		if (s.equals("bla"))
 			return 0;
-		}
-		if (s.equals("lre")) {
+		if (s.equals("lre"))
 			return 0xff9040;
-		}
-		if (s.equals("dre")) {
+		if (s.equals("dre"))
 			return 0x800000;
-		}
-		if (s.equals("dbl")) {
+		if (s.equals("dbl"))
 			return 128;
-		}
-		if (s.equals("or1")) {
+		if (s.equals("or1"))
 			return 0xffb000;
-		}
-		if (s.equals("or2")) {
+		if (s.equals("or2"))
 			return 0xff7000;
-		}
-		if (s.equals("or3")) {
+		if (s.equals("or3"))
 			return 0xff3000;
-		}
-		if (s.equals("gr1")) {
+		if (s.equals("gr1"))
 			return 0xc0ff00;
-		}
-		if (s.equals("gr2")) {
+		if (s.equals("gr2"))
 			return 0x80ff00;
-		}
-		if (s.equals("gr3")) {
+		if (s.equals("gr3"))
 			return 0x40ff00;
-		}
-		if (s.equals("str")) {
+		if (s.equals("str"))
 			aBoolean1499 = true;
-		}
-		if (s.equals("end")) {
+		if (s.equals("end"))
 			aBoolean1499 = false;
-		}
 		return -1;
 	}
 
-	private void method392(byte abyte0[], int i, int j, int k, int l, int i1) {
+	private void method392(byte[] abyte0, int i, int j, int k, int l, int i1) {
 		int j1 = i + j * DrawingArea.width;
 		int k1 = DrawingArea.width - k;
 		int l1 = 0;
@@ -339,7 +320,7 @@ public final class TextDrawingArea extends DrawingArea {
 		}
 	}
 
-	private void method393(int ai[], byte abyte0[], int i, int j, int k, int l, int i1, int j1, int k1) {
+	private void method393(int[] ai, byte[] abyte0, int i, int j, int k, int l, int i1, int j1, int k1) {
 		int l1 = -(l >> 2);
 		l = -(l & 3);
 		for (int i2 = -i1; i2 < 0; i2++) {
@@ -380,7 +361,7 @@ public final class TextDrawingArea extends DrawingArea {
 
 	}
 
-	private void method394(int i, int j, byte abyte0[], int k, int l, int i1, int j1) {
+	private void method394(int i, int j, byte[] abyte0, int k, int l, int i1, int j1) {
 		int k1 = j + l * DrawingArea.width;
 		int l1 = DrawingArea.width - k;
 		int i2 = 0;
@@ -416,7 +397,7 @@ public final class TextDrawingArea extends DrawingArea {
 		method395(abyte0, i1, k1, DrawingArea.pixels, j2, k, i2, l1, j1, i);
 	}
 
-	private void method395(byte abyte0[], int i, int j, int ai[], int l, int i1, int j1, int k1, int l1, int i2) {
+	private void method395(byte[] abyte0, int i, int j, int[] ai, int l, int i1, int j1, int k1, int l1, int i2) {
 		l1 = ((l1 & 0xff00ff) * i2 & 0xff00ff00) + ((l1 & 0xff00) * i2 & 0xff0000) >> 8;
 		i2 = 256 - i2;
 		for (int j2 = -i; j2 < 0; j2++) {
@@ -441,7 +422,7 @@ public final class TextDrawingArea extends DrawingArea {
 	private final int[] anIntArray1494;
 	private final int[] anIntArray1495;
 	private final int[] anIntArray1496;
-	public int anInt1497;
+	public int yOffset;
 	private final Random aRandom1498;
 	private boolean aBoolean1499;
 }

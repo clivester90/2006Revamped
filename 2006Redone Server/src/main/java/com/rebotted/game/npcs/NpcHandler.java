@@ -39,8 +39,8 @@ public class NpcHandler {
 
     public static int     MAX_NPCS      = 4000;
     public static int     maxListedNPCs = 4000;
-    public static Npc     npcs[]        = new Npc[MAX_NPCS];
-    public static NpcList NpcList[]     = new NpcList[maxListedNPCs];
+    public static Npc[] npcs = new Npc[MAX_NPCS];
+    public static NpcList[] NpcList = new NpcList[maxListedNPCs];
 
     public void spawnSecondForm(Player c, final int i) {
         //	npcs[i].gfx0(1055);
@@ -713,7 +713,7 @@ public class NpcHandler {
                 }
 
                 if (npcs[i].isDead) {
-                    if (npcs[i].actionTimer == 0 && npcs[i].applyDead == false && npcs[i].needRespawn == false) {
+                    if (npcs[i].actionTimer == 0 && !npcs[i].applyDead && !npcs[i].needRespawn) {
                         npcs[i].updateRequired = true;
                         npcs[i].facePlayer(0);
                         npcs[i].killedBy = NpcData.getNpcKillerId(i);
@@ -736,7 +736,7 @@ public class NpcHandler {
                         resetPlayersInCombat(i);
                     } else if (npcs[i].actionTimer == 0
                             && npcs[i].applyDead
-                            && npcs[i].needRespawn == false) {
+                            && !npcs[i].needRespawn) {
                         npcs[i].needRespawn = true;
                         npcs[i].actionTimer = NpcData.getRespawnTime(i); // respawn
                         // time
@@ -1182,7 +1182,7 @@ public class NpcHandler {
         if (PlayerHandler.players[playerId] == null) {
             return;
         }
-        if (PlayerHandler.players[playerId].npcCanAttack == false) {
+        if (!PlayerHandler.players[playerId].npcCanAttack) {
             return;
         }
         if (PlayerHandler.players[playerId].respawnTimer > 0) {
@@ -1475,7 +1475,7 @@ public class NpcHandler {
             Misc.println(FileName + ": error loading file.");
             // return false;
         }
-        while (EndOfFile == false && line != null) {
+        while (!EndOfFile && line != null) {
             line = line.trim();
             int spot = line.indexOf("=");
             if (spot > -1) {
@@ -1589,7 +1589,7 @@ public class NpcHandler {
             Misc.println(FileName + ": error loading file.");
             // return false;
         }
-        while (EndOfFile == false && line != null) {
+        while (!EndOfFile && line != null) {
             line = line.trim();
             int spot = line.indexOf("=");
             if (spot > -1) {

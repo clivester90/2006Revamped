@@ -4,7 +4,7 @@ public class GameConstants {
 
 	public final static boolean SERVER_DEBUG = false;
 
-	public final static String SERVER_NAME = "2006rebotted", SERVER_VERSION = "Server Stage v " + GameConstants.TEST_VERSION + ".";
+	public final static String SERVER_NAME = "Runescape";
 	
 	public final static double TEST_VERSION = 2.3;
 	
@@ -13,15 +13,18 @@ public class GameConstants {
 			MESSAGE_DELAY = 6000, MAX_PLAYERS = 200, REQ_AMOUNT = 150;
 	
 	public final static boolean SOUND = true,
-			GUILDS = true, WORLD_LIST_FIX = false,
+			GUILDS = true,
+			WORLD_LIST_FIX = false,
 			PARTY_ROOM_DISABLED = true,
-			PRINT_OBJECT_ID = false, EXPERIMENTS = false;
+			PRINT_OBJECT_ID = false,
+			EXPERIMENTS = false;
 	
 	public static int[] SIDEBARS = { 2423, 3917, 638, 3213, 1644, 5608, 1151,
 			18128, 5065, 5715, 2449, 904, 147, 962 };
 	
 	public static boolean TUTORIAL_ISLAND = false, 
-			MEMBERS_ONLY = false, sendServerPackets = false, 
+			MEMBERS_ONLY = false,
+			sendServerPackets = false,
 			CLUES_ENABLED = false;
 
 	public final static int[] FUN_WEAPONS = { 2460, 2461, 2462, 2463, 2464,
@@ -72,11 +75,4 @@ public class GameConstants {
 	public final static int CYCLE_TIME = 600;
 	
 	public final static int BUFFER_SIZE = 10000;
-
-	public final static int ATTACK = 0, DEFENCE = 1, STRENGTH = 2,
-			HITPOINTS = 3, RANGED = 4, PRAYER = 5, MAGIC = 6, COOKING = 7,
-			WOODCUTTING = 8, FLETCHING = 9, FISHING = 10, FIREMAKING = 11,
-			CRAFTING = 12, SMITHING = 13, MINING = 14, HERBLORE = 15,
-			AGILITY = 16, THIEVING = 17, SLAYER = 18, FARMING = 19,
-			RUNECRAFTING = 20;
 }

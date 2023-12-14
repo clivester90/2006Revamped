@@ -109,7 +109,7 @@ public class SandwhichLady {
 			player.hasSandwhichLady = false;
 		break;
 		}
-	} else if (player.hasSandwhichLady == false && actionbuttonId > 63008 && actionbuttonId < 63116) {
+	} else if (!player.hasSandwhichLady && actionbuttonId > 63008 && actionbuttonId < 63116) {
 			player.getPacketSender().sendMessage("You have improperly opened the sandwhich lady interface.");
 		}
 	}

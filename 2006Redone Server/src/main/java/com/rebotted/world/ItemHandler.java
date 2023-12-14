@@ -179,7 +179,7 @@ public class ItemHandler {
                     GroundItem item = new GroundItem(itemId, itemX, itemY, c.getH(), 1, c.playerId, HIDE_TICKS, PlayerHandler.players[playerId].playerName);
                     addItem(item);
                     String itemName = ItemAssistant.getItemName(itemId).toLowerCase();
-                    if (c.isDead == false && itemId != 526) {
+                    if (!c.isDead && itemId != 526) {
                         if (c.getPlayerAssistant().isPlayer()) {
                             GameLogger.writeLog(c.playerName, "dropitem", c.playerName + " dropped " + itemAmount + " " + itemName + " absX: " + c.absX + " absY: " + c.absY + "");
                         }
@@ -190,7 +190,7 @@ public class ItemHandler {
                 GroundItem item = new GroundItem(itemId, itemX, itemY, c.getH(), itemAmount, c.playerId, HIDE_TICKS, PlayerHandler.players[playerId].playerName);
                 addItem(item);
                 String itemName = ItemAssistant.getItemName(itemId).toLowerCase();
-                if (c.isDead == false && itemId != 526) {
+                if (!c.isDead && itemId != 526) {
                     if (c.getPlayerAssistant().isPlayer()) {
                         GameLogger.writeLog(c.playerName, "dropitem", c.playerName + " dropped " + itemAmount + " " + itemName + " absX: " + c.absX + " absY: " + c.absY + "");
                     }
@@ -306,9 +306,9 @@ public class ItemHandler {
      * Item List
      **/
 
-    public ItemList itemList[] = new ItemList[GameConstants.ITEM_LIMIT];
+    public ItemList[] itemList = new ItemList[GameConstants.ITEM_LIMIT];
 
-    public void newItemList(int ItemId, String ItemName, String ItemDescription, double ShopValue, double LowAlch, double HighAlch, int Bonuses[]) {
+    public void newItemList(int ItemId, String ItemName, String ItemDescription, double ShopValue, double LowAlch, double HighAlch, int[] Bonuses) {
         // first, search for a free slot
         int slot = -1;
         for (int i = 0; i < 11740; i++) {
@@ -402,7 +402,7 @@ public class ItemHandler {
             Misc.println(FileName + ": error loading file.");
             // return false;
         }
-        while (EndOfFile == false && line != null) {
+        while (!EndOfFile && line != null) {
             line = line.trim();
             int spot = line.indexOf("=");
             if (spot > -1) {

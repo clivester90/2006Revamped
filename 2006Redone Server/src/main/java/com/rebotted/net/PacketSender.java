@@ -5,6 +5,8 @@ import com.rebotted.Connection;
 import com.rebotted.GameConstants;
 import com.rebotted.GameEngine;
 import com.rebotted.game.content.combat.magic.MagicTeleports;
+import com.rebotted.game.content.gamemode.Mode;
+import com.rebotted.game.content.gamemode.ModeType;
 import com.rebotted.game.content.quests.QuestAssistant;
 import com.rebotted.game.content.skills.SkillHandler;
 import com.rebotted.game.content.skills.runecrafting.Tiaras;
@@ -94,17 +96,19 @@ public class PacketSender {
 		}
 		if (player.tutorialProgress > 0 && player.tutorialProgress < 36 && GameConstants.TUTORIAL_ISLAND) {
 			player.getPacketSender().sendMessage("@blu@Continue the tutorial from the last step you were on.@bla@");
+			player.mode = Mode.forType(ModeType.STANDARD);
 		}
-		if (player.tutorialProgress > 35) {
+		if (player.tutorialProgress > 35 || player.completedTutorial) {
 			player.getPlayerAssistant().sendSidebars();
 			Weight.updateWeight(player);
 			player.getPacketSender().sendMessage("Welcome to @blu@" + GameConstants.SERVER_NAME + "@bla@ - we are currently in Server Stage v@blu@" + GameConstants.TEST_VERSION + "@bla@.");
-			player.getPacketSender().sendMessage("@red@Did you know?@bla@ We're open source! Pull requests are welcome");
-			player.getPacketSender().sendMessage("Source code at github.com/dginovker/2006rebotted");
-			player.getPacketSender().sendMessage("Join our Discord: discord.gg/4zrA2Wy");
 			/*if (!hasBankpin) { //Kind of annoying. Maybe add Random % 10 or something.
 				getActionSender().sendMessage("You do not have a bank pin it is highly recommended you set one.");
 			}*/
+			System.out.println(player.getMode().getType() + " Mode is being used by " + player.playerName);
+			if (player.getMode() == null) {
+				player.mode = Mode.forType(ModeType.STANDARD);
+			}
 		}
 		player.getPlayerAssistant().firstTimeTutorial();
 		player.getItemAssistant().sendWeapon(player.playerEquipment[player.playerWeapon], ItemAssistant.getItemName(player.playerEquipment[player.playerWeapon]));
@@ -169,7 +173,7 @@ public class PacketSender {
 		player.getItemAssistant().addSpecialBar(player.playerEquipment[player.playerWeapon]);
 		player.saveTimer = GameConstants.SAVE_TIMER;
 		player.saveCharacter = true;
-		Misc.println("[REGISTERED]: " + player.playerName + "");
+		Misc.println("[REGISTERED]: " + player.playerName);
 		player.handler.updatePlayer(player, player.outStream);
 		player.handler.updateNPC(player, player.outStream);
 		player.flushOutStream();

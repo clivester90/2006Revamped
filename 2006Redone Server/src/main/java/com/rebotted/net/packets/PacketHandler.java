@@ -47,7 +47,7 @@ import com.rebotted.net.packets.impl.WearItem;
 
 public class PacketHandler {
 
-	private static PacketType packetId[] = new PacketType[256];
+	private static PacketType[] packetId = new PacketType[256];
 
 	static {
 

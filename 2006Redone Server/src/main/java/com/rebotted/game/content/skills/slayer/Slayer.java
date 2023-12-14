@@ -484,7 +484,7 @@ public class Slayer {
 	}
 
 	public void updateCurrentlyRemoved() {
-		int line[] = { 42014, 42015, 42016, 42017 };
+		int[] line = { 42014, 42015, 42016, 42017 };
 		for (int i = 0; i < c.removedTasks.length; i++) {
 			if (c.removedTasks[i] != -1) {
 				c.getPacketSender().sendString(getTaskName(c.removedTasks[i]), line[i]);

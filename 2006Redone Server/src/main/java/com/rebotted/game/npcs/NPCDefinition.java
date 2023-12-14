@@ -2,6 +2,8 @@ package com.rebotted.game.npcs;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 import com.rebotted.util.XStreamUtil;
@@ -12,7 +14,7 @@ public class NPCDefinition {
 
 	public static void init() throws IOException {
 		@SuppressWarnings("unchecked")
-		List<NPCDefinition> defs = (List<NPCDefinition>) XStreamUtil.getXStream().fromXML(new FileInputStream("data/cfg/npcDefinitions.xml"));
+		List<NPCDefinition> defs = (List<NPCDefinition>) XStreamUtil.getXStream().fromXML(Files.newInputStream(Paths.get("data/cfg/npcDefinitions.xml")));
 		definitions = new NPCDefinition[3790];
 		for (NPCDefinition def : defs) {
 			definitions[def.getId()] = def;

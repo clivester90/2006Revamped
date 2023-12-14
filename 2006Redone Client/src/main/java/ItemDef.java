@@ -63,7 +63,7 @@ public final class ItemDef {
 		Model model = Model.method462(k);
 		if (l != -1) {
 			Model model_1 = Model.method462(l);
-			Model aclass30_sub2_sub4_sub6s[] = {model, model_1};
+			Model[] aclass30_sub2_sub4_sub6s = {model, model_1};
 			model = new Model(2, aclass30_sub2_sub4_sub6s);
 		}
 		if (modifiedModelColors != null) {
@@ -117,11 +117,11 @@ public final class ItemDef {
 			if (l != -1) {
 				Model model_1 = Model.method462(k);
 				Model model_3 = Model.method462(l);
-				Model aclass30_sub2_sub4_sub6_1s[] = {model, model_1, model_3};
+				Model[] aclass30_sub2_sub4_sub6_1s = {model, model_1, model_3};
 				model = new Model(3, aclass30_sub2_sub4_sub6_1s);
 			} else {
 				Model model_2 = Model.method462(k);
-				Model aclass30_sub2_sub4_sub6s[] = {model, model_2};
+				Model[] aclass30_sub2_sub4_sub6s = {model, model_2};
 				model = new Model(2, aclass30_sub2_sub4_sub6s);
 			}
 		}
@@ -2093,8 +2093,8 @@ public final class ItemDef {
 		Sprite sprite2 = new Sprite(32, 32);
 		int k1 = Texture.textureInt1;
 		int l1 = Texture.textureInt2;
-		int ai[] = Texture.lineOffsets;
-		int ai1[] = DrawingArea.pixels;
+		int[] ai = Texture.lineOffsets;
+		int[] ai1 = DrawingArea.pixels;
 		int i2 = DrawingArea.width;
 		int j2 = DrawingArea.height;
 		int k2 = DrawingArea.topX;
@@ -2377,7 +2377,7 @@ public final class ItemDef {
 	private int anInt165;
 	private int anInt166;
 	private int anInt167;
-	public String groundActions[];
+	public String[] groundActions;
 	private int modelOffset1;
 	public String name;
 	private static ItemDef[] cache;
@@ -2385,7 +2385,7 @@ public final class ItemDef {
 	private int modelID;
 	private int anInt175;
 	public boolean stackable;
-	public byte description[];
+	public byte[] description;
 	private int certID;
 	private static int cacheIndex;
 	public int modelZoom;
@@ -2394,7 +2394,7 @@ public final class ItemDef {
 	public int anInt184;
 	private int anInt185;
 	private int anInt188;
-	public String actions[];
+	public String[] actions;
 	public int modelRotation1;
 	private int anInt191;
 	private int anInt192;

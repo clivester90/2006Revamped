@@ -1484,7 +1484,7 @@ public class ClickingButtons implements PacketType {
 			}
 			break;
 		case 3189:
-			if (player.splitChat == false) {
+			if (!player.splitChat) {
 				player.getPacketSender().sendConfig(502, 1);
 				player.getPacketSender().sendConfig(287, 1);
 				player.splitChat = true;

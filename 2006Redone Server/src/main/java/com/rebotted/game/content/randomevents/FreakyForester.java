@@ -29,7 +29,7 @@ public class FreakyForester {
 			client.getPlayerAssistant().movePlayer(client.lastX, client.lastY, client.lastH);
 			client.canLeaveArea = true;
 			client.getPacketSender().sendMessage("Congratulations, you've completed the freaky forester event!");
-			if (client.recievedReward == false) {
+			if (!client.recievedReward) {
 				client.getItemAssistant().addItem(6180, 1);
 				client.getItemAssistant().addItem(6181, 1);
 				client.getItemAssistant().addItem(6182, 1);

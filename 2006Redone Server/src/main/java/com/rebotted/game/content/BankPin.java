@@ -45,7 +45,7 @@ public class BankPin {
 	}
 
 	public void pinSettingFrames() {
-		int pinSendFrames[] = { 15075, 15080, 15110, 15171, 15076, 15176,
+		int[] pinSendFrames = { 15075, 15080, 15110, 15171, 15076, 15176,
 				15104, 15082, 15079 };
 		for (int j = 0; j < 9; j++) {
 			client.getPacketSender().sendString("", pinSendFrames[j]);
@@ -130,7 +130,7 @@ public class BankPin {
 		client.getPacketSender().sendString("First click the FIRST digit",
 				15313);
 		client.getPacketSender().sendString("", 14923);
-		int pinSendFrames[] = { 14913, 14914, 14915, 14916 };
+		int[] pinSendFrames = { 14913, 14914, 14915, 14916 };
 		for (int j = 0; j < 4; j++) {
 			client.getPacketSender().sendString("?", pinSendFrames[j]);
 		}
@@ -317,10 +317,10 @@ public class BankPin {
 		sendPins();
 	}
 
-	private final int bankPins[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-	private final int stringIds[] = { 14883, 14884, 14885, 14886, 14887, 14888,
+	private final int[] bankPins = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	private final int[] stringIds = { 14883, 14884, 14885, 14886, 14887, 14888,
 			14889, 14890, 14891, 14892 };
-	private final int actionButtons[] = { 58025, 58026, 58027, 58028, 58029,
+	private final int[] actionButtons = { 58025, 58026, 58027, 58028, 58029,
 			58030, 58031, 58032, 58033, 58034 };
 
 	private int[] getBankPins() {

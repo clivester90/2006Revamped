@@ -7,6 +7,8 @@ import com.rebotted.game.content.minigames.FightCaves;
 import com.rebotted.game.content.minigames.PestControl;
 import com.rebotted.game.content.music.sound.CombatSounds;
 import com.rebotted.game.content.music.sound.SoundList;
+import com.rebotted.game.content.skills.SkillData;
+import com.rebotted.game.content.skills.SkillHandler;
 import com.rebotted.game.items.impl.Greegree.MonkeyData;
 import com.rebotted.game.npcs.NpcData;
 import com.rebotted.game.npcs.NpcHandler;
@@ -553,8 +555,8 @@ public class NpcCombat {
 						damage = 0;
 					}
 					if (NpcData.cantKillYou(NpcHandler.npcs[i].npcType)) {
-						if (damage >= c.playerLevel[GameConstants.HITPOINTS]) {
-							damage = c.playerLevel[GameConstants.HITPOINTS] - 1;
+						if (damage >= c.playerLevel[SkillData.HITPOINTS.getId()]) {
+							damage = c.playerLevel[SkillData.HITPOINTS.getId()] - 1;
 						}
 					}
 					if (c.getPrayer().prayerActive[18] && !(NpcHandler.npcs[i].npcType == 2030)) { // protect from melee
@@ -584,8 +586,8 @@ public class NpcCombat {
 							 damage = 0;
 					}
 					if (NpcData.cantKillYou(NpcHandler.npcs[i].npcType)) {
-						if (damage >= c.playerLevel[GameConstants.HITPOINTS]) {
-							damage = c.playerLevel[GameConstants.HITPOINTS] - 1;
+						if (damage >= c.playerLevel[SkillData.HITPOINTS.getId()]) {
+							damage = c.playerLevel[SkillData.HITPOINTS.getId()] - 1;
 						}
 					}
 					if (c.getPrayer().prayerActive[17]) { // protect from range
@@ -604,8 +606,8 @@ public class NpcCombat {
 						magicFailed = true;
 					}
 					if (NpcData.cantKillYou(NpcHandler.npcs[i].npcType)) {
-						if (damage >= c.playerLevel[GameConstants.HITPOINTS]) {
-							damage = c.playerLevel[GameConstants.HITPOINTS] - 1;
+						if (damage >= c.playerLevel[SkillData.HITPOINTS.getId()]) {
+							damage = c.playerLevel[SkillData.HITPOINTS.getId()] - 1;
 						}
 					}
 					if(c.getPrayer().prayerActive[16]) { // protect from magic

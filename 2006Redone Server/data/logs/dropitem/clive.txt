@@ -1,0 +1,3 @@
+[2023/12/14] 22:40 clive dropped 4 earth rune absX: 3135 absY: 3227
+[2023/12/14] 22:41 clive dropped 11 body rune absX: 3146 absY: 3234
+[2023/12/14] 23:38 clive dropped 2 body rune absX: 3148 absY: 3234
