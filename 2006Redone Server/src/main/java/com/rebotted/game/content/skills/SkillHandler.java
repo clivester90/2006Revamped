@@ -138,7 +138,7 @@ public class SkillHandler {
 	}
 
 	public static void send1Item(Player c, int itemId) {
-		c.getPacketSender().sendFrame246(1746, view190 ? 190 : 150, itemId);
+		c.getPacketSender().sendInterfaceModel(1746, view190 ? 190 : 150, itemId);
 		c.getPacketSender().sendString(
 				getLine(c) + "" + ItemAssistant.getItemName(itemId) + "", 2799);
 		c.getPacketSender().sendChatInterface(4429);

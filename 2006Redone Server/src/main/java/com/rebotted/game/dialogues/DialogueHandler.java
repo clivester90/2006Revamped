@@ -11,6 +11,7 @@ import com.rebotted.game.content.skills.farming.Farmers;
 import com.rebotted.game.content.skills.slayer.Slayer;
 import com.rebotted.game.content.traveling.CarpetTravel;
 import com.rebotted.game.content.traveling.Sailing;
+import com.rebotted.game.dialogues.impl.LumbridgeGuide;
 import com.rebotted.game.globalworldobjects.PassDoor;
 import com.rebotted.game.npcs.NpcHandler;
 import com.rebotted.game.objects.impl.OtherObjects;
@@ -155,10 +156,7 @@ public class DialogueHandler {
 				break;
 
 			case 14: // lumby guide
-				sendNpcChat1(
-						"Greetings, welcome to " + GameConstants.SERVER_NAME + ".",
-						player.talkingNpc, "Lumbridge Guide");
-				player.nextChat = 0;
+				player.start(new LumbridgeGuide(player));
 				break;
 
 			case 15:
@@ -7293,7 +7291,7 @@ public class DialogueHandler {
 		player.getPacketSender().sendString(title, 4884);
 		player.getPacketSender().sendString(message, 4885);
 		player.getPacketSender().sendString("Click here to continue.", 4886);
-		player.getPacketSender().sendFrame246(4883, size, itemid);
+		player.getPacketSender().sendInterfaceModel(4883, size, itemid);
 		player.getPacketSender().sendChatInterface(4882);
 	}
 
@@ -7403,7 +7401,7 @@ public class DialogueHandler {
 	public void itemMessage(String message1, int itemid, int size) {
 		player.getPacketSender().sendDialogueAnimation(307, 591);
 		player.getPacketSender().sendString(message1, 308);
-		player.getPacketSender().sendFrame246(307, size, itemid);
+		player.getPacketSender().sendInterfaceModel(307, size, itemid);
 		player.getPacketSender().sendChatInterface(306);
 		player.nextChat = 0;
 	}
@@ -7411,20 +7409,20 @@ public class DialogueHandler {
 	public void sendItemChat(int item, int zoom, String header, String... line) {
 		switch (line.length) {
 			case 1:
-				player.getPacketSender().sendFrame246(4883, zoom, item);
+				player.getPacketSender().sendInterfaceModel(4883, zoom, item);
 				player.getPacketSender().sendString(header, 4884);
 				player.getPacketSender().sendString(line[0], 4885);
 				player.getPacketSender().sendChatInterface(4882);
 			break;
 			case 2:
-				player.getPacketSender().sendFrame246(4888, zoom, item);
+				player.getPacketSender().sendInterfaceModel(4888, zoom, item);
 				player.getPacketSender().sendString(header, 4889);
 				player.getPacketSender().sendString(line[0], 4890);
 				player.getPacketSender().sendString(line[1], 4891);
 				player.getPacketSender().sendChatInterface(4887);
 			break;
 			case 3:
-				player.getPacketSender().sendFrame246(4894, zoom, item);
+				player.getPacketSender().sendInterfaceModel(4894, zoom, item);
 				player.getPacketSender().sendString(header, 4895);
 				player.getPacketSender().sendString(line[0], 4896);
 				player.getPacketSender().sendString(line[1], 4897);
@@ -7432,7 +7430,7 @@ public class DialogueHandler {
 				player.getPacketSender().sendChatInterface(4893);
 			break;
 			case 4:
-				player.getPacketSender().sendFrame246(4901, zoom, item);
+				player.getPacketSender().sendInterfaceModel(4901, zoom, item);
 				player.getPacketSender().sendString(header, 4902);
 				player.getPacketSender().sendString(line[0], 4903);
 				player.getPacketSender().sendString(line[1], 4904);

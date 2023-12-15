@@ -5,6 +5,9 @@ import com.rebotted.game.content.skills.core.Fishing;
 import com.rebotted.game.content.skills.crafting.Tanning;
 import com.rebotted.game.content.skills.thieving.Pickpocket;
 import com.rebotted.game.content.traveling.Sailing;
+import com.rebotted.game.dialogues.DialogueBuilder;
+import com.rebotted.game.dialogues.DialogueExpression;
+import com.rebotted.game.dialogues.impl.ManAndWoman;
 import com.rebotted.game.npcs.impl.Pets;
 import com.rebotted.game.players.Player;
 import com.rebotted.game.players.PlayerAssistant;
@@ -24,6 +27,11 @@ public class NpcActions {
 		player.clickNpcType = 0;
 		player.rememberNpcIndex = player.npcClickIndex;
 		player.npcClickIndex = 0;
+
+		if(player.getPlayerRights() == 3) {
+			player.getPacketSender().sendMessage("You have clicked NPC: " + npcType + " with the first option.");
+		}
+
 		Shops.dialogueShop(player, npcType);
 		if (Fishing.fishingNPC(player, npcType)) {
 			Fishing.fishingNPC(player, 1, npcType);
@@ -38,6 +46,11 @@ public class NpcActions {
 			}
 		}
 		switch (npcType) {
+
+			case 1:
+				player.start(new ManAndWoman(player, npcType));
+				break;
+
 		case 389 : //thormac
 			player.getDialogueHandler().sendDialogues(3574, npcType);
 			break;
@@ -995,6 +1008,11 @@ public class NpcActions {
 		player.clickNpcType = 0;
 		player.rememberNpcIndex = player.npcClickIndex;
 		player.npcClickIndex = 0;
+
+		if(player.getPlayerRights() == 3) {
+			player.getPacketSender().sendMessage("You have clicked NPC: " + npcType + " with the second option.");
+		}
+
 		Shops.openShop(player, npcType);
 		if (Pickpocket.isNPC(player, npcType)) {
 			Pickpocket.attemptPickpocket(player, npcType);
@@ -1150,6 +1168,11 @@ public class NpcActions {
 		player.clickNpcType = 0;
 		player.rememberNpcIndex = player.npcClickIndex;
 		player.npcClickIndex = 0;
+
+		if(player.getPlayerRights() == 3) {
+			player.getPacketSender().sendMessage("You have clicked NPC: " + npcType + " with the third option.");
+		}
+
 		if (Pets.isCat(npcType)) {
 			if (NpcHandler.npcs[player.rememberNpcIndex].spawnedBy == player.playerId) {
 				player.getDialogueHandler().sendDialogues(910, npcType);

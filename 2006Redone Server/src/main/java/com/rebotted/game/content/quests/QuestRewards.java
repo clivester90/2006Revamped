@@ -21,7 +21,7 @@ public class QuestRewards {
 		player.getPacketSender().sendString(Line5, 12154);
 		player.getPacketSender().sendString(Line6, 12155);
 		if (itemID > 0) {
-			player.getPacketSender().sendFrame246(12145, 250, itemID);
+			player.getPacketSender().sendInterfaceModel(12145, 250, itemID);
 		}
 		player.getPacketSender().showInterface(12140);
 		player.getPacketSender().sendMessage("You completed " + questName + "!");

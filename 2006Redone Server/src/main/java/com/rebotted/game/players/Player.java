@@ -12,6 +12,7 @@ import com.everythingrs.hiscores.Hiscores;
 import com.rebotted.game.content.gamemode.Mode;
 import com.rebotted.game.content.gamemode.ModeType;
 import com.rebotted.game.content.gamemode.RegularMode;
+import com.rebotted.game.dialogues.DialogueBuilder;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.mina.common.IoSession;
@@ -172,6 +173,17 @@ public abstract class Player {
 	@Getter
 	@Setter
 	public Mode mode = new RegularMode(ModeType.STANDARD);
+
+	@Getter
+	@Setter
+	private DialogueBuilder dialogueBuilder = null;
+	public long lastDialogueSkip = 0;
+	public boolean lastDialogueNewSystem;
+	public void start(DialogueBuilder dialogueBuilder) {
+		this.dialogueBuilder = dialogueBuilder;
+		dialogueBuilder.initialise();
+		lastDialogueNewSystem = true;
+	}
 	public int lastMainFrameInterface = -1; //Possibly used in future to prevent packet exploits
 	
 	public boolean isPreaching() {
@@ -540,17 +552,17 @@ public abstract class Player {
 	}
 
 	public void puzzleBarrow() {
-		getPacketSender().sendFrame246(4545, 250, 6833);
+		getPacketSender().sendInterfaceModel(4545, 250, 6833);
 		getPacketSender().sendString("1.", 4553);
-		getPacketSender().sendFrame246(4546, 250, 6832);
+		getPacketSender().sendInterfaceModel(4546, 250, 6832);
 		getPacketSender().sendString("2.", 4554);
-		getPacketSender().sendFrame246(4547, 250, 6830);
+		getPacketSender().sendInterfaceModel(4547, 250, 6830);
 		getPacketSender().sendString("3.", 4555);
-		getPacketSender().sendFrame246(4548, 250, 6829);
+		getPacketSender().sendInterfaceModel(4548, 250, 6829);
 		getPacketSender().sendString("4.", 4556);
-		getPacketSender().sendFrame246(4550, 250, 3454);
-		getPacketSender().sendFrame246(4551, 250, 8746);
-		getPacketSender().sendFrame246(4552, 250, 6830);
+		getPacketSender().sendInterfaceModel(4550, 250, 3454);
+		getPacketSender().sendInterfaceModel(4551, 250, 8746);
+		getPacketSender().sendInterfaceModel(4552, 250, 6830);
 		getPacketSender().showInterface(4543);
 	}
 
@@ -1825,9 +1837,12 @@ public abstract class Player {
 	public String globalMessage = "";
 
 	public int playerId = -1;
+	@Getter
 	public String playerName = null;
 	public String playerName2 = null;
 	public String playerPass = null;
+	@Getter
+	@Setter
 	public int playerRights;
 	public PlayerHandler handler = null;
 	public int[] playerItems = new int[28];

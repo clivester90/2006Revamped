@@ -19,11 +19,11 @@ public class Pottery {
 	public static void showUnfire(Player c) {
 		c.getPacketSender().sendChatInterface(8938);
 		c.getPacketSender().sendString("What would you like to make?", 8879);
-		c.getPacketSender().sendFrame246(8941, 120, 1787); // first
-		c.getPacketSender().sendFrame246(8942, 150, 1789); // second
-		c.getPacketSender().sendFrame246(8943, 150, 1791); // third
-		c.getPacketSender().sendFrame246(8944, 120, 5352); // 4th
-		c.getPacketSender().sendFrame246(8945, 150, 4438); // 5th
+		c.getPacketSender().sendInterfaceModel(8941, 120, 1787); // first
+		c.getPacketSender().sendInterfaceModel(8942, 150, 1789); // second
+		c.getPacketSender().sendInterfaceModel(8943, 150, 1791); // third
+		c.getPacketSender().sendInterfaceModel(8944, 120, 5352); // 4th
+		c.getPacketSender().sendInterfaceModel(8945, 150, 4438); // 5th
 		c.getPacketSender().sendString("Pot", 8949);
 		c.getPacketSender().sendString("Pie Dish", 8953);
 		c.getPacketSender().sendString("Bowl", 8957);
@@ -35,11 +35,11 @@ public class Pottery {
 	public static void showFire(Player c) {
 		c.getPacketSender().sendChatInterface(8938);
 		c.getPacketSender().sendString("What would you like to make?", 8879);
-		c.getPacketSender().sendFrame246(8941, 120, 1931); // first
-		c.getPacketSender().sendFrame246(8942, 150, 2313); // second
-		c.getPacketSender().sendFrame246(8943, 150, 1923); // third
-		c.getPacketSender().sendFrame246(8944, 120, 5350); // 4th
-		c.getPacketSender().sendFrame246(8945, 150, 4440); // 5th
+		c.getPacketSender().sendInterfaceModel(8941, 120, 1931); // first
+		c.getPacketSender().sendInterfaceModel(8942, 150, 2313); // second
+		c.getPacketSender().sendInterfaceModel(8943, 150, 1923); // third
+		c.getPacketSender().sendInterfaceModel(8944, 120, 5350); // 4th
+		c.getPacketSender().sendInterfaceModel(8945, 150, 4440); // 5th
 		c.getPacketSender().sendString("Pot", 8949);
 		c.getPacketSender().sendString("Pie Dish", 8953);
 		c.getPacketSender().sendString("Bowl", 8957);

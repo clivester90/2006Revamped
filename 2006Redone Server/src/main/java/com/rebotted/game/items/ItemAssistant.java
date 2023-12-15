@@ -591,63 +591,63 @@ public class ItemAssistant {
 			player.getPacketSender().sendString(weaponName, 5857);
 		} else if (weaponName.endsWith("whip")) {
 			player.getPacketSender().setSidebarInterface(0, 12290); // flick, lash, deflect
-			player.getPacketSender().sendFrame246(12291, 200, weapon);
+			player.getPacketSender().sendInterfaceModel(12291, 200, weapon);
 			player.getPacketSender().sendString(weaponName, 12293);
 		} else if (weaponName.endsWith("bow") || weaponName.endsWith("10")
 				|| weaponName.endsWith("full")
 				|| weaponName.startsWith("seercull")) {
 			player.getPacketSender().setSidebarInterface(0, 1764); // accurate, rapid, longrange
-			player.getPacketSender().sendFrame246(1765, 200, weapon);
+			player.getPacketSender().sendInterfaceModel(1765, 200, weapon);
 			player.getPacketSender().sendString(weaponName, 1767);
 		} else if (weaponName.startsWith("Staff")
 				|| weaponName.endsWith("staff") || weaponName.endsWith("wand")) {
 			player.getPacketSender().setSidebarInterface(0, 328); // spike, impale, smash, block
-			player.getPacketSender().sendFrame246(329, 200, weapon);
+			player.getPacketSender().sendInterfaceModel(329, 200, weapon);
 			player.getPacketSender().sendString(weaponName, 331);
 		} else if (newWeapon.startsWith("dart")
 				|| newWeapon.startsWith("knife")
 				|| newWeapon.startsWith("javelin")
 				|| weaponName.equalsIgnoreCase("toktz-xil-ul")) {
 			player.getPacketSender().setSidebarInterface(0, 4446); // accurate, rapid, longrange
-			player.getPacketSender().sendFrame246(4447, 200, weapon);
+			player.getPacketSender().sendInterfaceModel(4447, 200, weapon);
 			player.getPacketSender().sendString(weaponName, 4449);
 		} else if (newWeapon.startsWith("dagger")
 				|| newWeapon.contains("sword")) {
 			player.getPacketSender().setSidebarInterface(0, 2276); // stab, lunge, slash, block
-			player.getPacketSender().sendFrame246(2277, 200, weapon);
+			player.getPacketSender().sendInterfaceModel(2277, 200, weapon);
 			player.getPacketSender().sendString(weaponName, 2279);
 		} else if (newWeapon.startsWith("pickaxe")) {
 			player.getPacketSender().setSidebarInterface(0, 5570); // spike, impale, smash, block
-			player.getPacketSender().sendFrame246(5571, 200, weapon);
+			player.getPacketSender().sendInterfaceModel(5571, 200, weapon);
 			player.getPacketSender().sendString(weaponName, 5573);
 		} else if (newWeapon.startsWith("axe")
 				|| newWeapon.startsWith("battleaxe")) {
 			player.getPacketSender().setSidebarInterface(0, 1698); // chop, hack, smash, block
-			player.getPacketSender().sendFrame246(1699, 200, weapon);
+			player.getPacketSender().sendInterfaceModel(1699, 200, weapon);
 			player.getPacketSender().sendString(weaponName, 1701);
 		} else if (newWeapon.startsWith("halberd")) {
 			player.getPacketSender().setSidebarInterface(0, 8460); // jab, swipe, fend
-			player.getPacketSender().sendFrame246(8461, 200, weapon);
+			player.getPacketSender().sendInterfaceModel(8461, 200, weapon);
 			player.getPacketSender().sendString(weaponName, 8463);
 		} else if (newWeapon.startsWith("Scythe")) {
 			player.getPacketSender().setSidebarInterface(0, 8460); // jab, swipe, fend
-			player.getPacketSender().sendFrame246(8461, 200, weapon);
+			player.getPacketSender().sendInterfaceModel(8461, 200, weapon);
 			player.getPacketSender().sendString(weaponName, 8463);
 		} else if (newWeapon.startsWith("spear")) {
 			player.getPacketSender().setSidebarInterface(0, 4679); // lunge, swipe, pound, block
-			player.getPacketSender().sendFrame246(4680, 200, weapon);
+			player.getPacketSender().sendInterfaceModel(4680, 200, weapon);
 			player.getPacketSender().sendString(weaponName, 4682);
 		} else if (newWeapon.toLowerCase().contains("mace")) {
 			player.getPacketSender().setSidebarInterface(0, 3796);
-			player.getPacketSender().sendFrame246(3797, 200, weapon);
+			player.getPacketSender().sendInterfaceModel(3797, 200, weapon);
 			player.getPacketSender().sendString(weaponName, 3799);
 		} else if (player.playerEquipment[player.playerWeapon] == 4153) {
 			player.getPacketSender().setSidebarInterface(0, 425); // war hamer equip
-			player.getPacketSender().sendFrame246(426, 200, weapon);
+			player.getPacketSender().sendInterfaceModel(426, 200, weapon);
 			player.getPacketSender().sendString(weaponName, 428);
 		} else {
 			player.getPacketSender().setSidebarInterface(0, 2423); // chop, slash, lung, block
-			player.getPacketSender().sendFrame246(2424, 200, weapon);
+			player.getPacketSender().sendInterfaceModel(2424, 200, weapon);
 			player.getPacketSender().sendString(weaponName, 2426);
 		}
 

@@ -43,7 +43,7 @@ public class Smelting extends SkillHandler {
 	 */
 	public static void startSmelting(Player c, int object) {
 		for (int j = 0; j < SMELT_FRAME.length; j++) {
-			c.getPacketSender().sendFrame246(SMELT_FRAME[j], 150, SMELT_BARS[j]);
+			c.getPacketSender().sendInterfaceModel(SMELT_FRAME[j], 150, SMELT_BARS[j]);
 		}
 		c.getPacketSender().sendChatInterface(2400);
 		c.isSmelting = true;

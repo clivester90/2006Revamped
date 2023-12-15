@@ -14,9 +14,9 @@ public class Spinning extends CraftingData {
 	public static void showSpinning(Player player) {
 		player.getPacketSender().sendChatInterface(8880);
 		player.getPacketSender().sendString("What would you like to make?", 8879);
-		player.getPacketSender().sendFrame246(8883, 180, 1737); // left
-		player.getPacketSender().sendFrame246(8884, 180, 1779); // middle
-		player.getPacketSender().sendFrame246(8885, 180, 6051); // right
+		player.getPacketSender().sendInterfaceModel(8883, 180, 1737); // left
+		player.getPacketSender().sendInterfaceModel(8884, 180, 1779); // middle
+		player.getPacketSender().sendInterfaceModel(8885, 180, 6051); // right
 		player.getPacketSender().sendString("Wool", 8889);
 		player.getPacketSender().sendString("Flax", 8893);
 		player.getPacketSender().sendString("Magic tree", 8897);

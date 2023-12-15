@@ -21,7 +21,7 @@ public class LeatherMaking extends CraftingData {
 				String[] name = { "Body", "Chaps", "Bandana", "Boots", "Vamb", };
 				if (l.getLeather() == 1743) {
 					c.getPacketSender().sendChatInterface(4429);
-					c.getPacketSender().sendFrame246(1746, 200, 1131);
+					c.getPacketSender().sendInterfaceModel(1746, 200, 1131);
 					c.getPacketSender().sendString(
 							ItemAssistant.getItemName(1131), 2799);
 					c.leatherType = leather;

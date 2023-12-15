@@ -362,36 +362,23 @@ public class PacketSender {
 		return this;
 	}
 
-	public PacketSender sendFrame246(int MainFrame, int SubFrame, int SubFrame2) { //A lot of generic interfaces; cooking, etc
-		player.lastMainFrameInterface = MainFrame;
-		// synchronized(c) {
-		if (player.getOutStream() != null && player != null) {
-			player.getOutStream().createFrame(246);
-			player.getOutStream().writeWordBigEndian(MainFrame);
-			player.getOutStream().writeWord(SubFrame);
-			player.getOutStream().writeWord(SubFrame2);
-			player.flushOutStream();
-		}
-		return this;
-	}
-
-	public PacketSender sendFrame171(int MainFrame, int SubFrame) { //Special attack bar?
+	public PacketSender sendFrame171(int state, int componentId) { //Special attack bar?
 		// synchronized(c) {
 		if (player.getOutStream() != null && player != null) {
 			player.getOutStream().createFrame(171);
-			player.getOutStream().writeByte(MainFrame);
-			player.getOutStream().writeWord(SubFrame);
+			player.getOutStream().writeByte(state);
+			player.getOutStream().writeWord(componentId);
 			player.flushOutStream();
 		}
 		return this;
 	}
 
-	public PacketSender sendDialogueAnimation(int MainFrame, int SubFrame) {
+	public PacketSender sendDialogueAnimation(int componentId, int animation) {
 		// synchronized(c) {
 		if (player.getOutStream() != null && player != null) {
 			player.getOutStream().createFrame(200);
-			player.getOutStream().writeWord(MainFrame);
-			player.getOutStream().writeWord(SubFrame);
+			player.getOutStream().writeWord(componentId);
+			player.getOutStream().writeWord(animation);
 			player.flushOutStream();
 		}
 		return this;
@@ -537,6 +524,19 @@ public class PacketSender {
 			player.outStream.writeWord(id + 1); // item
 			player.outStream.writeByte(amount); // how many there are?
 			player.outStream.endFrameVarSizeWord();
+		}
+		return this;
+	}
+
+	public PacketSender sendInterfaceModel(int interfaceChild, int zoom, int itemId) { //A lot of generic interfaces; cooking, etc
+		player.lastMainFrameInterface = interfaceChild;
+		// synchronized(c) {
+		if (player.getOutStream() != null && player != null) {
+			player.getOutStream().createFrame(246);
+			player.getOutStream().writeWordBigEndian(interfaceChild);
+			player.getOutStream().writeWord(zoom);
+			player.getOutStream().writeWord(itemId);
+			player.flushOutStream();
 		}
 		return this;
 	}

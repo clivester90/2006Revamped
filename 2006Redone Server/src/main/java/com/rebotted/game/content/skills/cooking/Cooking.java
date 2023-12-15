@@ -144,7 +144,7 @@ public class Cooking extends SkillHandler {
 	
 	private static void viewCookInterface(Player c, int item) {
 		c.getPacketSender().sendChatInterface(1743);
-		c.getPacketSender().sendFrame246(13716, view190 ? 190 : 170, item);
+		c.getPacketSender().sendInterfaceModel(13716, view190 ? 190 : 170, item);
 		c.getPacketSender().sendString(getLine(c) + "" + ItemAssistant.getItemName(item) + "", 13717);
 	}
 
