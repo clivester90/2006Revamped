@@ -13,7 +13,7 @@ public class SilverCrafting {
 	public static final int SILVER_BAR = 2355;
 	private static final int SILVER_ANIMATION = 899;
 
-	public static enum SilverCraft {
+	public enum SilverCraft {
 		UNBLESSED(34205, 2355, 1716, 1, 16, 50), UNBLESSED5(34204, 2355, 1716,
 				5, 16, 50), UNBLESSED10(34203, 2355, 1716, 10, 16, 50), UNBLESSEDX(
 				34202, 2355, 1716, 0, 16, 50), UNHOLY(34209, 2355, 1724, 1, 17,
@@ -45,7 +45,7 @@ public class SilverCrafting {
 			}
 		}
 
-		private SilverCraft(int buttonId, int used, int result, int amount,
+		SilverCraft(int buttonId, int used, int result, int amount,
 				int level, double experience) {
 			this.buttonId = buttonId;
 			this.used = used;

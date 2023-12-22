@@ -684,10 +684,7 @@ public class PlayerAssistant {
 			player.npcIndex = 0;
 			player.playerIndex = 0;
 			player.faceUpdate(0);
-			player.refresh = false;
-			if(player.heightLevel != height) {
-				player.refresh = true;
-			}
+			player.refresh = player.heightLevel != height;
 			player.teleHeight = height;
 			player.isTeleporting = true;
 			if (GameConstants.SOUND) {
@@ -1848,9 +1845,9 @@ public class PlayerAssistant {
 		if(!data.isPresent())
 			return;
 					
-		player.getPacketSender().sendMessage("Congratulations, you've advanced a level in "+data.get().toString()+"!");
-		player.getPacketSender().sendString("Congratulations, you've advanced a level in "+data.get().toString()+"!", data.get().getFrame2());
-		player.getPacketSender().sendString("Your " +data.get().toString()+ " level is now " + getLevelForXP(player.playerXP[skill]) + ".", data.get().getFrame3());
+		player.getPacketSender().sendMessage("Congratulations, you've advanced a level in "+ data.get() +"!");
+		player.getPacketSender().sendString("Congratulations, you've advanced a level in "+ data.get() +"!", data.get().getFrame2());
+		player.getPacketSender().sendString("Your " + data.get() + " level is now " + getLevelForXP(player.playerXP[skill]) + ".", data.get().getFrame3());
 		player.getPacketSender().sendChatInterface(data.get().getFrame1());
 		player.getPacketSender().sendQuickSong(69, 1);
 		player.gfx0(199);

@@ -45,7 +45,7 @@ public class ArrowMaking {
 			return null;
 		}
 
-		private Data(int item1, int item2, int product, int level, double xp) {
+		Data(int item1, int item2, int product, int level, double xp) {
 			this.item1 = item1;
 			this.item2 = item2;
 			this.product = product;

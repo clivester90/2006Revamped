@@ -10,7 +10,6 @@ import com.rebotted.game.players.Player;
 import com.rebotted.game.players.PlayerHandler;
 import com.rebotted.util.GlobalDropData;
 import com.rebotted.util.Misc;
-import com.rebotted.util.ShopData;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

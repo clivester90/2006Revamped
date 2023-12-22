@@ -1,6 +1,5 @@
 package com.rebotted.game.content.skills.crafting;
 
-import com.rebotted.GameConstants;
 import com.rebotted.event.*;
 import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.items.ItemAssistant;

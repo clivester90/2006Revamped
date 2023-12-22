@@ -17,7 +17,7 @@ public class Cooking extends SkillHandler {
 
 	private static SecureRandom cookingRandom = new SecureRandom(); // The random factor
 
-	private static enum CookingItems {
+	private enum CookingItems {
 		//raw, cooked, burnt, levelreq, exp, stopburn, stopburn w/gloves, name
 				SHRIMP(317, 315, 7954, 1, 30, 34, 30, "shrimp"), 
 				SARDINE(327, 325, 369, 1, 40, 38, 38, "sardine"), 
@@ -46,7 +46,7 @@ public class Cooking extends SkillHandler {
 		int rawItem, cookedItem, burntItem, levelReq, xp, stopBurn, stopBurnGloves;
 		String name;
 
-		private CookingItems(int rawItem, int cookedItem, int burntItem, int levelReq, int xp, int stopBurn, int stopBurnGloves, String name) {
+		CookingItems(int rawItem, int cookedItem, int burntItem, int levelReq, int xp, int stopBurn, int stopBurnGloves, String name) {
 			this.rawItem = rawItem;
 			this.cookedItem = cookedItem;
 			this.burntItem = burntItem;

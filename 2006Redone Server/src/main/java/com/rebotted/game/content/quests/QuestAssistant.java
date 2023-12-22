@@ -252,7 +252,7 @@ public class QuestAssistant {
 		private final String name;
 		private final boolean questStatus;
 
-		private Quests(final int button, final int string, final String name, final boolean questStatus) {
+		Quests(final int button, final int string, final String name, final boolean questStatus) {
 			this.button = button;
 			this.name = name;
 			this.string = string;

@@ -61,10 +61,7 @@ public class Connection {
 				num++;
 			}
 		}
-		if (num > 5) {
-			return true;
-		}
-		return false;
+		return num > 5;
 	}
 
 	public static void unMuteUser(String name) {
@@ -100,10 +97,7 @@ public class Connection {
 	 * Contains Ban IP
 	 **/
 	public static boolean isIpBanned(String IP) {
-		if (bannedIps.contains(IP)) {
-			return true;
-		}
-		return false;
+		return bannedIps.contains(IP);
 	}
 
 	/**
@@ -162,10 +156,7 @@ public class Connection {
 	 * Contains banned username
 	 **/
 	public static boolean isNamedBanned(String name) {
-		if (bannedNames.contains(name.toLowerCase())) {
-			return true;
-		}
-		return false;
+		return bannedNames.contains(name.toLowerCase());
 	}
 
 	/**

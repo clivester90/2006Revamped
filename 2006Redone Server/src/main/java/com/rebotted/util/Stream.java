@@ -340,7 +340,6 @@ public class Stream {
 	public java.lang.String readString() {
 		int i = currentOffset;
 		while (buffer[currentOffset++] != 10) {
-			;
 		}
 		return new String(buffer, i, currentOffset - i - 1);
 	}

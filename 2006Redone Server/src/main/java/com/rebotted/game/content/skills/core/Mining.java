@@ -42,7 +42,7 @@ public class Mining {
 		{1275, 41, 6, 624}, //Rune
 	};
 
-	public static enum gems {
+	public enum gems {
 		OPAL(1625, 60),
 		JADE(1627, 30),
 		RED_TOPAZ(1629, 15),
@@ -73,7 +73,7 @@ public class Mining {
 		}
 	}
 
-	public static enum rockData {
+	public enum rockData {
 		ESSENCE(new int[] { 2491 }, 1, 5, 2, 0, new int[] { 1436, 7936 }),
 		CLAY(new int[] { 2108, 2109, 11189, 11190, 11191, 9713, 9711, 14905, 14904 }, 1, 5, 1, 2, new int[] { 434 }),
 		COPPER(new int[] { 3042, 2091, 2090, 9708, 9709, 9710, 11960, 14906, 14907 }, 1, 18, 1, 4, new int[] { 436 }),
@@ -94,7 +94,7 @@ public class Mining {
 		private final int[] oreIds;
 		private final int[] objectId;
 
-		private rockData(final int[] objectId, final int levelReq, final int xp, final int mineTimer, final int respawnTimer, final int... oreIds) {
+		rockData(final int[] objectId, final int levelReq, final int xp, final int mineTimer, final int respawnTimer, final int... oreIds) {
 			this.objectId = objectId;
 			this.levelReq = levelReq;
 			this.xp = xp;

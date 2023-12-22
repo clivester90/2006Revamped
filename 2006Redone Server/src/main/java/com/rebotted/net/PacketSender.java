@@ -568,7 +568,7 @@ public class PacketSender {
 	
 
 	public PacketSender openUpBank() {
-		if (player.isBanking = false) {
+		if (!player.isBanking) {
 			player.getPacketSender().closeAllWindows();
 			return this;
 		}

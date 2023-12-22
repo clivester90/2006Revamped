@@ -13,7 +13,7 @@ public enum LogData {
 	private int logId, level;
 	private double xp;
 
-	private LogData(int logId, int level, double xp) {
+	LogData(int logId, int level, double xp) {
 		this.logId = logId;
 		this.level = level;
 		this.xp = xp;

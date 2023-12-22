@@ -103,7 +103,7 @@ public enum NpcEmotes {
 		int[] npcId;
 		int attackAnim, blockAnim, deadAnim;
 	
-		private NpcEmotes(int[] npcId, int attackAnim, int blockAnim, int deadAnim) {
+		NpcEmotes(int[] npcId, int attackAnim, int blockAnim, int deadAnim) {
 			this.npcId = npcId;
 			this.attackAnim = attackAnim;
 			this.blockAnim = blockAnim;

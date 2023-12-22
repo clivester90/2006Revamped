@@ -133,14 +133,12 @@ public class CombatAssistant {
 					player.getPlayerAssistant().addSkillXP(damage / 2, 1);
 					player.getPlayerAssistant().addSkillXP(damage / 3, 3);
 					player.getPlayerAssistant().refreshSkill(1);//defense
-					player.getPlayerAssistant().refreshSkill(3);//hp
-					player.getPlayerAssistant().refreshSkill(4);//range
 				} else {
 					player.getPlayerAssistant().addSkillXP(damage * CombatConstants.RANGE_EXP_RATE, 4);
 					player.getPlayerAssistant().addSkillXP(damage * CombatConstants.RANGE_EXP_RATE /3, 3);
-					player.getPlayerAssistant().refreshSkill(3);
-					player.getPlayerAssistant().refreshSkill(4);
 				}
+				player.getPlayerAssistant().refreshSkill(3);//hp
+				player.getPlayerAssistant().refreshSkill(4);//range
 				if (damage > 0) {
 					if (PestControl.npcIsPCMonster(NpcHandler.npcs[i].npcType) || PestControl.isPCPortal(NpcHandler.npcs[i].npcType)) {
 						player.pcDamage += damage;
@@ -1060,11 +1058,7 @@ public class CombatAssistant {
 					if (MagicData.MAGIC_SPELLS[player.oldSpellId][0] == 12891 && o.isMoving) {
 						player.getPlayerAssistant().createPlayersProjectile(pX, pY, offX, offY, 50, 85, 368, 25, 25, -i - 1, MagicSpells.getStartDelay(player));
 					}
-					if (Misc.random(o.getCombatAssistant().mageDef()) > Misc.random(mageAtk())) {
-						player.magicFailed = true;
-					} else {
-						player.magicFailed = false;
-					}
+					player.magicFailed = Misc.random(o.getCombatAssistant().mageDef()) > Misc.random(mageAtk());
 					int freezeDelay = MagicSpells.getFreezeTime(player);// freeze time
 					if (freezeDelay > 0 && PlayerHandler.players[i].freezeTimer <= -3 && !player.magicFailed) {
 						PlayerHandler.players[i].freezeTimer = freezeDelay;
@@ -1208,14 +1202,12 @@ public class CombatAssistant {
 					player.getPlayerAssistant().addSkillXP(damage / 3, 1);
 					player.getPlayerAssistant().addSkillXP(damage / 3, 3);
 					player.getPlayerAssistant().refreshSkill(1);
-					player.getPlayerAssistant().refreshSkill(3);
-					player.getPlayerAssistant().refreshSkill(4);
 				} else {
 					player.getPlayerAssistant().addSkillXP(damage * CombatConstants.RANGE_EXP_RATE, 4);
 					player.getPlayerAssistant().addSkillXP(damage / 3, 3);
-					player.getPlayerAssistant().refreshSkill(3);
-					player.getPlayerAssistant().refreshSkill(4);
 				}
+				player.getPlayerAssistant().refreshSkill(3);
+				player.getPlayerAssistant().refreshSkill(4);
 				boolean dropArrows = true;
 				for (int noArrowId : RangeData.NO_ARROW_DROP) {
 					if (player.lastWeaponUsed == noArrowId) {

@@ -42,7 +42,7 @@ public class Enchanting {
 		int unenchanted, enchanted, levelReq, xpGiven, anim, gfx,
 				reqEnchantmentLevel;
 
-		private Enchant(int unenchanted, int enchanted, int levelReq,
+		Enchant(int unenchanted, int enchanted, int levelReq,
 				int xpGiven, int anim, int gfx, int reqEnchantmentLevel) {
 			this.unenchanted = unenchanted;
 			this.enchanted = enchanted;
@@ -104,7 +104,7 @@ public class Enchanting {
 		int spell, reqRune1, reqAmtRune1, reqRune2, reqAmtRune2, reqRune3,
 				reqAmtRune3;
 
-		private EnchantSpell(int spell, int reqRune1, int reqAmtRune1,
+		EnchantSpell(int spell, int reqRune1, int reqAmtRune1,
 							 int reqRune2, int reqAmtRune2, int reqRune3, int reqAmtRune3) {
 			this.spell = spell;
 			this.reqRune1 = reqRune1;

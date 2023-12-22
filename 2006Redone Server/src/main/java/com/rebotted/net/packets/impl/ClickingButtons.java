@@ -22,6 +22,9 @@ import com.rebotted.game.content.skills.herblore.Herblore;
 import com.rebotted.game.content.skills.smithing.SilverCrafting;
 import com.rebotted.game.content.skills.smithing.Smelting;
 import com.rebotted.game.content.traveling.GnomeGlider;
+import com.rebotted.game.dialogues.DialogueAction;
+import com.rebotted.game.dialogues.DialogueActionButton;
+import com.rebotted.game.dialogues.DialogueConstants;
 import com.rebotted.game.dialogues.DialogueOptions;
 import com.rebotted.game.items.GameItem;
 import com.rebotted.game.items.ItemAssistant;
@@ -34,6 +37,9 @@ import com.rebotted.game.players.Player;
 import com.rebotted.game.players.PlayerHandler;
 import com.rebotted.net.packets.PacketType;
 import com.rebotted.util.Misc;
+
+import java.util.Arrays;
+import java.util.Optional;
 
 /**
  * Clicking most buttons
@@ -58,6 +64,8 @@ public class ClickingButtons implements PacketType {
 		Specials.specialClicking(player, actionButtonId);
 		DialogueOptions.handleDialogueOptions(player, actionButtonId);
 		DairyChurn.churnItem(player, actionButtonId);
+		dialogueOption(player, actionButtonId);
+		makeOptions(player, actionButtonId);
 		if (EnchantStaff.staffButtons(player, actionButtonId)) {
 			return;
 		}
@@ -1578,6 +1586,60 @@ public class ClickingButtons implements PacketType {
 			player.getItemAssistant().sendWeapon(player.playerEquipment[player.playerWeapon], ItemAssistant.getItemName(player.playerEquipment[player.playerWeapon]));
 			break;
 
+		}
+	}
+
+	private static void dialogueOption(Player c, int buttonId) {
+		switch (buttonId) {
+			case 9167:
+			case 9157:
+			case 9178:
+			case 9190:
+				if (c.getDialogueBuilder() != null) {
+					c.getDialogueBuilder().getCurrent().handleAction(c, DialogueAction.OPTION_1);
+					return;
+				}
+				break;
+			case 9168:
+			case 9158:
+			case 9179:
+			case 9191:
+				if (c.getDialogueBuilder() != null) {
+					c.getDialogueBuilder().getCurrent().handleAction(c, DialogueAction.OPTION_2);
+					return;
+				}
+				break;
+			case 9169:
+			case 9180:
+			case 9192:
+				if (c.getDialogueBuilder() != null) {
+					c.getDialogueBuilder().getCurrent().handleAction(c, DialogueAction.OPTION_3);
+					return;
+				}
+				break;
+
+			case 9181:
+			case 9193:
+				if (c.getDialogueBuilder() != null) {
+					c.getDialogueBuilder().getCurrent().handleAction(c, DialogueAction.OPTION_4);
+					return;
+				}
+				break;
+
+			case 9194:
+				if (c.getDialogueBuilder() != null) {
+					c.getDialogueBuilder().getCurrent().handleAction(c, DialogueAction.OPTION_5);
+					return;
+				}
+				break;
+		}
+	}
+
+	private static void makeOptions(Player player, int actionButtonId) {
+		if (player.getDialogueBuilder() != null) {
+			Optional<DialogueActionButton> dialogueActionOptional = DialogueConstants.BUTTONS.stream().filter(button
+					-> Arrays.stream(button.getButtonIds()).anyMatch(buttonId -> actionButtonId == buttonId)).findFirst();
+			dialogueActionOptional.ifPresent(action -> player.getDialogueBuilder().dispatchAction(action.getAction()));
 		}
 	}
 

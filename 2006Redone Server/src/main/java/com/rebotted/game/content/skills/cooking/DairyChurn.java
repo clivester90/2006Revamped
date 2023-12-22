@@ -1,6 +1,7 @@
 package com.rebotted.game.content.skills.cooking;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 import com.rebotted.event.CycleEvent;
 import com.rebotted.event.CycleEventContainer;
@@ -14,7 +15,7 @@ import com.rebotted.game.players.Player;
 public class DairyChurn {
 	private static final int CHURN_ANIMATION = 894;
 
-	public static enum ChurnData {
+	public enum ChurnData {
 		CREAM(59238, new int[] { 1927 }, 2130, 21, 18), BUTTER(59239,
 				new int[] { 1927, 2130 }, 6697, 38, 40), CHEESE(59240,
 				new int[] { 1927, 2130, 6697 }, 1985, 48, 64);
@@ -37,7 +38,7 @@ public class DairyChurn {
 			}
 		}
 
-		private ChurnData(int buttonId, int[] used, int result, int level,
+		ChurnData(int buttonId, int[] used, int result, int level,
 				double experience) {
 			this.buttonId = buttonId;
 			this.used = used;
@@ -70,7 +71,7 @@ public class DairyChurn {
 
 	public static void churnItem(final Player player, int buttonId) {
 		final ChurnData churnData = ChurnData.forId(buttonId);
-		if (churnData == null || player.getStatedInterface() != "dairyChurn") {
+		if (churnData == null || !Objects.equals(player.getStatedInterface(), "dairyChurn")) {
 			return;
 		}
 		if (player.playerLevel[player.playerCooking] < churnData.getLevel()) {

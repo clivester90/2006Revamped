@@ -107,7 +107,7 @@ public class Farmers {
 		int index = 0;
 		int[] payment = new int[2];
 		if (stage == 1) {
-			if (fieldType == "allotment") {
+			if (fieldType.equals("allotment")) {
 				index = Allotments.AllotmentFieldsData.listIndexProtected(npcId).get(indexArray);
 				if (Allotments.AllotmentData.forId(player.getAllotment().allotmentSeeds[index]) != null)
 					payment = Allotments.AllotmentData.forId(player.getAllotment().allotmentSeeds[index]).getPaymentToWatch();
@@ -120,7 +120,7 @@ public class Farmers {
 					player.setTempInteger(indexArray);
 				}
 			}
-			if (fieldType == "bushes") {
+			if (fieldType.equals("bushes")) {
 				index = Bushes.BushesFieldsData.forId(npcId).getBushesIndex();
 				if (Bushes.BushesData.forId(player.getBushes().bushesSeeds[index]) != null)
 					payment = Bushes.BushesData.forId(player.getBushes().bushesSeeds[index]).getPaymentToWatch();
@@ -133,7 +133,7 @@ public class Farmers {
 					player.setTempInteger(indexArray);
 				}
 			}
-			if (fieldType == "fruitTree") {
+			if (fieldType.equals("fruitTree")) {
 				index = FruitTree.FruitTreeFieldsData.forId(npcId).getFruitTreeIndex();
 				if (FruitTree.FruitTreeData.forId(player.getFruitTrees().fruitTreeSaplings[index]) != null)
 					payment = FruitTree.FruitTreeData.forId(player.getFruitTrees().fruitTreeSaplings[index]).getPaymentToWatch();
@@ -147,7 +147,7 @@ public class Farmers {
 				}
 			}
 
-			if (fieldType == "hops") {
+			if (fieldType.equals("hops")) {
 				index = Hops.HopsFieldsData.forId(npcId).getHopsIndex();
 				if (Hops.HopsData.forId(player.getHops().hopsSeeds[index]) != null)
 					payment = Hops.HopsData.forId(player.getHops().hopsSeeds[index]).getPaymentToWatch();
@@ -161,7 +161,7 @@ public class Farmers {
 				}
 			}
 
-			if (fieldType == "tree") {
+			if (fieldType.equals("tree")) {
 				index = WoodTrees.TreeFieldsData.forId(npcId).getTreeIndex();
 				if (WoodTrees.TreeData.forId(player.getTrees().treeSaplings[index]) != null)
 					payment = WoodTrees.TreeData.forId(player.getTrees().treeSaplings[index]).getPaymentToWatch();
@@ -177,33 +177,33 @@ public class Farmers {
 
 
 		} else if (stage == 2) {
-			if (fieldType == "allotment") {
+			if (fieldType.equals("allotment")) {
 				index = Allotments.AllotmentFieldsData
 						.listIndexProtected(npcId).get(indexArray);
 				payment = Allotments.AllotmentData.forId(
 						player.getAllotment().allotmentSeeds[index])
 						.getPaymentToWatch();
 			}
-			if (fieldType == "bushes") {
+			if (fieldType.equals("bushes")) {
 				index = Bushes.BushesFieldsData.forId(npcId).getBushesIndex();
 				payment = Bushes.BushesData.forId(
 						player.getBushes().bushesSeeds[index])
 						.getPaymentToWatch();
 			}
-			if (fieldType == "fruitTree") {
+			if (fieldType.equals("fruitTree")) {
 				index = FruitTree.FruitTreeFieldsData.forId(npcId)
 						.getFruitTreeIndex();
 				payment = Hops.HopsData.forId(
 						player.getFruitTrees().fruitTreeSaplings[index])
 						.getPaymentToWatch();
 			}
-			if (fieldType == "hops") {
+			if (fieldType.equals("hops")) {
 				index = Hops.HopsFieldsData.forId(npcId).getHopsIndex();
 				payment = Hops.HopsData
 						.forId(player.getHops().hopsSeeds[index])
 						.getPaymentToWatch();
 			}
-			if (fieldType == "tree") {
+			if (fieldType.equals("tree")) {
 				index = WoodTrees.TreeFieldsData.forId(npcId).getTreeIndex();
 				payment = WoodTrees.TreeData.forId(
 						player.getTrees().treeSaplings[index])
@@ -214,19 +214,19 @@ public class Farmers {
 						"I need, for letting me take care of this patch");
 
 			} else {
-				if (fieldType == "allotment") {
+				if (fieldType.equals("allotment")) {
 					player.getAllotment().allotmentWatched[index] = true;
 				}
-				if (fieldType == "bushes") {
+				if (fieldType.equals("bushes")) {
 					player.getBushes().bushesWatched[index] = true;
 				}
-				if (fieldType == "fruitTree") {
+				if (fieldType.equals("fruitTree")) {
 					player.getFruitTrees().fruitTreeWatched[index] = true;
 				}
-				if (fieldType == "hops") {
+				if (fieldType.equals("hops")) {
 					player.getHops().hopsWatched[index] = true;
 				}
-				if (fieldType == "tree") {
+				if (fieldType.equals("tree")) {
 					player.getTrees().treeWatched[index] = true;
 				}
 				player.getItemAssistant().deleteItem(payment[0], payment[1]);

@@ -9,7 +9,7 @@ import com.rebotted.game.players.Client;
 public class Menus {
 
 	public static void sendSkillMenu(Client player, String type) {
-		if (type == "silverCrafting") {
+		if (type.equals("silverCrafting")) {
 			display4Item(player, 1716, 1724, 2961, 5525, "Unblessed symbol", "Unholy symbol", "Silver sickle", "Tiara");
 		}
 		player.setStatedInterface(type);

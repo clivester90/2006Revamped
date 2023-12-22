@@ -7,7 +7,7 @@ package com.rebotted.console;
  */
 public interface CommandProcessor {
 	
-	public boolean command(String[] cmd);
+	boolean command(String[] cmd);
 	
-	public String help();
+	String help();
 }

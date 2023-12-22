@@ -43,7 +43,7 @@ public class Slayer {
 		private int masterId, combatReq, diffuculty;
 		private String masterLocation, masterName;
 
-		private SlayerMasters(int masterId, int combatReq, int diffuculty, String masterLocation, String masterName) {
+		SlayerMasters(int masterId, int combatReq, int diffuculty, String masterLocation, String masterName) {
 			this.masterId = masterId;
 			this.combatReq = combatReq;
 			this.diffuculty = diffuculty;
@@ -268,9 +268,7 @@ public class Slayer {
 
 	public boolean isSlayerTask(int npcId) {
 		if (isSlayerNpc(npcId)) {
-			if (c.slayerTask == npcId) {
-				return true;
-			}
+			return c.slayerTask == npcId;
 		}
 		return false;
 	}
@@ -306,7 +304,7 @@ public class Slayer {
 
 	public int getTaskId(String name) {
 		for (Task task : Task.values()) {
-			if (task.name() == name) {
+			if (task.name().equals(name)) {
 				return task.npcId;
 			}
 		}

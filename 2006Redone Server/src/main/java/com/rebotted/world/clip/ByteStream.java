@@ -69,7 +69,6 @@ public class ByteStream {
 	public String getNString() {
 		int i = offset;
 		while (buffer[offset++] != 0) {
-			;
 		}
 		return new String(buffer, i, offset - i - 1);
 	}
@@ -77,7 +76,6 @@ public class ByteStream {
 	public byte[] getBytes() {
 		int i = offset;
 		while (buffer[offset++] != 10) {
-			;
 		}
 		byte[] abyte0 = new byte[offset - i - 1];
 		System.arraycopy(buffer, i, abyte0, i - i, offset - 1 - i);

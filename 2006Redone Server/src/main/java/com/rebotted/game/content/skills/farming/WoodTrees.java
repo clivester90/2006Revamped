@@ -786,12 +786,8 @@ public class WoodTrees {
 	public boolean guide(int objectX, int objectY) {
 		final TreeFieldsData treeFieldsData = TreeFieldsData.forIdPosition(
 				objectX, objectY);
-		if (treeFieldsData == null) {
-			return false;
-		}
-
-		return true;
-	}
+        return treeFieldsData != null;
+    }
 
 	/* Curing the plant */
 
@@ -961,12 +957,9 @@ public class WoodTrees {
 		if (player.getItemAssistant().freeSlots() <= 0) {
 			return false;
 		}
-		if (!SkillHandler.hasRequiredLevel(player, SkillConstants.WOODCUTTING.ordinal(), ChopTree
-				.getTree(object).getLevel(), "chop this tree")) {
-			return false;
-		}
-		return true;
-	}
+        return SkillHandler.hasRequiredLevel(player, SkillConstants.WOODCUTTING.ordinal(), ChopTree
+                .getTree(object).getLevel(), "chop this tree");
+    }
 
 	/* checking if the patch is raked */
 
@@ -975,9 +968,7 @@ public class WoodTrees {
 				objectX, objectY);
 		if (treeFieldsData == null)
 			return false;
-		if (treeStages[treeFieldsData.getTreeIndex()] == 3)
-			return true;
-		return false;
-	}
+        return treeStages[treeFieldsData.getTreeIndex()] == 3;
+    }
 
 }

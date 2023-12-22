@@ -9,9 +9,9 @@ import org.apache.mina.common.IoSession;
  */
 public final class Packet {
 
-	public static enum Size {
+	public enum Size {
 		Fixed, VariableByte, VariableShort
-	};
+	}
 
 	/**
 	 * The associated IO session
@@ -221,7 +221,6 @@ public final class Packet {
 	public String readRS2String() {
 		int start = caret;
 		while (pData[caret++] != 0) {
-			;
 		}
 		return new String(pData, start, caret - start - 1);
 	}

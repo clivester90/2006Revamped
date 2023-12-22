@@ -38,7 +38,7 @@ public enum ChatEmotes {
 		ANGRY3(616),
 		ANGRY4(617);
 		
-		private ChatEmotes(int animId) {
+		ChatEmotes(int animId) {
 			this.animId = animId;
 		}
 		

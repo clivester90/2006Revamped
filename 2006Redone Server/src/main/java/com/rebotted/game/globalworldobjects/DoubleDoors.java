@@ -420,7 +420,7 @@ public class DoubleDoors {
 				FileWriter fileWriter = new FileWriter("doubledoors-dump.json");
 				fileWriter.write(array.toString());
 
-				System.out.println(array.toString());
+				System.out.println(array);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

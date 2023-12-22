@@ -407,7 +407,7 @@ public class Fishing extends SkillHandler {
 		return 10 - (int) Math.floor(c.playerLevel[c.playerFishing] / 10);
 	}
 
-	private final static int getTimer(Player c, int npcId) {
+	private static int getTimer(Player c, int npcId) {
 		switch (npcId) {
 		case 1:
 			return 2;

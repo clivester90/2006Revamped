@@ -7,7 +7,7 @@ import com.rebotted.world.Boundary;
 
 public class Greegree {
 	
-	public static enum MonkeyData {
+	public enum MonkeyData {
 		SMALL_NINJA(4024, 1480, 1386, 1380, 1381, 1383, -1),
 		LARGE_NINJA(4025, 1481, 1386, 1380, 1381, 1383, -1),
 		MONKEY_GUARD(4026, 1482, 1401, 1399, 1400, 1402, 1403),
@@ -19,7 +19,7 @@ public class Greegree {
 		
 		int greegreeID, npcID, standAnim, walkAnim, runAnim, attackAnim, blockAnim;
 		
-		private MonkeyData(int greegreeID, int npcID, int standAnim, int walkAnim, int runAnim, int attackAnim, int blockAnim) {
+		MonkeyData(int greegreeID, int npcID, int standAnim, int walkAnim, int runAnim, int attackAnim, int blockAnim) {
 			this.greegreeID = greegreeID;
 			this.npcID = npcID;
 			this.standAnim = standAnim;

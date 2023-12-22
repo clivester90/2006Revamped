@@ -489,10 +489,7 @@ public class Agility {
 	 */
 
 	public boolean hotSpot(int hotX, int hotY) {
-		if (c.getX() == hotX && c.getY() == hotY) {
-			return true;
-		}
-		return false;
+		return c.getX() == hotX && c.getY() == hotY;
 	}
 
 	int lapBonus = 0;

@@ -18,7 +18,7 @@ public class Pickpocket extends SkillHandler {
 	 * Pickpocket.java
 	 **/
 
-	public static enum npcData {
+	public enum npcData {
 
 		MAN(new int[] { 1, 2, 3, 3222 }, 1, 8.0, 1, 5, new int[][] {
 				{995, 3},
@@ -146,7 +146,7 @@ public class Pickpocket extends SkillHandler {
 		private final int[][] pickpockets;
 		private final double xp;
 
-		private npcData(final int[] npcId, final int levelReq, final double xp,
+		npcData(final int[] npcId, final int levelReq, final double xp,
 				final int damage, final int stun, final int[][] pickpockets) {
 			this.npcId = npcId;
 			this.levelReq = levelReq;

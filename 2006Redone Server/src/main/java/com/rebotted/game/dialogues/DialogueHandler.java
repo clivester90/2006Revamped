@@ -95,11 +95,10 @@ public class DialogueHandler {
 							player.talkingNpc, "Luthas");
 					player.luthas = false;
 					player.bananas = 0;
-					player.nextChat = 0;
 				} else {
 					player.getPlayerAssistant().bananasCheck();
-					player.nextChat = 0;
 				}
+				player.nextChat = 0;
 				break;
 
 			case 8:
@@ -6881,7 +6880,7 @@ public class DialogueHandler {
 				
 			case 3530://1
 				player.getDialogueHandler().sendNpcChat(player.npcType, ChatEmotes.DEFAULT, "Hey, I am one of the master farmers of this world but", "you can call me " + NpcHandler.getNpcListName(player.npcType) + ". So, what do you need from me?");
-				if (farmersData.getFieldProtected() == "tree")
+				if (farmersData.getFieldProtected().equals("tree"))
 					player.nextChat = 3531;
 				else
 					player.nextChat = 3532;
@@ -6923,7 +6922,7 @@ public class DialogueHandler {
 				break;
 			case 3540://11
 				player.getDialogueHandler().sendPlayerChat(ChatEmotes.DEFAULT, "Could you take care of my crops for me?");
-				if (farmersData.getFieldProtected() == "allotment")
+				if (farmersData.getFieldProtected().equals("allotment"))
 					player.nextChat = 3541;
 				else
 					player.nextChat = 3543;

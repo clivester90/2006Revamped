@@ -925,9 +925,7 @@ public class Hops {
 				objectX, objectY);
 		if (hopsFieldsData == null)
 			return false;
-		if (hopsStages[hopsFieldsData.getHopsIndex()] == 3)
-			return true;
-		return false;
-	}
+        return hopsStages[hopsFieldsData.getHopsIndex()] == 3;
+    }
 
 }

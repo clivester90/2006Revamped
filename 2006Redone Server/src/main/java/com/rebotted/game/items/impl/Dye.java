@@ -21,7 +21,7 @@ public enum Dye {
 		
 		int reward, itemUsed;
 		
-		private Dye(int itemUsed, int reward) {
+		Dye(int itemUsed, int reward) {
 			this.itemUsed = itemUsed;
 			this.reward = reward;
 		}
@@ -53,10 +53,7 @@ public enum Dye {
 			} else if (itemUsed == dye.getItemUsed() && ItemAssistant.getItemName(useWith).equalsIgnoreCase("Cape") && useWith == dye.getReward() && !ItemData.itemIsNote[useWith]) {
 				player.getPacketSender().sendMessage("That cape is already that color.");
 				return true;
-			} else if (itemUsed == dye.getItemUsed() && !ItemAssistant.getItemName(useWith).equalsIgnoreCase("Cape")) {
-				return true;
-			}
-			return false;
+			} else return itemUsed == dye.getItemUsed() && !ItemAssistant.getItemName(useWith).equalsIgnoreCase("Cape");
 		}
 		
 	public static void dyeItem(Player player, int itemUsed, int useWith) {

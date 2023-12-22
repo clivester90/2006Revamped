@@ -16,7 +16,7 @@ public class Searching {
 	private final int[] objectId;
 	private final String searchText;
 
-	private SearchData(int[] objectId, String searchText) {
+	SearchData(int[] objectId, String searchText) {
 		this.objectId = objectId;
 		this.searchText = searchText;
 	}

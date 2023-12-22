@@ -73,11 +73,7 @@ public class Trading {
 	public boolean isCloseTo(Client tradedPlayer) {
 		ValueRange PlayerCoordRangeX = ValueRange.of(tradedPlayer.absX - 3, tradedPlayer.absX + 3);
 		ValueRange PlayerCoordRangeY = ValueRange.of(tradedPlayer.absY - 3, tradedPlayer.absY + 3);
-		if (PlayerCoordRangeX.isValidIntValue(player.absX) && PlayerCoordRangeY.isValidIntValue(player.absY)) {
-			return true;
-		} else {
-			return false;
-		}
+		return PlayerCoordRangeX.isValidIntValue(player.absX) && PlayerCoordRangeY.isValidIntValue(player.absY);
 	}
 	public void openTrade() {
 		Client o = (Client) PlayerHandler.players[player.tradeWith];
@@ -165,28 +161,19 @@ public class Trading {
 							} else {
 								if (item.amount > amount) {
 									item.amount -= amount;
-									player.getItemAssistant()
-											.addItem(itemID, amount);
-									o.getPacketSender().sendString(
-											"Trading with: "
-													+ player.playerName
-													+ " who has @gre@"
-													+ player.getItemAssistant()
-															.freeSlots()
-													+ " free slots", 3417);
 								} else {
 									amount = item.amount;
 									offeredItems.remove(item);
-									player.getItemAssistant()
-											.addItem(itemID, amount);
-									o.getPacketSender().sendString(
-											"Trading with: "
-													+ player.playerName
-													+ " who has @gre@"
-													+ player.getItemAssistant()
-															.freeSlots()
-													+ " free slots", 3417);
 								}
+								player.getItemAssistant()
+										.addItem(itemID, amount);
+								o.getPacketSender().sendString(
+										"Trading with: "
+												+ player.playerName
+												+ " who has @gre@"
+												+ player.getItemAssistant()
+														.freeSlots()
+												+ " free slots", 3417);
 							}
 							break;
 						}
@@ -211,22 +198,16 @@ public class Trading {
 					} else {
 						if (item.amount > amount) {
 							item.amount -= amount;
-							player.getItemAssistant().addItem(itemID, amount);
-							o.getPacketSender().sendString(
-									"Trading with: " + player.playerName
-											+ " who has @gre@"
-											+ player.getItemAssistant().freeSlots()
-											+ " free slots", 3417);
 						} else {
 							amount = item.amount;
 							offeredItems.remove(item);
-							player.getItemAssistant().addItem(itemID, amount);
-							o.getPacketSender().sendString(
-									"Trading with: " + player.playerName
-											+ " who has @gre@"
-											+ player.getItemAssistant().freeSlots()
-											+ " free slots", 3417);
 						}
+						player.getItemAssistant().addItem(itemID, amount);
+						o.getPacketSender().sendString(
+								"Trading with: " + player.playerName
+										+ " who has @gre@"
+										+ player.getItemAssistant().freeSlots()
+										+ " free slots", 3417);
 					}
 					break;
 				}
@@ -430,7 +411,7 @@ public class Trading {
             return;
         }
 		player.getItemAssistant().resetItems(3214);
-		String SendTrade = "Absolutely nothing!";
+		StringBuilder SendTrade = new StringBuilder("Absolutely nothing!");
 		String SendAmount = "";
 		int Count = 0;
 		for (GameItem item : offeredItems) {
@@ -443,25 +424,24 @@ public class Trading {
 							+ " million @whi@(" + Misc.format(item.amount)
 							+ ")";
 				} else {
-					SendAmount = "" + Misc.format(item.amount);
+					SendAmount = Misc.format(item.amount);
 				}
 
 				if (Count == 0) {
-					SendTrade = ItemAssistant.getItemName(item.id);
+					SendTrade = new StringBuilder(ItemAssistant.getItemName(item.id));
 				} else {
-					SendTrade = SendTrade + "\\n"
-							+ ItemAssistant.getItemName(item.id);
+					SendTrade.append("\\n").append(ItemAssistant.getItemName(item.id));
 				}
 
 				if (item.stackable) {
-					SendTrade = SendTrade + " x " + SendAmount;
+					SendTrade.append(" x ").append(SendAmount);
 				}
 				Count++;
 			}
 		}
 
-		player.getPacketSender().sendString(SendTrade, 3557);
-		SendTrade = "Absolutely nothing!";
+		player.getPacketSender().sendString(SendTrade.toString(), 3557);
+		SendTrade = new StringBuilder("Absolutely nothing!");
 		SendAmount = "";
 		Count = 0;
 
@@ -479,18 +459,17 @@ public class Trading {
 				}
 
 				if (Count == 0) {
-					SendTrade = ItemAssistant.getItemName(item.id);
+					SendTrade = new StringBuilder(ItemAssistant.getItemName(item.id));
 				} else {
-					SendTrade = SendTrade + "\\n"
-							+ ItemAssistant.getItemName(item.id);
+					SendTrade.append("\\n").append(ItemAssistant.getItemName(item.id));
 				}
 				if (item.stackable) {
-					SendTrade = SendTrade + " x " + SendAmount;
+					SendTrade.append(" x ").append(SendAmount);
 				}
 				Count++;
 			}
 		}
-		player.getPacketSender().sendString(SendTrade, 3558);
+		player.getPacketSender().sendString(SendTrade.toString(), 3558);
 		// TODO: find out what 197 does eee 3213
 		player.getPacketSender().sendFrame248(3443, 197);
 	}

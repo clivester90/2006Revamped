@@ -164,21 +164,13 @@ public class DwarfCannon {
 		}
 		private boolean canSetUp() {
 			if (setUpStage == 0) {
-				if (player.getItemAssistant().playerHasItem(ITEM_PARTS[0])  && player.getItemAssistant().playerHasItem(ITEM_PARTS[1]) && player.getItemAssistant().playerHasItem(ITEM_PARTS[2]) && player.getItemAssistant().playerHasItem(ITEM_PARTS[3])) {
-					return true;
-				}
+                return player.getItemAssistant().playerHasItem(ITEM_PARTS[0]) && player.getItemAssistant().playerHasItem(ITEM_PARTS[1]) && player.getItemAssistant().playerHasItem(ITEM_PARTS[2]) && player.getItemAssistant().playerHasItem(ITEM_PARTS[3]);
 			} else if (setUpStage == 1) {
-				if (player.getItemAssistant().playerHasItem(ITEM_PARTS[1]) && player.getItemAssistant().playerHasItem(ITEM_PARTS[2]) && player.getItemAssistant().playerHasItem(ITEM_PARTS[3])) {
-					return true;
-				}
+                return player.getItemAssistant().playerHasItem(ITEM_PARTS[1]) && player.getItemAssistant().playerHasItem(ITEM_PARTS[2]) && player.getItemAssistant().playerHasItem(ITEM_PARTS[3]);
 			} else if (setUpStage == 2) {
-				if (player.getItemAssistant().playerHasItem(ITEM_PARTS[2]) && player.getItemAssistant().playerHasItem(ITEM_PARTS[3])) {
-					return true;
-				}
+                return player.getItemAssistant().playerHasItem(ITEM_PARTS[2]) && player.getItemAssistant().playerHasItem(ITEM_PARTS[3]);
 			} else if (setUpStage == 3) {
-				if (player.getItemAssistant().playerHasItem(ITEM_PARTS[3])) {
-					return true;
-				}
+                return player.getItemAssistant().playerHasItem(ITEM_PARTS[3]);
 			}
 			return false;
 		}

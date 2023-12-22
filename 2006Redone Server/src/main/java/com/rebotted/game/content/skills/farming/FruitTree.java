@@ -997,9 +997,7 @@ public class FruitTree {
 				.forIdPosition(objectX, objectY);
 		if (fruitTreeFieldsData == null)
 			return false;
-		if (fruitTreeStages[fruitTreeFieldsData.getFruitTreeIndex()] == 3)
-			return true;
-		return false;
-	}
+        return fruitTreeStages[fruitTreeFieldsData.getFruitTreeIndex()] == 3;
+    }
 
 }

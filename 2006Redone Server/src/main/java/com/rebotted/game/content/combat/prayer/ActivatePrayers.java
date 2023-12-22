@@ -45,10 +45,10 @@ public class ActivatePrayers {
 				case 5:
 				case 13:
 					if (!player.getPrayer().prayerActive[i]) {
-						for (int j = 0; j < defencePrayer.length; j++) {
-							if (defencePrayer[j] != i) {
-								player.getPrayer().prayerActive[defencePrayer[j]] = false;
-								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[defencePrayer[j]], 0);
+						for (int k : defencePrayer) {
+							if (k != i) {
+								player.getPrayer().prayerActive[k] = false;
+								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[k], 0);
 							}
 						}
 					}
@@ -58,23 +58,19 @@ public class ActivatePrayers {
 				case 6:
 				case 14:
 					if (!player.getPrayer().prayerActive[i]) {
-						for (int j = 0; j < strengthPrayer.length; j++) {
-							if (strengthPrayer[j] != i) {
-								player.getPrayer().prayerActive[strengthPrayer[j]] = false;
-								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[strengthPrayer[j]], 0);
+						for (int item : strengthPrayer) {
+							if (item != i) {
+								player.getPrayer().prayerActive[item] = false;
+								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[item], 0);
 							}
 						}
-						for (int j = 0; j < rangePrayer.length; j++) {
-							if (rangePrayer[j] != i) {
-								player.getPrayer().prayerActive[rangePrayer[j]] = false;
-								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[rangePrayer[j]],0);
-							}
+						for (int value : rangePrayer) {
+							player.getPrayer().prayerActive[value] = false;
+							player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[value], 0);
 						}
-						for (int j = 0; j < magePrayer.length; j++) {
-							if (magePrayer[j] != i) {
-								player.getPrayer().prayerActive[magePrayer[j]] = false;
-								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[magePrayer[j]], 0);
-							}
+						for (int k : magePrayer) {
+							player.getPrayer().prayerActive[k] = false;
+							player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[k], 0);
 						}
 					}
 					break;
@@ -83,23 +79,19 @@ public class ActivatePrayers {
 				case 7:
 				case 15:
 					if (!player.getPrayer().prayerActive[i]) {
-						for (int j = 0; j < attackPrayer.length; j++) {
-							if (attackPrayer[j] != i) {
-								player.getPrayer().prayerActive[attackPrayer[j]] = false;
-								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[attackPrayer[j]], 0);
+						for (int item : attackPrayer) {
+							if (item != i) {
+								player.getPrayer().prayerActive[item] = false;
+								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[item], 0);
 							}
 						}
-						for (int j = 0; j < rangePrayer.length; j++) {
-							if (rangePrayer[j] != i) {
-								player.getPrayer().prayerActive[rangePrayer[j]] = false;
-								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[rangePrayer[j]], 0);
-							}
+						for (int value : rangePrayer) {
+							player.getPrayer().prayerActive[value] = false;
+							player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[value], 0);
 						}
-						for (int j = 0; j < magePrayer.length; j++) {
-							if (magePrayer[j] != i) {
-								player.getPrayer().prayerActive[magePrayer[j]] = false;
-								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[magePrayer[j]], 0);
-							}
+						for (int k : magePrayer) {
+							player.getPrayer().prayerActive[k] = false;
+							player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[k], 0);
 						}
 					}
 					break;
@@ -108,29 +100,23 @@ public class ActivatePrayers {
 				case 11:
 				case 19:
 					if (!player.getPrayer().prayerActive[i]) {
-						for (int j = 0; j < attackPrayer.length; j++) {
-							if (attackPrayer[j] != i) {
-								player.getPrayer().prayerActive[attackPrayer[j]] = false;
-								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[attackPrayer[j]], 0);
+						for (int element : attackPrayer) {
+							player.getPrayer().prayerActive[element] = false;
+							player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[element], 0);
+						}
+						for (int item : strengthPrayer) {
+							player.getPrayer().prayerActive[item] = false;
+							player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[item], 0);
+						}
+						for (int value : rangePrayer) {
+							if (value != i) {
+								player.getPrayer().prayerActive[value] = false;
+								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[value], 0);
 							}
 						}
-						for (int j = 0; j < strengthPrayer.length; j++) {
-							if (strengthPrayer[j] != i) {
-								player.getPrayer().prayerActive[strengthPrayer[j]] = false;
-								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[strengthPrayer[j]], 0);
-							}
-						}
-						for (int j = 0; j < rangePrayer.length; j++) {
-							if (rangePrayer[j] != i) {
-								player.getPrayer().prayerActive[rangePrayer[j]] = false;
-								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[rangePrayer[j]], 0);
-							}
-						}
-						for (int j = 0; j < magePrayer.length; j++) {
-							if (magePrayer[j] != i) {
-								player.getPrayer().prayerActive[magePrayer[j]] = false;
-								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[magePrayer[j]], 0);
-							}
+						for (int k : magePrayer) {
+							player.getPrayer().prayerActive[k] = false;
+							player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[k], 0);
 						}
 					}
 					break;
@@ -138,28 +124,22 @@ public class ActivatePrayers {
 				case 12:
 				case 20:
 					if (!player.getPrayer().prayerActive[i]) {
-						for (int j = 0; j < attackPrayer.length; j++) {
-							if (attackPrayer[j] != i) {
-								player.getPrayer().prayerActive[attackPrayer[j]] = false;
-								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[attackPrayer[j]], 0);
-							}
+						for (int element : attackPrayer) {
+							player.getPrayer().prayerActive[element] = false;
+							player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[element], 0);
 						}
-						for (int j = 0; j < strengthPrayer.length; j++) {
-							if (strengthPrayer[j] != i) {
-								player.getPrayer().prayerActive[strengthPrayer[j]] = false;
-								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[strengthPrayer[j]], 0);
-							}
+						for (int item : strengthPrayer) {
+							player.getPrayer().prayerActive[item] = false;
+							player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[item], 0);
 						}
-						for (int j = 0; j < rangePrayer.length; j++) {
-							if (rangePrayer[j] != i) {
-								player.getPrayer().prayerActive[rangePrayer[j]] = false;
-								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[rangePrayer[j]], 0);
-							}
+						for (int value : rangePrayer) {
+							player.getPrayer().prayerActive[value] = false;
+							player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[value], 0);
 						}
-						for (int j = 0; j < magePrayer.length; j++) {
-							if (magePrayer[j] != i) {
-								player.getPrayer().prayerActive[magePrayer[j]] = false;
-								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[magePrayer[j]], 0);
+						for (int k : magePrayer) {
+							if (k != i) {
+								player.getPrayer().prayerActive[k] = false;
+								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[k], 0);
 							}
 						}
 					}
@@ -188,7 +168,7 @@ public class ActivatePrayers {
 						player.protMageDelay = System.currentTimeMillis();
 					} else if (i == 17) {
 						player.protRangeDelay = System.currentTimeMillis();
-					} else if (i == 18) {
+					} else {
 						player.protMeleeDelay = System.currentTimeMillis();
 					}
 				case 21:
@@ -206,34 +186,30 @@ public class ActivatePrayers {
 				case 24:
 				case 25:
 					if (!player.getPrayer().prayerActive[i]) {
-						for (int j = 0; j < attackPrayer.length; j++) {
-							if (attackPrayer[j] != i) {
-								player.getPrayer().prayerActive[attackPrayer[j]] = false;
-								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[attackPrayer[j]], 0);
+						for (int i1 : attackPrayer) {
+							if (i1 != i) {
+								player.getPrayer().prayerActive[i1] = false;
+								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[i1], 0);
 							}
 						}
-						for (int j = 0; j < strengthPrayer.length; j++) {
-							if (strengthPrayer[j] != i) {
-								player.getPrayer().prayerActive[strengthPrayer[j]] = false;
-								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[strengthPrayer[j]], 0);
+						for (int element : strengthPrayer) {
+							if (element != i) {
+								player.getPrayer().prayerActive[element] = false;
+								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[element], 0);
 							}
 						}
-						for (int j = 0; j < rangePrayer.length; j++) {
-							if (rangePrayer[j] != i) {
-								player.getPrayer().prayerActive[rangePrayer[j]] = false;
-								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[rangePrayer[j]], 0);
-							}
+						for (int item : rangePrayer) {
+							player.getPrayer().prayerActive[item] = false;
+							player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[item], 0);
 						}
-						for (int j = 0; j < magePrayer.length; j++) {
-							if (magePrayer[j] != i) {
-								player.getPrayer().prayerActive[magePrayer[j]] = false;
-								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[magePrayer[j]], 0);
-							}
+						for (int value : magePrayer) {
+							player.getPrayer().prayerActive[value] = false;
+							player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[value], 0);
 						}
-						for (int j = 0; j < defencePrayer.length; j++) {
-							if (defencePrayer[j] != i) {
-								player.getPrayer().prayerActive[defencePrayer[j]] = false;
-								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[defencePrayer[j]], 0);
+						for (int k : defencePrayer) {
+							if (k != i) {
+								player.getPrayer().prayerActive[k] = false;
+								player.getPacketSender().sendConfig(player.getPrayer().PRAYER_GLOW[k], 0);
 							}
 						}
 					}

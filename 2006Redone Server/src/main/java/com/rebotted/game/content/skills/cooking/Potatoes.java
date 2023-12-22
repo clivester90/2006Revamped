@@ -32,7 +32,7 @@ public class Potatoes extends SkillHandler {
 		 * @param XP
 		 * @param levelReq
 		 */
-		private PotatoMaking(int ingredient, int newPotatoID, int XP,
+		PotatoMaking(int ingredient, int newPotatoID, int XP,
 				int levelReq) {
 			// this.potatoID = potatoID;
 			this.ingredient = ingredient;

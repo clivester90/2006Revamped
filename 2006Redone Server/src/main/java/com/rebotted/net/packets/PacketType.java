@@ -4,5 +4,5 @@ import com.rebotted.game.players.Player;
 
 public interface PacketType {
 
-	public void processPacket(Player player, int packetType, int packetSize);
+	void processPacket(Player player, int packetType, int packetSize);
 }

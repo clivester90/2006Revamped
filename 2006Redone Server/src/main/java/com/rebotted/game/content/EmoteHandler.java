@@ -30,7 +30,7 @@ public class EmoteHandler {
 				88065, 7272, 1244), Scared(59062, 2836, -1), Bunny_Hop(72254,
 				3866, -1);
 
-		private Emotes(int buttonId, int animId, int gfxId) {
+		Emotes(int buttonId, int animId, int gfxId) {
 			buttonID = buttonId;
 			animID = animId;
 			gfxID = gfxId;

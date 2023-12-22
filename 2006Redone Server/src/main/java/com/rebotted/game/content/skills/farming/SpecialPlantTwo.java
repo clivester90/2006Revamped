@@ -884,9 +884,7 @@ public class SpecialPlantTwo {
 				.forIdPosition(objectX, objectY);
 		if (specialPlantFieldData == null)
 			return false;
-		if (specialPlantStages[specialPlantFieldData.getSpecialPlantsIndex()] == 3)
-			return true;
-		return false;
-	}
+        return specialPlantStages[specialPlantFieldData.getSpecialPlantsIndex()] == 3;
+    }
 
 }

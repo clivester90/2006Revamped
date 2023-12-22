@@ -76,7 +76,7 @@ public class OrbCharging {
 		private int spellId, orb, product, level, gfx, spellConfig;
 		private double xp;
 
-		private Orb(final int[][] objectId, final int spellId, final int orb, final int product, final int level, final double xp, final int gfx, final int spellConfig) {
+		Orb(final int[][] objectId, final int spellId, final int orb, final int product, final int level, final double xp, final int gfx, final int spellConfig) {
 			this.objectId = objectId;
 			this.spellId = spellId;
 			this.orb = orb;

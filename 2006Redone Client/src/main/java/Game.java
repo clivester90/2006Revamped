@@ -5214,9 +5214,9 @@ public class Game extends RSApplet {
 			long l = ((long) i + 11745L) * 0x5265c00L;
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(new Date(l));
-			int j = calendar.get(5);
-			int k = calendar.get(2);
-			int i1 = calendar.get(1);
+			int j = calendar.get(Calendar.DATE);
+			int k = calendar.get(Calendar.MONTH);
+			int i1 = calendar.get(Calendar.YEAR);
 			String[] as = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
 					"Aug", "Sep", "Oct", "Nov", "Dec" };
 			return j + "-" + as[k] + "-" + i1;

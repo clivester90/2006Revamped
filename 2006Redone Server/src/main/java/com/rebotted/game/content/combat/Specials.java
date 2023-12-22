@@ -39,7 +39,7 @@ public class Specials {
 		private double specDamage, specAccuracy, specAmount;
 		private boolean doubleHit;
 
-		private specialAttack(int weapon, double specDamage,
+		specialAttack(int weapon, double specDamage,
 				double specAccuracy, double specAmount, int anim, int gfx1,
 				int gfx2, boolean doubleHit, int specEffect) {
 			this.weapon = weapon;

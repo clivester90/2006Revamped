@@ -63,7 +63,7 @@ public class Shops {
 				npc.put(f.getNpc(), f);
 		}
 
-		private Shop(int npcId, int shopId) {
+		Shop(int npcId, int shopId) {
 			this.npcId = npcId;
 			this.shopId = shopId;
 		}

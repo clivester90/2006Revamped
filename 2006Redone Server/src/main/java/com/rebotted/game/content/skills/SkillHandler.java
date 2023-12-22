@@ -39,17 +39,14 @@ public class SkillHandler {
 
 
 	public static boolean isSkilling(Player player) {
-		if (player.playerSkilling[10] || player.playerStun || player.playerSkilling[12]
-				|| player.playerIsFletching || player.isFletching || player.playerIsCooking
-				|| player.isMining || player.isWoodcutting || player.isSmithing
-				|| player.isSmelting || player.isSpinning || player.isPotionMaking
-				|| player.isPotCrafting || player.isFiremaking
-				|| player.playerSkilling[player.playerHerblore]
-				|| player.playerSkilling[13]) {
-			return true;
-		}
-		return false;
-	}
+        return player.playerSkilling[10] || player.playerStun || player.playerSkilling[12]
+                || player.playerIsFletching || player.isFletching || player.playerIsCooking
+                || player.isMining || player.isWoodcutting || player.isSmithing
+                || player.isSmelting || player.isSpinning || player.isPotionMaking
+                || player.isPotCrafting || player.isFiremaking
+                || player.playerSkilling[player.playerHerblore]
+                || player.playerSkilling[13];
+    }
 	
 
 	public static void resetItemOnNpc(Player player) {

@@ -166,12 +166,9 @@ public class Farming {
 		if (player.getSpecialPlantTwo().clearPatch(x, y, item)) {
 			return true;
 		}
-		if (player.getSpecialPlantTwo().plantSeeds(x, y, item)) {
-			return true;
-		}
+        return player.getSpecialPlantTwo().plantSeeds(x, y, item);
 		// player.sendMessage("Farming disabled - coming soon");
-		return false;
-	}
+    }
 
 	public static boolean inspectObject(Player player, int x, int y) {
 		// allotments
@@ -206,11 +203,8 @@ public class Farming {
 			return true;
 		}
 		// special plant two
-		if (player.getSpecialPlantTwo().inspect(x, y)) {
-			return true;
-		}
-		return false;
-	}
+        return player.getSpecialPlantTwo().inspect(x, y);
+    }
 
 	public static boolean guide(Player player, int x, int y) {
 		// allotments
@@ -245,11 +239,8 @@ public class Farming {
 			return true;
 		}
 		// special plant two
-		if (player.getSpecialPlantTwo().guide(x, y)) {
-			return true;
-		}
-		return false;
-	}
+        return player.getSpecialPlantTwo().guide(x, y);
+    }
 
 	public static boolean harvest(Player player, int x, int y) {
 		// allotments
@@ -289,9 +280,6 @@ public class Farming {
 			return true;
 		}
 		// special plant two
-		if (player.getSpecialPlantTwo().harvestOrCheckHealth(x, y)) {
-			return true;
-		}
-		return false;
-	}
+        return player.getSpecialPlantTwo().harvestOrCheckHealth(x, y);
+    }
 }

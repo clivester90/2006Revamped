@@ -56,7 +56,7 @@ public class PlayList {
 		player = player2;
 	}
 
-	private static enum Songs {
+	private enum Songs {
 		// action id, songid, ?, song number
 		AUTUMN_VOYAGE(16208, 2, 4304, 0), UNKNOWN_LAND(17066, 3, 4418, 1), LONG_WAY_HOME(
 				17010, 12, 4362, 2), WITCHING(17078, 14, 4430, 3), KINGDOM(

@@ -420,26 +420,24 @@ public class Dueling {
 			player.getPacketSender().sendMessage("You can't do that in a duel!");
 			return;
 		}
-		String itemId = "";
+		StringBuilder itemId = new StringBuilder();
 		for (GameItem item : stakedItems) {
 			if (ItemData.itemStackable[item.id] || ItemData.itemIsNote[item.id]) {
-				itemId += ItemAssistant.getItemName(item.id) + " x "
-						+ Misc.format(item.amount) + "\\n";
+				itemId.append(ItemAssistant.getItemName(item.id)).append(" x ").append(Misc.format(item.amount)).append("\\n");
 			} else {
-				itemId += ItemAssistant.getItemName(item.id) + "\\n";
+				itemId.append(ItemAssistant.getItemName(item.id)).append("\\n");
 			}
 		}
-		player.getPacketSender().sendString(itemId, 6516);
-		itemId = "";
+		player.getPacketSender().sendString(itemId.toString(), 6516);
+		itemId = new StringBuilder();
 		for (GameItem item : o.getDueling().stakedItems) {
 			if (ItemData.itemStackable[item.id] || ItemData.itemIsNote[item.id]) {
-				itemId += ItemAssistant.getItemName(item.id) + " x "
-						+ Misc.format(item.amount) + "\\n";
+				itemId.append(ItemAssistant.getItemName(item.id)).append(" x ").append(Misc.format(item.amount)).append("\\n");
 			} else {
-				itemId += ItemAssistant.getItemName(item.id) + "\\n";
+				itemId.append(ItemAssistant.getItemName(item.id)).append("\\n");
 			}
 		}
-		player.getPacketSender().sendString(itemId, 6517);
+		player.getPacketSender().sendString(itemId.toString(), 6517);
 		player.getPacketSender().sendString("", 8242);
 		for (int i = 8238; i <= 8253; i++) {
 			player.getPacketSender().sendString("", i);

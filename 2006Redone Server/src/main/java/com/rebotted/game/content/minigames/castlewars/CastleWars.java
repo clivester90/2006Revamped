@@ -613,7 +613,6 @@ public class CastleWars {
 					player.getItemAssistant().addItem(4067, 0);
 					player.getPacketSender().sendMessage(
 							"You lost the game. You received no tickets!");
-					;
 				}
 			}
 		}

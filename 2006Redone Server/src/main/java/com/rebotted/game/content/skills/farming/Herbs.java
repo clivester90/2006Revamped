@@ -827,9 +827,7 @@ public class Herbs {
 				objectX, objectY);
 		if (herbFieldsData == null)
 			return false;
-		if (herbStages[herbFieldsData.getHerbIndex()] == 3)
-			return true;
-		return false;
-	}
+        return herbStages[herbFieldsData.getHerbIndex()] == 3;
+    }
 
 }

@@ -5,8 +5,6 @@ import com.rebotted.game.content.skills.core.Fishing;
 import com.rebotted.game.content.skills.crafting.Tanning;
 import com.rebotted.game.content.skills.thieving.Pickpocket;
 import com.rebotted.game.content.traveling.Sailing;
-import com.rebotted.game.dialogues.DialogueBuilder;
-import com.rebotted.game.dialogues.DialogueExpression;
 import com.rebotted.game.dialogues.impl.ManAndWoman;
 import com.rebotted.game.npcs.impl.Pets;
 import com.rebotted.game.players.Player;
@@ -48,7 +46,7 @@ public class NpcActions {
 		switch (npcType) {
 
 			case 1:
-				player.start(new ManAndWoman(player, npcType));
+				player.start(new ManAndWoman(player));
 				break;
 
 		case 389 : //thormac

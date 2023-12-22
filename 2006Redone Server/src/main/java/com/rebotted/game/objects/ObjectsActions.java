@@ -1106,15 +1106,13 @@ public class ObjectsActions {
                     if (player.absY == 3191) {
                         player.getPlayerAssistant().walkTo(0, -1);
                         player.getPacketSender().sendFrame36(173, 0);
-                        player.playerWalkIndex = 749;
-                        player.getPlayerAssistant().requestUpdates();
                         //PlayerAssistant.sendFrame36(c, 173,1);
 
                     } else {
                         player.getPlayerAssistant().walkTo(0, 1);
-                        player.playerWalkIndex = 749;
-                        player.getPlayerAssistant().requestUpdates();
                     }
+                    player.playerWalkIndex = 749;
+                    player.getPlayerAssistant().requestUpdates();
                     CycleEventHandler.getSingleton().addEvent(player, new CycleEvent() {
                         @Override
                         public void execute(CycleEventContainer container) {

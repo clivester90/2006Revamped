@@ -138,7 +138,7 @@ public class FightPits {
 	public static int getListCount(String state) {
 		int count = 0;
 		for (String s : playerMap.values()) {
-			if (state == s) {
+			if (state.equals(s)) {
 				count++;
 			}
 		}
@@ -152,7 +152,7 @@ public class FightPits {
 		for (Player c : playerMap.keySet()) {
 			String status = playerMap.get(c);
 			@SuppressWarnings("unused")
-			boolean updated = status == WAITING ? updateWaitingRoom(c) : updateGame(c);
+			boolean updated = status.equals(WAITING) ? updateWaitingRoom(c) : updateGame(c);
 		}
 	}
 

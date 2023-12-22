@@ -1,5 +1,6 @@
 package com.rebotted.game.content;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import com.rebotted.game.players.Player;
@@ -340,8 +341,8 @@ public class BankPin {
 	public String toString() {
 		return "BankPin{" + "recovery_Delay=" + recovery_Delay + ", client="
 				+ client + ", allowTimer=" + allowTimer + ", bankPins="
-				+ bankPins + ", stringIds=" + stringIds + ", actionButtons="
-				+ actionButtons + ", firstPin=" + firstPin + ", secondPin="
+				+ Arrays.toString(bankPins) + ", stringIds=" + Arrays.toString(stringIds) + ", actionButtons="
+				+ Arrays.toString(actionButtons) + ", firstPin=" + firstPin + ", secondPin="
 				+ secondPin + ", thirdPin=" + thirdPin + ", fourthPin="
 				+ fourthPin + '}';
 	}

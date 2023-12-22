@@ -16,7 +16,7 @@ public class ClimbOther {
 
 		private int closedId, openId;
 
-		private ClimbData(int closedId, int openId) {
+		ClimbData(int closedId, int openId) {
 			this.closedId = closedId;
 			this.openId = openId;
 		}

@@ -28,7 +28,7 @@ public class EnchantStaff {
 		return false;
 	}
 	
-	public static enum staffData {// button, battlestaff, mystic staff
+	public enum staffData {// button, battlestaff, mystic staff
 		AIR(1734, 1397, 1405), WATER(1735, 1395, 1403), EARTH(1736, 1399, 1407), FIRE(1737, 1393, 1401), LAVA(1738, 3053, 3054), MUD(15348, 6562, 6563);
 
 		private int button;
@@ -47,7 +47,7 @@ public class EnchantStaff {
 			}
 		}
 
-		private staffData(int button, int battlestaff, int mysticstaff) {
+		staffData(int button, int battlestaff, int mysticstaff) {
 			this.button = button;
 			this.battlestaff = battlestaff;
 			this.mysticstaff = mysticstaff;

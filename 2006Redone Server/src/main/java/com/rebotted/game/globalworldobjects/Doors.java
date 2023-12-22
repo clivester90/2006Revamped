@@ -276,7 +276,7 @@ public class Doors {
                 FileWriter fileWriter = new FileWriter("doors-dump.json");
                 fileWriter.write(array.toString());
 
-                System.out.println(array.toString());
+                System.out.println(array);
             } catch (IOException e) {
                 e.printStackTrace();
             }

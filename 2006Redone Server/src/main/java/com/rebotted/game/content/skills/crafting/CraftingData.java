@@ -4,7 +4,7 @@ import com.rebotted.game.content.skills.SkillHandler;
 
 public class CraftingData extends SkillHandler {
 
-	public static enum tanningData {
+	public enum tanningData {
 
 		SOFT_LEATHER(new int[][] { { 57225, 1 }, { 57217, 5 }, { 57201, 28 } },
 				1739, 1741, 1, new int[] { 14777, 14785, 14769 },
@@ -31,7 +31,7 @@ public class CraftingData extends SkillHandler {
 		private final int[] frameId;
 		private final String name;
 
-		private tanningData(final int[][] buttonId, final int hideId,
+		tanningData(final int[][] buttonId, final int hideId,
 				final int leatherId, final int price, final int[] frameId,
 				final String name) {
 			this.buttonId = buttonId;
@@ -89,7 +89,7 @@ public class CraftingData extends SkillHandler {
 		}
 	}
 
-	public static enum leatherDialogueData {
+	public enum leatherDialogueData {
 
 		GREEN_LEATHER(1745, 1065, 1135, 1099), BLUE_LEATHER(2505, 2487, 2499,
 				2493), RED_LEATHER(2507, 2489, 2501, 2495), BLACK_LEATHER(2509,
@@ -97,7 +97,7 @@ public class CraftingData extends SkillHandler {
 
 		private final int leather, vambraces, chaps, body;
 
-		private leatherDialogueData(final int leather, final int vambraces,
+		leatherDialogueData(final int leather, final int vambraces,
 				final int chaps, final int body) {
 			this.leather = leather;
 			this.vambraces = vambraces;
@@ -140,7 +140,7 @@ public class CraftingData extends SkillHandler {
 			return null;
 		}
 
-		private Leather(int item1, int leatherId, int product,
+		Leather(int item1, int leatherId, int product,
 				int amountOfLeather, int level, double xp) {
 			this.leatherId = leatherId;
 			this.product = product;
@@ -174,7 +174,7 @@ public class CraftingData extends SkillHandler {
 		}
 	}
 
-	public static enum leatherData {
+	public enum leatherData {
 
 		LEATHER_BODY(new int[][] { { 33187, 1 }, { 33186, 5 }, { 33185, 10 } },
 				1741, 1129, 14, 25, 1), LEATHER_GLOVES(new int[][] {
@@ -228,7 +228,7 @@ public class CraftingData extends SkillHandler {
 		private final int leather, product, level, amount;
 		private final double xp;
 
-		private leatherData(final int[][] buttonId, final int leather,
+		leatherData(final int[][] buttonId, final int leather,
 				final int product, final int level, final double xp,
 				final int amount) {
 			this.buttonId = buttonId;
@@ -278,7 +278,7 @@ public class CraftingData extends SkillHandler {
 		}
 	}
 
-	public static enum cutGemData {
+	public enum cutGemData {
 
 		SAPPHIRE(1623, 1607, 20, 50, 888), EMERALD(1621, 1605, 27, 67, 889), RUBY(
 				1619, 1603, 34, 85, 887), DIAMOND(1617, 1601, 43, 107.5, 886), DRAGONSTONE(
@@ -292,7 +292,7 @@ public class CraftingData extends SkillHandler {
 		private final int uncut, cut, level, animation;
 		private final double xp;
 
-		private cutGemData(final int uncut, final int cut, final int level,
+		cutGemData(final int uncut, final int cut, final int level,
 				final double xp, final int animation) {
 			this.uncut = uncut;
 			this.cut = cut;
@@ -322,7 +322,7 @@ public class CraftingData extends SkillHandler {
 		}
 	}
 
-	public static enum jewelryData {
+	public enum jewelryData {
 
 		RINGS(new int[][] { { 2357, 1635, 5, 15 }, { 1607, 1637, 20, 40 },
 				{ 1605, 1639, 27, 55 }, { 1603, 1641, 34, 70 },
@@ -339,19 +339,19 @@ public class CraftingData extends SkillHandler {
 
 		public int[][] item;
 
-		private jewelryData(final int[][] item) {
+		jewelryData(final int[][] item) {
 			this.item = item;
 		}
 	}
 
-	public static enum amuletData {
+	public enum amuletData {
 		GOLD(1673, 1692), SAPPHIRE(1675, 1694), EMERALD(1677, 1696), RUBY(1679,
 				1698), DIAMOND(1681, 1700), DRAGONSTONE(1683, 1702), ONYX(6579,
 				6581);
 
 		private final int amuletId, product;
 
-		private amuletData(final int amuletId, final int product) {
+		amuletData(final int amuletId, final int product) {
 			this.amuletId = amuletId;
 			this.product = product;
 		}

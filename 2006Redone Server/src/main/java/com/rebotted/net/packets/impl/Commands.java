@@ -45,7 +45,7 @@ public class Commands implements PacketType {
 
     public static void playerCommands(Player player, String playerCommand, String[] arguments) {
         switch (playerCommand.toLowerCase()) {
-            case "hideYell":
+            case "hideyell":
                 player.hideYell = !player.hideYell;
                 player.getPacketSender().sendMessage("Your yell visibility preferences have been updated.");
                 break;
@@ -72,13 +72,13 @@ public class Commands implements PacketType {
                             return;
                         }
                         if (player.playerRights == 0) {
-                            c2.getPacketSender().sendMessage("[Player]" + Misc.optimizeText(player.playerName) + ": " + Misc.optimizeText(String.join(" ", arguments)) + "");
+                            c2.getPacketSender().sendMessage("[Player]" + Misc.optimizeText(player.playerName) + ": " + Misc.optimizeText(String.join(" ", arguments)));
                         } else if (player.playerRights == 1) {
-                            c2.getPacketSender().sendMessage("@blu@[Moderator] @bla@" + Misc.optimizeText(player.playerName) + ": " + Misc.optimizeText(String.join(" ", arguments)) + "");
+                            c2.getPacketSender().sendMessage("@blu@[Moderator] @bla@" + Misc.optimizeText(player.playerName) + ": " + Misc.optimizeText(String.join(" ", arguments)));
                         } else if (player.playerRights == 2) {
-                            c2.getPacketSender().sendMessage("@gre@[Administator] @bla@" + Misc.optimizeText(player.playerName) + ": " + Misc.optimizeText(String.join(" ", arguments)) + "");
+                            c2.getPacketSender().sendMessage("@gre@[Administator] @bla@" + Misc.optimizeText(player.playerName) + ": " + Misc.optimizeText(String.join(" ", arguments)));
                         } else if (player.playerRights == 3) {
-                            c2.getPacketSender().sendMessage("@red@[Developer] @bla@" + Misc.optimizeText(player.playerName) + ": " + Misc.optimizeText(String.join(" ", arguments)) + "");
+                            c2.getPacketSender().sendMessage("@red@[Developer] @bla@" + Misc.optimizeText(player.playerName) + ": " + Misc.optimizeText(String.join(" ", arguments)));
                         }
                         player.lastYell = System.currentTimeMillis();
                     }
@@ -88,26 +88,22 @@ public class Commands implements PacketType {
                 if (!GameEngine.ersSecret.equals("")) {
                     final String playerName = player.playerName;
 
-                    com.everythingrs.vote.Vote.service.execute(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                int currentPoints = player.votePoints;
-                                com.everythingrs.vote.Vote[] reward = com.everythingrs.vote.Vote.reward(GameEngine.ersSecret, playerName, "1", "all");
-                                if (reward[0].message != null) {
-                                    player.getPacketSender().sendMessage(reward[0].message);
-                                    return;
-                                }
-                                player.votePoints = (currentPoints + reward[0].give_amount);
-                                //player.getActionSender().sendMessage("Thank you for voting! You now have " + reward[0].vote_points + " vote points.");
-                                player.getPacketSender().sendMessage(
-                                        "Thank you for voting! You now have " + player.votePoints + " vote points.");
-                            } catch (Exception e) {
-                                player.getPacketSender().sendMessage("Api Services are currently offline. Please check back shortly");
-                                e.printStackTrace();
+                    com.everythingrs.vote.Vote.service.execute(() -> {
+                        try {
+                            int currentPoints = player.votePoints;
+                            com.everythingrs.vote.Vote[] reward = com.everythingrs.vote.Vote.reward(GameEngine.ersSecret, playerName, "1", "all");
+                            if (reward[0].message != null) {
+                                player.getPacketSender().sendMessage(reward[0].message);
+                                return;
                             }
+                            player.votePoints = (currentPoints + reward[0].give_amount);
+                            //player.getActionSender().sendMessage("Thank you for voting! You now have " + reward[0].vote_points + " vote points.");
+                            player.getPacketSender().sendMessage(
+                                    "Thank you for voting! You now have " + player.votePoints + " vote points.");
+                        } catch (Exception e) {
+                            player.getPacketSender().sendMessage("Api Services are currently offline. Please check back shortly");
+                            e.printStackTrace();
                         }
-
                     });
                 } else {
                     player.getPacketSender().sendMessage("Voting Is Not Enabled");
@@ -894,7 +890,6 @@ public class Commands implements PacketType {
                     return;
                 }
                 player.tutorialProgress = Integer.parseInt(arguments[0]);
-                ;
                 break;
             case "song":
                 if (arguments.length == 0) {

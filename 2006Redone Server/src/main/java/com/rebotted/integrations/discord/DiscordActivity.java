@@ -12,13 +12,11 @@ public class DiscordActivity {
                 if (count == 0) {
                     if (PlayerHandler.getPlayerCount() != 1) {
                         JavaCord.api.updateActivity(PlayerHandler.getPlayerCount() + " Players Online");
-                        System.out.println("Discord Activity Updated");
-                        count = 100;
                     } else {
                         JavaCord.api.updateActivity(PlayerHandler.getPlayerCount() + " Player Online");
-                        System.out.println("Discord Activity Updated");
-                        count = 100;
                     }
+                    System.out.println("Discord Activity Updated");
+                    count = 100;
                 } else {
                     count--;
                 }

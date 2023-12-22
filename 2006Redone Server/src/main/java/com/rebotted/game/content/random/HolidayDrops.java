@@ -29,7 +29,7 @@ public enum HolidayDrops {
 		return amount;
 	}
 
-	private HolidayDrops(int item, String name, boolean whichHoliday) {
+	HolidayDrops(int item, String name, boolean whichHoliday) {
 		this.item = item;
 		this.name = name;
 		this.whichHoliday = whichHoliday;

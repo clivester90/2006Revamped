@@ -16,7 +16,7 @@ import com.rebotted.util.Misc;
 public class Stalls {
 
 
-	public static enum stallData {
+	public enum stallData {
 		VEGETABLE_STALL(4706, 2, 10, 0, new int[] { 1965, 1 }),
 		BAKER_STALL(2561, 5, 16, 3, new int[] { 2309, 1 }, new int[] { 1891, 1 }, new int[] { 1895, 1 }),
 		TEA_STALL(635, 5, 16, 0, new int[] {712, 1 }),
@@ -43,7 +43,7 @@ public class Stalls {
 		private double xp;
 		private long respawnTime;
 
-		private stallData(final int objectId, final int levelReq, final double xp, final int face, final int[]... stalls) {
+		stallData(final int objectId, final int levelReq, final double xp, final int face, final int[]... stalls) {
 			this.objectId = objectId;
 			this.levelReq = levelReq;
 			this.xp = xp;

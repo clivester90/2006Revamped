@@ -38,7 +38,7 @@ public enum GodBooks {
 
 	private String[][] preachData;
 
-	private GodBooks(int itemId, String[][] preachData) {
+	GodBooks(int itemId, String[][] preachData) {
 		this.itemId = itemId;
 		this.preachData = preachData;
 	}

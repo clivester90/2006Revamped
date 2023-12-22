@@ -17,7 +17,7 @@ public class Misc {
 
 	// return a random number from 0 → range - 1
 	public static int randomMinusOne(int range) {
-		return (int) Math.random() * range;
+		return (int) (Math.random() * range);
 	}
 
 	public static double distance(int x1, int y1, int x2, int y2 ) {
@@ -111,7 +111,7 @@ public class Misc {
 	}
 
 	public static String Hex(byte[] data, int offset, int len) {
-		String temp = "";
+		StringBuilder temp = new StringBuilder();
 		for (int cntr = 0; cntr < len; cntr++) {
 			int num = data[offset + cntr] & 0xFF;
 			String myStr;
@@ -120,9 +120,9 @@ public class Misc {
 			} else {
 				myStr = "";
 			}
-			temp += myStr + Integer.toHexString(num) + " ";
+			temp.append(myStr).append(Integer.toHexString(num)).append(" ");
 		}
-		return temp.toUpperCase().trim();
+		return temp.toString().toUpperCase().trim();
 	}
 
 	public static int hexToInt(byte[] data, int offset, int len) {

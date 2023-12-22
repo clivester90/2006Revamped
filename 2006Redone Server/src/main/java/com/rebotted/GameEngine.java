@@ -214,55 +214,53 @@ public class GameEngine {
 		 * 
 		 * scheduleAtFixedRate() does not invoke concurrent Runnables.
 		 */
-		scheduler.scheduleAtFixedRate(new Runnable() {
-			public void run() {
-				/**
-				 * Main Server Tick
-				 */
-				try {
-					if (GameEngine.shutdownServer) {
-						scheduler.shutdown();
-					}
-					itemHandler.process();
-					playerHandler.process();
-					npcHandler.process();
-					shopHandler.process();
-					objectManager.process();
-					CastleWars.process();
-					FightPits.process();
-					pestControl.process();
-					CycleEventHandler.getSingleton().process();
-					PlayersOnlineWebsite.addUpdatePlayersOnlineTask();
-					RegisteredAccsWebsite.addUpdateRegisteredUsersTask();
-					DiscordActivity.updateActivity();
-					if (System.currentTimeMillis() - lastMassSave > 300000) {
-						for (Player p : PlayerHandler.players) {
-							if (p == null) {
-								continue;
-							}
-							PlayerSave.saveGame((Client) p);
-							System.out.println("Saved game for " + p.playerName + ".");
-							lastMassSave = System.currentTimeMillis();
-						}
-					}
-				} catch (Exception ex) {
-					ex.printStackTrace();
-					System.out.println("A fatal exception has been thrown!");
+		scheduler.scheduleAtFixedRate(() -> {
+			/**
+			 * Main Server Tick
+			 */
+			try {
+				if (GameEngine.shutdownServer) {
+					scheduler.shutdown();
+				}
+				itemHandler.process();
+				playerHandler.process();
+				npcHandler.process();
+				shopHandler.process();
+				objectManager.process();
+				CastleWars.process();
+				FightPits.process();
+				pestControl.process();
+				CycleEventHandler.getSingleton().process();
+				PlayersOnlineWebsite.addUpdatePlayersOnlineTask();
+				RegisteredAccsWebsite.addUpdateRegisteredUsersTask();
+				DiscordActivity.updateActivity();
+				if (System.currentTimeMillis() - lastMassSave > 300000) {
 					for (Player p : PlayerHandler.players) {
 						if (p == null) {
 							continue;
 						}
-						if (p.inTrade) {
-							((Client) p).getTrading().declineTrade();
-						}
-						if (p.duelStatus == 6) {
-							((Client) p).getDueling().claimStakedItems();
-						}
-						PlayerSave.saveGame((Client) p);
+						PlayerSave.saveGame(p);
 						System.out.println("Saved game for " + p.playerName + ".");
+						lastMassSave = System.currentTimeMillis();
 					}
-					scheduler.shutdown(); // Kills the tickloop thread if Exception is thrown.
 				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				System.out.println("A fatal exception has been thrown!");
+				for (Player p : PlayerHandler.players) {
+					if (p == null) {
+						continue;
+					}
+					if (p.inTrade) {
+						((Client) p).getTrading().declineTrade();
+					}
+					if (p.duelStatus == 6) {
+						((Client) p).getDueling().claimStakedItems();
+					}
+					PlayerSave.saveGame((Client) p);
+					System.out.println("Saved game for " + p.playerName + ".");
+				}
+				scheduler.shutdown(); // Kills the tickloop thread if Exception is thrown.
 			}
 		}, 0, GameConstants.CYCLE_TIME, TimeUnit.MILLISECONDS);
 		

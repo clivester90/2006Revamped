@@ -66,12 +66,8 @@ public class MagicRequirements {
 																	// etc
 					if (PlayerHandler.players[c.playerIndex].REDUCE_SPELLS[r] == MagicData.MAGIC_SPELLS[spell][0]) {
 						c.reduceSpellId = r;
-						if (System.currentTimeMillis()
-								- PlayerHandler.players[c.playerIndex].reduceSpellDelay[c.reduceSpellId] > PlayerHandler.players[c.playerIndex].REDUCE_SPELL_TIME[c.reduceSpellId]) {
-							PlayerHandler.players[c.playerIndex].canUseReducingSpell[c.reduceSpellId] = true;
-						} else {
-							PlayerHandler.players[c.playerIndex].canUseReducingSpell[c.reduceSpellId] = false;
-						}
+                        PlayerHandler.players[c.playerIndex].canUseReducingSpell[c.reduceSpellId] = System.currentTimeMillis()
+                                - PlayerHandler.players[c.playerIndex].reduceSpellDelay[c.reduceSpellId] > PlayerHandler.players[c.playerIndex].REDUCE_SPELL_TIME[c.reduceSpellId];
 						break;
 					}
 				}

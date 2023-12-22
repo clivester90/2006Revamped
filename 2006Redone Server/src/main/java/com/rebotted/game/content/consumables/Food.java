@@ -8,7 +8,7 @@ import com.rebotted.util.Misc;
 
 public class Food {
 
-	public static enum FoodToEat {
+	public enum FoodToEat {
 		Easter_Egg(1961, 12, "Easter Egg", 0, "Food", false), 
 		Pumpkin(1959, 14, "Pumpkin", 0, "Food", false), 
 		Half_Jug_of_Wine(1989, 7, "Half Full Wine Jug", 1935, "Drink", false), 
@@ -100,7 +100,7 @@ public class Food {
 		private String type;
 		private boolean foodEffect;
 
-		private FoodToEat(int id, int heal, String name, int replaceWith,
+		FoodToEat(int id, int heal, String name, int replaceWith,
 				String type, boolean foodEffect) {
 			this.id = id;
 			this.heal = heal;

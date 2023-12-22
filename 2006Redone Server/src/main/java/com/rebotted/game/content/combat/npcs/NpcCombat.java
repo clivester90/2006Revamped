@@ -1,6 +1,5 @@
 package com.rebotted.game.content.combat.npcs;
 
-import com.rebotted.GameConstants;
 import com.rebotted.game.content.combat.CombatConstants;
 import com.rebotted.game.content.combat.melee.MeleeData;
 import com.rebotted.game.content.minigames.FightCaves;
@@ -8,7 +7,6 @@ import com.rebotted.game.content.minigames.PestControl;
 import com.rebotted.game.content.music.sound.CombatSounds;
 import com.rebotted.game.content.music.sound.SoundList;
 import com.rebotted.game.content.skills.SkillData;
-import com.rebotted.game.content.skills.SkillHandler;
 import com.rebotted.game.items.impl.Greegree.MonkeyData;
 import com.rebotted.game.npcs.NpcData;
 import com.rebotted.game.npcs.NpcHandler;

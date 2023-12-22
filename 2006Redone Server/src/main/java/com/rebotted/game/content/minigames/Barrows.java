@@ -202,16 +202,13 @@ public class Barrows {
 	 * @return
 	 */
 	public boolean checkBarrows() {
-		if (c.barrowsNpcs[2][1] == 2 ||
-			c.barrowsNpcs[3][1] == 2 ||
-			c.barrowsNpcs[1][1] == 2 || 
-			c.barrowsNpcs[5][1] == 2 || 
-			c.barrowsNpcs[0][1] == 2 ||
-			c.barrowsNpcs[4][1] == 2) {
-			return true;
-		}
-		return false;
-	}
+        return c.barrowsNpcs[2][1] == 2 ||
+                c.barrowsNpcs[3][1] == 2 ||
+                c.barrowsNpcs[1][1] == 2 ||
+                c.barrowsNpcs[5][1] == 2 ||
+                c.barrowsNpcs[0][1] == 2 ||
+                c.barrowsNpcs[4][1] == 2;
+    }
 	
 	/**
 	 * Using the chest.

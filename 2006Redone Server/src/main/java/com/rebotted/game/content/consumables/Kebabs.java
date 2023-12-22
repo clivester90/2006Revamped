@@ -26,8 +26,7 @@ public class Kebabs {
 			chances = 3.6f;
 		} else if (effect.equalsIgnoreCase("Effect5")) {// Damages you.
 			chances = 6.3f - 0.9f;
-			;
-		} else {
+        } else {
 			chances = Float.parseFloat(effect);
 		}
 		return chances; // Equals 100%

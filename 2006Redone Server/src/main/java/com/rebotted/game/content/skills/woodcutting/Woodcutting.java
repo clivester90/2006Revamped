@@ -27,7 +27,7 @@ public class Woodcutting {
 			{13661, 41, 8, 10251} 
 		};
 	
-	private static enum treeData {
+	private enum treeData {
 		TREE(new int[] {1276, 1278, 1286, 3033, 1282, 1383}, 1342, 1, 25, 1511, 11, 100),
 		OAK(new int[] {1281, 3037}, 1356, 15, 38, 1521, 25, 20),
 		WILLOW(new int[] {1308, 5552, 5551, 5553}, 7399, 30, 68, 1519, 30, 8),
@@ -41,7 +41,7 @@ public class Woodcutting {
 		private int[] treeId;
 		private int stumpId, levelReq, xpRecieved, logRecieved, respawnTime, cutChance;
 		
-		private treeData(int[] treeId, int stumpId, int levelReq, int xpRecieved, int logRecieved, int respawnTime, int cutChance) {
+		treeData(int[] treeId, int stumpId, int levelReq, int xpRecieved, int logRecieved, int respawnTime, int cutChance) {
 			this.treeId = treeId;
 			this.stumpId = stumpId;
 			this.levelReq = levelReq;

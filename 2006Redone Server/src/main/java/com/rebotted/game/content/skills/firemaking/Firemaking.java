@@ -80,11 +80,7 @@ public class Firemaking {
 					}
 				}
 				final boolean walk;
-				if (Region.getClipping(x - 1, y, c.heightLevel, -1, 0)) {
-					walk = true;
-				} else {
-					walk = false;
-				}
+                walk = Region.getClipping(x - 1, y, c.heightLevel, -1, 0);
 				c.startAnimation(733);
 				c.getPlayerAssistant().walkTo(walk ? -1 : 1, 0);
 				c.stopFiremaking = false;

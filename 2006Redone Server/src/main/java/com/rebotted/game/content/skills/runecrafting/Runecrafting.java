@@ -66,7 +66,7 @@ public class Runecrafting {
 		int objId;
 		int[] keys, loc;
 
-		private Altars(int objId, int[] keys, int[] loc) {
+		Altars(int objId, int[] keys, int[] loc) {
 			this.objId = objId;
 			this.loc = loc;
 			this.keys = keys;
@@ -116,7 +116,7 @@ public class Runecrafting {
 		int altarID, levelReq, xp, rewardedRune;
 		int[][] multiRunes;
 
-		private Altar_Data(int altarID, int levelReq, int xp, int rewardedRune, int[][] multiRunes) {
+		Altar_Data(int altarID, int levelReq, int xp, int rewardedRune, int[][] multiRunes) {
 			this.altarID = altarID;
 			this.levelReq = levelReq;
 			this.xp = xp;

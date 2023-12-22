@@ -448,9 +448,7 @@ public class NpcData {
 
 	public static boolean inNpc(int i, int x2, int y2) {
 		if (NpcHandler.npcs[i].size < 1) {
-			if (x2 == NpcHandler.npcs[i].getX() && y2 == NpcHandler.npcs[i].getY()) {
-				return true;
-			}
+			return x2 == NpcHandler.npcs[i].getX() && y2 == NpcHandler.npcs[i].getY();
 		} else {
 			for (int x = NpcHandler.npcs[i].getX(); x <= NpcHandler.npcs[i].getX() + NpcHandler.npcs[i].size; x++) {
 				for (int y = NpcHandler.npcs[i].getY(); y <= NpcHandler.npcs[i].getY() + NpcHandler.npcs[i].size; y++) {

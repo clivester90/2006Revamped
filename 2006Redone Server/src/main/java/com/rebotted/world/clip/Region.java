@@ -139,45 +139,29 @@ public class Region {
 
 	public static boolean canMove(int x, int y, int z, int direction) {
 		if (direction == 6) {
-			if ((Region.getClipping(x, y - 1, z) & 0x1280102) == 0) {
-				return true;
-			}
+            return (Region.getClipping(x, y - 1, z) & 0x1280102) == 0;
 		} else if (direction == 3) {
-			if ((Region.getClipping(x - 1, y, z) & 0x1280108) == 0) {
-				return true;
-			}
+            return (Region.getClipping(x - 1, y, z) & 0x1280108) == 0;
 		} else if (direction == 1) {
-			if ((Region.getClipping(x, y + 1, z) & 0x1280120) == 0) {
-				return true;
-			}
+            return (Region.getClipping(x, y + 1, z) & 0x1280120) == 0;
 		} else if (direction == 4) {
-			if ((Region.getClipping(x + 1, y, z) & 0x1280180) == 0) {
-				return true;
-			}
+            return (Region.getClipping(x + 1, y, z) & 0x1280180) == 0;
 		} else if (direction == 5) {
-			if ((Region.getClipping(x - 1, y - 1, z) & 0x128010e) == 0
-					&& (Region.getClipping(x - 1, y, z) & 0x1280108) == 0
-					&& (Region.getClipping(x, y - 1, z) & 0x1280102) == 0) {
-				return true;
-			}
+            return (Region.getClipping(x - 1, y - 1, z) & 0x128010e) == 0
+                    && (Region.getClipping(x - 1, y, z) & 0x1280108) == 0
+                    && (Region.getClipping(x, y - 1, z) & 0x1280102) == 0;
 		} else if (direction == 0) {
-			if ((Region.getClipping(x - 1, y + 1, z) & 0x1280138) == 0
-					&& (Region.getClipping(x - 1, y, z) & 0x1280108) == 0
-					&& (Region.getClipping(x, y + 1, z) & 0x1280120) == 0) {
-				return true;
-			}
+            return (Region.getClipping(x - 1, y + 1, z) & 0x1280138) == 0
+                    && (Region.getClipping(x - 1, y, z) & 0x1280108) == 0
+                    && (Region.getClipping(x, y + 1, z) & 0x1280120) == 0;
 		} else if (direction == 7) {
-			if ((Region.getClipping(x + 1, y - 1, z) & 0x1280183) == 0
-					&& (Region.getClipping(x + 1, y, z) & 0x1280180) == 0
-					&& (Region.getClipping(x, y - 1, z) & 0x1280102) == 0) {
-				return true;
-			}
+            return (Region.getClipping(x + 1, y - 1, z) & 0x1280183) == 0
+                    && (Region.getClipping(x + 1, y, z) & 0x1280180) == 0
+                    && (Region.getClipping(x, y - 1, z) & 0x1280102) == 0;
 		} else if (direction == 2) {
-			if ((Region.getClipping(x + 1, y + 1, z) & 0x12801e0) == 0
-					&& (Region.getClipping(x + 1, y, z) & 0x1280180) == 0
-					&& (Region.getClipping(x, y + 1, z) & 0x1280120) == 0) {
-				return true;
-			}
+            return (Region.getClipping(x + 1, y + 1, z) & 0x12801e0) == 0
+                    && (Region.getClipping(x + 1, y, z) & 0x1280180) == 0
+                    && (Region.getClipping(x, y + 1, z) & 0x1280120) == 0;
 		} else if (direction == -1) {
 			throw new IllegalArgumentException("Invalid direction: " + direction);
 		}

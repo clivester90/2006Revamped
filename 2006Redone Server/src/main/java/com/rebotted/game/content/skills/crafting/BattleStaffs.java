@@ -11,7 +11,7 @@ import com.rebotted.game.players.Player;
  */
 public class BattleStaffs {
 	
-	public static enum battleStaffs {
+	public enum battleStaffs {
 
 		AIR(573, 66, 138, 1397),
 		FIRE(569, 62, 125, 1393),
@@ -20,7 +20,7 @@ public class BattleStaffs {
 
 		private int orb, levelReq, xpRecieved, battlestaff;
 
-		private battleStaffs(final int orb, final int levelReq, final int xpRecieved, final int battlestaff) {
+		battleStaffs(final int orb, final int levelReq, final int xpRecieved, final int battlestaff) {
 			this.orb = orb;
 			this.levelReq = levelReq;
 			this.xpRecieved = xpRecieved;

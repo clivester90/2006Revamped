@@ -67,7 +67,7 @@ public class WeaponPoison {
 		 * @param newItemId
 		 *            The poisoned weapon item id.
 		 */
-		private Weapon(int itemId, int[][] newItemId) {
+		Weapon(int itemId, int[][] newItemId) {
 			this.itemId = itemId;
 			this.newItemId = newItemId;
 		}

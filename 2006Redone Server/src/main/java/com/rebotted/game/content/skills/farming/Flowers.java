@@ -888,9 +888,7 @@ public class Flowers { // todo scarecrow 6059
 				.forIdPosition(new Point(objectX, objectY));
 		if (flowerFieldsData == null)
 			return false;
-		if (flowerStages[flowerFieldsData.getFlowerIndex()] == 3)
-			return true;
-		return false;
-	}
+        return flowerStages[flowerFieldsData.getFlowerIndex()] == 3;
+    }
 
 }

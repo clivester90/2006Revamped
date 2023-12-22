@@ -421,51 +421,45 @@ public class Npc {
 	}
 
 	public boolean inMulti() {
-		if (absX >= 3136
-				&& absX <= 3327
-				&& absY >= 3519
-				&& absY <= 3607
-				|| absX >= 2625
-				&& absX <= 2685
-				&& absY >= 2550
-				&& absY <= 2620 // Pest
-								// Control
-				|| absX >= 3190 && absX <= 3327 && absY >= 3648 && absY <= 3839
-				|| absX >= 3200 && absX <= 3390 && absY >= 3840 && absY <= 3967
-				|| absX >= 2992
-				&& absX <= 3007
-				&& absY >= 3912
-				&& absY <= 3967
-				|| absX >= 2946
-				&& absX <= 2959
-				&& absY >= 3816
-				&& absY <= 3831
-				|| absX >= 3008
-				&& absX <= 3199
-				&& absY >= 3856
-				&& absY <= 3903
-				|| absX >= 2667
-				&& absX <= 2685
-				&& absY >= 3712
-				&& absY <= 3730 // rock
-								// crabs
-				|| absX >= 3008 && absX <= 3071 && absY >= 3600 && absY <= 3711
-				|| absX >= 3072 && absX <= 3327 && absY >= 3608 && absY <= 3647
-				|| absX >= 2624 && absX <= 2690 && absY >= 2550 && absY <= 2619
-				|| absX >= 2371 && absX <= 2422 && absY >= 5062 && absY <= 5117
-				|| absX >= 2896 && absX <= 2927 && absY >= 3595 && absY <= 3630
-				|| absX >= 2892 && absX <= 2932 && absY >= 4435 && absY <= 4464
-				|| absX >= 2256 && absX <= 2287 && absY >= 4680 && absY <= 4711) {
-			return true;
-		}
-		return false;
-	}
+        return absX >= 3136
+                && absX <= 3327
+                && absY >= 3519
+                && absY <= 3607
+                || absX >= 2625
+                && absX <= 2685
+                && absY >= 2550
+                && absY <= 2620 // Pest
+                // Control
+                || absX >= 3190 && absX <= 3327 && absY >= 3648 && absY <= 3839
+                || absX >= 3200 && absX <= 3390 && absY >= 3840 && absY <= 3967
+                || absX >= 2992
+                && absX <= 3007
+                && absY >= 3912
+                && absY <= 3967
+                || absX >= 2946
+                && absX <= 2959
+                && absY >= 3816
+                && absY <= 3831
+                || absX >= 3008
+                && absX <= 3199
+                && absY >= 3856
+                && absY <= 3903
+                || absX >= 2667
+                && absX <= 2685
+                && absY >= 3712
+                && absY <= 3730 // rock
+                // crabs
+                || absX >= 3008 && absX <= 3071 && absY >= 3600 && absY <= 3711
+                || absX >= 3072 && absX <= 3327 && absY >= 3608 && absY <= 3647
+                || absX >= 2624 && absX <= 2690 && absY >= 2550 && absY <= 2619
+                || absX >= 2371 && absX <= 2422 && absY >= 5062 && absY <= 5117
+                || absX >= 2896 && absX <= 2927 && absY >= 3595 && absY <= 3630
+                || absX >= 2892 && absX <= 2932 && absY >= 4435 && absY <= 4464
+                || absX >= 2256 && absX <= 2287 && absY >= 4680 && absY <= 4711;
+    }
 
 	public boolean inWild() {// beg, end, beg, end, beg, end, beg, end
-		if (absX > 2941 && absX < 3392 && absY > 3518 && absY < 3966
-				|| absX > 2941 && absX < 3392 && absY > 9918 && absY < 10366) {
-			return true;
-		}
-		return false;
-	}
+        return absX > 2941 && absX < 3392 && absY > 3518 && absY < 3966
+                || absX > 2941 && absX < 3392 && absY > 9918 && absY < 10366;
+    }
 }

@@ -5,10 +5,10 @@ import com.rebotted.game.dialogues.DialogueExpression;
 import com.rebotted.game.players.Player;
 
 public class ManAndWoman extends DialogueBuilder {
-    public ManAndWoman(Player player, int npcId) {
+    public ManAndWoman(Player player) {
         super(player);
 
-        setNpcId(npcId)
+        setNpcId(1)
                 .npc(DialogueExpression.SPEAKING_CALMLY, "Please leave me alone.")
                 .player(DialogueExpression.DISTRESSED, "I'm so sorry, I didn't meant to interrupt.")
                 .npc("Well no problem then, best of luck with your day, Adventurer!");

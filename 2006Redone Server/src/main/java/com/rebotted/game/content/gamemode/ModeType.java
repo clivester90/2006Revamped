@@ -13,7 +13,6 @@ public enum ModeType {
     ROGUE_IRONMAN,
     GROUP_IRONMAN,
     EVENT_MAN;
-    ;
 
     public boolean isStandardRate(SkillConstants skill) {
         switch (this) {

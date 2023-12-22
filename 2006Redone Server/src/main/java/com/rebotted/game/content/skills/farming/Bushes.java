@@ -936,9 +936,7 @@ public class Bushes {
 				.forIdPosition(objectX, objectY);
 		if (bushesFieldData == null)
 			return false;
-		if (bushesStages[bushesFieldData.getBushesIndex()] == 3)
-			return true;
-		return false;
-	}
+        return bushesStages[bushesFieldData.getBushesIndex()] == 3;
+    }
 
 }

@@ -8,7 +8,7 @@ public class Beverages {
 
 	private static final int BEER_GLASS = 1919;
 
-	public static enum beverageData {
+	public enum beverageData {
 		BEER(1917, BEER_GLASS, 829, true, false, false, false), 
 		BEER1(7740, BEER_GLASS, 829, true, false, false, false),
 				GROG(1915, BEER_GLASS, 829, true, false, false, false), 
@@ -26,7 +26,7 @@ public class Beverages {
 		private int bevId, replacement, bevAnim;
 		private boolean effect1, effect2, effect3, effect4;
 
-		private beverageData(final int bevId, final int replacement,
+		beverageData(final int bevId, final int replacement,
 				final int bevAnim, final boolean effect1,
 				final boolean effect2, final boolean effect3,
 				final boolean effect4) {
@@ -67,7 +67,7 @@ public class Beverages {
 			return effect4;
 		}
 
-		private final String getName() {
+		private String getName() {
 			return Misc.optimizeText(toString().toLowerCase().replaceAll("_", " "));
 		}
 	}
@@ -77,6 +77,7 @@ public class Beverages {
 		for (final beverageData b : beverageData.values()) {
 			if (beverageId == b.getBev()) {
 				isBeverage = true;
+				break;
 			}
 		}
 		return isBeverage;

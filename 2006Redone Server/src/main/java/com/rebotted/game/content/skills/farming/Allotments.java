@@ -1038,9 +1038,7 @@ public class Allotments {
 				.forIdPosition(objectX, objectY);
 		if (allotmentFieldsData == null)
 			return false;
-		if (allotmentStages[allotmentFieldsData.getAllotmentIndex()] == 3)
-			return true;
-		return false;
-	}
+        return allotmentStages[allotmentFieldsData.getAllotmentIndex()] == 3;
+    }
 
 }

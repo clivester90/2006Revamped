@@ -215,12 +215,9 @@ public class ToolLeprechaun {
 				counter++;
 			}
 		}
-		if (counter == 0) {
-			return false;
-		}
-		return true;
+        return counter != 0;
 
-	}
+    }
 
 	/* updating the store state and player state */
 

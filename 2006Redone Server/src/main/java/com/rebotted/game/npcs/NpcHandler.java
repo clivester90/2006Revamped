@@ -121,13 +121,12 @@ public class NpcHandler {
                             slaveOwner.summonId = Pets.summonItemId(newNpcId);
                             slaveOwner.ratsCaught = 0;
                         }
-                        npcs[npcIndex].chasingRat = -1;
                     } else {
 						if (slaveOwner != null) {
 							slaveOwner.getPacketSender().sendMessage("The " + getNpcListName(NpcHandler.npcs[npcIndex].npcType) + " failed to catch the rat.");
 						}
-                        npcs[npcIndex].chasingRat = -1;
                     }
+                    npcs[npcIndex].chasingRat = -1;
                     container.stop();
                 }
 
@@ -1357,12 +1356,9 @@ public class NpcHandler {
 
     public boolean specialCase(Player c, int i) { // responsible for npcs that
         // much
-        if (goodDistance(npcs[i].getX(), npcs[i].getY(), c.getX(), c.getY(), 8)
+        return goodDistance(npcs[i].getX(), npcs[i].getY(), c.getX(), c.getY(), 8)
                 && !goodDistance(npcs[i].getX(), npcs[i].getY(), c.getX(),
-                c.getY(), distanceRequired(i))) {
-            return true;
-        }
-        return false;
+                c.getY(), distanceRequired(i));
     }
 
     public boolean retaliates(int npcType) {

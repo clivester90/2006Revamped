@@ -2534,10 +2534,7 @@ public class ItemAssistant {
 					}
 				}
 			}
-			if (found >= amt) {
-				return true;
-			}
-			return false;
+			return found >= amt;
 		}
 		return false;
 	}
@@ -2564,10 +2561,7 @@ public class ItemAssistant {
 				}
 			}
 		}
-		if (found >= amt) {
-			return true;
-		}
-		return false;
+		return found >= amt;
 	}
 
 	public int getUnnotedItem(int ItemID) {
@@ -2582,7 +2576,7 @@ public class ItemAssistant {
 		}
 		for (int i = 0; i < GameConstants.ITEM_LIMIT; i++) {
 			if (GameEngine.itemHandler.itemList[i] != null) {
-				if (GameEngine.itemHandler.itemList[i].itemName == NotedName) {
+				if (GameEngine.itemHandler.itemList[i].itemName.equals(NotedName)) {
 					if (!GameEngine.itemHandler.itemList[i].itemDescription.startsWith("Swap this note at any bank for a")) {
 						newId = GameEngine.itemHandler.itemList[i].itemId;
 						break;

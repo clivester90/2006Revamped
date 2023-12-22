@@ -183,7 +183,6 @@ public class PlayerHandler {
 
 
 				while (players[i].processQueuedPackets()) {
-					;
 				}
 
 				players[i].process();

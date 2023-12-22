@@ -20,10 +20,7 @@ public class TrawlerWaitingRoom extends WaitingRoom {
                 if(trawler.inProgress()) {
                         return false;
                 }
-                if(waiting.size() < minimumPlayers) {
-                        return false;
-                }
-                return true;
+            return waiting.size() >= minimumPlayers;
         }
  
         @Override
@@ -73,10 +70,7 @@ public class TrawlerWaitingRoom extends WaitingRoom {
                 if(trawler.inProgress()) {
                         return false;
                 }
-                if(waiting.size() < minimumPlayers) {
-                        return false;
-                }
-                return true;
+            return waiting.size() >= minimumPlayers;
         }
  
 }

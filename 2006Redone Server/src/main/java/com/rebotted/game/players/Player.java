@@ -2544,9 +2544,7 @@ public abstract class Player {
 	}
 
 	public int getLevelForXP(int exp) {
-		if (exp > 13034430) {
-			return 99;
-		} else {
+		if (exp <= 13034430) {
 			int points = 0;
 			for (int lvl = 1; lvl <= 99; ++lvl) {
 				points = (int) (points + Math.floor(lvl + 300.0D
@@ -2557,8 +2555,8 @@ public abstract class Player {
 				}
 			}
 
-			return 99;
 		}
+		return 99;
 	}
 
 	private boolean chatTextUpdateRequired = false;
