@@ -644,20 +644,20 @@ public class Game extends RSApplet {
 			worldController.initToNull();
 			System.gc();
 			for (int i = 0; i < 4; i++) {
-				aClass11Array1230[i].method210();
+				collisionMap[i].reset();
 			}
 
 			for (int l = 0; l < 4; l++) {
 				for (int k1 = 0; k1 < 104; k1++) {
 					for (int j2 = 0; j2 < 104; j2++) {
-						byteGroundArray[l][k1][j2] = 0;
+						tileFlags[l][k1][j2] = 0;
 					}
 
 				}
 
 			}
 
-			ObjectManager objectManager = new ObjectManager(byteGroundArray, intGroundArray);
+			ObjectManager objectManager = new ObjectManager(tileFlags, intGroundArray);
 			int k2 = aByteArrayArray1183.length;
 			stream.createFrame(0);
 			if (!aBoolean1159) {
@@ -666,7 +666,7 @@ public class Game extends RSApplet {
 					int k5 = (anIntArray1234[i3] & 0xff) * 64 - baseY;
 					byte[] abyte0 = aByteArrayArray1183[i3];
 					if (abyte0 != null) {
-						objectManager.method180(abyte0, k5, i4, (anInt1069 - 6) * 8, (anInt1070 - 6) * 8, aClass11Array1230);
+						objectManager.loadLand2(abyte0, k5, i4, (anInt1069 - 6) * 8, (anInt1070 - 6) * 8, collisionMap);
 					}
 				}
 
@@ -675,7 +675,7 @@ public class Game extends RSApplet {
 					int k7 = (anIntArray1234[j4] & 0xff) * 64 - baseY;
 					byte[] abyte2 = aByteArrayArray1183[j4];
 					if (abyte2 == null && anInt1070 < 800) {
-						objectManager.method174(k7, 64, 64, l5);
+						objectManager.sewEdges(k7, 64, 64, l5);
 					}
 				}
 
@@ -691,7 +691,7 @@ public class Game extends RSApplet {
 					if (abyte1 != null) {
 						int l8 = (anIntArray1234[i6] >> 8) * 64 - baseX;
 						int k9 = (anIntArray1234[i6] & 0xff) * 64 - baseY;
-						objectManager.method190(l8, aClass11Array1230, k9, worldController, abyte1);
+						objectManager.loadObjects(l8, collisionMap, k9, worldController, abyte1);
 					}
 				}
 
@@ -711,7 +711,7 @@ public class Game extends RSApplet {
 									if (anIntArray1234[l11] != j11 || aByteArrayArray1183[l11] == null) {
 										continue;
 									}
-									objectManager.method179(i9, l9, aClass11Array1230, k4 * 8, (j10 & 7) * 8, aByteArrayArray1183[l11], (l10 & 7) * 8, j3, j6 * 8);
+									objectManager.loadLand1(i9, l9, collisionMap, k4 * 8, (j10 & 7) * 8, aByteArrayArray1183[l11], (l10 & 7) * 8, j3, j6 * 8);
 									break;
 								}
 
@@ -726,7 +726,7 @@ public class Game extends RSApplet {
 					for (int k6 = 0; k6 < 13; k6++) {
 						int i8 = anIntArrayArrayArray1129[0][l4][k6];
 						if (i8 == -1) {
-							objectManager.method174(k6 * 8, 8, 8, l4 * 8);
+							objectManager.sewEdges(k6 * 8, 8, 8, l4 * 8);
 						}
 					}
 
@@ -747,7 +747,7 @@ public class Game extends RSApplet {
 									if (anIntArray1234[k12] != j12 || aByteArrayArray1247[k12] == null) {
 										continue;
 									}
-									objectManager.method183(aClass11Array1230, worldController, k10, j8 * 8, (i12 & 7) * 8, l6, aByteArrayArray1247[k12], (k11 & 7) * 8, i11, j9 * 8);
+									objectManager.loadObjects(collisionMap, worldController, k10, j8 * 8, (i12 & 7) * 8, l6, aByteArrayArray1247[k12], (k11 & 7) * 8, i11, j9 * 8);
 									break;
 								}
 
@@ -760,13 +760,13 @@ public class Game extends RSApplet {
 
 			}
 			stream.createFrame(0);
-			objectManager.method171(aClass11Array1230, worldController);
+			objectManager.createRegionScene(collisionMap, worldController);
 			if(aRSImageProducer_1165 != null) {
 				aRSImageProducer_1165.initDrawingArea();
 				Texture.lineOffsets = chatBoxAreaOffsets;
 			}
 			stream.createFrame(0);
-			int k3 = ObjectManager.anInt145;
+			int k3 = ObjectManager.minPlane;
 			if (k3 > plane) {
 				k3 = plane;
 			}
@@ -774,9 +774,9 @@ public class Game extends RSApplet {
 				k3 = plane - 1;
 			}
 			if (lowMem) {
-				worldController.method275(ObjectManager.anInt145);
+				worldController.setPlane(ObjectManager.minPlane);
 			} else {
-				worldController.method275(0);
+				worldController.setPlane(0);
 			}
 			for (int i5 = 0; i5 < 104; i5++) {
 				for (int i7 = 0; i7 < 104; i7++) {
@@ -859,10 +859,10 @@ public class Game extends RSApplet {
 		for (int l = 1; l < 103; l++) {
 			int i1 = 24628 + (103 - l) * 512 * 4;
 			for (int k1 = 1; k1 < 103; k1++) {
-				if ((byteGroundArray[i][k1][l] & 0x18) == 0) {
+				if ((tileFlags[i][k1][l] & 0x18) == 0) {
 					worldController.method309(ai, i1, i, k1, l);
 				}
-				if (i < 3 && (byteGroundArray[i + 1][k1][l] & 8) != 0) {
+				if (i < 3 && (tileFlags[i + 1][k1][l] & 8) != 0) {
 					worldController.method309(ai, i1, i + 1, k1, l);
 				}
 				i1 += 4;
@@ -875,10 +875,10 @@ public class Game extends RSApplet {
 		aClass30_Sub2_Sub1_Sub1_1263.method343();
 		for (int i2 = 1; i2 < 103; i2++) {
 			for (int j2 = 1; j2 < 103; j2++) {
-				if ((byteGroundArray[i][j2][i2] & 0x18) == 0) {
+				if ((tileFlags[i][j2][i2] & 0x18) == 0) {
 					method50(i2, j1, j2, l1, i);
 				}
-				if (i < 3 && (byteGroundArray[i + 1][j2][i2] & 8) != 0) {
+				if (i < 3 && (tileFlags[i + 1][j2][i2] & 8) != 0) {
 					method50(i2, j1, j2, l1, i + 1);
 				}
 			}
@@ -894,14 +894,14 @@ public class Game extends RSApplet {
 				int i3 = worldController.method303(plane, k2, l2);
 				if (i3 != 0) {
 					i3 = i3 >> 14 & 0x7fff;
-					int j3 = ObjectDef.forID(i3).anInt746;
+					int j3 = ObjectDef.forID(i3).minimapFunction;
 					if (j3 >= 0) {
 						int k3 = k2;
 						int l3 = l2;
 						if (j3 != 22 && j3 != 29 && j3 != 34 && j3 != 36 && j3 != 46 && j3 != 47 && j3 != 48) {
 							byte byte0 = 104;
 							byte byte1 = 104;
-							int[][] ai1 = aClass11Array1230[plane].anIntArrayArray294;
+							int[][] ai1 = collisionMap[plane].adjacencies;
 							for (int i4 = 0; i4 < 10; i4++) {
 								int j4 = (int) (Math.random() * 4D);
 								if (j4 == 0 && k3 > 0 && k3 > k2 - 3 && (ai1[k3 - 1][l3] & 0x1280108) == 0) {
@@ -966,7 +966,7 @@ public class Game extends RSApplet {
 		}
 
 		int i1 = i + (j << 7) + 0x60000000;
-		worldController.method281(i, i1, ((Animable) obj1), method42(plane, j * 128 + 64, i * 128 + 64), ((Animable) obj2), ((Animable) obj), plane, j);
+		worldController.addItemPile(i, i1, ((SceneNode) obj1), method42(plane, j * 128 + 64, i * 128 + 64), ((SceneNode) obj2), ((SceneNode) obj), plane, j);
 	}
 
 	public void method26(boolean flag) {
@@ -990,7 +990,7 @@ public class Game extends RSApplet {
 			if (!npc.desc.aBoolean84) {
 				k += 0x80000000;
 			}
-			worldController.method285(plane, npc.anInt1552, method42(plane, npc.y, npc.x), k, npc.y, (npc.anInt1540 - 1) * 64 + 60, npc.x, npc, npc.aBoolean1541);
+			worldController.add(plane, npc.anInt1552, method42(plane, npc.y, npc.x), k, npc.y, (npc.anInt1540 - 1) * 64 + 60, npc.x, npc, npc.aBoolean1541);
 		}
 	}
 
@@ -2001,7 +2001,7 @@ public class Game extends RSApplet {
 			return 0;
 		}
 		int j1 = i;
-		if (j1 < 3 && (byteGroundArray[1][l][i1] & 2) == 2) {
+		if (j1 < 3 && (tileFlags[1][l][i1] & 2) == 2) {
 			j1++;
 		}
 		int k1 = k & 0x7f;
@@ -2037,7 +2037,7 @@ public class Game extends RSApplet {
 		unlinkMRUNodes();
 		worldController.initToNull();
 		for (int i = 0; i < 4; i++) {
-			aClass11Array1230[i].method210();
+			collisionMap[i].reset();
 		}
 
 		System.gc();
@@ -2146,7 +2146,7 @@ public class Game extends RSApplet {
 			if (player.aModel_1714 != null && loopCycle >= player.anInt1707 && loopCycle < player.anInt1708) {
 				player.aBoolean1699 = false;
 				player.anInt1709 = method42(plane, player.y, player.x);
-				worldController.method286(plane, player.y, player, player.anInt1552, player.anInt1722, player.x, player.anInt1709, player.anInt1719, player.anInt1721, i1, player.anInt1720);
+				worldController.add(plane, player.y, player, player.anInt1552, player.anInt1722, player.x, player.anInt1709, player.anInt1719, player.anInt1721, i1, player.anInt1720);
 				continue;
 			}
 			if ((player.x & 0x7f) == 64 && (player.y & 0x7f) == 64) {
@@ -2156,7 +2156,7 @@ public class Game extends RSApplet {
 				anIntArrayArray929[j1][k1] = anInt1265;
 			}
 			player.anInt1709 = method42(plane, player.y, player.x);
-			worldController.method285(plane, player.anInt1552, player.anInt1709, i1, player.y, 60, player.x, player, player.aBoolean1541);
+			worldController.add(plane, player.anInt1552, player.anInt1709, i1, player.y, 60, player.x, player, player.aBoolean1541);
 		}
 
 	}
@@ -2297,9 +2297,9 @@ public class Game extends RSApplet {
 			if (class46_2.anInt758 != -1) {
 				Background background_2 = mapScenes[class46_2.anInt758];
 				if (background_2 != null) {
-					int i6 = (class46_2.anInt744 * 4 - background_2.anInt1452) / 2;
-					int j6 = (class46_2.anInt761 * 4 - background_2.anInt1453) / 2;
-					background_2.method361(48 + l * 4 + i6, 48 + (104 - i - class46_2.anInt761) * 4 + j6);
+					int i6 = (class46_2.sizeX * 4 - background_2.anInt1452) / 2;
+					int j6 = (class46_2.sizeY * 4 - background_2.anInt1453) / 2;
+					background_2.method361(48 + l * 4 + i6, 48 + (104 - i - class46_2.sizeY) * 4 + j6);
 				}
 			} else {
 				if (i3 == 0 || i3 == 2) {
@@ -2371,9 +2371,9 @@ public class Game extends RSApplet {
 			if (class46_1.anInt758 != -1) {
 				Background background_1 = mapScenes[class46_1.anInt758];
 				if (background_1 != null) {
-					int j5 = (class46_1.anInt744 * 4 - background_1.anInt1452) / 2;
-					int k5 = (class46_1.anInt761 * 4 - background_1.anInt1453) / 2;
-					background_1.method361(48 + l * 4 + j5, 48 + (104 - i - class46_1.anInt761) * 4 + k5);
+					int j5 = (class46_1.sizeX * 4 - background_1.anInt1452) / 2;
+					int k5 = (class46_1.sizeY * 4 - background_1.anInt1453) / 2;
+					background_1.method361(48 + l * 4 + j5, 48 + (104 - i - class46_1.sizeY) * 4 + k5);
 				}
 			} else if (j3 == 9) {
 				int l4 = 0xeeeeee;
@@ -2402,9 +2402,9 @@ public class Game extends RSApplet {
 			if (class46.anInt758 != -1) {
 				Background background = mapScenes[class46.anInt758];
 				if (background != null) {
-					int i4 = (class46.anInt744 * 4 - background.anInt1452) / 2;
-					int j4 = (class46.anInt761 * 4 - background.anInt1453) / 2;
-					background.method361(48 + l * 4 + i4, 48 + (104 - i - class46.anInt761) * 4 + j4);
+					int i4 = (class46.sizeX * 4 - background.anInt1452) / 2;
+					int j4 = (class46.sizeY * 4 - background.anInt1453) / 2;
+					background.method361(48 + l * 4 + i4, 48 + (104 - i - class46.sizeY) * 4 + j4);
 				}
 			}
 		}
@@ -2510,7 +2510,7 @@ public class Game extends RSApplet {
 	}
 
 	public void loadingStages() {
-		if (lowMem && loadingStage == 2 && ObjectManager.anInt131 != plane) {
+		if (lowMem && loadingStage == 2 && ObjectManager.buildPlane != plane) {
 			drawTextOnScreen(null, "Loading - please wait.");
 			loadingStage = 1;
 			aLong824 = System.currentTimeMillis();
@@ -2548,7 +2548,7 @@ public class Game extends RSApplet {
 					k = 10;
 					l = 10;
 				}
-				flag &= ObjectManager.method189(k, abyte0, l);
+				flag &= ObjectManager.allObjectsLoaded(k, abyte0, l);
 			}
 		}
 
@@ -2559,7 +2559,7 @@ public class Game extends RSApplet {
 			return -4;
 		} else {
 			loadingStage = 2;
-			ObjectManager.anInt131 = plane;
+			ObjectManager.buildPlane = plane;
 			method22();
 			stream.createFrame(121);
 			return 0;
@@ -2567,7 +2567,7 @@ public class Game extends RSApplet {
 	}
 
 	public void method55() {
-		for (Animable_Sub4 class30_sub2_sub4_sub4 = (Animable_Sub4) aClass19_1013.reverseGetFirst(); class30_sub2_sub4_sub4 != null; class30_sub2_sub4_sub4 = (Animable_Sub4) aClass19_1013.reverseGetNext()) {
+		for (SceneNode_Sub4 class30_sub2_sub4_sub4 = (SceneNode_Sub4) aClass19_1013.reverseGetFirst(); class30_sub2_sub4_sub4 != null; class30_sub2_sub4_sub4 = (SceneNode_Sub4) aClass19_1013.reverseGetNext()) {
 			if (class30_sub2_sub4_sub4.anInt1597 != plane || loopCycle > class30_sub2_sub4_sub4.anInt1572) {
 				class30_sub2_sub4_sub4.unlink();
 			} else if (loopCycle >= class30_sub2_sub4_sub4.anInt1571) {
@@ -2590,7 +2590,7 @@ public class Game extends RSApplet {
 					}
 				}
 				class30_sub2_sub4_sub4.method456(anInt945);
-				worldController.method285(plane, class30_sub2_sub4_sub4.anInt1595, (int) class30_sub2_sub4_sub4.aDouble1587, -1, (int) class30_sub2_sub4_sub4.aDouble1586, 60, (int) class30_sub2_sub4_sub4.aDouble1585, class30_sub2_sub4_sub4, false);
+				worldController.add(plane, class30_sub2_sub4_sub4.anInt1595, (int) class30_sub2_sub4_sub4.aDouble1587, -1, (int) class30_sub2_sub4_sub4.aDouble1586, 60, (int) class30_sub2_sub4_sub4.aDouble1585, class30_sub2_sub4_sub4, false);
 			}
 		}
 
@@ -2707,7 +2707,7 @@ public class Game extends RSApplet {
 
 				}
 			} while (onDemandData.dataType != 93 || !onDemandFetcher.method564(onDemandData.ID));
-			ObjectManager.method173(new Stream(onDemandData.buffer), onDemandFetcher);
+			ObjectManager.evaluateObjects(new Stream(onDemandData.buffer), onDemandFetcher);
 		} while (true);
 	}
 
@@ -3236,13 +3236,13 @@ public class Game extends RSApplet {
 			int i2;
 			int j2;
 			if (l1 == 0 || l1 == 2) {
-				i2 = class46.anInt744;
-				j2 = class46.anInt761;
+				i2 = class46.sizeX;
+				j2 = class46.sizeY;
 			} else {
-				i2 = class46.anInt761;
-				j2 = class46.anInt744;
+				i2 = class46.sizeY;
+				j2 = class46.sizeX;
 			}
-			int k2 = class46.anInt768;
+			int k2 = class46.rotationFlags;
 			if (l1 != 0) {
 				k2 = (k2 << l1 & 0xf) + (k2 >> 4 - l1);
 			}
@@ -4508,9 +4508,9 @@ public class Game extends RSApplet {
 		anIntArray1235 = null;
 		anIntArray1236 = null;
 		intGroundArray = null;
-		byteGroundArray = null;
+		tileFlags = null;
 		worldController = null;
-		aClass11Array1230 = null;
+		collisionMap = null;
 		anIntArrayArray901 = null;
 		anIntArrayArray825 = null;
 		bigX = null;
@@ -4601,7 +4601,7 @@ public class Game extends RSApplet {
 		ObjectDef.nullLoader();
 		EntityDef.nullLoader();
 		ItemDef.nullLoader();
-		Flo.cache = null;
+		FloorDefinition.cache = null;
 		IDK.cache = null;
 		RSInterface.interfaceCache = null;
 		DummyClass.cache = null;
@@ -5943,7 +5943,7 @@ public class Game extends RSApplet {
 		bigY[l3++] = j1;
 		boolean flag1 = false;
 		int j4 = bigX.length;
-		int[][] ai = aClass11Array1230[plane].anIntArrayArray294;
+		int[][] ai = collisionMap[plane].adjacencies;
 		while (i4 != l3) {
 			j3 = bigX[i4];
 			k3 = bigY[i4];
@@ -5953,16 +5953,16 @@ public class Game extends RSApplet {
 				break;
 			}
 			if (i1 != 0) {
-				if ((i1 < 5 || i1 == 10) && aClass11Array1230[plane].method219(k2, j3, k3, j, i1 - 1, i2)) {
+				if ((i1 < 5 || i1 == 10) && collisionMap[plane].atWall(k2, i2, j3, k3, j, i1 - 1)) {
 					flag1 = true;
 					break;
 				}
-				if (i1 < 10 && aClass11Array1230[plane].method220(k2, i2, k3, i1 - 1, j, j3)) {
+				if (i1 < 10 && collisionMap[plane].atDecoration(k2, i2, j3, k3, i1 - 1, j)) {
 					flag1 = true;
 					break;
 				}
 			}
-			if (k1 != 0 && k != 0 && aClass11Array1230[plane].method221(i2, k2, j3, k, l1, k1, k3)) {
+			if (k1 != 0 && k != 0 && collisionMap[plane].atObject(i2, k2, j3, k, l1, k1, k3)) {
 				flag1 = true;
 				break;
 			}
@@ -6588,11 +6588,11 @@ public class Game extends RSApplet {
 			StreamLoader streamLoader_3 = streamLoaderForName(6, "textures", "textures", expectedCRCs[6], 45);
 			StreamLoader streamLoader_4 = streamLoaderForName(7, "chat system", "wordenc", expectedCRCs[7], 50);
 			StreamLoader streamLoader_5 = streamLoaderForName(8, "sound effects", "sounds", expectedCRCs[8], 55);
-			byteGroundArray = new byte[4][104][104];
+			tileFlags = new byte[4][104][104];
 			intGroundArray = new int[4][105][105];
 			worldController = new WorldController(intGroundArray);
 			for (int j = 0; j < 4; j++) {
-				aClass11Array1230[j] = new CollisionMap();
+				collisionMap[j] = new CollisionMap();
 			}
 
 			aClass30_Sub2_Sub1_Sub1_1263 = new Sprite(512, 512);
@@ -6855,7 +6855,7 @@ public class Game extends RSApplet {
 			drawLoadingText(86, "Unpacking config");
 			Animation.unpackConfig(streamLoader);
 			ObjectDef.unpackConfig(streamLoader);
-			Flo.unpackConfig(streamLoader);
+			FloorDefinition.unpackConfig(streamLoader);
 			ItemDef.unpackConfig(streamLoader);
 			EntityDef.unpackConfig(streamLoader);
 			IDK.unpackConfig(streamLoader);
@@ -6934,7 +6934,7 @@ public class Game extends RSApplet {
 			Censor.loadConfig(streamLoader_4);
 			mouseDetection = new MouseDetection(this);
 			startRunnable(mouseDetection, 10);
-			Animable_Sub5.clientInstance = this;
+			SceneNode_Sub5.clientInstance = this;
 			ObjectDef.clientInstance = this;
 			EntityDef.clientInstance = this;
 			return;
@@ -7739,8 +7739,8 @@ public class Game extends RSApplet {
 	}
 
 	public void method104() {
-		Animable_Sub3 class30_sub2_sub4_sub3 = (Animable_Sub3) aClass19_1056.reverseGetFirst();
-		for (; class30_sub2_sub4_sub3 != null; class30_sub2_sub4_sub3 = (Animable_Sub3) aClass19_1056.reverseGetNext()) {
+		SceneNode_Sub3 class30_sub2_sub4_sub3 = (SceneNode_Sub3) aClass19_1056.reverseGetFirst();
+		for (; class30_sub2_sub4_sub3 != null; class30_sub2_sub4_sub3 = (SceneNode_Sub3) aClass19_1056.reverseGetNext()) {
 			if (class30_sub2_sub4_sub3.anInt1560 != plane || class30_sub2_sub4_sub3.aBoolean1567) {
 				class30_sub2_sub4_sub3.unlink();
 			} else if (loopCycle >= class30_sub2_sub4_sub3.anInt1564) {
@@ -7748,7 +7748,7 @@ public class Game extends RSApplet {
 				if (class30_sub2_sub4_sub3.aBoolean1567) {
 					class30_sub2_sub4_sub3.unlink();
 				} else {
-					worldController.method285(class30_sub2_sub4_sub3.anInt1560, 0, class30_sub2_sub4_sub3.anInt1563, -1, class30_sub2_sub4_sub3.anInt1562, 60, class30_sub2_sub4_sub3.anInt1561, class30_sub2_sub4_sub3, false);
+					worldController.add(class30_sub2_sub4_sub3.anInt1560, 0, class30_sub2_sub4_sub3.anInt1563, -1, class30_sub2_sub4_sub3.anInt1562, 60, class30_sub2_sub4_sub3.anInt1561, class30_sub2_sub4_sub3, false);
 				}
 			}
 		}
@@ -8282,7 +8282,7 @@ public class Game extends RSApplet {
 				for (int l1 = l - 4; l1 <= l + 4; l1++) {
 					for (int k2 = i1 - 4; k2 <= i1 + 4; k2++) {
 						int l2 = plane;
-						if (l2 < 3 && (byteGroundArray[1][l1][k2] & 2) == 2) {
+						if (l2 < 3 && (tileFlags[1][l1][k2] & 2) == 2) {
 							l2++;
 						}
 						int i3 = j1 - intGroundArray[l2][l1][k2];
@@ -8533,7 +8533,7 @@ public class Game extends RSApplet {
 					class30_sub1.anInt1294--;
 				}
 				if (class30_sub1.anInt1294 == 0) {
-					if (class30_sub1.anInt1299 < 0 || ObjectManager.method178(class30_sub1.anInt1299, class30_sub1.anInt1301)) {
+					if (class30_sub1.anInt1299 < 0 || ObjectManager.objectIsValid(class30_sub1.anInt1299, class30_sub1.anInt1301)) {
 						method142(class30_sub1.anInt1298, class30_sub1.anInt1295, class30_sub1.anInt1300, class30_sub1.anInt1301, class30_sub1.anInt1297, class30_sub1.anInt1296, class30_sub1.anInt1299);
 						class30_sub1.unlink();
 					}
@@ -8541,7 +8541,7 @@ public class Game extends RSApplet {
 					if (class30_sub1.anInt1302 > 0) {
 						class30_sub1.anInt1302--;
 					}
-					if (class30_sub1.anInt1302 == 0 && class30_sub1.anInt1297 >= 1 && class30_sub1.anInt1298 >= 1 && class30_sub1.anInt1297 <= 102 && class30_sub1.anInt1298 <= 102 && (class30_sub1.anInt1291 < 0 || ObjectManager.method178(class30_sub1.anInt1291, class30_sub1.anInt1293))) {
+					if (class30_sub1.anInt1302 == 0 && class30_sub1.anInt1297 >= 1 && class30_sub1.anInt1298 >= 1 && class30_sub1.anInt1297 <= 102 && class30_sub1.anInt1298 <= 102 && (class30_sub1.anInt1291 < 0 || ObjectManager.objectIsValid(class30_sub1.anInt1291, class30_sub1.anInt1293))) {
 						method142(class30_sub1.anInt1298, class30_sub1.anInt1295, class30_sub1.anInt1292, class30_sub1.anInt1293, class30_sub1.anInt1297, class30_sub1.anInt1296, class30_sub1.anInt1291);
 						class30_sub1.anInt1302 = -1;
 						if (class30_sub1.anInt1291 == class30_sub1.anInt1299 && class30_sub1.anInt1299 == -1) {
@@ -8746,7 +8746,7 @@ public class Game extends RSApplet {
 			int l = yCameraPos >> 7;
 			int i1 = myPlayer.x >> 7;
 			int j1 = myPlayer.y >> 7;
-			if ((byteGroundArray[plane][k][l] & 4) != 0) {
+			if ((tileFlags[plane][k][l] & 4) != 0) {
 				j = plane;
 			}
 			int k1;
@@ -8770,7 +8770,7 @@ public class Game extends RSApplet {
 					} else if (k > i1) {
 						k--;
 					}
-					if ((byteGroundArray[plane][k][l] & 4) != 0) {
+					if ((tileFlags[plane][k][l] & 4) != 0) {
 						j = plane;
 					}
 					k2 += i2;
@@ -8781,7 +8781,7 @@ public class Game extends RSApplet {
 						} else if (l > j1) {
 							l--;
 						}
-						if ((byteGroundArray[plane][k][l] & 4) != 0) {
+						if ((tileFlags[plane][k][l] & 4) != 0) {
 							j = plane;
 						}
 					}
@@ -8795,7 +8795,7 @@ public class Game extends RSApplet {
 					} else if (l > j1) {
 						l--;
 					}
-					if ((byteGroundArray[plane][k][l] & 4) != 0) {
+					if ((tileFlags[plane][k][l] & 4) != 0) {
 						j = plane;
 					}
 					l2 += j2;
@@ -8806,14 +8806,14 @@ public class Game extends RSApplet {
 						} else if (k > i1) {
 							k--;
 						}
-						if ((byteGroundArray[plane][k][l] & 4) != 0) {
+						if ((tileFlags[plane][k][l] & 4) != 0) {
 							j = plane;
 						}
 					}
 				}
 			}
 		}
-		if ((byteGroundArray[plane][myPlayer.x >> 7][myPlayer.y >> 7] & 4) != 0) {
+		if ((tileFlags[plane][myPlayer.x >> 7][myPlayer.y >> 7] & 4) != 0) {
 			j = plane;
 		}
 		return j;
@@ -8821,7 +8821,7 @@ public class Game extends RSApplet {
 
 	public int method121() {
 		int j = method42(plane, yCameraPos, xCameraPos);
-		if (j - zCameraPos < 800 && (byteGroundArray[plane][xCameraPos >> 7][yCameraPos >> 7] & 4) != 0) {
+		if (j - zCameraPos < 800 && (tileFlags[plane][xCameraPos >> 7][yCameraPos >> 7] & 4) != 0) {
 			return plane;
 		} else {
 			return 3;
@@ -9633,32 +9633,32 @@ public class Game extends RSApplet {
 					if (class10 != null) {
 						int k21 = class10.uid >> 14 & 0x7fff;
 						if (j12 == 2) {
-							class10.aClass30_Sub2_Sub4_278 = new Animable_Sub5(k21, 4 + k14, 2, i19, l19, j18, k20, j17, false);
-							class10.aClass30_Sub2_Sub4_279 = new Animable_Sub5(k21, k14 + 1 & 3, 2, i19, l19, j18, k20, j17, false);
+							class10.aClass30_Sub2_Sub4_278 = new SceneNode_Sub5(k21, 4 + k14, 2, i19, l19, j18, k20, j17, false);
+							class10.aClass30_Sub2_Sub4_279 = new SceneNode_Sub5(k21, k14 + 1 & 3, 2, i19, l19, j18, k20, j17, false);
 						} else {
-							class10.aClass30_Sub2_Sub4_278 = new Animable_Sub5(k21, k14, j12, i19, l19, j18, k20, j17, false);
+							class10.aClass30_Sub2_Sub4_278 = new SceneNode_Sub5(k21, k14, j12, i19, l19, j18, k20, j17, false);
 						}
 					}
 				}
 				if (j16 == 1) {
 					Object2 class26 = worldController.method297(j4, i7, plane);
 					if (class26 != null) {
-						class26.aClass30_Sub2_Sub4_504 = new Animable_Sub5(class26.uid >> 14 & 0x7fff, 0, 4, i19, l19, j18, k20, j17, false);
+						class26.aClass30_Sub2_Sub4_504 = new SceneNode_Sub5(class26.uid >> 14 & 0x7fff, 0, 4, i19, l19, j18, k20, j17, false);
 					}
 				}
 				if (j16 == 2) {
-					Object5 class28 = worldController.method298(j4, i7, plane);
+					GameObject class28 = worldController.method298(j4, i7, plane);
 					if (j12 == 11) {
 						j12 = 10;
 					}
 					if (class28 != null) {
-						class28.aClass30_Sub2_Sub4_521 = new Animable_Sub5(class28.uid >> 14 & 0x7fff, k14, j12, i19, l19, j18, k20, j17, false);
+						class28.node = new SceneNode_Sub5(class28.uid >> 14 & 0x7fff, k14, j12, i19, l19, j18, k20, j17, false);
 					}
 				}
 				if (j16 == 3) {
-					Object3 class49 = worldController.method299(i7, j4, plane);
+					GroundDecoration class49 = worldController.method299(i7, j4, plane);
 					if (class49 != null) {
-						class49.aClass30_Sub2_Sub4_814 = new Animable_Sub5(class49.uid >> 14 & 0x7fff, k14, 22, i19, l19, j18, k20, j17, false);
+						class49.node = new SceneNode_Sub5(class49.uid >> 14 & 0x7fff, k14, 22, i19, l19, j18, k20, j17, false);
 					}
 				}
 			}
@@ -9698,11 +9698,11 @@ public class Game extends RSApplet {
 					player.anInt1707 = l14 + loopCycle;
 					player.anInt1708 = k17 + loopCycle;
 					player.aModel_1714 = model;
-					int i23 = class46.anInt744;
-					int j23 = class46.anInt761;
+					int i23 = class46.sizeX;
+					int j23 = class46.sizeY;
 					if (i20 == 1 || i20 == 3) {
-						i23 = class46.anInt761;
-						j23 = class46.anInt744;
+						i23 = class46.sizeY;
+						j23 = class46.sizeX;
 					}
 					player.anInt1711 = k4 * 128 + i23 * 64;
 					player.anInt1713 = j7 * 128 + j23 * 64;
@@ -9763,7 +9763,7 @@ public class Game extends RSApplet {
 			if (i5 >= 0 && l7 >= 0 && i5 < 104 && l7 < 104) {
 				i5 = i5 * 128 + 64;
 				l7 = l7 * 128 + 64;
-				Animable_Sub3 class30_sub2_sub4_sub3 = new Animable_Sub3(plane, loopCycle, j15, k10, method42(plane, l7, i5) - l12, l7, i5);
+				SceneNode_Sub3 class30_sub2_sub4_sub3 = new SceneNode_Sub3(plane, loopCycle, j15, k10, method42(plane, l7, i5) - l12, l7, i5);
 				aClass19_1056.insertHead(class30_sub2_sub4_sub3);
 			}
 			return;
@@ -9805,7 +9805,7 @@ public class Game extends RSApplet {
 				k8 = k8 * 128 + 64;
 				j11 = j11 * 128 + 64;
 				k13 = k13 * 128 + 64;
-				Animable_Sub4 class30_sub2_sub4_sub4 = new Animable_Sub4(i21, l18, k19 + loopCycle, j20 + loopCycle, j21, plane, method42(plane, k8, l5) - i18, k8, l5, l15, i17);
+				SceneNode_Sub4 class30_sub2_sub4_sub4 = new SceneNode_Sub4(i21, l18, k19 + loopCycle, j20 + loopCycle, j21, plane, method42(plane, k8, l5) - i18, k8, l5, l15, i17);
 				class30_sub2_sub4_sub4.method455(k19 + loopCycle, k13, method42(plane, k13, j11) - l18, j11);
 				aClass19_1013.insertHead(class30_sub2_sub4_sub4);
 			}
@@ -9995,63 +9995,63 @@ public class Game extends RSApplet {
 		}
 	}
 
-	public void method142(int i, int j, int k, int l, int i1, int j1, int k1) {
-		if (i1 >= 1 && i >= 1 && i1 <= 102 && i <= 102) {
-			if (lowMem && j != plane) {
+	public void method142(int yPos, int height, int rotation, int l, int xPos, int type, int objectId) {
+		if (xPos >= 1 && yPos >= 1 && xPos <= 102 && yPos <= 102) {
+			if (lowMem && height != plane) {
 				return;
 			}
 			int i2 = 0;
-			if (j1 == 0) {
-				i2 = worldController.method300(j, i1, i);
+			if (type == 0) {
+				i2 = worldController.method300(height, xPos, yPos);
 			}
-			if (j1 == 1) {
-				i2 = worldController.method301(j, i1, i);
+			if (type == 1) {
+				i2 = worldController.method301(height, xPos, yPos);
 			}
-			if (j1 == 2) {
-				i2 = worldController.method302(j, i1, i);
+			if (type == 2) {
+				i2 = worldController.method302(height, xPos, yPos);
 			}
-			if (j1 == 3) {
-				i2 = worldController.method303(j, i1, i);
+			if (type == 3) {
+				i2 = worldController.method303(height, xPos, yPos);
 			}
 			if (i2 != 0) {
-				int i3 = worldController.method304(j, i1, i, i2);
+				int i3 = worldController.method304(height, xPos, yPos, i2);
 				int j2 = i2 >> 14 & 0x7fff;
 				int k2 = i3 & 0x1f;
 				int l2 = i3 >> 6;
-				if (j1 == 0) {
-					worldController.method291(i1, j, i, (byte) -119);
-					ObjectDef class46 = ObjectDef.forID(j2);
-					if (class46.aBoolean767) {
-						aClass11Array1230[j].method215(l2, k2, class46.aBoolean757, i1, i);
+				if (type == 0) {
+					worldController.removeWall(xPos, height, yPos, (byte) -119);
+					ObjectDef objectDefinition = ObjectDef.forID(j2);
+					if (objectDefinition.blocksWalk) {
+						collisionMap[height].removeWall(l2, k2, objectDefinition.blocksProjectiles, xPos, yPos);
 					}
 				}
-				if (j1 == 1) {
-					worldController.method292(i, j, i1);
+				if (type == 1) {
+					worldController.removeWallDecoration(yPos, height, xPos);
 				}
-				if (j1 == 2) {
-					worldController.method293(j, i1, i);
-					ObjectDef class46_1 = ObjectDef.forID(j2);
-					if (i1 + class46_1.anInt744 > 103 || i + class46_1.anInt744 > 103 || i1 + class46_1.anInt761 > 103 || i + class46_1.anInt761 > 103) {
+				if (type == 2) {
+					worldController.removeObjects(height, xPos, yPos);
+					ObjectDef objectDefinition = ObjectDef.forID(j2);
+					if (xPos + objectDefinition.sizeX > 103 || yPos + objectDefinition.sizeX > 103 || xPos + objectDefinition.sizeY > 103 || yPos + objectDefinition.sizeY > 103) {
 						return;
 					}
-					if (class46_1.aBoolean767) {
-						aClass11Array1230[j].method216(l2, class46_1.anInt744, i1, i, class46_1.anInt761, class46_1.aBoolean757);
+					if (objectDefinition.blocksWalk) {
+						collisionMap[height].removeObject(l2, objectDefinition.sizeX, xPos, yPos, objectDefinition.sizeY, objectDefinition.blocksProjectiles);
 					}
 				}
-				if (j1 == 3) {
-					worldController.method294(j, i, i1);
-					ObjectDef class46_2 = ObjectDef.forID(j2);
-					if (class46_2.aBoolean767 && class46_2.hasActions) {
-						aClass11Array1230[j].method218(i, i1);
+				if (type == 3) {
+					worldController.removeGroundDecoration(height, yPos, xPos);
+					ObjectDef objectDefinition = ObjectDef.forID(j2);
+					if (objectDefinition.blocksWalk && objectDefinition.hasActions) {
+						collisionMap[height].method218(yPos, xPos);
 					}
 				}
 			}
-			if (k1 >= 0) {
-				int j3 = j;
-				if (j3 < 3 && (byteGroundArray[1][i1][i] & 2) == 2) {
+			if (objectId >= 0) {
+				int j3 = height;
+				if (j3 < 3 && (tileFlags[1][xPos][yPos] & 2) == 2) {
 					j3++;
 				}
-				ObjectManager.method188(worldController, k, i, l, j3, aClass11Array1230[j], intGroundArray, i1, k1, j);
+				ObjectManager.addObject(worldController, rotation, yPos, l, j3, collisionMap[height], intGroundArray, xPos, objectId, height);
 			}
 		}
 	}
@@ -11171,7 +11171,7 @@ public class Game extends RSApplet {
 				// 15774 = Good/Bad Password
 				// 15767 = Drama Type 
 				if (l7 == 15244) {
-					if (Flo.getTodaysDate().contains(ClientSettings.SNOW_MONTH)) {
+					if (FloorDefinition.getTodaysDate().contains(ClientSettings.SNOW_MONTH)) {
 						openInterfaceID = 15819;
 					} else {
 						openInterfaceID = 15801;
@@ -11585,7 +11585,7 @@ public class Game extends RSApplet {
 		inputTaken = false;
 		songChanging = true;
 		anIntArray1229 = new int[151];
-		aClass11Array1230 = new CollisionMap[4];
+		collisionMap = new CollisionMap[4];
 		aBoolean1233 = false;
 		soundType = new int[50];
 		aBoolean1242 = false;
@@ -11975,7 +11975,7 @@ public class Game extends RSApplet {
 	public int nextSong;
 	public boolean songChanging;
 	public final int[] anIntArray1229;
-	public CollisionMap[] aClass11Array1230;
+	public CollisionMap[] collisionMap;
 	public static int[] anIntArray1232;
 	public boolean aBoolean1233;
 	public int[] anIntArray1234;
@@ -12002,7 +12002,7 @@ public class Game extends RSApplet {
 	public boolean welcomeScreenRaised;
 	public boolean messagePromptRaised;
 	public static int anInt1257;
-	public byte[][][] byteGroundArray;
+	public byte[][][] tileFlags;
 	public int previousSong;
 	public int destX;
 	public int destY;

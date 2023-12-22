@@ -5,21 +5,21 @@
 final class CollisionMap {
 
 	public CollisionMap() {
-		anInt290 = 0;
-		anInt291 = 0;
-		anInt292 = 104;
-		anInt293 = 104;
-		anIntArrayArray294 = new int[anInt292][anInt293];
-		method210();
+		xOffset = 0;
+		yOffset = 0;
+		width = 104;
+		height = 104;
+		adjacencies = new int[width][height];
+		reset();
 	}
 
-	public void method210() {
-		for (int i = 0; i < anInt292; i++) {
-			for (int j = 0; j < anInt293; j++) {
-				if (i == 0 || j == 0 || i == anInt292 - 1 || j == anInt293 - 1) {
-					anIntArrayArray294[i][j] = 0xffffff;
+	public void reset() {
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				if (i == 0 || j == 0 || i == width - 1 || j == height - 1) {
+					adjacencies[i][j] = 0xffffff;
 				} else {
-					anIntArrayArray294[i][j] = 0x1000000;
+					adjacencies[i][j] = 0x1000000;
 				}
 			}
 
@@ -27,146 +27,146 @@ final class CollisionMap {
 
 	}
 
-	public void method211(int i, int j, int k, int l, boolean flag) {
-		k -= anInt290;
-		i -= anInt291;
+	public void addWall(int i, int j, int k, int l, boolean blocksProjectiles) {
+		k -= xOffset;
+		i -= yOffset;
 		if (l == 0) {
 			if (j == 0) {
-				method214(k, i, 128);
-				method214(k - 1, i, 8);
+				add(k, i, 128);
+				add(k - 1, i, 8);
 			}
 			if (j == 1) {
-				method214(k, i, 2);
-				method214(k, i + 1, 32);
+				add(k, i, 2);
+				add(k, i + 1, 32);
 			}
 			if (j == 2) {
-				method214(k, i, 8);
-				method214(k + 1, i, 128);
+				add(k, i, 8);
+				add(k + 1, i, 128);
 			}
 			if (j == 3) {
-				method214(k, i, 32);
-				method214(k, i - 1, 2);
+				add(k, i, 32);
+				add(k, i - 1, 2);
 			}
 		}
 		if (l == 1 || l == 3) {
 			if (j == 0) {
-				method214(k, i, 1);
-				method214(k - 1, i + 1, 16);
+				add(k, i, 1);
+				add(k - 1, i + 1, 16);
 			}
 			if (j == 1) {
-				method214(k, i, 4);
-				method214(k + 1, i + 1, 64);
+				add(k, i, 4);
+				add(k + 1, i + 1, 64);
 			}
 			if (j == 2) {
-				method214(k, i, 16);
-				method214(k + 1, i - 1, 1);
+				add(k, i, 16);
+				add(k + 1, i - 1, 1);
 			}
 			if (j == 3) {
-				method214(k, i, 64);
-				method214(k - 1, i - 1, 4);
+				add(k, i, 64);
+				add(k - 1, i - 1, 4);
 			}
 		}
 		if (l == 2) {
 			if (j == 0) {
-				method214(k, i, 130);
-				method214(k - 1, i, 8);
-				method214(k, i + 1, 32);
+				add(k, i, 130);
+				add(k - 1, i, 8);
+				add(k, i + 1, 32);
 			}
 			if (j == 1) {
-				method214(k, i, 10);
-				method214(k, i + 1, 32);
-				method214(k + 1, i, 128);
+				add(k, i, 10);
+				add(k, i + 1, 32);
+				add(k + 1, i, 128);
 			}
 			if (j == 2) {
-				method214(k, i, 40);
-				method214(k + 1, i, 128);
-				method214(k, i - 1, 2);
+				add(k, i, 40);
+				add(k + 1, i, 128);
+				add(k, i - 1, 2);
 			}
 			if (j == 3) {
-				method214(k, i, 160);
-				method214(k, i - 1, 2);
-				method214(k - 1, i, 8);
+				add(k, i, 160);
+				add(k, i - 1, 2);
+				add(k - 1, i, 8);
 			}
 		}
-		if (flag) {
+		if (blocksProjectiles) {
 			if (l == 0) {
 				if (j == 0) {
-					method214(k, i, 0x10000);
-					method214(k - 1, i, 4096);
+					add(k, i, 0x10000);
+					add(k - 1, i, 4096);
 				}
 				if (j == 1) {
-					method214(k, i, 1024);
-					method214(k, i + 1, 16384);
+					add(k, i, 1024);
+					add(k, i + 1, 16384);
 				}
 				if (j == 2) {
-					method214(k, i, 4096);
-					method214(k + 1, i, 0x10000);
+					add(k, i, 4096);
+					add(k + 1, i, 0x10000);
 				}
 				if (j == 3) {
-					method214(k, i, 16384);
-					method214(k, i - 1, 1024);
+					add(k, i, 16384);
+					add(k, i - 1, 1024);
 				}
 			}
 			if (l == 1 || l == 3) {
 				if (j == 0) {
-					method214(k, i, 512);
-					method214(k - 1, i + 1, 8192);
+					add(k, i, 512);
+					add(k - 1, i + 1, 8192);
 				}
 				if (j == 1) {
-					method214(k, i, 2048);
-					method214(k + 1, i + 1, 32768);
+					add(k, i, 2048);
+					add(k + 1, i + 1, 32768);
 				}
 				if (j == 2) {
-					method214(k, i, 8192);
-					method214(k + 1, i - 1, 512);
+					add(k, i, 8192);
+					add(k + 1, i - 1, 512);
 				}
 				if (j == 3) {
-					method214(k, i, 32768);
-					method214(k - 1, i - 1, 2048);
+					add(k, i, 32768);
+					add(k - 1, i - 1, 2048);
 				}
 			}
 			if (l == 2) {
 				if (j == 0) {
-					method214(k, i, 0x10400);
-					method214(k - 1, i, 4096);
-					method214(k, i + 1, 16384);
+					add(k, i, 0x10400);
+					add(k - 1, i, 4096);
+					add(k, i + 1, 16384);
 				}
 				if (j == 1) {
-					method214(k, i, 5120);
-					method214(k, i + 1, 16384);
-					method214(k + 1, i, 0x10000);
+					add(k, i, 5120);
+					add(k, i + 1, 16384);
+					add(k + 1, i, 0x10000);
 				}
 				if (j == 2) {
-					method214(k, i, 20480);
-					method214(k + 1, i, 0x10000);
-					method214(k, i - 1, 1024);
+					add(k, i, 20480);
+					add(k + 1, i, 0x10000);
+					add(k, i - 1, 1024);
 				}
 				if (j == 3) {
-					method214(k, i, 0x14000);
-					method214(k, i - 1, 1024);
-					method214(k - 1, i, 4096);
+					add(k, i, 0x14000);
+					add(k, i - 1, 1024);
+					add(k - 1, i, 4096);
 				}
 			}
 		}
 	}
 
-	public void method212(boolean flag, int j, int k, int l, int i1, int j1) {
+	public void addObject(boolean flag, int j, int k, int l, int i1, int j1) {
 		int k1 = 256;
 		if (flag) {
 			k1 += 0x20000;
 		}
-		l -= anInt290;
-		i1 -= anInt291;
+		l -= xOffset;
+		i1 -= yOffset;
 		if (j1 == 1 || j1 == 3) {
 			int l1 = j;
 			j = k;
 			k = l1;
 		}
 		for (int i2 = l; i2 < l + j; i2++) {
-			if (i2 >= 0 && i2 < anInt292) {
+			if (i2 >= 0 && i2 < width) {
 				for (int j2 = i1; j2 < i1 + k; j2++) {
-					if (j2 >= 0 && j2 < anInt293) {
-						method214(i2, j2, k1);
+					if (j2 >= 0 && j2 < height) {
+						add(i2, j2, k1);
 					}
 				}
 
@@ -175,156 +175,156 @@ final class CollisionMap {
 
 	}
 
-	public void method213(int i, int k) {
-		k -= anInt290;
-		i -= anInt291;
-		anIntArrayArray294[k][i] |= 0x200000;
+	public void setSolid(int i, int k) {
+		k -= xOffset;
+		i -= yOffset;
+		adjacencies[k][i] |= 0x200000;
 	}
 
-	private void method214(int i, int j, int k) {
-		anIntArrayArray294[i][j] |= k;
+	private void add(int i, int j, int k) {
+		adjacencies[i][j] |= k;
 	}
 
-	public void method215(int i, int j, boolean flag, int k, int l) {
-		k -= anInt290;
-		l -= anInt291;
+	public void removeWall(int i, int j, boolean flag, int k, int l) {
+		k -= xOffset;
+		l -= yOffset;
 		if (j == 0) {
 			if (i == 0) {
-				method217(128, k, l);
-				method217(8, k - 1, l);
+				remove(128, k, l);
+				remove(8, k - 1, l);
 			}
 			if (i == 1) {
-				method217(2, k, l);
-				method217(32, k, l + 1);
+				remove(2, k, l);
+				remove(32, k, l + 1);
 			}
 			if (i == 2) {
-				method217(8, k, l);
-				method217(128, k + 1, l);
+				remove(8, k, l);
+				remove(128, k + 1, l);
 			}
 			if (i == 3) {
-				method217(32, k, l);
-				method217(2, k, l - 1);
+				remove(32, k, l);
+				remove(2, k, l - 1);
 			}
 		}
 		if (j == 1 || j == 3) {
 			if (i == 0) {
-				method217(1, k, l);
-				method217(16, k - 1, l + 1);
+				remove(1, k, l);
+				remove(16, k - 1, l + 1);
 			}
 			if (i == 1) {
-				method217(4, k, l);
-				method217(64, k + 1, l + 1);
+				remove(4, k, l);
+				remove(64, k + 1, l + 1);
 			}
 			if (i == 2) {
-				method217(16, k, l);
-				method217(1, k + 1, l - 1);
+				remove(16, k, l);
+				remove(1, k + 1, l - 1);
 			}
 			if (i == 3) {
-				method217(64, k, l);
-				method217(4, k - 1, l - 1);
+				remove(64, k, l);
+				remove(4, k - 1, l - 1);
 			}
 		}
 		if (j == 2) {
 			if (i == 0) {
-				method217(130, k, l);
-				method217(8, k - 1, l);
-				method217(32, k, l + 1);
+				remove(130, k, l);
+				remove(8, k - 1, l);
+				remove(32, k, l + 1);
 			}
 			if (i == 1) {
-				method217(10, k, l);
-				method217(32, k, l + 1);
-				method217(128, k + 1, l);
+				remove(10, k, l);
+				remove(32, k, l + 1);
+				remove(128, k + 1, l);
 			}
 			if (i == 2) {
-				method217(40, k, l);
-				method217(128, k + 1, l);
-				method217(2, k, l - 1);
+				remove(40, k, l);
+				remove(128, k + 1, l);
+				remove(2, k, l - 1);
 			}
 			if (i == 3) {
-				method217(160, k, l);
-				method217(2, k, l - 1);
-				method217(8, k - 1, l);
+				remove(160, k, l);
+				remove(2, k, l - 1);
+				remove(8, k - 1, l);
 			}
 		}
 		if (flag) {
 			if (j == 0) {
 				if (i == 0) {
-					method217(0x10000, k, l);
-					method217(4096, k - 1, l);
+					remove(0x10000, k, l);
+					remove(4096, k - 1, l);
 				}
 				if (i == 1) {
-					method217(1024, k, l);
-					method217(16384, k, l + 1);
+					remove(1024, k, l);
+					remove(16384, k, l + 1);
 				}
 				if (i == 2) {
-					method217(4096, k, l);
-					method217(0x10000, k + 1, l);
+					remove(4096, k, l);
+					remove(0x10000, k + 1, l);
 				}
 				if (i == 3) {
-					method217(16384, k, l);
-					method217(1024, k, l - 1);
+					remove(16384, k, l);
+					remove(1024, k, l - 1);
 				}
 			}
 			if (j == 1 || j == 3) {
 				if (i == 0) {
-					method217(512, k, l);
-					method217(8192, k - 1, l + 1);
+					remove(512, k, l);
+					remove(8192, k - 1, l + 1);
 				}
 				if (i == 1) {
-					method217(2048, k, l);
-					method217(32768, k + 1, l + 1);
+					remove(2048, k, l);
+					remove(32768, k + 1, l + 1);
 				}
 				if (i == 2) {
-					method217(8192, k, l);
-					method217(512, k + 1, l - 1);
+					remove(8192, k, l);
+					remove(512, k + 1, l - 1);
 				}
 				if (i == 3) {
-					method217(32768, k, l);
-					method217(2048, k - 1, l - 1);
+					remove(32768, k, l);
+					remove(2048, k - 1, l - 1);
 				}
 			}
 			if (j == 2) {
 				if (i == 0) {
-					method217(0x10400, k, l);
-					method217(4096, k - 1, l);
-					method217(16384, k, l + 1);
+					remove(0x10400, k, l);
+					remove(4096, k - 1, l);
+					remove(16384, k, l + 1);
 				}
 				if (i == 1) {
-					method217(5120, k, l);
-					method217(16384, k, l + 1);
-					method217(0x10000, k + 1, l);
+					remove(5120, k, l);
+					remove(16384, k, l + 1);
+					remove(0x10000, k + 1, l);
 				}
 				if (i == 2) {
-					method217(20480, k, l);
-					method217(0x10000, k + 1, l);
-					method217(1024, k, l - 1);
+					remove(20480, k, l);
+					remove(0x10000, k + 1, l);
+					remove(1024, k, l - 1);
 				}
 				if (i == 3) {
-					method217(0x14000, k, l);
-					method217(1024, k, l - 1);
-					method217(4096, k - 1, l);
+					remove(0x14000, k, l);
+					remove(1024, k, l - 1);
+					remove(4096, k - 1, l);
 				}
 			}
 		}
 	}
 
-	public void method216(int i, int j, int k, int l, int i1, boolean flag) {
+	public void removeObject(int i, int sizeX, int xPos, int yPos, int sizeY, boolean blocksProjectiles) {
 		int j1 = 256;
-		if (flag) {
+		if (blocksProjectiles) {
 			j1 += 0x20000;
 		}
-		k -= anInt290;
-		l -= anInt291;
+		xPos -= xOffset;
+		yPos -= yOffset;
 		if (i == 1 || i == 3) {
-			int k1 = j;
-			j = i1;
-			i1 = k1;
+			int k1 = sizeX;
+			sizeX = sizeY;
+			sizeY = k1;
 		}
-		for (int l1 = k; l1 < k + j; l1++) {
-			if (l1 >= 0 && l1 < anInt292) {
-				for (int i2 = l; i2 < l + i1; i2++) {
-					if (i2 >= 0 && i2 < anInt293) {
-						method217(j1, l1, i2);
+		for (int l1 = xPos; l1 < xPos + sizeX; l1++) {
+			if (l1 >= 0 && l1 < width) {
+				for (int i2 = yPos; i2 < yPos + sizeY; i2++) {
+					if (i2 >= 0 && i2 < height) {
+						remove(j1, l1, i2);
 					}
 				}
 
@@ -333,210 +333,210 @@ final class CollisionMap {
 
 	}
 
-	private void method217(int i, int j, int k) {
-		anIntArrayArray294[j][k] &= 0xffffff - i;
+	private void remove(int i, int j, int k) {
+		adjacencies[j][k] &= 0xffffff - i;
 	}
 
 	public void method218(int j, int k) {
-		k -= anInt290;
-		j -= anInt291;
-		anIntArrayArray294[k][j] &= 0xdfffff;
+		k -= xOffset;
+		j -= yOffset;
+		adjacencies[k][j] &= 0xdfffff;
 	}
 
-	public boolean method219(int i, int j, int k, int i1, int j1, int k1) {
-		if (j == i && k == k1) {
+	public boolean atWall(int destX, int destY, int playerX, int playerY, int objectFace, int objectType) {
+		if (playerX == destX && playerY == destY) {
 			return true;
 		}
-		j -= anInt290;
-		k -= anInt291;
-		i -= anInt290;
-		k1 -= anInt291;
-		if (j1 == 0) {
-			if (i1 == 0) {
-				if (j == i - 1 && k == k1) {
+		playerX -= xOffset;
+		playerY -= yOffset;
+		destX -= xOffset;
+		destY -= yOffset;
+		if (objectType == 0) {
+			if (objectFace == 0) {
+				if (playerX == destX - 1 && playerY == destY) {
 					return true;
 				}
-				if (j == i && k == k1 + 1 && (anIntArrayArray294[j][k] & 0x1280120) == 0) {
+				if (playerX == destX && playerY == destY + 1 && (adjacencies[playerX][playerY] & 0x1280120) == 0) {
 					return true;
 				}
-				if (j == i && k == k1 - 1 && (anIntArrayArray294[j][k] & 0x1280102) == 0) {
+				if (playerX == destX && playerY == destY - 1 && (adjacencies[playerX][playerY] & 0x1280102) == 0) {
 					return true;
 				}
-			} else if (i1 == 1) {
-				if (j == i && k == k1 + 1) {
+			} else if (objectFace == 1) {
+				if (playerX == destX && playerY == destY + 1) {
 					return true;
 				}
-				if (j == i - 1 && k == k1 && (anIntArrayArray294[j][k] & 0x1280108) == 0) {
+				if (playerX == destX - 1 && playerY == destY && (adjacencies[playerX][playerY] & 0x1280108) == 0) {
 					return true;
 				}
-				if (j == i + 1 && k == k1 && (anIntArrayArray294[j][k] & 0x1280180) == 0) {
+				if (playerX == destX + 1 && playerY == destY && (adjacencies[playerX][playerY] & 0x1280180) == 0) {
 					return true;
 				}
-			} else if (i1 == 2) {
-				if (j == i + 1 && k == k1) {
+			} else if (objectFace == 2) {
+				if (playerX == destX + 1 && playerY == destY) {
 					return true;
 				}
-				if (j == i && k == k1 + 1 && (anIntArrayArray294[j][k] & 0x1280120) == 0) {
+				if (playerX == destX && playerY == destY + 1 && (adjacencies[playerX][playerY] & 0x1280120) == 0) {
 					return true;
 				}
-				if (j == i && k == k1 - 1 && (anIntArrayArray294[j][k] & 0x1280102) == 0) {
+				if (playerX == destX && playerY == destY - 1 && (adjacencies[playerX][playerY] & 0x1280102) == 0) {
 					return true;
 				}
-			} else if (i1 == 3) {
-				if (j == i && k == k1 - 1) {
+			} else if (objectFace == 3) {
+				if (playerX == destX && playerY == destY - 1) {
 					return true;
 				}
-				if (j == i - 1 && k == k1 && (anIntArrayArray294[j][k] & 0x1280108) == 0) {
+				if (playerX == destX - 1 && playerY == destY && (adjacencies[playerX][playerY] & 0x1280108) == 0) {
 					return true;
 				}
-				if (j == i + 1 && k == k1 && (anIntArrayArray294[j][k] & 0x1280180) == 0) {
-					return true;
-				}
-			}
-		}
-		if (j1 == 2) {
-			if (i1 == 0) {
-				if (j == i - 1 && k == k1) {
-					return true;
-				}
-				if (j == i && k == k1 + 1) {
-					return true;
-				}
-				if (j == i + 1 && k == k1 && (anIntArrayArray294[j][k] & 0x1280180) == 0) {
-					return true;
-				}
-				if (j == i && k == k1 - 1 && (anIntArrayArray294[j][k] & 0x1280102) == 0) {
-					return true;
-				}
-			} else if (i1 == 1) {
-				if (j == i - 1 && k == k1 && (anIntArrayArray294[j][k] & 0x1280108) == 0) {
-					return true;
-				}
-				if (j == i && k == k1 + 1) {
-					return true;
-				}
-				if (j == i + 1 && k == k1) {
-					return true;
-				}
-				if (j == i && k == k1 - 1 && (anIntArrayArray294[j][k] & 0x1280102) == 0) {
-					return true;
-				}
-			} else if (i1 == 2) {
-				if (j == i - 1 && k == k1 && (anIntArrayArray294[j][k] & 0x1280108) == 0) {
-					return true;
-				}
-				if (j == i && k == k1 + 1 && (anIntArrayArray294[j][k] & 0x1280120) == 0) {
-					return true;
-				}
-				if (j == i + 1 && k == k1) {
-					return true;
-				}
-				if (j == i && k == k1 - 1) {
-					return true;
-				}
-			} else if (i1 == 3) {
-				if (j == i - 1 && k == k1) {
-					return true;
-				}
-				if (j == i && k == k1 + 1 && (anIntArrayArray294[j][k] & 0x1280120) == 0) {
-					return true;
-				}
-				if (j == i + 1 && k == k1 && (anIntArrayArray294[j][k] & 0x1280180) == 0) {
-					return true;
-				}
-				if (j == i && k == k1 - 1) {
+				if (playerX == destX + 1 && playerY == destY && (adjacencies[playerX][playerY] & 0x1280180) == 0) {
 					return true;
 				}
 			}
 		}
-		if (j1 == 9) {
-			if (j == i && k == k1 + 1 && (anIntArrayArray294[j][k] & 0x20) == 0) {
+		if (objectType == 2) {
+			if (objectFace == 0) {
+				if (playerX == destX - 1 && playerY == destY) {
+					return true;
+				}
+				if (playerX == destX && playerY == destY + 1) {
+					return true;
+				}
+				if (playerX == destX + 1 && playerY == destY && (adjacencies[playerX][playerY] & 0x1280180) == 0) {
+					return true;
+				}
+				if (playerX == destX && playerY == destY - 1 && (adjacencies[playerX][playerY] & 0x1280102) == 0) {
+					return true;
+				}
+			} else if (objectFace == 1) {
+				if (playerX == destX - 1 && playerY == destY && (adjacencies[playerX][playerY] & 0x1280108) == 0) {
+					return true;
+				}
+				if (playerX == destX && playerY == destY + 1) {
+					return true;
+				}
+				if (playerX == destX + 1 && playerY == destY) {
+					return true;
+				}
+				if (playerX == destX && playerY == destY - 1 && (adjacencies[playerX][playerY] & 0x1280102) == 0) {
+					return true;
+				}
+			} else if (objectFace == 2) {
+				if (playerX == destX - 1 && playerY == destY && (adjacencies[playerX][playerY] & 0x1280108) == 0) {
+					return true;
+				}
+				if (playerX == destX && playerY == destY + 1 && (adjacencies[playerX][playerY] & 0x1280120) == 0) {
+					return true;
+				}
+				if (playerX == destX + 1 && playerY == destY) {
+					return true;
+				}
+				if (playerX == destX && playerY == destY - 1) {
+					return true;
+				}
+			} else if (objectFace == 3) {
+				if (playerX == destX - 1 && playerY == destY) {
+					return true;
+				}
+				if (playerX == destX && playerY == destY + 1 && (adjacencies[playerX][playerY] & 0x1280120) == 0) {
+					return true;
+				}
+				if (playerX == destX + 1 && playerY == destY && (adjacencies[playerX][playerY] & 0x1280180) == 0) {
+					return true;
+				}
+				if (playerX == destX && playerY == destY - 1) {
+					return true;
+				}
+			}
+		}
+		if (objectType == 9) {
+			if (playerX == destX && playerY == destY + 1 && (adjacencies[playerX][playerY] & 0x20) == 0) {
 				return true;
 			}
-			if (j == i && k == k1 - 1 && (anIntArrayArray294[j][k] & 2) == 0) {
+			if (playerX == destX && playerY == destY - 1 && (adjacencies[playerX][playerY] & 2) == 0) {
 				return true;
 			}
-			if (j == i - 1 && k == k1 && (anIntArrayArray294[j][k] & 8) == 0) {
+			if (playerX == destX - 1 && playerY == destY && (adjacencies[playerX][playerY] & 8) == 0) {
 				return true;
 			}
-			if (j == i + 1 && k == k1 && (anIntArrayArray294[j][k] & 0x80) == 0) {
+			if (playerX == destX + 1 && playerY == destY && (adjacencies[playerX][playerY] & 0x80) == 0) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public boolean method220(int i, int j, int k, int l, int i1, int j1) {
-		if (j1 == i && k == j) {
+	public boolean atDecoration(int destX, int destY, int playerX, int playerY, int objectType, int objectFace) {
+		if (playerX == destX && playerY == destY) {
 			return true;
 		}
-		j1 -= anInt290;
-		k -= anInt291;
-		i -= anInt290;
-		j -= anInt291;
-		if (l == 6 || l == 7) {
-			if (l == 7) {
-				i1 = i1 + 2 & 3;
+		playerX -= xOffset;
+		playerY -= yOffset;
+		destX -= xOffset;
+		destY -= yOffset;
+		if (objectType == 6 || objectType == 7) {
+			if (objectType == 7) {
+				objectFace = objectFace + 2 & 3;
 			}
-			if (i1 == 0) {
-				if (j1 == i + 1 && k == j && (anIntArrayArray294[j1][k] & 0x80) == 0) {
+			if (objectFace == 0) {
+				if (playerX == destX + 1 && playerY == destY && (adjacencies[playerX][playerY] & 0x80) == 0) {
 					return true;
 				}
-				if (j1 == i && k == j - 1 && (anIntArrayArray294[j1][k] & 2) == 0) {
+				if (playerX == destX && playerY == destY - 1 && (adjacencies[playerX][playerY] & 2) == 0) {
 					return true;
 				}
-			} else if (i1 == 1) {
-				if (j1 == i - 1 && k == j && (anIntArrayArray294[j1][k] & 8) == 0) {
+			} else if (objectFace == 1) {
+				if (playerX == destX - 1 && playerY == destY && (adjacencies[playerX][playerY] & 8) == 0) {
 					return true;
 				}
-				if (j1 == i && k == j - 1 && (anIntArrayArray294[j1][k] & 2) == 0) {
+				if (playerX == destX && playerY == destY - 1 && (adjacencies[playerX][playerY] & 2) == 0) {
 					return true;
 				}
-			} else if (i1 == 2) {
-				if (j1 == i - 1 && k == j && (anIntArrayArray294[j1][k] & 8) == 0) {
+			} else if (objectFace == 2) {
+				if (playerX == destX - 1 && playerY == destY && (adjacencies[playerX][playerY] & 8) == 0) {
 					return true;
 				}
-				if (j1 == i && k == j + 1 && (anIntArrayArray294[j1][k] & 0x20) == 0) {
+				if (playerX == destX && playerY == destY + 1 && (adjacencies[playerX][playerY] & 0x20) == 0) {
 					return true;
 				}
-			} else if (i1 == 3) {
-				if (j1 == i + 1 && k == j && (anIntArrayArray294[j1][k] & 0x80) == 0) {
+			} else if (objectFace == 3) {
+				if (playerX == destX + 1 && playerY == destY && (adjacencies[playerX][playerY] & 0x80) == 0) {
 					return true;
 				}
-				if (j1 == i && k == j + 1 && (anIntArrayArray294[j1][k] & 0x20) == 0) {
+				if (playerX == destX && playerY == destY + 1 && (adjacencies[playerX][playerY] & 0x20) == 0) {
 					return true;
 				}
 			}
 		}
-		if (l == 8) {
-			if (j1 == i && k == j + 1 && (anIntArrayArray294[j1][k] & 0x20) == 0) {
+		if (objectType == 8) {
+			if (playerX == destX && playerY == destY + 1 && (adjacencies[playerX][playerY] & 0x20) == 0) {
 				return true;
 			}
-			if (j1 == i && k == j - 1 && (anIntArrayArray294[j1][k] & 2) == 0) {
+			if (playerX == destX && playerY == destY - 1 && (adjacencies[playerX][playerY] & 2) == 0) {
 				return true;
 			}
-			if (j1 == i - 1 && k == j && (anIntArrayArray294[j1][k] & 8) == 0) {
+			if (playerX == destX - 1 && playerY == destY && (adjacencies[playerX][playerY] & 8) == 0) {
 				return true;
 			}
-			if (j1 == i + 1 && k == j && (anIntArrayArray294[j1][k] & 0x80) == 0) {
+			if (playerX == destX + 1 && playerY == destY && (adjacencies[playerX][playerY] & 0x80) == 0) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public boolean method221(int i, int j, int k, int l, int i1, int j1, int k1) {
-		int l1 = j + j1 - 1;
-		int i2 = i + l - 1;
-		if (k >= j && k <= l1 && k1 >= i && k1 <= i2) {
+	public boolean atObject(int destY, int destX, int playerX, int playerY, int targetSizeX, int targetSizeY1, int objectRotation) {
+		int l1 = destX + targetSizeY1 - 1;
+		int i2 = destY + playerY - 1;
+		if (playerX >= destX && playerX <= l1 && objectRotation >= destY && objectRotation <= i2) {
 			return true;
 		}
-		return k == j - 1 && k1 >= i && k1 <= i2 && (anIntArrayArray294[k - anInt290][k1 - anInt291] & 8) == 0 && (i1 & 8) == 0 || k == l1 + 1 && k1 >= i && k1 <= i2 && (anIntArrayArray294[k - anInt290][k1 - anInt291] & 0x80) == 0 && (i1 & 2) == 0 || k1 == i - 1 && k >= j && k <= l1 && (anIntArrayArray294[k - anInt290][k1 - anInt291] & 2) == 0 && (i1 & 4) == 0 || k1 == i2 + 1 && k >= j && k <= l1 && (anIntArrayArray294[k - anInt290][k1 - anInt291] & 0x20) == 0 && (i1 & 1) == 0;
+		return playerX == destX - 1 && objectRotation >= destY && objectRotation <= i2 && (adjacencies[playerX - xOffset][objectRotation - yOffset] & 8) == 0 && (targetSizeX & 8) == 0 || playerX == l1 + 1 && objectRotation >= destY && objectRotation <= i2 && (adjacencies[playerX - xOffset][objectRotation - yOffset] & 0x80) == 0 && (targetSizeX & 2) == 0 || objectRotation == destY - 1 && playerX >= destX && playerX <= l1 && (adjacencies[playerX - xOffset][objectRotation - yOffset] & 2) == 0 && (targetSizeX & 4) == 0 || objectRotation == i2 + 1 && playerX >= destX && playerX <= l1 && (adjacencies[playerX - xOffset][objectRotation - yOffset] & 0x20) == 0 && (targetSizeX & 1) == 0;
 	}
 
-	private final int anInt290;
-	private final int anInt291;
-	private final int anInt292;
-	private final int anInt293;
-	public final int[][] anIntArrayArray294;
+	private final int xOffset;
+	private final int yOffset;
+	private final int width;
+	private final int height;
+	public final int[][] adjacencies;
 }

@@ -12,8 +12,8 @@ public final class Object1 {
 	int anInt275;
 	int orientation;
 	int orientation1;
-	public Animable aClass30_Sub2_Sub4_278;
-	public Animable aClass30_Sub2_Sub4_279;
+	public SceneNode aClass30_Sub2_Sub4_278;
+	public SceneNode aClass30_Sub2_Sub4_279;
 	public int uid;
 	byte aByte281;
 }

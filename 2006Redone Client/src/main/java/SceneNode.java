@@ -2,13 +2,13 @@
 // Jad home page: http://www.kpdus.com/jad.html
 // Decompiler options: packimports(3) 
 
-public class Animable extends NodeSub {
+public class SceneNode extends NodeSub {
 
-	public void method443(int i, int j, int k, int l, int i1, int j1, int k1, int l1, int i2) {
+	public void draw(int i, int j, int k, int l, int i1, int j1, int k1, int l1, int i2) {
 		Model model = getRotatedModel();
 		if (model != null) {
 			modelHeight = model.modelHeight;
-			model.method443(i, j, k, l, i1, j1, k1, l1, i2);
+			model.draw(i, j, k, l, i1, j1, k1, l1, i2);
 		}
 	}
 
@@ -16,10 +16,10 @@ public class Animable extends NodeSub {
 		return null;
 	}
 
-	Animable() {
+	SceneNode() {
 		modelHeight = 1000;
 	}
 
-	Class33[] aClass33Array1425;
+	Vertex[] normals;
 	public int modelHeight;
 }

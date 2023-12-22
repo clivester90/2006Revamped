@@ -5,7 +5,7 @@
 public final class Ground extends Node {
 
 	public Ground(int i, int j, int k) {
-		obj5Array = new Object5[5];
+		objects = new GameObject[5];
 		anIntArray1319 = new int[5];
 		anInt1310 = anInt1307 = i;
 		anInt1308 = j;
@@ -16,14 +16,14 @@ public final class Ground extends Node {
 	final int anInt1308;
 	final int anInt1309;
 	final int anInt1310;
-	public Class43 aClass43_1311;
+	public TileUnderlay underlay;
 	public Class40 aClass40_1312;
 	public Object1 obj1;
 	public Object2 obj2;
-	public Object3 obj3;
-	public Object4 obj4;
-	int anInt1317;
-	public final Object5[] obj5Array;
+	public GroundDecoration groundDecoration;
+	public ItemPile obj4;
+	int objectCount;
+	public final GameObject[] objects;
 	final int[] anIntArray1319;
 	int anInt1320;
 	int anInt1321;

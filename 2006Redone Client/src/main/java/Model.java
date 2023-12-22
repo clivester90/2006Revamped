@@ -2,7 +2,7 @@
 // Jad home page: http://www.kpdus.com/jad.html
 // Decompiler options: packimports(3) 
 
-public final class Model extends Animable {
+public final class Model extends SceneNode {
 
 	public static void nullLoader() {
 		aClass21Array1661 = null;
@@ -608,17 +608,17 @@ public final class Model extends Animable {
 				System.arraycopy(model.anIntArray1637, 0, anIntArray1637, 0, anInt1630);
 
 			}
-			super.aClass33Array1425 = new Class33[anInt1626];
+			super.normals = new Vertex[anInt1626];
 			for (int j1 = 0; j1 < anInt1626; j1++) {
-				Class33 class33 = super.aClass33Array1425[j1] = new Class33();
-				Class33 class33_1 = model.aClass33Array1425[j1];
-				class33.anInt602 = class33_1.anInt602;
-				class33.anInt603 = class33_1.anInt603;
-				class33.anInt604 = class33_1.anInt604;
-				class33.anInt605 = class33_1.anInt605;
+				Vertex vertex = super.normals[j1] = new Vertex();
+				Vertex vertex_1 = model.normals[j1];
+				vertex.anInt602 = vertex_1.anInt602;
+				vertex.anInt603 = vertex_1.anInt603;
+				vertex.anInt604 = vertex_1.anInt604;
+				vertex.anInt605 = vertex_1.anInt605;
 			}
 
-			aClass33Array1660 = model.aClass33Array1660;
+			aVertexArray1660 = model.aVertexArray1660;
 		} else {
 			anIntArray1634 = model.anIntArray1634;
 			anIntArray1635 = model.anIntArray1635;
@@ -639,7 +639,7 @@ public final class Model extends Animable {
 		anIntArray1645 = model.anIntArray1645;
 		super.modelHeight = model.modelHeight;
 		anInt1651 = model.anInt1651;
-		anInt1650 = model.anInt1650;
+		maxVertexDistanceXZPlane = model.maxVertexDistanceXZPlane;
 		anInt1653 = model.anInt1653;
 		anInt1652 = model.anInt1652;
 		anInt1646 = model.anInt1646;
@@ -727,7 +727,7 @@ public final class Model extends Animable {
 
 	public void method466() {
 		super.modelHeight = 0;
-		anInt1650 = 0;
+		maxVertexDistanceXZPlane = 0;
 		anInt1651 = 0;
 		for (int i = 0; i < anInt1626; i++) {
 			int j = anIntArray1627[i];
@@ -740,13 +740,13 @@ public final class Model extends Animable {
 				anInt1651 = k;
 			}
 			int i1 = j * j + l * l;
-			if (i1 > anInt1650) {
-				anInt1650 = i1;
+			if (i1 > maxVertexDistanceXZPlane) {
+				maxVertexDistanceXZPlane = i1;
 			}
 		}
-		anInt1650 = (int) (Math.sqrt(anInt1650) + 0.98999999999999999D);
-		anInt1653 = (int) (Math.sqrt(anInt1650 * anInt1650 + super.modelHeight * super.modelHeight) + 0.98999999999999999D);
-		anInt1652 = anInt1653 + (int) (Math.sqrt(anInt1650 * anInt1650 + anInt1651 * anInt1651) + 0.98999999999999999D);
+		maxVertexDistanceXZPlane = (int) (Math.sqrt(maxVertexDistanceXZPlane) + 0.98999999999999999D);
+		anInt1653 = (int) (Math.sqrt(maxVertexDistanceXZPlane * maxVertexDistanceXZPlane + super.modelHeight * super.modelHeight) + 0.98999999999999999D);
+		anInt1652 = anInt1653 + (int) (Math.sqrt(maxVertexDistanceXZPlane * maxVertexDistanceXZPlane + anInt1651 * anInt1651) + 0.98999999999999999D);
 	}
 
 	public void method467() {
@@ -762,13 +762,13 @@ public final class Model extends Animable {
 			}
 		}
 
-		anInt1653 = (int) (Math.sqrt(anInt1650 * anInt1650 + super.modelHeight * super.modelHeight) + 0.98999999999999999D);
-		anInt1652 = anInt1653 + (int) (Math.sqrt(anInt1650 * anInt1650 + anInt1651 * anInt1651) + 0.98999999999999999D);
+		anInt1653 = (int) (Math.sqrt(maxVertexDistanceXZPlane * maxVertexDistanceXZPlane + super.modelHeight * super.modelHeight) + 0.98999999999999999D);
+		anInt1652 = anInt1653 + (int) (Math.sqrt(maxVertexDistanceXZPlane * maxVertexDistanceXZPlane + anInt1651 * anInt1651) + 0.98999999999999999D);
 	}
 
 	private void method468() {
 		super.modelHeight = 0;
-		anInt1650 = 0;
+		maxVertexDistanceXZPlane = 0;
 		anInt1651 = 0;
 		anInt1646 = 0xf423f;
 		anInt1647 = 0xfff0bdc1;
@@ -797,14 +797,14 @@ public final class Model extends Animable {
 				anInt1651 = l;
 			}
 			int j1 = k * k + i1 * i1;
-			if (j1 > anInt1650) {
-				anInt1650 = j1;
+			if (j1 > maxVertexDistanceXZPlane) {
+				maxVertexDistanceXZPlane = j1;
 			}
 		}
 
-		anInt1650 = (int) Math.sqrt(anInt1650);
-		anInt1653 = (int) Math.sqrt(anInt1650 * anInt1650 + super.modelHeight * super.modelHeight);
-		anInt1652 = anInt1653 + (int) Math.sqrt(anInt1650 * anInt1650 + anInt1651 * anInt1651);
+		maxVertexDistanceXZPlane = (int) Math.sqrt(maxVertexDistanceXZPlane);
+		anInt1653 = (int) Math.sqrt(maxVertexDistanceXZPlane * maxVertexDistanceXZPlane + super.modelHeight * super.modelHeight);
+		anInt1652 = anInt1653 + (int) Math.sqrt(maxVertexDistanceXZPlane * maxVertexDistanceXZPlane + anInt1651 * anInt1651);
 	}
 
 	public void method469() {
@@ -1128,10 +1128,10 @@ public final class Model extends Animable {
 			anIntArray1635 = new int[anInt1630];
 			anIntArray1636 = new int[anInt1630];
 		}
-		if (super.aClass33Array1425 == null) {
-			super.aClass33Array1425 = new Class33[anInt1626];
+		if (super.normals == null) {
+			super.normals = new Vertex[anInt1626];
 			for (int l1 = 0; l1 < anInt1626; l1++) {
-				super.aClass33Array1425[l1] = new Class33();
+				super.normals[l1] = new Vertex();
 			}
 
 		}
@@ -1161,21 +1161,21 @@ public final class Model extends Animable {
 			i5 = i5 * 256 / k5;
 			j5 = j5 * 256 / k5;
 			if (anIntArray1637 == null || (anIntArray1637[i2] & 1) == 0) {
-				Class33 class33_2 = super.aClass33Array1425[j2];
-				class33_2.anInt602 += l4;
-				class33_2.anInt603 += i5;
-				class33_2.anInt604 += j5;
-				class33_2.anInt605++;
-				class33_2 = super.aClass33Array1425[l2];
-				class33_2.anInt602 += l4;
-				class33_2.anInt603 += i5;
-				class33_2.anInt604 += j5;
-				class33_2.anInt605++;
-				class33_2 = super.aClass33Array1425[i3];
-				class33_2.anInt602 += l4;
-				class33_2.anInt603 += i5;
-				class33_2.anInt604 += j5;
-				class33_2.anInt605++;
+				Vertex vertex_2 = super.normals[j2];
+				vertex_2.anInt602 += l4;
+				vertex_2.anInt603 += i5;
+				vertex_2.anInt604 += j5;
+				vertex_2.anInt605++;
+				vertex_2 = super.normals[l2];
+				vertex_2.anInt602 += l4;
+				vertex_2.anInt603 += i5;
+				vertex_2.anInt604 += j5;
+				vertex_2.anInt605++;
+				vertex_2 = super.normals[i3];
+				vertex_2.anInt602 += l4;
+				vertex_2.anInt603 += i5;
+				vertex_2.anInt604 += j5;
+				vertex_2.anInt605++;
 			} else {
 				int l5 = i + (k * l4 + l * i5 + i1 * j5) / (k1 + k1 / 2);
 				anIntArray1634[i2] = method481(anIntArray1640[i2], l5, anIntArray1637[i2]);
@@ -1185,14 +1185,14 @@ public final class Model extends Animable {
 		if (flag) {
 			method480(i, k1, k, l, i1);
 		} else {
-			aClass33Array1660 = new Class33[anInt1626];
+			aVertexArray1660 = new Vertex[anInt1626];
 			for (int k2 = 0; k2 < anInt1626; k2++) {
-				Class33 class33 = super.aClass33Array1425[k2];
-				Class33 class33_1 = aClass33Array1660[k2] = new Class33();
-				class33_1.anInt602 = class33.anInt602;
-				class33_1.anInt603 = class33.anInt603;
-				class33_1.anInt604 = class33.anInt604;
-				class33_1.anInt605 = class33.anInt605;
+				Vertex vertex = super.normals[k2];
+				Vertex vertex_1 = aVertexArray1660[k2] = new Vertex();
+				vertex_1.anInt602 = vertex.anInt602;
+				vertex_1.anInt603 = vertex.anInt603;
+				vertex_1.anInt604 = vertex.anInt604;
+				vertex_1.anInt605 = vertex.anInt605;
 			}
 
 		}
@@ -1210,32 +1210,32 @@ public final class Model extends Animable {
 			int j2 = anIntArray1633[j1];
 			if (anIntArray1637 == null) {
 				int i3 = anIntArray1640[j1];
-				Class33 class33 = super.aClass33Array1425[k1];
-				int k2 = i + (k * class33.anInt602 + l * class33.anInt603 + i1 * class33.anInt604) / (j * class33.anInt605);
+				Vertex vertex = super.normals[k1];
+				int k2 = i + (k * vertex.anInt602 + l * vertex.anInt603 + i1 * vertex.anInt604) / (j * vertex.anInt605);
 				anIntArray1634[j1] = method481(i3, k2, 0);
-				class33 = super.aClass33Array1425[i2];
-				k2 = i + (k * class33.anInt602 + l * class33.anInt603 + i1 * class33.anInt604) / (j * class33.anInt605);
+				vertex = super.normals[i2];
+				k2 = i + (k * vertex.anInt602 + l * vertex.anInt603 + i1 * vertex.anInt604) / (j * vertex.anInt605);
 				anIntArray1635[j1] = method481(i3, k2, 0);
-				class33 = super.aClass33Array1425[j2];
-				k2 = i + (k * class33.anInt602 + l * class33.anInt603 + i1 * class33.anInt604) / (j * class33.anInt605);
+				vertex = super.normals[j2];
+				k2 = i + (k * vertex.anInt602 + l * vertex.anInt603 + i1 * vertex.anInt604) / (j * vertex.anInt605);
 				anIntArray1636[j1] = method481(i3, k2, 0);
 			} else if ((anIntArray1637[j1] & 1) == 0) {
 				int j3 = anIntArray1640[j1];
 				int k3 = anIntArray1637[j1];
-				Class33 class33_1 = super.aClass33Array1425[k1];
-				int l2 = i + (k * class33_1.anInt602 + l * class33_1.anInt603 + i1 * class33_1.anInt604) / (j * class33_1.anInt605);
+				Vertex vertex_1 = super.normals[k1];
+				int l2 = i + (k * vertex_1.anInt602 + l * vertex_1.anInt603 + i1 * vertex_1.anInt604) / (j * vertex_1.anInt605);
 				anIntArray1634[j1] = method481(j3, l2, k3);
-				class33_1 = super.aClass33Array1425[i2];
-				l2 = i + (k * class33_1.anInt602 + l * class33_1.anInt603 + i1 * class33_1.anInt604) / (j * class33_1.anInt605);
+				vertex_1 = super.normals[i2];
+				l2 = i + (k * vertex_1.anInt602 + l * vertex_1.anInt603 + i1 * vertex_1.anInt604) / (j * vertex_1.anInt605);
 				anIntArray1635[j1] = method481(j3, l2, k3);
-				class33_1 = super.aClass33Array1425[j2];
-				l2 = i + (k * class33_1.anInt602 + l * class33_1.anInt603 + i1 * class33_1.anInt604) / (j * class33_1.anInt605);
+				vertex_1 = super.normals[j2];
+				l2 = i + (k * vertex_1.anInt602 + l * vertex_1.anInt603 + i1 * vertex_1.anInt604) / (j * vertex_1.anInt605);
 				anIntArray1636[j1] = method481(j3, l2, k3);
 			}
 		}
 
-		super.aClass33Array1425 = null;
-		aClass33Array1660 = null;
+		super.normals = null;
+		aVertexArray1660 = null;
 		anIntArray1655 = null;
 		anIntArray1656 = null;
 		if (anIntArray1637 != null) {
@@ -1323,25 +1323,25 @@ public final class Model extends Animable {
 	}
 
 	@Override
-	public void method443(int i, int j, int k, int l, int i1, int j1, int k1, int l1, int i2) {
+	public void draw(int i, int j, int k, int l, int i1, int j1, int k1, int l1, int i2) {
 		int j2 = l1 * i1 - j1 * l >> 16;
 		int k2 = k1 * j + j2 * k >> 16;
-		int l2 = anInt1650 * k >> 16;
+		int l2 = maxVertexDistanceXZPlane * k >> 16;
 		int i3 = k2 + l2;
 		if (i3 <= 50 || k2 >= 3500) {
 			return;
 		}
 		int j3 = l1 * l + j1 * i1 >> 16;
-		int k3 = j3 - anInt1650 << 9;
+		int k3 = j3 - maxVertexDistanceXZPlane << 9;
 		if (k3 / i3 >= DrawingArea.centerY) {
 			return;
 		}
-		int l3 = j3 + anInt1650 << 9;
+		int l3 = j3 + maxVertexDistanceXZPlane << 9;
 		if (l3 / i3 <= -DrawingArea.centerY) {
 			return;
 		}
 		int i4 = k1 * k - j2 * j >> 16;
-		int j4 = anInt1650 * j >> 16;
+		int j4 = maxVertexDistanceXZPlane * j >> 16;
 		int k4 = i4 + j4 << 9;
 		if (k4 / i3 <= -DrawingArea.anInt1387) {
 			return;
@@ -1829,7 +1829,7 @@ public final class Model extends Animable {
 	public int anInt1647;
 	public int anInt1648;
 	public int anInt1649;
-	public int anInt1650;
+	public int maxVertexDistanceXZPlane;
 	public int anInt1651;
 	private int anInt1652;
 	private int anInt1653;
@@ -1839,7 +1839,7 @@ public final class Model extends Animable {
 	public int[][] anIntArrayArray1657;
 	public int[][] anIntArrayArray1658;
 	public boolean aBoolean1659;
-	Class33[] aClass33Array1660;
+	Vertex[] aVertexArray1660;
 	private static Class21[] aClass21Array1661;
 	private static OnDemandFetcherParent aOnDemandFetcherParent_1662;
 	private static boolean[] aBooleanArray1663 = new boolean[4096];

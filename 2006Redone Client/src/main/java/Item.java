@@ -2,7 +2,7 @@
 // Jad home page: http://www.kpdus.com/jad.html
 // Decompiler options: packimports(3) 
 
-final class Item extends Animable {
+final class Item extends SceneNode {
 
 	@Override
 	public final Model getRotatedModel() {

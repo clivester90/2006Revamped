@@ -2,7 +2,7 @@
 // Jad home page: http://www.kpdus.com/jad.html
 // Decompiler options: packimports(3) 
 
-final class Animable_Sub4 extends Animable {
+final class SceneNode_Sub4 extends SceneNode {
 
 	public void method455(int i, int j, int k, int l) {
 		if (!aBoolean1579) {
@@ -48,7 +48,7 @@ final class Animable_Sub4 extends Animable {
 		return model_1;
 	}
 
-	public Animable_Sub4(int i, int j, int l, int i1, int j1, int k1, int l1, int i2, int j2, int k2, int l2) {
+	public SceneNode_Sub4(int i, int j, int l, int i1, int j1, int k1, int l1, int i2, int j2, int k2, int l2) {
 		aBoolean1579 = false;
 		aSpotAnim_1592 = SpotAnim.cache[l2];
 		anInt1597 = k1;

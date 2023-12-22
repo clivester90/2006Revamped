@@ -2,9 +2,9 @@
 // Jad home page: http://www.kpdus.com/jad.html
 // Decompiler options: packimports(3) 
 
-final class Class33 {
+final class Vertex {
 
-	public Class33() {
+	public Vertex() {
 	}
 
 	int anInt602;

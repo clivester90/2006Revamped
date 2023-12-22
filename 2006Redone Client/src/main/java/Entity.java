@@ -2,7 +2,7 @@
 // Jad home page: http://www.kpdus.com/jad.html
 // Decompiler options: packimports(3) 
 
-public class Entity extends Animable {
+public class Entity extends SceneNode {
 
 	public final void setPos(int i, int j, boolean flag) {
 		if (anim != -1 && Animation.anims[anim].anInt364 == 1) {
