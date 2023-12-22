@@ -183,7 +183,7 @@ final class Texture extends DrawingArea {
 		d += Math.random() * 0.029999999999999999D - 0.014999999999999999D;
 		int j = 0;
 		for (int k = 0; k < 512; k++) {
-			double d1 = k / 8 / 64D + 0.0078125D;
+			double d1 = (double) k / 8 / 64D + 0.0078125D;
 			double d2 = (k & 7) / 8D + 0.0625D;
 			for (int k1 = 0; k1 < 128; k1++) {
 				double d3 = k1 / 128D;

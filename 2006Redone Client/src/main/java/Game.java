@@ -45,11 +45,11 @@ public class Game extends RSApplet {
 		return " " + s;
 	}
 	
-	static final boolean musicIsntNull() {
+	static boolean musicIsntNull() {
 		return aClass56_749 != null;
 	}
 	
-	static final void method790() {
+	static void method790() {
 		if (aClass56_749 != null) {
 			method891(false);
 			if (anInt720 > 0) {
@@ -134,7 +134,7 @@ public class Game extends RSApplet {
 		}
 	}
 	
-	static final void setVolume(int i) {
+	static void setVolume(int i) {
 		if (musicIsntNull()) {
 			if (fetchMusic)
 				musicVolume2 = i;
@@ -143,7 +143,7 @@ public class Game extends RSApplet {
 		}
 	}
 	
-	static final void method900(int i) {
+	static void method900(int i) {
 		if (aClass56_749 != null) {
 			if (anInt720 == 0) {
 				if (anInt478 >= 0) {
@@ -155,18 +155,18 @@ public class Game extends RSApplet {
 		}
 	}
 	
-	static final synchronized void method55(boolean bool) {
+	static synchronized void method55(boolean bool) {
 		if (musicIsntNull()) {
 			method891(bool);
 			fetchMusic = false;
 		}
 	}
 	
-	static final void method891(boolean bool) {
+	static void method891(boolean bool) {
 		method853(0, null, bool);
 	}
 	
-	static final boolean constructMusic() {
+	static boolean constructMusic() {
 		anInt720 = 20;
 		try {
 		    aClass56_749 = (Class56) Class.forName("Class56_Sub1_Sub1").newInstance();
@@ -207,7 +207,7 @@ public class Game extends RSApplet {
 	
 	public static byte[] musicData;
 	
-	static final synchronized void method49() {
+	static synchronized void method49() {
 		if (musicIsntNull()) {
 			if (fetchMusic) {
 				byte[] is = musicData;
@@ -225,11 +225,11 @@ public class Game extends RSApplet {
 		}
 	}
 	
-	static final int method1004(int i) {
+	static int method1004(int i) {
 		return (int) (Math.log((double) i * 0.00390625) * 868.5889638065036 + 0.5);
 	}
 	
-	static final void method853(int i_2_, byte[] is, boolean bool) {
+	static void method853(int i_2_, byte[] is, boolean bool) {
 		if (aClass56_749 != null) {
 			if (anInt478 >= 0) {
 				aClass56_749.method833();
@@ -249,7 +249,7 @@ public class Game extends RSApplet {
 		}
 	}
 	
-	static final void method899(int i, int i_29_, boolean bool, byte[] is, int i_30_) {
+	static void method899(int i, int i_29_, boolean bool, byte[] is, int i_30_) {
 		if (aClass56_749 != null) {
 			if (i_29_ >= (anInt478 ^ 0xffffffff)) {
 				i -= 20;
@@ -275,7 +275,7 @@ public class Game extends RSApplet {
 		}
 	}
 	
-	static final void method684(boolean bool, int i, int i_2_, byte[] is) {
+	static void method684(boolean bool, int i, int i_2_, byte[] is) {
 		if (aClass56_749 != null) {
 			if (anInt478 >= 0) {
 				anInt2200 = i;
@@ -300,7 +300,7 @@ public class Game extends RSApplet {
 		}
 	}
 	
-	static final void method368(int i) {
+	static void method368(int i) {
 		if (aClass56_749 != null) {
 			if (anInt478 < i) {
 				if (anInt720 > 0) {
@@ -1013,7 +1013,7 @@ public class Game extends RSApplet {
 		} while (true);
 	}
 	
-	static final void sleep(long time) {
+	static void sleep(long time) {
 		if (time > 0L) {
 			if (time % 10L != 0L)
 				threadSleep(time);
@@ -1024,7 +1024,7 @@ public class Game extends RSApplet {
 		}
 	}
 	
-	static final void threadSleep(long time) {
+	static void threadSleep(long time) {
 		try {
 			Thread.sleep(time);
 		} catch (InterruptedException interruptedexception) {
@@ -1060,10 +1060,7 @@ public class Game extends RSApplet {
 				}
 			} else {
 				if (class9_1.atActionType == 1 && k >= i2 && i1 >= j2 && k < i2 + class9_1.width && i1 < j2 + class9_1.height) {
-					boolean flag = false;
-					if (class9_1.anInt214 != 0) {
-						flag = buildFriendsListMenu(class9_1);
-					}
+					boolean flag = class9_1.anInt214 != 0 && buildFriendsListMenu(class9_1);
 					if (!flag) {
 						menuActionName[menuActionRow] = showInfo ? class9_1.tooltip + ", " + class9_1.id : class9_1.tooltip;
 						menuActionID[menuActionRow] = 315;
@@ -1073,7 +1070,7 @@ public class Game extends RSApplet {
 				}
 				if (class9_1.atActionType == 2 && spellSelected == 0 && k >= i2 && i1 >= j2 && k < i2 + class9_1.width && i1 < j2 + class9_1.height) {
 					String s = class9_1.selectedActionName;
-					if (s.indexOf(" ") != -1) {
+					if (s.contains(" ")) {
 						s = s.substring(0, s.indexOf(" "));
 					}
 					menuActionName[menuActionRow] = s + " @gre@" + class9_1.spellName;
@@ -2260,7 +2257,7 @@ public class Game extends RSApplet {
 		}
 		if (j >= 601 && j <= 612) {
 			closeOpenInterfaces();
-			if (reportAbuseInput.length() > 0) {
+			if (!reportAbuseInput.isEmpty()) {
 				stream.createFrame(218);
 				stream.writeQWord(TextClass.longForName(reportAbuseInput));
 				stream.writeWordBigEndian(j - 601);
@@ -3528,10 +3525,7 @@ public class Game extends RSApplet {
 		}
 		if (l == 315) {
 			RSInterface class9 = RSInterface.interfaceCache[k];
-			boolean flag8 = true;
-			if (class9.anInt214 > 0) {
-				flag8 = promptUserForInput(class9);
-			}
+			boolean flag8 = class9.anInt214 <= 0 || promptUserForInput(class9);
 			if (flag8) {
 				stream.createFrame(185);
 				stream.writeWord(k);
@@ -3748,11 +3742,11 @@ public class Game extends RSApplet {
 			itemSelected = 0;
 			needDrawTabArea = true;
 			String s4 = class9_1.selectedActionName;
-			if (s4.indexOf(" ") != -1) {
+			if (s4.contains(" ")) {
 				s4 = s4.substring(0, s4.indexOf(" "));
 			}
 			String s8 = class9_1.selectedActionName;
-			if (s8.indexOf(" ") != -1) {
+			if (s8.contains(" ")) {
 				s8 = s8.substring(s8.indexOf(" ") + 1);
 			}
 			spellTooltip = s4 + " " + class9_1.spellName + " " + s8;
@@ -4658,7 +4652,7 @@ public class Game extends RSApplet {
 				break;
 			}
 			if (openInterfaceID != -1 && openInterfaceID == reportAbuseInterfaceID) {
-				if (j == 8 && reportAbuseInput.length() > 0) {
+				if (j == 8 && !reportAbuseInput.isEmpty()) {
 					reportAbuseInput = reportAbuseInput.substring(0, reportAbuseInput.length() - 1);
 				}
 				if ((j >= 97 && j <= 122 || j >= 65 && j <= 90 || j >= 48 && j <= 57 || j == 32) && reportAbuseInput.length() < 12) {
@@ -4669,7 +4663,7 @@ public class Game extends RSApplet {
 					promptInput += (char) j;
 					inputTaken = true;
 				}
-				if (j == 8 && promptInput.length() > 0) {
+				if (j == 8 && !promptInput.isEmpty()) {
 					promptInput = promptInput.substring(0, promptInput.length() - 1);
 					inputTaken = true;
 				}
@@ -4684,7 +4678,7 @@ public class Game extends RSApplet {
 						long l1 = TextClass.longForName(promptInput);
 						delFriend(l1);
 					}
-					if (friendsListAction == 3 && promptInput.length() > 0) {
+					if (friendsListAction == 3 && !promptInput.isEmpty()) {
 						stream.createFrame(126);
 						stream.writeWordBigEndian(0);
 						int k = stream.currentOffset;
@@ -4721,13 +4715,13 @@ public class Game extends RSApplet {
 					amountOrNameInput += (char) j;
 					inputTaken = true;
 				}
-				if (j == 8 && amountOrNameInput.length() > 0) {
+				if (j == 8 && !amountOrNameInput.isEmpty()) {
 					amountOrNameInput = amountOrNameInput.substring(0, amountOrNameInput.length() - 1);
 					inputTaken = true;
 				}
 				try {
 				if (j == 13 || j == 10) {
-					if (amountOrNameInput.length() > 0) {
+					if (!amountOrNameInput.isEmpty()) {
 						if (amountOrNameInput.toLowerCase().contains("k")) {
 							amountOrNameInput = amountOrNameInput.replaceAll("k", "000");
 						} else if (amountOrNameInput.toLowerCase().contains("m")) {
@@ -4753,12 +4747,12 @@ public class Game extends RSApplet {
 					amountOrNameInput += (char) j;
 					inputTaken = true;
 				}
-				if (j == 8 && amountOrNameInput.length() > 0) {
+				if (j == 8 && !amountOrNameInput.isEmpty()) {
 					amountOrNameInput = amountOrNameInput.substring(0, amountOrNameInput.length() - 1);
 					inputTaken = true;
 				}
 				if (j == 13 || j == 10) {
-					if (amountOrNameInput.length() > 0) {
+					if (!amountOrNameInput.isEmpty()) {
 						stream.createFrame(60);
 						stream.writeQWord(TextClass.longForName(amountOrNameInput));
 					}
@@ -4770,11 +4764,11 @@ public class Game extends RSApplet {
 					inputString += (char) j;
 					inputTaken = true;
 				}
-				if (j == 8 && inputString.length() > 0) {
+				if (j == 8 && !inputString.isEmpty()) {
 					inputString = inputString.substring(0, inputString.length() - 1);
 					inputTaken = true;
 				}
-				if ((j == 13 || j == 10) && inputString.length() > 0) {
+				if ((j == 13 || j == 10) && !inputString.isEmpty()) {
 					if (inputString.equals("::gfxtgl") || inputString.equals("::tglgfx") || inputString.equals("::togglerender") || inputString.equals("::togglegfx")) {
 						graphicsEnabled = !graphicsEnabled;
 					}
@@ -6123,7 +6117,7 @@ public class Game extends RSApplet {
 		return i != 1;
 	}
 	
-	static final int method77(int i, int i_1_) {
+	static int method77(int i, int i_1_) {
 		if (i_1_ == -2)
 	   		return 12345678;
 		if (i_1_ == -1) {
@@ -7910,7 +7904,7 @@ public class Game extends RSApplet {
 						if (flag1 && component.anInt239 != 0) {
 							i4 = component.anInt239;
 						}
-						if (component.enabledText.length() > 0) {
+						if (!component.enabledText.isEmpty()) {
 							s = component.enabledText;
 						}
 					} else {
@@ -7931,8 +7925,8 @@ public class Game extends RSApplet {
 							i4 = 0xffffff;
 						}
 					}
-					for (int l6 = l2 + textDrawingArea.yOffset; s.length() > 0; l6 += textDrawingArea.yOffset) {
-						if (s.indexOf("%") != -1) {
+					for (int l6 = l2 + textDrawingArea.yOffset; !s.isEmpty(); l6 += textDrawingArea.yOffset) {
+						if (s.contains("%")) {
 							do {
 								int k7 = s.indexOf("%1");
 								if (k7 == -1) {
@@ -9454,7 +9448,7 @@ public class Game extends RSApplet {
 		}
 		if (loginScreenState == 2) {
 			int j = c1 / 2 - 40;
-			if (loginMessage1.length() > 0) {
+			if (!loginMessage1.isEmpty()) {
 				chatTextDrawingArea.drawText(0xffff00, c / 2, loginMessage1, j - 15, true);
 				chatTextDrawingArea.drawText(0xffff00, c / 2, loginMessage2, j, true);
 			} else {
@@ -9941,7 +9935,7 @@ public class Game extends RSApplet {
 					}
 
 					if (loginScreenCursorPos == 0) {
-						if (l1 == 8 && myUsername.length() > 0) {
+						if (l1 == 8 && !myUsername.isEmpty()) {
 							myUsername = myUsername.substring(0, myUsername.length() - 1);
 						}
 						if (l1 == 9 || l1 == 10 || l1 == 13) {
@@ -9954,7 +9948,7 @@ public class Game extends RSApplet {
 							myUsername = myUsername.substring(0, 12);
 						}
 					} else if (loginScreenCursorPos == 1) {
-						if (l1 == 8 && myPassword.length() > 0) {
+						if (l1 == 8 && !myPassword.isEmpty()) {
 							myPassword = myPassword.substring(0, myPassword.length() - 1);
 						}
 						if (l1 == 9 || l1 == 10 || l1 == 13) {
@@ -10723,15 +10717,15 @@ public class Game extends RSApplet {
 				return true;
 			}
 			if (pktType == 1) {
-				for (int k4 = 0; k4 < playerArray.length; k4++) {
-					if (playerArray[k4] != null) {
-						playerArray[k4].anim = -1;
+				for (Player player : playerArray) {
+					if (player != null) {
+						player.anim = -1;
 					}
 				}
 
-				for (int j12 = 0; j12 < npcArray.length; j12++) {
-					if (npcArray[j12] != null) {
-						npcArray[j12].anim = -1;
+				for (NPC npc : npcArray) {
+					if (npc != null) {
+						npc.anim = -1;
 					}
 				}
 
@@ -11321,21 +11315,21 @@ public class Game extends RSApplet {
 				pktType = -1;
 				return true;
 			}
-			String s2 = "T1 - " + pktType + "," + pktSize + " - " + anInt842 + "," + anInt843 + " - ";
+			StringBuilder s2 = new StringBuilder("T1 - " + pktType + "," + pktSize + " - " + anInt842 + "," + anInt843 + " - ");
 			for (int j15 = 0; j15 < pktSize && j15 < 50; j15++) {
-				s2 = s2 + inStream.buffer[j15] + ",";
+				s2.append(inStream.buffer[j15]).append(",");
 			}
-			Signlink.reporterror(s2);
+			Signlink.reporterror(s2.toString());
 			resetLogout();
 		} catch (IOException _ex) {
 			dropClient();
 		} catch (Exception exception) {
-			String s2 = "T2 - " + pktType + "," + anInt842 + "," + anInt843 + " - " + pktSize + "," + (baseX + myPlayer.smallX[0]) + "," + (baseY + myPlayer.smallY[0]) + " - ";
+			StringBuilder s2 = new StringBuilder("T2 - " + pktType + "," + anInt842 + "," + anInt843 + " - " + pktSize + "," + (baseX + myPlayer.smallX[0]) + "," + (baseY + myPlayer.smallY[0]) + " - ");
 			for (int j15 = 0; j15 < pktSize && j15 < 50; j15++) {
-				s2 = s2 + inStream.buffer[j15] + ",";
+				s2.append(inStream.buffer[j15]).append(",");
 			}
 
-			Signlink.reporterror(s2);
+			Signlink.reporterror(s2.toString());
 			resetLogout();
 			exception.printStackTrace();
 		}
@@ -12039,7 +12033,7 @@ public class Game extends RSApplet {
 	public static int anInt1290;
 	public boolean showInfo = false;
 	public static int anInt1401 = 256;
-	public static int[] anIntArray385 = new int[] { 12800, 12800, 12800, 12800, 12800, 12800,
+	public static int[] anIntArray385 = { 12800, 12800, 12800, 12800, 12800, 12800,
 	12800, 12800, 12800, 12800, 12800, 12800,
 	12800, 12800, 12800, 12800 };
 	public static int anInt720 = 0;

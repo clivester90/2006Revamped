@@ -99,7 +99,7 @@ public final class RSInterface {
 						rsInterface.spritesX[j2] = stream.readSignedWord();
 						rsInterface.spritesY[j2] = stream.readSignedWord();
 						String s1 = stream.readString();
-						if (streamLoader_1 != null && s1.length() > 0) {
+						if (streamLoader_1 != null && !s1.isEmpty()) {
 							int i5 = s1.lastIndexOf(",");
 							rsInterface.sprites[j2] = method207(Integer.parseInt(s1.substring(i5 + 1)), streamLoader_1, s1.substring(0, i5));
 						}
@@ -109,7 +109,7 @@ public final class RSInterface {
 				rsInterface.actions = new String[5];
 				for (int l3 = 0; l3 < 5; l3++) {
 					rsInterface.actions[l3] = stream.readString();
-					if (rsInterface.actions[l3].length() == 0) {
+					if (rsInterface.actions[l3].isEmpty()) {
 						rsInterface.actions[l3] = null;
 					}
 				}
@@ -147,12 +147,12 @@ public final class RSInterface {
 			}
 			if (rsInterface.type == 5) {
 				String s = stream.readString();
-				if (streamLoader_1 != null && s.length() > 0) {
+				if (streamLoader_1 != null && !s.isEmpty()) {
 					int i4 = s.lastIndexOf(",");
 					rsInterface.sprite1 = method207(Integer.parseInt(s.substring(i4 + 1)), streamLoader_1, s.substring(0, i4));
 				}
 				s = stream.readString();
-				if (streamLoader_1 != null && s.length() > 0) {
+				if (streamLoader_1 != null && !s.isEmpty()) {
 					int j4 = s.lastIndexOf(",");
 					rsInterface.sprite2 = method207(Integer.parseInt(s.substring(j4 + 1)), streamLoader_1, s.substring(0, j4));
 				}
@@ -200,7 +200,7 @@ public final class RSInterface {
 				rsInterface.actions = new String[5];
 				for (int k4 = 0; k4 < 5; k4++) {
 					rsInterface.actions[k4] = stream.readString();
-					if (rsInterface.actions[k4].length() == 0) {
+					if (rsInterface.actions[k4].isEmpty()) {
 						rsInterface.actions[k4] = null;
 					}
 				}
@@ -216,7 +216,7 @@ public final class RSInterface {
 			}
 			if (rsInterface.atActionType == 1 || rsInterface.atActionType == 4 || rsInterface.atActionType == 5 || rsInterface.atActionType == 6) {
 				rsInterface.tooltip = stream.readString();
-				if (rsInterface.tooltip.length() == 0) {
+				if (rsInterface.tooltip.isEmpty()) {
 					if (rsInterface.atActionType == 1) {
 						rsInterface.tooltip = "Ok";
 					}

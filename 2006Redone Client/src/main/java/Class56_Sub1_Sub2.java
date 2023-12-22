@@ -12,7 +12,7 @@ final class Class56_Sub1_Sub2 extends Class56_Sub1 implements Runnable
     private Class11 aClass11_1857 = new Class11();
     private static int[] anIntArray1858 = new int[256];
     
-    private static final void method845(int i, int i_1_, int i_2_, int i_3_) {
+    private static void method845(int i, int i_1_, int i_2_, int i_3_) {
     	if (anIntArray1858.length <= anInt1856) {
     		aRunnable_Impl1_1852.method10(anIntArray1858, anInt1856);
     		anInt1856 = 0;
@@ -22,7 +22,7 @@ final class Class56_Sub1_Sub2 extends Class56_Sub1 implements Runnable
     	anIntArray1858[anInt1856++] = i_2_ << 8 | i | i_3_ << 16;
     }
     
-    private static final void method846() {
+    private static void method846() {
     	if (anInt1856 > 0) {
     		aRunnable_Impl1_1852.method10(anIntArray1858, anInt1856);
     		anInt1856 = 0;
@@ -151,7 +151,7 @@ final class Class56_Sub1_Sub2 extends Class56_Sub1 implements Runnable
 		}
     }
     
-    private final void method847(int i, long l, int i_17_) {
+    private void method847(int i, long l, int i_17_) {
     	int i_18_ = aClass11_1857.method529(i_17_);
     	if (i_18_ != 1) {
     		if ((i_18_ & 0x80) != 0) {

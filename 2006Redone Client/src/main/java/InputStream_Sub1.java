@@ -23,7 +23,7 @@ final class InputStream_Sub1 extends InputStream {
     private byte[] aByteArray33 = new byte[65536];
     private int[] anIntArray34 = new int[256];
     
-    private final byte method41(int i) {
+    private byte method41(int i) {
 		int i_0_ = i >> 8 & 0x80;
 		if (i_0_ != 0)
 		    i = -i;
@@ -67,7 +67,7 @@ final class InputStream_Sub1 extends InputStream {
     	return is[0];
     }
     
-    private static final void method42(byte[] is, int[] is_8_, byte[] is_9_, int i, int i_10_, int i_11_) {
+    private static void method42(byte[] is, int[] is_8_, byte[] is_9_, int i, int i_10_, int i_11_) {
     	for (i = 0; i < i_11_; i++)
     		is_9_[i_10_++] = is[(is_8_[i] >> 8) + 32768];
     }	

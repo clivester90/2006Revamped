@@ -45,8 +45,7 @@ public final class OnDemandFetcher extends OnDemandFetcherParent implements Runn
 			if (expectedSize == 0 && available >= 6) {
 				waiting = true;
 				for (int k = 0; k < 6; k += inputStream.read(ioBuffer, k, 6 - k)) {
-					;
-				}
+                }
 				int l = ioBuffer[0] & 0xff;
 				int j1 = ((ioBuffer[1] & 0xff) << 8) + (ioBuffer[2] & 0xff);
 				int l1 = ((ioBuffer[3] & 0xff) << 8) + (ioBuffer[4] & 0xff);
@@ -98,8 +97,7 @@ public final class OnDemandFetcher extends OnDemandFetcherParent implements Runn
 					i1 = completedSize;
 				}
 				for (int k1 = 0; k1 < expectedSize; k1 += inputStream.read(abyte0, k1 + i1, expectedSize - k1)) {
-					;
-				}
+                }
 				if (expectedSize + completedSize >= abyte0.length && current != null) {
 					if (clientInstance.decompressors[0] != null) {
 						clientInstance.decompressors[current.dataType + 1].method234(abyte0.length, abyte0, current.ID);

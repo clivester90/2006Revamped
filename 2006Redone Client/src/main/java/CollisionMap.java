@@ -531,13 +531,7 @@ final class CollisionMap {
 		if (k >= j && k <= l1 && k1 >= i && k1 <= i2) {
 			return true;
 		}
-		if (k == j - 1 && k1 >= i && k1 <= i2 && (anIntArrayArray294[k - anInt290][k1 - anInt291] & 8) == 0 && (i1 & 8) == 0) {
-			return true;
-		}
-		if (k == l1 + 1 && k1 >= i && k1 <= i2 && (anIntArrayArray294[k - anInt290][k1 - anInt291] & 0x80) == 0 && (i1 & 2) == 0) {
-			return true;
-		}
-		return k1 == i - 1 && k >= j && k <= l1 && (anIntArrayArray294[k - anInt290][k1 - anInt291] & 2) == 0 && (i1 & 4) == 0 || k1 == i2 + 1 && k >= j && k <= l1 && (anIntArrayArray294[k - anInt290][k1 - anInt291] & 0x20) == 0 && (i1 & 1) == 0;
+		return k == j - 1 && k1 >= i && k1 <= i2 && (anIntArrayArray294[k - anInt290][k1 - anInt291] & 8) == 0 && (i1 & 8) == 0 || k == l1 + 1 && k1 >= i && k1 <= i2 && (anIntArrayArray294[k - anInt290][k1 - anInt291] & 0x80) == 0 && (i1 & 2) == 0 || k1 == i - 1 && k >= j && k <= l1 && (anIntArrayArray294[k - anInt290][k1 - anInt291] & 2) == 0 && (i1 & 4) == 0 || k1 == i2 + 1 && k >= j && k <= l1 && (anIntArrayArray294[k - anInt290][k1 - anInt291] & 0x20) == 0 && (i1 & 1) == 0;
 	}
 
 	private final int anInt290;

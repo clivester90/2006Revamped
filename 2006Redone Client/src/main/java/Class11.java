@@ -43,7 +43,7 @@ final class Class11
 	anIntArray212 = null;
     }
     
-    private final int method524(int i) {
+    private int method524(int i) {
 	int i_1_ = (aClass3_Sub12_211.buffer
 		    [aClass3_Sub12_211.currentOffset]);
 	if (i_1_ < 0) {
@@ -119,10 +119,10 @@ final class Class11
     
     final boolean method531() {
 	int i = anIntArray214.length;
-	for (int i_8_ = 0; i_8_ < i; i_8_++) {
-	    if (anIntArray214[i_8_] >= 0)
-		return false;
-	}
+		for (int j : anIntArray214) {
+			if (j >= 0)
+				return false;
+		}
 	return true;
     }
     
@@ -146,7 +146,7 @@ final class Class11
 	}
     }
     
-    private final int method535(int i, int i_10_) {
+    private int method535(int i, int i_10_) {
 	if (i_10_ == 255) {
 	    int i_11_ = aClass3_Sub12_211.readUnsignedByte();
 	    int i_12_ = aClass3_Sub12_211.method428();

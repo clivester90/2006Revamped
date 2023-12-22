@@ -411,8 +411,7 @@ public class RSApplet extends Applet implements Runnable, MouseListener, MouseMo
 	final int readChar(int dummy) {
 		while (dummy >= 0) {
 			for (int j = 1; j > 0; j++) {
-				;
-			}
+            }
 		}
 		int k = -1;
 		if (writeIndex != readIndex) {

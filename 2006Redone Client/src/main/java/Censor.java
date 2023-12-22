@@ -900,11 +900,11 @@ final class Censor {
 
 	private static boolean method523(char[] ac) {
 		boolean flag = true;
-		for (int i = 0; i < ac.length; i++) {
-			if (!isDigit(ac[i]) && ac[i] != 0) {
-				flag = false;
-			}
-		}
+        for (char c : ac) {
+            if (!isDigit(c) && c != 0) {
+                flag = false;
+            }
+        }
 
 		if (flag) {
 			return true;

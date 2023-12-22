@@ -25,7 +25,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public final class Signlink implements Runnable {
 
-	public static final void startpriv(InetAddress inetaddress) {
+	public static void startpriv(InetAddress inetaddress) {
 		threadliveid = (int) (Math.random() * 99999999D);
 		if (active) {
 			try {
@@ -53,9 +53,9 @@ public final class Signlink implements Runnable {
 
 	enum Position {
 		LEFT, RIGHT, NORMAL
-	};
+	}
 
-	private final int EXTERNAL_BUFFER_SIZE = 524288; // 128Kb
+    private final int EXTERNAL_BUFFER_SIZE = 524288; // 128Kb
 	private Position curPosition;
 
 	@Override
@@ -104,10 +104,7 @@ public final class Signlink implements Runnable {
 					AudioInputStream audioInputStream = null;
 					try {
 						audioInputStream = AudioSystem.getAudioInputStream(new File(wave));
-					} catch (UnsupportedAudioFileException e1) {
-						e1.printStackTrace();
-						return;
-					} catch (IOException e1) {
+					} catch (UnsupportedAudioFileException | IOException e1) {
 						e1.printStackTrace();
 						return;
 					}
@@ -117,9 +114,6 @@ public final class Signlink implements Runnable {
 					try {
 						auline = (SourceDataLine) AudioSystem.getLine(info);
 						auline.open(format);
-					} catch (LineUnavailableException e) {
-						e.printStackTrace();
-						return;
 					} catch (Exception e) {
 						e.printStackTrace();
 						return;

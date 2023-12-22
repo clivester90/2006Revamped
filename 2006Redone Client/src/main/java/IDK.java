@@ -52,11 +52,11 @@ public final class IDK {
 			return true;
 		}
 		boolean flag = true;
-		for (int j = 0; j < anIntArray658.length; j++) {
-			if (!Model.method463(anIntArray658[j])) {
-				flag = false;
-			}
-		}
+        for (int i : anIntArray658) {
+            if (!Model.method463(i)) {
+                flag = false;
+            }
+        }
 
 		return flag;
 	}

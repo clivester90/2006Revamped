@@ -84,7 +84,7 @@ public final class Stream extends NodeSub {
 			buffer[currentOffset++] = (byte) (int) (l >> 8);
 			buffer[currentOffset++] = (byte) (int) l;
 		} catch (RuntimeException runtimeexception) {
-			Signlink.reporterror("14395, " + 5 + ", " + l + ", " + runtimeexception.toString());
+			Signlink.reporterror("14395, " + 5 + ", " + l + ", " + runtimeexception);
 			throw new RuntimeException();
 		}
 	}
@@ -148,18 +148,16 @@ public final class Stream extends NodeSub {
 	public String readString() {
 		int i = currentOffset;
 		while (buffer[currentOffset++] != 10) {
-			;
-		}
+        }
 		return new String(buffer, i, currentOffset - i - 1);
 	}
 
 	public byte[] readBytes() {
 		int i = currentOffset;
 		while (buffer[currentOffset++] != 10) {
-			;
-		}
+        }
 		byte[] abyte0 = new byte[currentOffset - i - 1];
-		System.arraycopy(buffer, i, abyte0, i - i, currentOffset - 1 - i);
+		System.arraycopy(buffer, i, abyte0, 0, currentOffset - 1 - i);
 		return abyte0;
 	}
 

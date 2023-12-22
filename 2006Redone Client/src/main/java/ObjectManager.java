@@ -266,11 +266,9 @@ final class ObjectManager {
 							int i7 = i3;
 							int k8 = i3;
 							for (; k4 > 0 && (anIntArrayArrayArray135[i3][i4][k4 - 1] & i2) != 0; k4--) {
-								;
-							}
+                            }
 							for (; l5 < anInt147 && (anIntArrayArrayArray135[i3][i4][l5 + 1] & i2) != 0; l5++) {
-								;
-							}
+                            }
 							label0 : for (; i7 > 0; i7--) {
 								for (int j10 = k4; j10 <= l5; j10++) {
 									if ((anIntArrayArrayArray135[i7 - 1][i4][j10] & i2) == 0) {
@@ -310,11 +308,9 @@ final class ObjectManager {
 							int j7 = i3;
 							int l8 = i3;
 							for (; l4 > 0 && (anIntArrayArrayArray135[i3][l4 - 1][k3] & j2) != 0; l4--) {
-								;
-							}
+                            }
 							for (; i6 < anInt146 && (anIntArrayArrayArray135[i3][i6 + 1][k3] & j2) != 0; i6++) {
-								;
-							}
+                            }
 							label2 : for (; j7 > 0; j7--) {
 								for (int i11 = l4; i11 <= i6; i11++) {
 									if ((anIntArrayArrayArray135[j7 - 1][i11][k3] & j2) == 0) {
@@ -354,11 +350,9 @@ final class ObjectManager {
 							int k7 = k3;
 							int i9 = k3;
 							for (; k7 > 0 && (anIntArrayArrayArray135[i3][i4][k7 - 1] & k2) != 0; k7--) {
-								;
-							}
+                            }
 							for (; i9 < anInt147 && (anIntArrayArrayArray135[i3][i4][i9 + 1] & k2) != 0; i9++) {
-								;
-							}
+                            }
 							label4 : for (; i5 > 0; i5--) {
 								for (int l11 = k7; l11 <= i9; l11++) {
 									if ((anIntArrayArrayArray135[i3][i5 - 1][l11] & k2) == 0) {

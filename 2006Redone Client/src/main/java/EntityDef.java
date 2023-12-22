@@ -44,11 +44,11 @@ public final class EntityDef {
 			return null;
 		}
 		boolean flag1 = false;
-		for (int i = 0; i < anIntArray73.length; i++) {
-			if (!Model.method463(anIntArray73[i])) {
-				flag1 = true;
-			}
-		}
+        for (int value : anIntArray73) {
+            if (!Model.method463(value)) {
+                flag1 = true;
+            }
+        }
 
 		if (flag1) {
 			return null;
@@ -129,11 +129,11 @@ public final class EntityDef {
 		Model model = (Model) mruNodes.insertFromCache(type);
 		if (model == null) {
 			boolean flag = false;
-			for (int i1 = 0; i1 < anIntArray94.length; i1++) {
-				if (!Model.method463(anIntArray94[i1])) {
-					flag = true;
-				}
-			}
+            for (int i : anIntArray94) {
+                if (!Model.method463(i)) {
+                    flag = true;
+                }
+            }
 
 			if (flag) {
 				return null;

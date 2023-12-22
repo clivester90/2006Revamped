@@ -4,15 +4,15 @@
 
 public interface Runnable_Impl1 extends Runnable
 {
-    public void method10(int[] is, int i);
+    void method10(int[] is, int i);
     
-    public void method11(boolean bool);
+    void method11(boolean bool);
     
-    public void method12(boolean bool);
+    void method12(boolean bool);
     
-    public void close();
+    void close();
     
-    public int method14(int i);
+    int method14(int i);
     
-    public void method15(byte i);
+    void method15(byte i);
 }
