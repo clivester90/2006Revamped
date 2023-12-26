@@ -3433,6 +3433,11 @@ public class Game extends RSApplet {
 		int k = menuActionCmd3[i];
 		int l = menuActionID[i];
 		int i1 = menuActionCmd1[i];
+
+		if(shouldDebug) {
+			System.out.println(j + " = j, " + k + " = k, " + l + " = l, " + i1 + " = i1");
+		}
+
 		if (l >= 2000) {
 			l -= 2000;
 		}
@@ -5888,17 +5893,15 @@ public class Game extends RSApplet {
 						}
 						loginFailures++;
 						login(s, s1, flag);
-						return;
 					} else {
 						loginMessage1 = "Error connecting to server.";
 						loginMessage2 = "Please try again in a little while.";
-						return;
 					}
 				} else {
 					loginMessage1 = "No response from server";
 					loginMessage2 = "Please try closing and opening your client again.";
-					return;
 				}
+				return;
 			} else {
 				System.out.println("response:" + k);
 				loginMessage1 = "Unexpected server response";
@@ -9897,6 +9900,11 @@ public class Game extends RSApplet {
 				k1 += 20;
 				if (super.clickMode3 == 1 && super.saveClickX >= i1 - 75 && super.saveClickX <= i1 + 75 && super.saveClickY >= k1 - 20 && super.saveClickY <= k1 + 20) {
 					loginFailures = 0;
+					if(myUsername.isEmpty() || myPassword.isEmpty()) {
+						loginMessage1 = "You must enter a username and password.";
+						loginMessage2 = "Please try again.";
+						return;
+					}
 					login(myUsername, myPassword, false);
 					if (loggedIn) {
 						return;
@@ -10149,6 +10157,7 @@ public class Game extends RSApplet {
 			anInt843 = anInt842;
 			anInt842 = anInt841;
 			anInt841 = packetType;
+
 			if (packetType == 81) {
 				updatePlayers(pktSize, inStream);
 				aBoolean1080 = false;
