@@ -82,7 +82,7 @@ public class FruitTree {
 		private int diseaseDiffValue;
 		private int deathDiffValue;
 
-		private static Map<Integer, FruitTreeData> saplings = new HashMap<Integer, FruitTreeData>();
+		private static Map<Integer, FruitTreeData> saplings = new HashMap<>();
 
 		static {
 			for (FruitTreeData data : FruitTreeData.values()) {
@@ -204,7 +204,7 @@ public class FruitTree {
 		private Point[] fruitTreePosition;
 		private int npcId;
 
-		private static Map<Integer, FruitTreeFieldsData> npcsProtecting = new HashMap<Integer, FruitTreeFieldsData>();
+		private static Map<Integer, FruitTreeFieldsData> npcsProtecting = new HashMap<>();
 
 		static {
 			for (FruitTreeFieldsData data : FruitTreeFieldsData.values()) {
@@ -315,7 +315,7 @@ public class FruitTree {
 		private int saplingId;
 		private String[][] messages;
 
-		private static Map<Integer, InspectData> saplings = new HashMap<Integer, InspectData>();
+		private static Map<Integer, InspectData> saplings = new HashMap<>();
 
 		static {
 			for (InspectData data : InspectData.values()) {

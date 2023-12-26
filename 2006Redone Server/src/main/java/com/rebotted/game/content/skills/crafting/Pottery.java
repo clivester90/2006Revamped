@@ -3,6 +3,7 @@ package com.rebotted.game.content.skills.crafting;
 import com.rebotted.event.CycleEvent;
 import com.rebotted.event.CycleEventContainer;
 import com.rebotted.event.CycleEventHandler;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.items.ItemAssistant;
 import com.rebotted.game.players.Player;
 
@@ -61,7 +62,7 @@ public class Pottery {
 			c.getPacketSender().sendMessage(
 					"You make the soft clay into a "
 							+ ItemAssistant.getItemName(id) + ".");
-			c.getPlayerAssistant().addSkillXP(xp, c.playerCrafting);
+			c.getPlayerAssistant().addSkillXP(xp, SkillData.CRAFTING.getId());
 			c.doAmount--;
 		}
 		CycleEventHandler.getSingleton().addEvent(c, new CycleEvent() {
@@ -75,7 +76,7 @@ public class Pottery {
 					c.getItemAssistant().deleteItem(softClay, 1);
 					c.getItemAssistant().addItem(id, 1);
 					c.getPacketSender().sendMessage("You make the soft clay into a " + ItemAssistant.getItemName(id) + ".");
-					c.getPlayerAssistant().addSkillXP(xp, c.playerCrafting);
+					c.getPlayerAssistant().addSkillXP(xp, SkillData.CRAFTING.getId());
 					c.doAmount--;
 				}
 
@@ -120,7 +121,7 @@ public class Pottery {
 			player.getPacketSender().sendSound(469, 100, 0);
 			player.getPacketSender().sendMessage("You put a " + ItemAssistant.getItemName(startId) + " into the oven.");
 			player.getPacketSender().sendMessage("You retrieve the " + ItemAssistant.getItemName(finishId) + " from the oven.");
-			player.getPlayerAssistant().addSkillXP(xp, player.playerCrafting);
+			player.getPlayerAssistant().addSkillXP(xp, SkillData.CRAFTING.getId());
 			player.doAmount--;
 		}
 
@@ -143,7 +144,7 @@ public class Pottery {
 					player.getPacketSender().sendSound(469, 100, 0);
 					player.getPacketSender().sendMessage("You put a " + ItemAssistant.getItemName(startId) + " into the oven.");
 					player.getPacketSender().sendMessage("You retrieve the " + ItemAssistant.getItemName(finishId) + " from the oven.");
-					player.getPlayerAssistant().addSkillXP(xp, player.playerCrafting);
+					player.getPlayerAssistant().addSkillXP(xp, SkillData.CRAFTING.getId());
 					player.doAmount--;
 				}
 

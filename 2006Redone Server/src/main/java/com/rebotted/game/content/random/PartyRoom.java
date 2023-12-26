@@ -17,7 +17,7 @@ public class PartyRoom {
 	static int[] roomItemsN = new int[50];
 	static long lastAnnouncment;
 	static int announcmentFrequency = 1; // announcment frequency in mins
-	static ArrayList<Point> coords = new ArrayList<Point>();
+	static ArrayList<Point> coords = new ArrayList<>();
 
 	public static int getAmount() {
 		int amount = 0;

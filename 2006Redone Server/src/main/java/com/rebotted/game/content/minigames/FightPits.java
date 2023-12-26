@@ -37,7 +37,7 @@ public class FightPits {
 	 * @note Stores player and State
 	 */
 	private static Map<Player, String> playerMap = Collections
-			.synchronizedMap(new HashMap<Player, String>());
+			.synchronizedMap(new HashMap<>());
 
 	/**
 	 * @note Where to spawn when pits game starts

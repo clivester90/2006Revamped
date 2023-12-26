@@ -36,7 +36,7 @@ public class EmoteHandler {
 			gfxID = gfxId;
 		}
 
-		public static HashMap<Integer, Emotes> emotes = new HashMap<Integer, Emotes>();
+		public static HashMap<Integer, Emotes> emotes = new HashMap<>();
 
 		public static Emotes loadEmote(int buttonId) {
 			return emotes.get(buttonId);

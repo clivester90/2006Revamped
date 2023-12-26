@@ -4,6 +4,7 @@ import com.rebotted.GameEngine;
 import com.rebotted.event.CycleEvent;
 import com.rebotted.event.CycleEventContainer;
 import com.rebotted.event.CycleEventHandler;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.players.Player;
 import com.rebotted.util.Misc;
 
@@ -64,7 +65,7 @@ public class DesertCactus {
 		int fail = Misc.random(2);
 		if (fail == 1) {
 			c.getPacketSender().sendMessage("You failed to cut the cactus.");
-			c.getPlayerAssistant().addSkillXP(1, c.playerWoodcutting);
+			c.getPlayerAssistant().addSkillXP(1, SkillData.WOODCUTTING.getId());
 			return;
 		}
 		c.startAnimation(CUTTING_ANIMATION);
@@ -74,7 +75,7 @@ public class DesertCactus {
 			if (c.getItemAssistant().playerHasItem(element[0])) {
 				c.getItemAssistant().deleteItem(element[0], c.getItemAssistant().getItemSlot(element[0]), 1);
 				c.getItemAssistant().addItem(element[1], 1);
-				c.getPlayerAssistant().addSkillXP(10, c.playerWoodcutting);
+				c.getPlayerAssistant().addSkillXP(10, SkillData.WOODCUTTING.getId());
 			}
 		}
 	}

@@ -3,6 +3,7 @@ package com.rebotted.game.content.skills.thieving;
 import com.rebotted.event.CycleEvent;
 import com.rebotted.event.CycleEventContainer;
 import com.rebotted.event.CycleEventHandler;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.content.skills.SkillHandler;
 import com.rebotted.game.items.ItemAssistant;
 import com.rebotted.game.players.Player;
@@ -19,21 +20,20 @@ public class ThieveOther {
 	
 	private static final int[][] LOCKED_DOORS = {{2550, 2674, 3305}, {2551, 2674, 3304}};
 	
-	public static boolean lockedDoor(Player player, int objectType) {
+	public static void lockedDoor(Player player, int objectType) {
 		for (int[] element : LOCKED_DOORS) {
 			int objectId = element[0];
 			int x = element[1];
 			int y = element[2];
 			if (objectType == objectId && player.absX == x && player.absY == y) {
 				player.getPacketSender().sendMessage("The door is locked.");
-				return false;
+				return;
 			}
 		}
-		return true;
 	}
 	
 	public static void stealFromChest(Player client, int level, int exp, int reward, int amount) {
-		if (client.playerLevel[client.playerThieving] < level) {
+		if (client.playerLevel[SkillData.THIEVING.getId()] < level) {
 			client.getPacketSender().sendMessage("You need " + level + " thieving to thieve this chest.");
 			return;
 		}
@@ -42,7 +42,7 @@ public class ThieveOther {
 			return;
 		}
 		client.getItemAssistant().addItem(reward, amount);
-		client.getPlayerAssistant().addSkillXP(exp, client.playerThieving);
+		client.getPlayerAssistant().addSkillXP(exp, SkillData.THIEVING.getId());
 		client.getPacketSender().sendMessage("You steal " + ItemAssistant.getItemName(reward) + " from the chest.");
 	}
 	
@@ -51,7 +51,7 @@ public class ThieveOther {
 			client.getPacketSender().sendMessage("You need a lock pick to do that.");
 			return;
 		}
-		if (client.playerLevel[client.playerThieving] < level) {
+		if (client.playerLevel[SkillData.THIEVING.getId()] < level) {
 			client.getPacketSender().sendMessage("You need " + level + " thieving to thieve this chest.");
 			return;
 		}
@@ -75,7 +75,7 @@ public class ThieveOther {
 				}
 				client.getPlayerAssistant().movePlayer(x, y, client.heightLevel);
 				client.getPacketSender().sendMessage("You manage to pick the lock.");
-				client.getPlayerAssistant().addSkillXP(exp, client.playerThieving);
+				client.getPlayerAssistant().addSkillXP(exp, SkillData.THIEVING.getId());
 				container.stop();
 			}
 			@Override

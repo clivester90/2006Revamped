@@ -44,7 +44,7 @@ public class SkillHandler {
                 || player.isMining || player.isWoodcutting || player.isSmithing
                 || player.isSmelting || player.isSpinning || player.isPotionMaking
                 || player.isPotCrafting || player.isFiremaking
-                || player.playerSkilling[player.playerHerblore]
+                || player.playerSkilling[SkillData.HERBLORE.getId()]
                 || player.playerSkilling[13];
     }
 	

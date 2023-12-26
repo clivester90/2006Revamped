@@ -6,7 +6,7 @@ import com.rebotted.game.objects.Objects;
 
 public class Region {
 	
-	private ArrayList<Objects> realObjects = new ArrayList<Objects>();
+	private ArrayList<Objects> realObjects = new ArrayList<>();
 	private final int id;
 	private final int[][][] clips = new int[4][][];
 	private final int[][][] projectileClips = new int[4][][];

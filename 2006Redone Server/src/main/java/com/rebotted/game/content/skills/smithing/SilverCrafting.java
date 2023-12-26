@@ -4,6 +4,7 @@ import java.util.HashMap;
 import com.rebotted.event.CycleEvent;
 import com.rebotted.event.CycleEventContainer;
 import com.rebotted.event.CycleEventHandler;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.content.skills.SkillHandler;
 import com.rebotted.game.items.ItemAssistant;
 import com.rebotted.game.players.Player;
@@ -33,7 +34,7 @@ public class SilverCrafting {
 		private final int level;
 		private final double experience;
 
-		public static HashMap<Integer, SilverCraft> silverItems = new HashMap<Integer, SilverCraft>();
+		public static HashMap<Integer, SilverCraft> silverItems = new HashMap<>();
 
 		public static SilverCraft forId(int id) {
 			return silverItems.get(id);
@@ -96,7 +97,7 @@ public class SilverCrafting {
 				player.getDialogueHandler().sendStatement("You need a silver bar to do this.");
 				return;
 			}
-			if (player.playerLevel[player.playerCrafting] < silverCraft.getLevel()) {
+			if (player.playerLevel[SkillData.CRAFTING.getId()] < silverCraft.getLevel()) {
 				player.getDialogueHandler().sendStatement("You need a crafting level of " + silverCraft.getLevel() + " to make this.");
 				return;
 			}
@@ -129,7 +130,7 @@ public class SilverCrafting {
 					player.getItemAssistant().addItem(silverCraft.getResult(),
 							1);
 					player.getPlayerAssistant().addSkillXP(
-							silverCraft.getExperience(), player.playerCrafting);
+							silverCraft.getExperience(), SkillData.CRAFTING.getId());
 					amnt--;
 
 				}

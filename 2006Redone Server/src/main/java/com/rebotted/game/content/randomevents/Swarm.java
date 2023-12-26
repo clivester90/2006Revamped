@@ -1,5 +1,6 @@
 package  com.rebotted.game.content.randomevents;
 
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.npcs.NpcHandler;
 import com.rebotted.game.players.Client;
 import com.rebotted.game.players.Player;
@@ -14,9 +15,9 @@ public class Swarm {
 
 	private static int checkStats(Player c, boolean bot) {
 		if (bot) {
-			return c.getPlayerAssistant().getLevelForXP(c.playerXP[c.playerHitpoints]) * 3;
+			return c.getPlayerAssistant().getLevelForXP(c.playerXP[SkillData.HITPOINTS.getId()]) * 3;
 		} else {
-			return c.getPlayerAssistant().getLevelForXP(c.playerXP[c.playerHitpoints]) * 2;
+			return c.getPlayerAssistant().getLevelForXP(c.playerXP[SkillData.HITPOINTS.getId()]) * 2;
 		}
 	}
 

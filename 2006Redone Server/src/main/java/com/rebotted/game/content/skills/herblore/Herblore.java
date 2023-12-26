@@ -3,6 +3,7 @@ package com.rebotted.game.content.skills.herblore;
 import com.rebotted.event.CycleEvent;
 import com.rebotted.event.CycleEventContainer;
 import com.rebotted.event.CycleEventHandler;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.content.skills.SkillHandler;
 import com.rebotted.game.items.ItemAssistant;
 import com.rebotted.game.players.Player;
@@ -65,7 +66,7 @@ public class Herblore extends SkillHandler {
 		for (int[] element : POTION_DATA) {
 			if (useItem == element[0] && itemUsed == element[1]
 					|| useItem == element[1] && itemUsed == element[0]) {
-				if (c.playerLevel[c.playerHerblore] < element[3]) {
+				if (c.playerLevel[SkillData.HERBLORE.getId()] < element[3]) {
 					c.getPacketSender().sendMessage("You need an herblore level of " + element[3] + " to mix this potion.");
 					return;
 				}
@@ -80,14 +81,14 @@ public class Herblore extends SkillHandler {
 	}
 
 	public static void makePotion(final Player c, int amount) {
-		if (c.playerSkilling[c.playerHerblore]) {
+		if (c.playerSkilling[SkillData.HERBLORE.getId()]) {
 			return;
 		}
 		if (itemToDelete <= 0 || itemToDelete2 <= 0) {
 			return;
 		}
 		c.doAmount = amount;
-		c.playerSkilling[c.playerHerblore] = true;
+		c.playerSkilling[SkillData.HERBLORE.getId()] = true;
 		c.getPacketSender().closeAllWindows();
 		c.startAnimation(ANIM);
 		CycleEventHandler.getSingleton().addEvent(c, new CycleEvent() {
@@ -98,7 +99,7 @@ public class Herblore extends SkillHandler {
 				c.getItemAssistant().deleteItem(itemToDelete2, c.getItemAssistant().getItemSlot(itemToDelete2), 1);
 				c.getItemAssistant().addItem(itemToAdd, 1);
 				c.getPacketSender().sendMessage("You make a " + ItemAssistant.getItemName(itemToAdd).toLowerCase() + ".");
-				c.getPlayerAssistant().addSkillXP(potExp, c.playerHerblore);
+				c.getPlayerAssistant().addSkillXP(potExp, SkillData.HERBLORE.getId());
 				deleteTime(c);
 				if (!c.getItemAssistant().playerHasItem(itemToDelete2, 1) || !c.getItemAssistant().playerHasItem(itemToDelete, 1) || c.doAmount <= 0) {
 					container.stop();
@@ -118,7 +119,7 @@ public class Herblore extends SkillHandler {
 			@Override
 			public void execute(CycleEventContainer container) {
 				c.startAnimation(ANIM);
-				if (!c.playerSkilling[c.playerHerblore] || !c.isPotionMaking) {
+				if (!c.playerSkilling[SkillData.HERBLORE.getId()] || !c.isPotionMaking) {
 					container.stop();
 				}
 			}
@@ -136,7 +137,7 @@ public class Herblore extends SkillHandler {
 		potExp = -1;
 		player.isGrinding = false;
 		player.isPotionMaking = false;
-		player.playerSkilling[player.playerHerblore] = false;
+		player.playerSkilling[SkillData.HERBLORE.getId()] = false;
 	}
 
 	public static boolean isHerb(int item) {

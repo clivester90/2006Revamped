@@ -3,6 +3,7 @@ package com.rebotted.game.content.skills.fletching;
 import com.rebotted.event.CycleEvent;
 import com.rebotted.event.CycleEventContainer;
 import com.rebotted.event.CycleEventHandler;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.items.ItemAssistant;
 import com.rebotted.game.players.Player;
 import com.rebotted.util.Misc;
@@ -54,7 +55,7 @@ public class LogCutting {
 							player.getPacketSender().sendMessage("You carefully cut the " + ItemAssistant.getItemName(player.getFletching().log) + " into a " + ItemAssistant.getItemName(product) + ".");
 
 						}
-						player.getPlayerAssistant().addSkillXP(xp, player.playerFletching);
+						player.getPlayerAssistant().addSkillXP(xp, SkillData.FLETCHING.getId());
 						player.doAmount--;
 						player.getPacketSender().sendSound(CUT_SOUND, 100, 0);
 					}
@@ -296,13 +297,13 @@ public class LogCutting {
 			c.startAnimation(1248);
 			c.getItemAssistant().deleteItem(2859, amount);
 			c.getItemAssistant().addItem(2861, makeAmount);
-			c.getPlayerAssistant().addSkillXP(3 * amount, c.playerFletching);
+			c.getPlayerAssistant().addSkillXP(3 * amount, SkillData.FLETCHING.getId());
 			c.getPacketSender().sendMessage("You turn your " + ItemAssistant.getItemName(2859) + " into " + ItemAssistant.getItemName(2861) + ".");
 		}
 	}
 
 	public static void flightedArrow(Player c) {// to do
-		if (c.playerLevel[c.playerFletching] < 5) {
+		if (c.playerLevel[SkillData.FLETCHING.getId()] < 5) {
 			c.getDialogueHandler().sendStatement("You need 5 fletching to fletch this.");
 			c.nextChat = 0;
 			return;
@@ -327,7 +328,7 @@ public class LogCutting {
 	}
 
 	public static void ogreArrow(Player c) {
-		if (c.playerLevel[c.playerFletching] < 5) {
+		if (c.playerLevel[SkillData.FLETCHING.getId()] < 5) {
 			c.getDialogueHandler().sendStatement("You need 5 fletching to fletch this.");
 			c.nextChat = 0;
 			return;
@@ -342,21 +343,21 @@ public class LogCutting {
 			if (wolfBoneArrow == flightedArrow) {
 				c.startAnimation(1248);
 				c.getItemAssistant().addItem(2866, wolfBoneArrow);
-				c.getPlayerAssistant().addSkillXP(1 * wolfBoneArrow, c.playerFletching);
+				c.getPlayerAssistant().addSkillXP(wolfBoneArrow, SkillData.FLETCHING.getId());
 				c.getItemAssistant().deleteItem(2861, wolfBoneArrow);
 				c.getItemAssistant().deleteItem(2865, wolfBoneArrow);
 				c.getPacketSender().sendMessage("You turn your " + ItemAssistant.getItemName(2865) + " (s) into " + ItemAssistant.getItemName(2866) + "(s).");
 			} else if (wolfBoneArrow > flightedArrow) {
 				c.startAnimation(1248);
 				c.getItemAssistant().addItem(2866, flightedArrow);
-				c.getPlayerAssistant().addSkillXP(1 * flightedArrow, c.playerFletching);
+				c.getPlayerAssistant().addSkillXP(flightedArrow, SkillData.FLETCHING.getId());
 				c.getItemAssistant().deleteItem(2861, flightedArrow);
 				c.getItemAssistant().deleteItem(2865, flightedArrow);
 				c.getPacketSender().sendMessage("You turn your " + ItemAssistant.getItemName(2865) + " (s) into " + ItemAssistant.getItemName(2866) + "(s).");
 			} else if (wolfBoneArrow < flightedArrow) {
 				c.startAnimation(1248);
 				c.getItemAssistant().addItem(2866, wolfBoneArrow);
-				c.getPlayerAssistant().addSkillXP(1 * wolfBoneArrow, c.playerFletching);
+				c.getPlayerAssistant().addSkillXP(wolfBoneArrow, SkillData.FLETCHING.getId());
 				c.getItemAssistant().deleteItem(2861, wolfBoneArrow);
 				c.getItemAssistant().deleteItem(2865, wolfBoneArrow);
 				c.getPacketSender().sendMessage("You turn your " + ItemAssistant.getItemName(2865) + " (s) into " + ItemAssistant.getItemName(2866) + "(s).");
@@ -376,7 +377,7 @@ public class LogCutting {
 			c.startAnimation(1248);
 			c.getItemAssistant().deleteItem(2862, amount);
 			c.getItemAssistant().addItem(2864, makeAmount);
-			c.getPlayerAssistant().addSkillXP(2 * amount, c.playerFletching);
+			c.getPlayerAssistant().addSkillXP(2 * amount, SkillData.FLETCHING.getId());
 			c.getPacketSender().sendMessage("You turn your " + ItemAssistant.getItemName(2862) + " (s) into " + ItemAssistant.getItemName(2864) + "(s).");
 		}
 	}

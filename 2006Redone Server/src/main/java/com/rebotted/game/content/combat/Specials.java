@@ -91,7 +91,7 @@ public class Specials {
 			return specEffect;
 		}
 
-		public static HashMap<Integer, specialAttack> specialAttack = new HashMap<Integer, specialAttack>();
+		public static HashMap<Integer, specialAttack> specialAttack = new HashMap<>();
 
 	
 

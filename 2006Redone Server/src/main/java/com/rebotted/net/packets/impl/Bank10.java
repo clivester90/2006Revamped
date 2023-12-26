@@ -1,6 +1,7 @@
 package com.rebotted.net.packets.impl;
 
 import com.rebotted.game.content.random.PartyRoom;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.content.skills.crafting.JewelryMaking;
 import com.rebotted.game.players.Player;
 import com.rebotted.net.packets.PacketType;
@@ -86,7 +87,7 @@ public class Bank10 implements PacketType {
 		case 1121:
 		case 1122:
 		case 1123:
-			player.getSmithing().readInput(player, player.playerLevel[player.playerSmithing], removeId, 10);
+			player.getSmithing().readInput(player, player.playerLevel[SkillData.SMITHING.getId()], removeId, 10);
 			break;
 
 		}

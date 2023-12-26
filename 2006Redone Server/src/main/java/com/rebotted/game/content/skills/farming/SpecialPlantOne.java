@@ -71,7 +71,7 @@ public class SpecialPlantOne {
 		private int diseaseDiffValue;
 		private int deathDiffValue;
 
-		private static Map<Integer, SpecialPlantData> saplings = new HashMap<Integer, SpecialPlantData>();
+		private static Map<Integer, SpecialPlantData> saplings = new HashMap<>();
 
 		static {
 			for (SpecialPlantData data : SpecialPlantData.values()) {
@@ -255,7 +255,7 @@ public class SpecialPlantOne {
 		private int saplingId;
 		private String[][] messages;
 
-		private static Map<Integer, InspectData> saplings = new HashMap<Integer, InspectData>();
+		private static Map<Integer, InspectData> saplings = new HashMap<>();
 
 		static {
 			for (InspectData data : InspectData.values()) {

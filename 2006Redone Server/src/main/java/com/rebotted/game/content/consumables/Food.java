@@ -134,7 +134,7 @@ public class Food {
 			return replace;
 		}
 
-		public static HashMap<Integer, FoodToEat> food = new HashMap<Integer, FoodToEat>();
+		public static HashMap<Integer, FoodToEat> food = new HashMap<>();
 
 		static {
 			for (FoodToEat f : FoodToEat.values()) {

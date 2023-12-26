@@ -8,6 +8,7 @@ import com.rebotted.game.content.combat.magic.MagicTeleports;
 import com.rebotted.game.content.gamemode.Mode;
 import com.rebotted.game.content.gamemode.ModeType;
 import com.rebotted.game.content.quests.QuestAssistant;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.content.skills.SkillHandler;
 import com.rebotted.game.content.skills.runecrafting.Tiaras;
 import com.rebotted.game.items.Item;
@@ -87,11 +88,11 @@ public class PacketSender {
 		if (player.questPoints > QuestAssistant.MAXIMUM_QUESTPOINTS || player.getPlayerRights() > 2) {
 			player.questPoints = QuestAssistant.MAXIMUM_QUESTPOINTS;// check for abusers
 		}
-		if (player.playerHitpoints < 0) {
+		if (SkillData.HITPOINTS.getId() < 0) {
 			player.isDead = true;
 		}
-		if (player.playerLevel[player.playerHitpoints] > 99) {
-			player.playerLevel[player.playerHitpoints] = 99;// check for abusers
+		if (player.playerLevel[SkillData.HITPOINTS.getId()] > 99) {
+			player.playerLevel[SkillData.HITPOINTS.getId()] = 99;// check for abusers
 			player.getPlayerAssistant().refreshSkill(3);
 		}
 		if (player.tutorialProgress > 0 && player.tutorialProgress < 36 && GameConstants.TUTORIAL_ISLAND) {

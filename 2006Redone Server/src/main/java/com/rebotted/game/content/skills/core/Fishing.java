@@ -5,6 +5,7 @@ import com.rebotted.event.CycleEventContainer;
 import com.rebotted.event.CycleEventHandler;
 import com.rebotted.game.content.randomevents.RandomEventHandler;
 import com.rebotted.game.content.randomevents.RiverTroll;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.content.skills.SkillHandler;
 import com.rebotted.game.items.ItemAssistant;
 import com.rebotted.game.players.Player;
@@ -66,7 +67,7 @@ public class Fishing extends SkillHandler {
 		resetFishing(c);
 		for (int[] datum : data) {
 			if (npcId == datum[0]) {
-				if (c.playerLevel[c.playerFishing] < datum[1]) {
+				if (c.playerLevel[SkillData.FISHING.getId()] < datum[1]) {
 					c.getDialogueHandler().sendStatement(
 							"You need a fishing level of at least " + datum[1] + " in order to fish at this spot.");
 					return;
@@ -118,7 +119,7 @@ public class Fishing extends SkillHandler {
 						public void execute(CycleEventContainer container) {
 
 							if (c.playerSkillProp[10][5] > 0) {
-								if (c.playerLevel[c.playerFishing] >= c.playerSkillProp[10][6]) {
+								if (c.playerLevel[SkillData.FISHING.getId()] >= c.playerSkillProp[10][6]) {
 									c.playerSkillProp[10][1] = c.playerSkillProp[10][Misc
 											.random(1) == 0 ? 7 : 5];
 								}
@@ -149,7 +150,7 @@ public class Fishing extends SkillHandler {
 								public void execute(
 										CycleEventContainer container) {
 									if (c.playerSkillProp[10][5] > 0) {
-										if (c.playerLevel[c.playerFishing] >= c.playerSkillProp[10][6]) {
+										if (c.playerLevel[SkillData.FISHING.getId()] >= c.playerSkillProp[10][6]) {
 											c.playerSkillProp[10][1] = c.playerSkillProp[10][Misc
 													.random(1) == 0 ? 7 : 5];
 										}
@@ -157,7 +158,7 @@ public class Fishing extends SkillHandler {
 									if (c.playerSkillProp[10][2] > 0) {
 										c.getPlayerAssistant().addSkillXP(
 												c.playerSkillProp[10][2],
-												c.playerFishing);
+												SkillData.FISHING.getId());
 									}
 									if (c.playerSkillProp[10][1] > 0) {
 										c.getItemAssistant().addItem(c.playerSkillProp[10][1], 1);
@@ -216,7 +217,7 @@ public class Fishing extends SkillHandler {
 									}
 								}
 								if (c.playerSkillProp[10][5] > 0) {
-									if (c.playerLevel[c.playerFishing] >= c.playerSkillProp[10][6]) {
+									if (c.playerLevel[SkillData.FISHING.getId()] >= c.playerSkillProp[10][6]) {
 										c.playerSkillProp[10][1] = c.playerSkillProp[10][Misc
 												.random(1) == 0 ? 7 : 5];
 									}
@@ -255,7 +256,7 @@ public class Fishing extends SkillHandler {
 							@Override
 							public void execute(CycleEventContainer container) {
 								if (c.playerSkillProp[10][5] > 0) {
-									if (c.playerLevel[c.playerFishing] >= c.playerSkillProp[10][6]) {
+									if (c.playerLevel[SkillData.FISHING.getId()] >= c.playerSkillProp[10][6]) {
 										c.playerSkillProp[10][1] = c.playerSkillProp[10][Misc
 												.random(1) == 0 ? 7 : 5];
 									}
@@ -286,14 +287,14 @@ public class Fishing extends SkillHandler {
 									c.startAnimation(c.playerSkillProp[10][0]);
 								}
 								if (c.playerSkillProp[10][5] > 0
-										&& c.playerLevel[c.playerFishing] >= c.playerSkillProp[10][6]) {
+										&& c.playerLevel[SkillData.FISHING.getId()] >= c.playerSkillProp[10][6]) {
 									c.getPlayerAssistant().addSkillXP(
 											c.playerSkillProp[10][8],
-											c.playerFishing);
+											SkillData.FISHING.getId());
 								} else if (c.playerSkillProp[10][7] > 0) {
 									c.getPlayerAssistant().addSkillXP(
 											c.playerSkillProp[10][2],
-											c.playerFishing);
+											SkillData.FISHING.getId());
 								}
 								if (c.playerSkillProp[10][3] > 0) {
 									if (!c.getItemAssistant().playerHasItem(
@@ -402,7 +403,7 @@ public class Fishing extends SkillHandler {
 	}
 
 	private static int playerFishingLevel(Player c) {
-		return 10 - (int) Math.floor(c.playerLevel[c.playerFishing] / 10);
+		return 10 - (int) Math.floor(c.playerLevel[SkillData.FISHING.getId()] / 10);
 	}
 
 	private static int getTimer(Player c, int npcId) {

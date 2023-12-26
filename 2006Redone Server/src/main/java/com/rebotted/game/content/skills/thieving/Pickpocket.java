@@ -6,6 +6,7 @@ import com.rebotted.event.CycleEventContainer;
 import com.rebotted.event.CycleEventHandler;
 import com.rebotted.game.content.music.sound.SoundList;
 import com.rebotted.game.content.randomevents.RandomEventHandler;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.content.skills.SkillHandler;
 import com.rebotted.game.items.ItemList;
 import com.rebotted.game.npcs.NpcHandler;
@@ -238,7 +239,7 @@ public class Pickpocket extends SkillHandler {
 		}
 		for (final npcData n : npcData.values()) {
 			if (npcId == n.getNpc(npcId)) {
-				if (player.playerLevel[player.playerThieving] < n.getLevel()) {
+				if (player.playerLevel[SkillData.THIEVING.getId()] < n.getLevel()) {
 					player.getDialogueHandler().sendStatement("You need a Thieving level of " + n.getLevel() + " to pickpocket the " + NpcHandler.getNpcListName(n.getNpc(npcId)).toLowerCase() + ".");
 					return;
 				}
@@ -306,7 +307,7 @@ public class Pickpocket extends SkillHandler {
 						public void execute(CycleEventContainer container) {
 							player.getPacketSender().sendMessage(message2);
 							player.getPlayerAssistant().addSkillXP((int) n.getXp(),
-									player.playerThieving);
+									SkillData.THIEVING.getId());
 							int[] random = n.getPickPockets()[Misc.random(n.getPickPockets().length - 1)];
 							player.getItemAssistant().addItem(random[0], random[1] + (random.length > 2 ? Misc.random(random[2]) : 0));
 							container.stop();

@@ -3,6 +3,7 @@ package com.rebotted.game.content.skills.smithing;
 import com.rebotted.event.CycleEvent;
 import com.rebotted.event.CycleEventContainer;
 import com.rebotted.event.CycleEventHandler;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.content.skills.SkillHandler;
 import com.rebotted.game.items.ItemAssistant;
 import com.rebotted.game.players.Player;
@@ -74,7 +75,7 @@ public class Smelting extends SkillHandler {
 		for (int i = 0; i < data.length; i++) {
 			if (bartype == data[i][0]) {
 				// Check player has the correct smithing level
-				if (c.playerLevel[c.playerSmithing] < data[i][1]) { // Smithing level
+				if (c.playerLevel[SkillData.SMITHING.getId()] < data[i][1]) { // Smithing level
 					c.getDialogueHandler().sendStatement("You need a smithing level of at least "+ data[i][1] + " in order smelt this bar.");
 					return;
 				}
@@ -127,13 +128,13 @@ public class Smelting extends SkillHandler {
 						if (c.playerSkillProp[13][3] == IRON && c.playerSkillProp[13][4] == -1) {
 							// Ring of forging
 							if (c.playerEquipment[c.playerRing] == 2568) {
-								c.getPlayerAssistant().addSkillXP(c.playerSkillProp[13][2], c.playerSmithing);
+								c.getPlayerAssistant().addSkillXP(c.playerSkillProp[13][2], SkillData.SMITHING.getId());
 								c.getItemAssistant().addItem(c.playerSkillProp[13][6], 1);// item
 								c.getPacketSender().sendMessage("You receive an " + ItemAssistant.getItemName(c.playerSkillProp[13][6]).toLowerCase() + ".");
 
 							} else {
 								if (Misc.random(100) >= 50) {
-									c.getPlayerAssistant().addSkillXP(c.playerSkillProp[13][2], c.playerSmithing);
+									c.getPlayerAssistant().addSkillXP(c.playerSkillProp[13][2], SkillData.SMITHING.getId());
 									c.getItemAssistant().addItem(c.playerSkillProp[13][6], 1);// item
 									c.getPacketSender().sendMessage("You receive an " + ItemAssistant.getItemName(c.playerSkillProp[13][6]).toLowerCase() + ".");
 								} else {
@@ -142,11 +143,11 @@ public class Smelting extends SkillHandler {
 							}
 						} else if (c.playerSkillProp[13][3] == GOLD && c.playerEquipment[c.playerHands] == 776) {
 							c.getPacketSender().sendMessage("You receive a " + ItemAssistant.getItemName(c.playerSkillProp[13][6]).toLowerCase() + ".");
-							c.getPlayerAssistant().addSkillXP(56.2,	c.playerSmithing);
+							c.getPlayerAssistant().addSkillXP(56.2,	SkillData.SMITHING.getId());
 							c.getItemAssistant().addItem(c.playerSkillProp[13][6], 1);// item
 						} else {
 							c.getPacketSender().sendMessage("You receive a " + ItemAssistant.getItemName(c.playerSkillProp[13][6]).toLowerCase() + ".");
-							c.getPlayerAssistant().addSkillXP(c.playerSkillProp[13][2], c.playerSmithing);
+							c.getPlayerAssistant().addSkillXP(c.playerSkillProp[13][2], SkillData.SMITHING.getId());
 							c.getItemAssistant().addItem(c.playerSkillProp[13][6], 1);// item
 						}
 

@@ -3,6 +3,7 @@ package com.rebotted.game.content.skills.crafting;
 import com.rebotted.event.CycleEvent;
 import com.rebotted.event.CycleEventContainer;
 import com.rebotted.event.CycleEventHandler;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.items.ItemAssistant;
 import com.rebotted.game.players.Player;
 
@@ -42,14 +43,14 @@ public class Spinning extends CraftingData {
 				public void execute(CycleEventContainer container) {
 					if (player.isSpinning) {
 						if (player.getItemAssistant().playerHasItem(before)) {
-							if (player.playerLevel[player.playerCrafting] < level) {
+							if (player.playerLevel[SkillData.CRAFTING.getId()] < level) {
 								player.getDialogueHandler().sendStatement("You need a crafting level of " + level + " to do this.");
 								return;
 							}
 							player.startAnimation(896);
 							player.getItemAssistant().deleteItem(before, 1);
 							player.getItemAssistant().addItem(after, 1);
-							player.getPlayerAssistant().addSkillXP(exp, player.playerCrafting);
+							player.getPlayerAssistant().addSkillXP(exp, SkillData.CRAFTING.getId());
 							player.getPacketSender().sendMessage("You spin the " + ItemAssistant.getItemName(before) + " into a " + ItemAssistant.getItemName(after) + ".");
 							player.doAmount--;
 						}

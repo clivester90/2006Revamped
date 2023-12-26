@@ -94,7 +94,7 @@ public class WeaponPoison {
 		/**
 		 * Represents a map for the weapon item ids.
 		 */
-		public static HashMap<Integer, Weapon> weapon = new HashMap<Integer, Weapon>();
+		public static HashMap<Integer, Weapon> weapon = new HashMap<>();
 
 		/**
 		 * @return the newItemId

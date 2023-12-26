@@ -1,5 +1,6 @@
 package com.rebotted.game.items;
 
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.content.skills.cooking.Cooking;
 import com.rebotted.game.content.skills.crafting.BattleStaffs;
 import com.rebotted.game.content.skills.crafting.GemCutting;
@@ -177,19 +178,19 @@ public class UseItem {
 			LogCutting.wolfBoneArrow(player);
 		}
 		if (itemUsed == 771 && useWith == 946
-				&& player.playerLevel[player.playerCrafting] > 30) {
+				&& player.playerLevel[SkillData.CRAFTING.getId()] > 30) {
 			player.getItemAssistant().deleteItem(771, 1);
 			player.getItemAssistant().addItem(772, 1);
-		} else if (player.playerLevel[player.playerCrafting] < 31 && itemUsed == 771
+		} else if (player.playerLevel[SkillData.CRAFTING.getId()] < 31 && itemUsed == 771
 				&& useWith == 946) {
 			player.getPacketSender().sendMessage(
 					"You need 31 crafting to make this.");
 		}
 		if (itemUsed == 946 && useWith == 771
-				&& player.playerLevel[player.playerCrafting] > 30) {
+				&& player.playerLevel[SkillData.CRAFTING.getId()] > 30) {
 			player.getItemAssistant().deleteItem(771, 1);
 			player.getItemAssistant().addItem(772, 1);
-		} else if (player.playerLevel[player.playerCrafting] < 31 && itemUsed == 946
+		} else if (player.playerLevel[SkillData.CRAFTING.getId()] < 31 && itemUsed == 946
 				&& useWith == 771) {
 			player.getPacketSender().sendMessage(
 					"You need 31 crafting to make this.");
@@ -200,10 +201,10 @@ public class UseItem {
 			player.getItemAssistant().addItem(7053, 1);
 		}
 		int[] firemakingItems = {590, 7329, 7330, 7331};
-		for (int i = 0; i < firemakingItems.length; i++) {
-			if (itemUsed == firemakingItems[i] || useWith == firemakingItems[i] && !player.isFiremaking) {
+		for (int firemakingItem : firemakingItems) {
+			if (itemUsed == firemakingItem || useWith == firemakingItem && !player.isFiremaking) {
 				Firemaking.attemptFire(player, itemUsed, useWith, player.absX, player.absY, false);
-			} else if (itemUsed == firemakingItems[i] || useWith == firemakingItems[i] && player.isFiremaking) {
+			} else if (itemUsed == firemakingItem || useWith == firemakingItem && player.isFiremaking) {
 				player.getPacketSender().sendMessage("You can't do that, you are already firemaking.");
 			}
 		}
@@ -241,12 +242,12 @@ public class UseItem {
 			player.getItemAssistant().deleteItem(4548, 1);
 		}
 		if (itemUsed == 1095 && useWith == 2370 || itemUsed == 2370
-				&& useWith == 1095 && player.playerLevel[player.playerCrafting] > 43) {// chaps
+				&& useWith == 1095 && player.playerLevel[SkillData.CRAFTING.getId()] > 43) {// chaps
 			player.getItemAssistant().deleteItem(2370, 1);
 			player.getItemAssistant().deleteItem(1095, 1);
 			player.getItemAssistant().addItem(1097, 1);
-			player.getPlayerAssistant().addSkillXP(42, player.playerCrafting);
-		} else if (itemUsed == 1095 && useWith == 2370 || itemUsed == 2370 && useWith == 1095 && player.playerLevel[player.playerCrafting] < 44) {
+			player.getPlayerAssistant().addSkillXP(42, SkillData.CRAFTING.getId());
+		} else if (itemUsed == 1095 && useWith == 2370 || itemUsed == 2370 && useWith == 1095 && player.playerLevel[SkillData.CRAFTING.getId()] < 44) {
 			player.getPacketSender().sendMessage("You need 44 crafting to make this.");
 		}
 		if (itemUsed == 946 && useWith == 1963 || itemUsed == 1963  && useWith == 946) {
@@ -259,12 +260,12 @@ public class UseItem {
 			player.getItemAssistant().addItem(1975, 1);
 			player.getPacketSender().sendMessage("You slice your chocolate bar.");
 		}
-		if (itemUsed == 1129 && useWith == 2370 || itemUsed == 2370 && useWith == 1129 && player.playerLevel[player.playerCrafting] > 40) {// body
+		if (itemUsed == 1129 && useWith == 2370 || itemUsed == 2370 && useWith == 1129 && player.playerLevel[SkillData.CRAFTING.getId()] > 40) {// body
 			player.getItemAssistant().deleteItem(2370, 1);
 			player.getItemAssistant().deleteItem(1129, 1);
 			player.getItemAssistant().addItem(1133, 1);
-			player.getPlayerAssistant().addSkillXP(40, player.playerCrafting);
-		} else if (itemUsed == 1129 && useWith == 2370 || itemUsed == 2370 && useWith == 1129 && player.playerLevel[player.playerCrafting] < 41) {
+			player.getPlayerAssistant().addSkillXP(40, SkillData.CRAFTING.getId());
+		} else if (itemUsed == 1129 && useWith == 2370 || itemUsed == 2370 && useWith == 1129 && player.playerLevel[SkillData.CRAFTING.getId()] < 41) {
 			player.getPacketSender().sendMessage("You need 41 crafting to make this.");
 		}
 		if (itemUsed == 4593 && useWith == 4591 || useWith == 4591 && itemUsed == 4593) {
@@ -369,11 +370,11 @@ public class UseItem {
 
 		if (itemUsed == 1987 && useWith == 1937 || itemUsed == 1937
 				&& useWith == 1987) {
-			if (player.playerLevel[player.playerCooking] >= 35) {
+			if (player.playerLevel[SkillData.COOKING.getId()] >= 35) {
 				player.getItemAssistant().addItem(1993, 1);
 				player.getItemAssistant().deleteItem(1937, 1);
 				player.getItemAssistant().deleteItem(1987, 1);
-				player.getPlayerAssistant().addSkillXP(200, player.playerCooking);
+				player.getPlayerAssistant().addSkillXP(200, SkillData.COOKING.getId());
 			} else {
 				player.getPacketSender().sendMessage(
 						"You need grapes and a jug of water to make wine.");

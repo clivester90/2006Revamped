@@ -15,6 +15,7 @@ import com.rebotted.game.content.quests.QuestRewards;
 import com.rebotted.game.content.random.Balloons;
 import com.rebotted.game.content.random.PartyRoom;
 import com.rebotted.game.content.randomevents.FreakyForester;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.content.skills.agility.AgilityShortcut;
 import com.rebotted.game.content.skills.core.Mining;
 import com.rebotted.game.content.skills.crafting.Spinning;
@@ -318,7 +319,7 @@ public class ObjectsActions {
                 //if (c.objectX == 2675 && c.objectY == 3170) {
                 //c.getDH().sendDialogues(79, 0);
                 //} else {
-                if (player.playerLevel[player.playerFishing] <= 50) {
+                if (player.playerLevel[SkillData.FISHING.getId()] <= 50) {
                     player.getPacketSender().sendMessage("You need a fishing level of 50 or higher to play Fishing Trawler.");
                     return;
                 }
@@ -437,16 +438,16 @@ public class ObjectsActions {
 
             case 2112:
                 if (player.absY == 9756
-                        && player.playerLevel[player.playerMining] >= 60) {
+                        && player.playerLevel[SkillData.MINING.getId()] >= 60) {
                     player.getPlayerAssistant().movePlayer(3046, 9757, 0);
                     player.getPacketSender()
                             .sendMessage("You enter the guild.");
                 } else if (player.absY == 9757
-                        && player.playerLevel[player.playerMining] >= 60) {
+                        && player.playerLevel[SkillData.MINING.getId()] >= 60) {
                     player.getPlayerAssistant().movePlayer(3046, 9756, 0);
                     player.getPacketSender()
                             .sendMessage("You enter the guild.");
-                } else if (player.playerLevel[player.playerMining] < 60) {
+                } else if (player.playerLevel[SkillData.MINING.getId()] < 60) {
                     player.getPacketSender().sendMessage(
                             "You need 60 mining to enter this guild");
                 }
@@ -677,7 +678,7 @@ public class ObjectsActions {
                 break;
 
             case 10596:
-                if (player.playerLevel[player.playerSlayer] < 72) {
+                if (player.playerLevel[SkillData.SLAYER.getId()] < 72) {
                     player.getPacketSender().sendMessage(
                             "You need 72 slayer to enter.");
                     return;
@@ -726,14 +727,14 @@ public class ObjectsActions {
 
             case 2634:
                 if (player.absX == 2837
-                        && player.playerLevel[player.playerMining] >= 50) {
+                        && player.playerLevel[SkillData.MINING.getId()] >= 50) {
                     player.getPlayerAssistant().movePlayer(player.absX + 3,
                             player.absY, 0);
                 } else if (player.absX == 2840
-                        && player.playerLevel[player.playerMining] >= 50) {
+                        && player.playerLevel[SkillData.MINING.getId()] >= 50) {
                     player.getPlayerAssistant().movePlayer(player.absX - 3,
                             player.absY, 0);
-                } else if (player.playerLevel[player.playerMining] < 50) {
+                } else if (player.playerLevel[SkillData.MINING.getId()] < 50) {
                     player.getDialogueHandler().sendStatement("You need 50 mining to pass to this rock slide.");
                     player.nextChat = 0;
                     return;
@@ -1338,7 +1339,7 @@ public class ObjectsActions {
                 break;
 
             case 9295:
-                if (player.playerLevel[player.playerAgility] < 51) {
+                if (player.playerLevel[SkillData.AGILITY.getId()] < 51) {
                     player.getPacketSender().sendMessage(
                             "You need 51 agility to use this shortcut.");
                     return;
@@ -1602,21 +1603,21 @@ public class ObjectsActions {
 
             case 2320:
                 long clickTimer = 0;
-                if (player.absY <= 9963 && player.playerLevel[player.playerAgility] > 14 && System.currentTimeMillis() - clickTimer > 2000) {
+                if (player.absY <= 9963 && player.playerLevel[SkillData.AGILITY.getId()] > 14 && System.currentTimeMillis() - clickTimer > 2000) {
                     player.getPlayerAssistant().movePlayer(3120, 9970, 0);
                     player.startAnimation(744);
                     player.turnPlayerTo(player.objectX, player.objectY);
                     player.getPacketSender().sendMessage("You swing on the monkey bars.");
-                    player.getPlayerAssistant().addSkillXP(25, player.playerAgility);
+                    player.getPlayerAssistant().addSkillXP(25, SkillData.AGILITY.getId());
                     clickTimer = System.currentTimeMillis();
-                } else if (player.absY <= 9970 && player.playerLevel[player.playerAgility] > 14 && System.currentTimeMillis() - clickTimer > 2000) {
+                } else if (player.absY <= 9970 && player.playerLevel[SkillData.AGILITY.getId()] > 14 && System.currentTimeMillis() - clickTimer > 2000) {
                     player.getPlayerAssistant().movePlayer(3120, 9963, 0);
                     player.startAnimation(744);
                     player.turnPlayerTo(player.objectX, player.objectY);
                     player.getPacketSender().sendMessage("You swing on the monkey bars.");
-                    player.getPlayerAssistant().addSkillXP(25, player.playerAgility);
+                    player.getPlayerAssistant().addSkillXP(25, SkillData.AGILITY.getId());
                     clickTimer = System.currentTimeMillis();
-                } else if (player.playerLevel[player.playerAgility] < 15) {
+                } else if (player.playerLevel[SkillData.AGILITY.getId()] < 15) {
                     player.getPacketSender().sendMessage("You need 15 agility to use these monkey bars.");
                 } else {
                     player.getPacketSender().sendMessage("You can't do the monkey bars here.");
@@ -1827,7 +1828,7 @@ public class ObjectsActions {
                     player.getItemAssistant().addItem(2130, 1);
                     player.getItemAssistant().deleteItem(1927, 1);
                     player.getPlayerAssistant()
-                            .addSkillXP(18, player.playerCooking);
+                            .addSkillXP(18, SkillData.COOKING.getId());
                 } else {
                     player.getPacketSender().sendMessage(
                             "You need a bucket of milk to do this.");

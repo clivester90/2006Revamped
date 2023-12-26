@@ -1,6 +1,7 @@
 package com.rebotted.net.packets.impl;
 
 import com.rebotted.game.content.combat.range.DwarfCannon;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.content.skills.cooking.Cooking;
 import com.rebotted.game.content.skills.cooking.CookingTutorialIsland;
 import com.rebotted.game.content.skills.crafting.JewelryMaking;
@@ -149,7 +150,7 @@ public class ItemOnObject implements PacketType {
 				player.startAnimation(883);
 				player.getItemAssistant().addItem(2130, 1);
 				player.getItemAssistant().deleteItem(1927, 1);
-				player.getPlayerAssistant().addSkillXP(18, player.playerCooking);
+				player.getPlayerAssistant().addSkillXP(18, SkillData.COOKING.getId());
 			} else {
 				player.getPacketSender().sendMessage("You need a bucket of milk to do this.");
 			}

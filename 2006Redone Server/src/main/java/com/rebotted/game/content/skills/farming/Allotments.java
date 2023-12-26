@@ -95,7 +95,7 @@ public class Allotments {
 		private int startingState;
 		private int endingState;
 
-		private static Map<Integer, AllotmentData> seeds = new HashMap<Integer, AllotmentData>();
+		private static Map<Integer, AllotmentData> seeds = new HashMap<>();
 
 		static {
 			for (AllotmentData data : AllotmentData.values()) {
@@ -238,7 +238,7 @@ public class Allotments {
 		}
 
 		public static ArrayList<Integer> listIndexProtected(int npcId) {
-			ArrayList<Integer> array = new ArrayList<Integer>();
+			ArrayList<Integer> array = new ArrayList<>();
 			for (AllotmentFieldsData allotmentFieldsData : AllotmentFieldsData
 					.values()) {
 				if (allotmentFieldsData.getFarmerBelonging() == npcId)
@@ -355,7 +355,7 @@ public class Allotments {
 		private int seedId;
 		private String[][] messages;
 
-		private static Map<Integer, InspectData> seeds = new HashMap<Integer, InspectData>();
+		private static Map<Integer, InspectData> seeds = new HashMap<>();
 
 		static {
 			for (InspectData data : InspectData.values()) {

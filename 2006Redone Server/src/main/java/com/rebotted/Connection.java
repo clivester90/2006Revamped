@@ -16,11 +16,11 @@ import com.rebotted.game.players.Player;
 
 public class Connection {
 
-	public static ArrayList<String> bannedIps = new ArrayList<String>();
-	public static ArrayList<String> bannedNames = new ArrayList<String>();
-	public static ArrayList<String> mutedIps = new ArrayList<String>();
-	public static ArrayList<String> mutedNames = new ArrayList<String>();
-	public static ArrayList<String> loginLimitExceeded = new ArrayList<String>();
+	public static ArrayList<String> bannedIps = new ArrayList<>();
+	public static ArrayList<String> bannedNames = new ArrayList<>();
+	public static ArrayList<String> mutedIps = new ArrayList<>();
+	public static ArrayList<String> mutedNames = new ArrayList<>();
+	public static ArrayList<String> loginLimitExceeded = new ArrayList<>();
 
 	/**
 	 * Adds the banned usernames and ips from the text file to the ban list
@@ -128,7 +128,7 @@ public class Connection {
 	public static void deleteFromFile(String file, String name) {
 		try {
 			BufferedReader r = new BufferedReader(new FileReader(file));
-			ArrayList<String> contents = new ArrayList<String>();
+			ArrayList<String> contents = new ArrayList<>();
 			while (true) {
 				String line = r.readLine();
 				if (line == null) {

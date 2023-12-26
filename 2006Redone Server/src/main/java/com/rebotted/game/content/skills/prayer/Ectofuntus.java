@@ -3,6 +3,7 @@ package com.rebotted.game.content.skills.prayer;
 import com.rebotted.event.CycleEvent;
 import com.rebotted.event.CycleEventContainer;
 import com.rebotted.event.CycleEventHandler;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.players.Player;
 
 /**
@@ -166,7 +167,7 @@ public class Ectofuntus {
 					public void execute(CycleEventContainer container) {
 						player.getItemAssistant().deleteItem(ectofuntus.getBonemealId(), 1);
 						player.startAnimation(WORSHIP);
-						player.getPlayerAssistant().addSkillXP(ectofuntus.getWorshipExperience(), player.playerPrayer);
+						player.getPlayerAssistant().addSkillXP(ectofuntus.getWorshipExperience(), SkillData.PRAYER.getId());
 						player.getPacketSender().sendMessage("You pray to the ectofuntus.");
 						container.stop();
 					}

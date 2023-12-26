@@ -86,7 +86,7 @@ public class Herbs {
 		private int startingState;
 		private int endingState;
 
-		private static Map<Integer, HerbData> seeds = new HashMap<Integer, HerbData>();
+		private static Map<Integer, HerbData> seeds = new HashMap<>();
 
 		static {
 			for (HerbData data : HerbData.values()) {
@@ -283,7 +283,7 @@ public class Herbs {
 		private int seedId;
 		private String[][] messages;
 
-		private static Map<Integer, InspectData> seeds = new HashMap<Integer, InspectData>();
+		private static Map<Integer, InspectData> seeds = new HashMap<>();
 
 		static {
 			for (InspectData data : InspectData.values()) {

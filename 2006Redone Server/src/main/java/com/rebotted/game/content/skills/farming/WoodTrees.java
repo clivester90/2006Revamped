@@ -85,7 +85,7 @@ public class WoodTrees {
 		private int stumpState;
 		private int treeObjectAssociated;
 
-		private static Map<Integer, TreeData> saplings = new HashMap<Integer, TreeData>();
+		private static Map<Integer, TreeData> saplings = new HashMap<>();
 
 		static {
 			for (TreeData data : TreeData.values()) {
@@ -186,7 +186,7 @@ public class WoodTrees {
 		private Point[] treePosition;
 		private int npcId;
 
-		private static Map<Integer, TreeFieldsData> npcsProtecting = new HashMap<Integer, TreeFieldsData>();
+		private static Map<Integer, TreeFieldsData> npcsProtecting = new HashMap<>();
 
 		static {
 			for (TreeFieldsData data : TreeFieldsData.values()) {
@@ -291,7 +291,7 @@ public class WoodTrees {
 		private int saplingId;
 		private String[][] messages;
 
-		private static Map<Integer, InspectData> saplings = new HashMap<Integer, InspectData>();
+		private static Map<Integer, InspectData> saplings = new HashMap<>();
 
 		static {
 			for (InspectData data : InspectData.values()) {

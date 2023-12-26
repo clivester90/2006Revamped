@@ -22,8 +22,8 @@ public class PathFinder {
 		destY = destY - 8 * player.getMapRegionY();
 		int[][] via = new int[104][104];
 		int[][] cost = new int[104][104];
-		LinkedList<Integer> tileQueueX = new LinkedList<Integer>();
-		LinkedList<Integer> tileQueueY = new LinkedList<Integer>();
+		LinkedList<Integer> tileQueueX = new LinkedList<>();
+		LinkedList<Integer> tileQueueY = new LinkedList<>();
 		for (int xx = 0; xx < 104; xx++) {
 			for (int yy = 0; yy < 104; yy++) {
 				cost[xx][yy] = 99999999;
@@ -219,8 +219,8 @@ public class PathFinder {
 		destY = destY - 8 * getRegionCoordinate(y);
 		int[][] via = new int[104][104];
 		int[][] cost = new int[104][104];
-		LinkedList<Integer> tileQueueX = new LinkedList<Integer>();
-		LinkedList<Integer> tileQueueY = new LinkedList<Integer>();
+		LinkedList<Integer> tileQueueX = new LinkedList<>();
+		LinkedList<Integer> tileQueueY = new LinkedList<>();
 		for (int xx = 0; xx < 104; xx++) {
 			for (int yy = 0; yy < 104; yy++) {
 				cost[xx][yy] = 99999999;

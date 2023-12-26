@@ -19,10 +19,10 @@ import com.rebotted.world.clip.Region;
 
 public class ObjectHandler {
 
-	public List<Objects> globalObjects = new ArrayList<Objects>();
+	public List<Objects> globalObjects = new ArrayList<>();
 
-	public static List<Objects> mapObjects = new ArrayList<Objects>();
-	public static List<Objects> removedObjects = new ArrayList<Objects>();
+	public static List<Objects> mapObjects = new ArrayList<>();
+	public static List<Objects> removedObjects = new ArrayList<>();
 
 	public ObjectHandler() {
 		

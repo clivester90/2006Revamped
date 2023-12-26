@@ -1,6 +1,7 @@
 package com.rebotted.game.content.consumables;
 
 import com.rebotted.event.*;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.players.Player;
 import com.rebotted.util.Misc;
 
@@ -144,24 +145,24 @@ public class Beverages {
 			c.getPlayerAssistant().refreshSkill(2);
 			break;
 		case 1913: //dwarven stout
-			c.playerLevel[c.playerMining] = c.getPlayerAssistant().getLevelForXP(c.playerXP[c.playerMining]) + 1;
-			c.playerLevel[c.playerSmithing] = c.getPlayerAssistant().getLevelForXP(c.playerXP[c.playerSmithing]) + 1;
-			c.getPlayerAssistant().refreshSkill(c.playerMining);
-			c.getPlayerAssistant().refreshSkill(c.playerSmithing);
+			c.playerLevel[SkillData.MINING.getId()] = c.getPlayerAssistant().getLevelForXP(c.playerXP[SkillData.MINING.getId()]) + 1;
+			c.playerLevel[SkillData.SMITHING.getId()] = c.getPlayerAssistant().getLevelForXP(c.playerXP[SkillData.SMITHING.getId()]) + 1;
+			c.getPlayerAssistant().refreshSkill(SkillData.MINING.getId());
+			c.getPlayerAssistant().refreshSkill(SkillData.SMITHING.getId());
 		break;
 		case 1907://wizard's mind bomb
-			if (c.playerLevel[c.playerMagic] < 50) {
-				c.playerLevel[c.playerMagic] = c.getPlayerAssistant().getLevelForXP(c.playerXP[c.playerMagic]) + 2;
+			if (c.playerLevel[SkillData.MAGIC.getId()] < 50) {
+				c.playerLevel[SkillData.MAGIC.getId()] = c.getPlayerAssistant().getLevelForXP(c.playerXP[SkillData.MAGIC.getId()]) + 2;
 			} else {
-				c.playerLevel[c.playerMagic] = c.getPlayerAssistant().getLevelForXP(c.playerXP[c.playerMagic]) + 3;
+				c.playerLevel[SkillData.MAGIC.getId()] = c.getPlayerAssistant().getLevelForXP(c.playerXP[SkillData.MAGIC.getId()]) + 3;
 			}
-			c.playerLevel[c.playerStrength] = c.getPlayerAssistant().getLevelForXP(c.playerXP[c.playerStrength]) - 3;
-			c.playerLevel[c.playerDefence] = c.getPlayerAssistant().getLevelForXP(c.playerXP[c.playerDefence]) - 3;
-			c.playerLevel[c.playerAttack] = c.getPlayerAssistant().getLevelForXP(c.playerXP[c.playerAttack]) - 4;
-			c.getPlayerAssistant().refreshSkill(c.playerDefence);
-			c.getPlayerAssistant().refreshSkill(c.playerMagic);
-			c.getPlayerAssistant().refreshSkill(c.playerAttack);
-			c.getPlayerAssistant().refreshSkill(c.playerStrength);
+			c.playerLevel[SkillData.STRENGTH.getId()] = c.getPlayerAssistant().getLevelForXP(c.playerXP[SkillData.STRENGTH.getId()]) - 3;
+			c.playerLevel[SkillData.STRENGTH.getId()] = c.getPlayerAssistant().getLevelForXP(c.playerXP[SkillData.STRENGTH.getId()]) - 3;
+			c.playerLevel[SkillData.ATTACK.getId()] = c.getPlayerAssistant().getLevelForXP(c.playerXP[SkillData.ATTACK.getId()]) - 4;
+			c.getPlayerAssistant().refreshSkill(SkillData.STRENGTH.getId());
+			c.getPlayerAssistant().refreshSkill(SkillData.MAGIC.getId());
+			c.getPlayerAssistant().refreshSkill(SkillData.ATTACK.getId());
+			c.getPlayerAssistant().refreshSkill(SkillData.STRENGTH.getId());
 		break;
 		case 1915://grog
 			c.playerLevel[2] = c.getPlayerAssistant().getLevelForXP(c.playerXP[2]) + 3;

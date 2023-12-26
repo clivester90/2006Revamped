@@ -64,7 +64,7 @@ public class Farmers {
 		private String fieldProtected;
 		private String[] dialogueOptions;
 
-		private static Map<Integer, FarmersData> npcs = new HashMap<Integer, FarmersData>();
+		private static Map<Integer, FarmersData> npcs = new HashMap<>();
 
 		static {
 			for (FarmersData data : FarmersData.values()) {

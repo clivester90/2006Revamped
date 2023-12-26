@@ -3,6 +3,7 @@ package com.rebotted.game.content.skills.smithing;
 import com.rebotted.event.CycleEvent;
 import com.rebotted.event.CycleEventContainer;
 import com.rebotted.event.CycleEventHandler;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.items.ItemAssistant;
 import com.rebotted.game.players.Player;
 
@@ -34,7 +35,7 @@ public class Smithing {
 	private void checkBar(Player player, int level, int amountToMake, int type) {
     	SmithingData item = SmithingData.forId(type);
 		if (item != null) {
-			if (player.playerLevel[player.playerSmithing] >= item.getLvl()) {
+			if (player.playerLevel[SkillData.SMITHING.getId()] >= item.getLvl()) {
 				if (type == item.getId()) {
 					addItem = item.getId();
 					removeAmount = item.getAmount();
@@ -91,7 +92,7 @@ public class Smithing {
 							} else {
 								player.getItemAssistant().addItem(addItem, 1);
 							}
-							player.getPlayerAssistant().addSkillXP(XP, player.playerSmithing);
+							player.getPlayerAssistant().addSkillXP(XP, SkillData.SMITHING.getId());
 							player.doAmount--;
 						}
 					}

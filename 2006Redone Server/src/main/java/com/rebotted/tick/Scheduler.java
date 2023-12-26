@@ -16,12 +16,12 @@ public final class Scheduler {
 	/**
 	 * A list of active ticks.
 	 */
-	private final List<Tick> ticks = new ArrayList<Tick>();
+	private final List<Tick> ticks = new ArrayList<>();
 
 	/**
 	 * A queue of ticks that still need to be added.
 	 */
-	private final Queue<Tick> newTicks = new ArrayDeque<Tick>();
+	private final Queue<Tick> newTicks = new ArrayDeque<>();
 
 	/**
 	 * Schedules the specified tick.

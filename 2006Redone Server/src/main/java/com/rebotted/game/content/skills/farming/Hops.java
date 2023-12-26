@@ -88,7 +88,7 @@ public class Hops {
 		private int startingState;
 		private int endingState;
 
-		private static Map<Integer, HopsData> seeds = new HashMap<Integer, HopsData>();
+		private static Map<Integer, HopsData> seeds = new HashMap<>();
 
 		static {
 			for (HopsData data : HopsData.values()) {
@@ -179,7 +179,7 @@ public class Hops {
 		private Point[] hopsPosition;
 		private int npcId;
 
-		private static Map<Integer, HopsFieldsData> npcsProtecting = new HashMap<Integer, HopsFieldsData>();
+		private static Map<Integer, HopsFieldsData> npcsProtecting = new HashMap<>();
 
 		static {
 			for (HopsFieldsData data : HopsFieldsData.values()) {
@@ -296,7 +296,7 @@ public class Hops {
 		private int seedId;
 		private String[][] messages;
 
-		private static Map<Integer, InspectData> seeds = new HashMap<Integer, InspectData>();
+		private static Map<Integer, InspectData> seeds = new HashMap<>();
 
 		static {
 			for (InspectData data : InspectData.values()) {

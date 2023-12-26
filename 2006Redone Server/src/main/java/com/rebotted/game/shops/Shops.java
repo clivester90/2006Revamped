@@ -52,7 +52,7 @@ public class Shops {
 
 		private final int npcId, shopId;
 		
-		public static HashMap<Integer, Shop> npc = new HashMap<Integer, Shop>();
+		public static HashMap<Integer, Shop> npc = new HashMap<>();
 
 		public static Shop forId(int id) {
 			return npc.get(id);

@@ -35,7 +35,7 @@ public class EnchantStaff {
 		private int battlestaff;
 		private int mysticstaff;
 
-		public static HashMap<Integer, staffData> craftingStaff = new HashMap<Integer, staffData>();
+		public static HashMap<Integer, staffData> craftingStaff = new HashMap<>();
 
 		public static staffData forId(int id) {
 			return craftingStaff.get(id);

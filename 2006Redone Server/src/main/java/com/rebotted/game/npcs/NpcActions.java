@@ -1,6 +1,7 @@
 package com.rebotted.game.npcs;
 
 import com.rebotted.game.content.quests.QuestAssistant;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.content.skills.core.Fishing;
 import com.rebotted.game.content.skills.crafting.Tanning;
 import com.rebotted.game.content.skills.thieving.Pickpocket;
@@ -195,10 +196,10 @@ public class NpcActions {
 			break;
 
 		case 2270:
-			if (player.playerLevel[player.playerThieving] > 98) {
+			if (player.playerLevel[SkillData.THIEVING.getId()] > 98) {
 				player.getShopAssistant().openShop(118);
-			} else if (player.playerLevel[player.playerThieving] > 49
-					&& player.playerLevel[player.playerAgility] > 49) {
+			} else if (player.playerLevel[SkillData.THIEVING.getId()] > 49
+					&& player.playerLevel[SkillData.AGILITY.getId()] > 49) {
 				player.getShopAssistant().openShop(118);
 			} else {
 				player.getPacketSender().sendMessage(
@@ -1092,10 +1093,10 @@ public class NpcActions {
 			break;
 
 		case 2270:
-			if (player.playerLevel[player.playerThieving] > 98) {
+			if (player.playerLevel[SkillData.THIEVING.getId()] > 98) {
 				player.getShopAssistant().openShop(118);
-			} else if (player.playerLevel[player.playerThieving] > 49
-					&& player.playerLevel[player.playerAgility] > 49) {
+			} else if (player.playerLevel[SkillData.THIEVING.getId()] > 49
+					&& player.playerLevel[SkillData.AGILITY.getId()] > 49) {
 				player.getShopAssistant().openShop(118);
 			} else {
 				player.getPacketSender().sendMessage(

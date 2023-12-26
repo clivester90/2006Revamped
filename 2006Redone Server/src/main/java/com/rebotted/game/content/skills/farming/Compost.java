@@ -78,7 +78,7 @@ public class Compost {
 		private int binObjectId;
 		private int objectFace;
 		private int x, y, z;
-		private static Map<Integer, CompostBinLocations> bins = new HashMap<Integer, CompostBinLocations>();
+		private static Map<Integer, CompostBinLocations> bins = new HashMap<>();
 
 		static {
 			for (CompostBinLocations data : CompostBinLocations.values()) {
@@ -143,7 +143,7 @@ public class Compost {
 		private int binWithRottenTomatoes;
 		private int binFullOfRottenTomatoes;
 
-		private static Map<Integer, CompostBinStages> bins = new HashMap<Integer, CompostBinStages>();
+		private static Map<Integer, CompostBinStages> bins = new HashMap<>();
 
 		static {
 			for (CompostBinStages data : CompostBinStages.values()) {

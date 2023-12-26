@@ -88,7 +88,7 @@ public class Bushes {
 		private int checkHealthState;
 		private double checkHealthExperience;
 
-		private static Map<Integer, BushesData> seeds = new HashMap<Integer, BushesData>();
+		private static Map<Integer, BushesData> seeds = new HashMap<>();
 
 		static {
 			for (BushesData data : BushesData.values()) {
@@ -194,7 +194,7 @@ public class Bushes {
 		private Point[] bushesPosition;
 		private int npcId;
 
-		private static Map<Integer, BushesFieldsData> npcsProtecting = new HashMap<Integer, BushesFieldsData>();
+		private static Map<Integer, BushesFieldsData> npcsProtecting = new HashMap<>();
 
 		static {
 			for (BushesFieldsData data : BushesFieldsData.values()) {
@@ -313,7 +313,7 @@ public class Bushes {
 		private int seedId;
 		private String[][] messages;
 
-		private static Map<Integer, InspectData> seeds = new HashMap<Integer, InspectData>();
+		private static Map<Integer, InspectData> seeds = new HashMap<>();
 
 		static {
 			for (InspectData data : InspectData.values()) {

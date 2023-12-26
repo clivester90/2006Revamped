@@ -17,6 +17,7 @@ import com.rebotted.game.content.music.sound.CombatSounds;
 import com.rebotted.game.content.randomevents.FreakyForester;
 import com.rebotted.game.content.randomevents.RandomEventHandler;
 import com.rebotted.game.content.randomevents.RiverTroll;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.npcs.drops.ItemDrop;
 import com.rebotted.game.npcs.drops.NPCDropsHandler;
 import com.rebotted.game.npcs.impl.Pets;
@@ -771,8 +772,8 @@ public class NpcHandler {
                         }
                         if (npcs[i].npcType > 3726 && npcs[i].npcType < 3732) {
                             int damage = 10 + Misc.random(10);
-                            player.playerLevel[player.playerHitpoints] = player.getPlayerAssistant().getLevelForXP(player.playerXP[player.playerHitpoints]) - damage;
-                            player.getPlayerAssistant().refreshSkill(player.playerHitpoints);
+                            player.playerLevel[SkillData.HITPOINTS.getId()] = player.getPlayerAssistant().getLevelForXP(player.playerXP[SkillData.HITPOINTS.getId()]) - damage;
+                            player.getPlayerAssistant().refreshSkill(SkillData.HITPOINTS.getId());
                             player.handleHitMask(damage);
                         }
                         if (npcs[i].npcType == 655) {

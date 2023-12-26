@@ -37,7 +37,7 @@ public class CycleEventHandler {
 	 * Creates a new instance of this class
 	 */
 	public CycleEventHandler() {
-		events = new ArrayList<CycleEventContainer>();
+		events = new ArrayList<>();
 	}
 
 	/**
@@ -71,9 +71,9 @@ public class CycleEventHandler {
 	 * Execute and remove events
 	 */
 	public void process() {
-		List<CycleEventContainer> eventsCopy = new ArrayList<CycleEventContainer>(
+		List<CycleEventContainer> eventsCopy = new ArrayList<>(
 				events);
-		List<CycleEventContainer> remove = new ArrayList<CycleEventContainer>();
+		List<CycleEventContainer> remove = new ArrayList<>();
 		for (CycleEventContainer c : eventsCopy) {
 			if (c != null) {
 				if (c.needsExecution() && c.isRunning()) {

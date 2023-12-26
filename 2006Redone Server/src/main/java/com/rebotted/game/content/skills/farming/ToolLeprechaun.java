@@ -90,8 +90,8 @@ public class ToolLeprechaun {
 		private int toolCountFrameId;
 		private String toolName;
 
-		private static Map<Integer, ToolStoreData> tools = new HashMap<Integer, ToolStoreData>();
-		private static Map<Integer, ToolStoreData> indexes = new HashMap<Integer, ToolStoreData>();
+		private static Map<Integer, ToolStoreData> tools = new HashMap<>();
+		private static Map<Integer, ToolStoreData> indexes = new HashMap<>();
 
 		public static ToolStoreData forId(int toolId) {
 			return tools.get(toolId);

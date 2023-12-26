@@ -17,7 +17,7 @@ public class HostList {
 		return list;
 	}
 
-	private final Map<String, Integer> connections = new HashMap<String, Integer>();
+	private final Map<String, Integer> connections = new HashMap<>();
 
 	public synchronized boolean add(IoSession session) {
 		String addr = ((InetSocketAddress) session.getRemoteAddress())

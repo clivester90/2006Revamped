@@ -1,5 +1,6 @@
 package com.rebotted.game.dialogues;
 
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.content.skills.crafting.JewelryMaking;
 import com.rebotted.game.items.impl.Flowers;
 import com.rebotted.game.items.impl.Teles;
@@ -539,7 +540,7 @@ public class DialogueOptions {
 				player.getItemAssistant().addItem(1953, 1);
 				player.getItemAssistant().addItem(1925, 1);
 				player.getItemAssistant().addItem(1931, 1);
-				player.getPlayerAssistant().addSkillXP(1, player.playerCooking);
+				player.getPlayerAssistant().addSkillXP(1, SkillData.COOKING.getId());
 				player.nextChat = 0;
 			} else if (player.dialogueAction == 3205) {
 				player.getItemAssistant().deleteItem(1933, 1);
@@ -547,7 +548,7 @@ public class DialogueOptions {
 				player.getItemAssistant().addItem(1953, 1);
 				player.getItemAssistant().addItem(1925, 1);
 				player.getItemAssistant().addItem(1935, 1);
-				player.getPlayerAssistant().addSkillXP(1, player.playerCooking);
+				player.getPlayerAssistant().addSkillXP(1, SkillData.COOKING.getId());
 				player.nextChat = 0;
 			} else if (player.dialogueAction == 189) {
 				player.getDialogueHandler().sendDialogues(3210, player.npcType);
@@ -749,7 +750,7 @@ public class DialogueOptions {
 				player.getItemAssistant().addItem(2307, 1);
 				player.getItemAssistant().addItem(1925, 1);
 				player.getItemAssistant().addItem(1931, 1);
-				player.getPlayerAssistant().addSkillXP(1, player.playerCooking);
+				player.getPlayerAssistant().addSkillXP(1, SkillData.COOKING.getId());
 				player.nextChat = 0;
 			} else if (player.dialogueAction == 3205) {
 				player.getItemAssistant().deleteItem(1933, 1);
@@ -757,7 +758,7 @@ public class DialogueOptions {
 				player.getItemAssistant().addItem(1953, 1);
 				player.getItemAssistant().addItem(1925, 1);
 				player.getItemAssistant().addItem(1935, 1);
-				player.getPlayerAssistant().addSkillXP(1, player.playerCooking);
+				player.getPlayerAssistant().addSkillXP(1, SkillData.COOKING.getId());
 				player.nextChat = 0;
 			} else if (player.dialogueAction == 189) {
 				player.getDialogueHandler().sendDialogues(3212, player.npcType);

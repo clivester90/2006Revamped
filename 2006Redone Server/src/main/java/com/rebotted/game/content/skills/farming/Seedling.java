@@ -37,9 +37,9 @@ public class Seedling {
 		private int wateredSeedlingId;
 		private int saplingId;
 
-		private static Map<Integer, SeedlingData> seeds = new HashMap<Integer, SeedlingData>();
-		private static Map<Integer, SeedlingData> unwatered = new HashMap<Integer, SeedlingData>();
-		private static Map<Integer, SeedlingData> watered = new HashMap<Integer, SeedlingData>();
+		private static Map<Integer, SeedlingData> seeds = new HashMap<>();
+		private static Map<Integer, SeedlingData> unwatered = new HashMap<>();
+		private static Map<Integer, SeedlingData> watered = new HashMap<>();
 
 		static {
 			for (SeedlingData data : SeedlingData.values()) {

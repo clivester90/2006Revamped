@@ -6,6 +6,7 @@ import com.rebotted.GameEngine;
 import com.rebotted.event.CycleEvent;
 import com.rebotted.event.CycleEventContainer;
 import com.rebotted.event.CycleEventHandler;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.items.GameItem;
 import com.rebotted.game.players.Player;
  
@@ -25,7 +26,7 @@ public class Trawler extends GroupMinigame {
          * The arraylist containing all of the players
          */
  
-        public ArrayList<Player> players = new ArrayList<Player>();
+        public ArrayList<Player> players = new ArrayList<>();
  
         /*
          * The arraylist containing all of the players that need to removed Created
@@ -33,7 +34,7 @@ public class Trawler extends GroupMinigame {
          * is called simply just call the clear method
          */
  
-        public ArrayList<Player> players_to_remove = new ArrayList<Player>();
+        public ArrayList<Player> players_to_remove = new ArrayList<>();
  
         /*
          * A unique id, which the cycle event handler may use to stop the trawlers
@@ -483,7 +484,7 @@ public class Trawler extends GroupMinigame {
                                 return;
                         }
                         p.startAnimation(net_interaction);
-                        if (skillCheck(p.playerLevel[p.playerCrafting], 1, 0)) {
+                        if (skillCheck(p.playerLevel[SkillData.CRAFTING.getId()], 1, 0)) {
                                 p.getItemAssistant().deleteItem(rope, 1);
                                 net_ripped = false;
                                 playerUpdates();
@@ -660,24 +661,24 @@ public class Trawler extends GroupMinigame {
         public int chanceByLevel(Player p, int fish) {
                 switch (fish) {
                 case 381:
-                        if (p.playerLevel[p.playerFishing] >= 81
-                                        && p.playerLevel[p.playerFishing] < 90) {
+                        if (p.playerLevel[SkillData.FISHING.getId()] >= 81
+                                        && p.playerLevel[SkillData.FISHING.getId()] < 90) {
                                 return 5;
-                        } else if (p.playerLevel[p.playerFishing] >= 90
-                                        && p.playerLevel[p.playerFishing] < 99) {
+                        } else if (p.playerLevel[SkillData.FISHING.getId()] >= 90
+                                        && p.playerLevel[SkillData.FISHING.getId()] < 99) {
                                 return 9;
-                        } else if (p.playerLevel[p.playerFishing] == 99) {
+                        } else if (p.playerLevel[SkillData.FISHING.getId()] == 99) {
                                 return 13;
                         }
                         return 0;
                 case 395:
-                        if (p.playerLevel[p.playerFishing] >= 79
-                                        && p.playerLevel[p.playerFishing] < 85) {
+                        if (p.playerLevel[SkillData.FISHING.getId()] >= 79
+                                        && p.playerLevel[SkillData.FISHING.getId()] < 85) {
                                 return 8;
-                        } else if (p.playerLevel[p.playerFishing] >= 85
-                                        && p.playerLevel[p.playerFishing] < 95) {
+                        } else if (p.playerLevel[SkillData.FISHING.getId()] >= 85
+                                        && p.playerLevel[SkillData.FISHING.getId()] < 95) {
                                 return 13;
-                        } else if (p.playerLevel[p.playerFishing] >= 95) {
+                        } else if (p.playerLevel[SkillData.FISHING.getId()] >= 95) {
                                 return 17;
                         }
                         return 0;
@@ -743,7 +744,7 @@ public class Trawler extends GroupMinigame {
          */
  
         public ArrayList<GameItem> playerReward(Player p) {
-                ArrayList<GameItem> toReturn = new ArrayList<GameItem>();
+                ArrayList<GameItem> toReturn = new ArrayList<>();
                 boolean turtles = true;
                 boolean mantas = true;
                 boolean lobsters = true;
@@ -780,31 +781,31 @@ public class Trawler extends GroupMinigame {
                 int xpToAdd = 0;
                 if (manta > 0) {
                         toReturn.add(new GameItem(389, manta));
-                        if (p.playerLevel[p.playerFishing] >= 81) {
+                        if (p.playerLevel[SkillData.FISHING.getId()] >= 81) {
                                 xpToAdd += (manta * 46);
                         }
                 }
                 if (turt > 0) {
                         toReturn.add(new GameItem(395, turt));
-                        if (p.playerLevel[p.playerFishing] >= 79) {
+                        if (p.playerLevel[SkillData.FISHING.getId()] >= 79) {
                                 xpToAdd += (manta * 38);
                         }
                 }
                 if (lobs > 0) {
                         toReturn.add(new GameItem(377, lobs));
-                        if (p.playerLevel[p.playerFishing] >= 40) {
+                        if (p.playerLevel[SkillData.FISHING.getId()] >= 40) {
                                 xpToAdd += (manta * 90);
                         }
                 }
                 if (swordFish > 0) {
                         toReturn.add(new GameItem(371, swordFish));
-                        if (p.playerLevel[p.playerFishing] >= 50) {
+                        if (p.playerLevel[SkillData.FISHING.getId()] >= 50) {
                                 xpToAdd += (manta * 100);
                         }
                 }
                 if (junk > 0)
                         toReturn.add(new GameItem(685, junk));
-                p.getPlayerAssistant().addSkillXP(xpToAdd, p.playerFishing);
+                p.getPlayerAssistant().addSkillXP(xpToAdd, SkillData.FISHING.getId());
                 return toReturn;
         }
  

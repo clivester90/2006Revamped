@@ -91,7 +91,7 @@ public class PlayerSave {
 								player.teleportToY = Integer.parseInt(token2) <= 0 ? player.lastY : Integer.parseInt(token2);
 								break;
 							case "character-rights":
-								player.getPlayerRights() = Integer.parseInt(token2);
+								player.setPlayerRights(Integer.parseInt(token2));
 								break;
 							case "character-mode":
 								ModeType type;

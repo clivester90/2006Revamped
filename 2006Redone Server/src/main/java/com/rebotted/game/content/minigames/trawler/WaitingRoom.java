@@ -10,7 +10,7 @@ import com.rebotted.world.Boundary;
 public abstract class WaitingRoom {
        
         public int minimumPlayers;
-        public ArrayList<Player> waiting = new ArrayList<Player>();
+        public ArrayList<Player> waiting = new ArrayList<>();
         private int wait_time;
         private int minutes_remaining;
         private boolean active;

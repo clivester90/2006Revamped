@@ -13,11 +13,11 @@ import com.rebotted.world.clip.Region;
 
 public class OtherObjects {
 
-	public static boolean openKharid(Player player, int objectId) {
+	public static boolean openKharid(int objectId) {
 		return (objectId == 2882 || objectId == 2883);
 	}
 
-	public static boolean openShantay(Player player, int objectId) {
+	public static boolean openShantay(int objectId) {
 		return (objectId == 4033 || objectId == 4031);
 	}
 
@@ -47,7 +47,7 @@ public class OtherObjects {
 			player.getDialogueHandler().endDialogue();
 			return;
 		}
-		if (openKharid(player, objectId)) {
+		if (openKharid(objectId)) {
 			//GameEngine.objectHandler.createAnObject(player, -1, player.objectX, player.objectY, -1);
 			final int[] coords = new int[2];
 			if (player.getX() == 3267) {
@@ -62,16 +62,15 @@ public class OtherObjects {
 		}
 	}
 
-	private static boolean movePlayer2(Player player) {
+	private static void movePlayer2(Player player) {
 		if (player.getY() == 3117) {
 			player.getPlayerAssistant().movePlayer(player.getX(), player.getY() - 2, 0);
-			return true;
+			return;
 		} else if (player.getY() == 3115) {
 			player.getPlayerAssistant().movePlayer(player.getX(), player.getY() + 2, 0);
-			return true;
+			return;
 		}
 		player.getPacketSender().sendMessage("Move closer so you can use the gate.");
-		return false;
 	}
 
 	public static void initShantay(Player player, int objectId) {
@@ -80,7 +79,7 @@ public class OtherObjects {
 			return;
 		}
 		final int[] coords = new int[2];
-		if (openShantay(player, objectId)) {
+		if (openShantay(objectId)) {
 			player.getPacketSender().sendMessage("You pass through the gate.");
 			movePlayer2(player);
 			player.turnPlayerTo(player.objectX, player.objectY);
@@ -100,8 +99,8 @@ public class OtherObjects {
 	private final static int[] SPECIAL_OBJECTS = {160, 155, 156, 298, 299, 300, 304, 1181, 5253, 5254, 5255, 5256, 5257, 5258};
 	
 	public static void searchSpecialObject(Player player, int objectType) {
-		for (int i = 0; i < SPECIAL_OBJECTS.length; i++) {
-			if (objectType == SPECIAL_OBJECTS[i]) {
+		for (int specialObject : SPECIAL_OBJECTS) {
+			if (objectType == specialObject) {
 				if (System.currentTimeMillis() - player.getObjectDelay() < 1200 || objectType == 160 && player.getX() != 3096 || objectType > 154 && objectType < 157 && player.getX() != 3098 || player.getY() == 3301) {
 					return;
 				}

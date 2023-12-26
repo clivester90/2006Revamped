@@ -43,7 +43,7 @@ public enum GodBooks {
 		this.preachData = preachData;
 	}
 
-	private static Map<Integer, GodBooks> godBooks = new HashMap<Integer, GodBooks>();
+	private static Map<Integer, GodBooks> godBooks = new HashMap<>();
 
 	static {
 		for (final GodBooks type : values()) {

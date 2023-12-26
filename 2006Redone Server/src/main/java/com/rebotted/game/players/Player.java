@@ -1,17 +1,12 @@
 package com.rebotted.game.players;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 import com.everythingrs.hiscores.Hiscores;
 import com.rebotted.game.content.gamemode.Mode;
 import com.rebotted.game.content.gamemode.ModeType;
 import com.rebotted.game.content.gamemode.RegularMode;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.dialogues.DialogueBuilder;
 import lombok.Getter;
 import lombok.Setter;
@@ -126,7 +121,7 @@ public abstract class Player {
 	private final CombatAssistant combatAssistant = new CombatAssistant(this);
 	private final ObjectsActions actionHandler = new ObjectsActions(this);
 	private final NpcActions npcs = new NpcActions(this);
-	private final Queue<Packet> queuedPackets = new LinkedList<Packet>();
+	private final Queue<Packet> queuedPackets = new LinkedList<>();
 	private final Potions potions = new Potions(this);
 	private final PotionMixing potionMixing = new PotionMixing(this);
 	private final EmoteHandler emoteHandler = new EmoteHandler(this);
@@ -138,7 +133,7 @@ public abstract class Player {
 	private final Specials specials = new Specials(this);
 	private final SoundList sound = new SoundList(this);
 	public String creationAddress = "";
-	private final HashMap<String, Object> temporary = new HashMap<String, Object>();
+	private final HashMap<String, Object> temporary = new HashMap<>();
 	private final PlayList playList = new PlayList(this);
 	private final Agility agility = new Agility(this);
 	private final Runecrafting runecrafting = new Runecrafting(this);
@@ -158,7 +153,7 @@ public abstract class Player {
 	private final PrayerData prayer = new PrayerData();
 	private final LogCuttingInterface fletching = new LogCuttingInterface();
 	private final ObjectManager objectManager = new ObjectManager();
-	public ArrayList<GameItem> fishingTrawlerReward = new ArrayList<GameItem>();
+	public ArrayList<GameItem> fishingTrawlerReward = new ArrayList<>();
 	private final RangersGuild rangersGuild = new RangersGuild(this);
     private GlassBlowing glassBlowing = new GlassBlowing(this);
 	private Barrows barrows = new Barrows(this);
@@ -457,10 +452,7 @@ public abstract class Player {
 		return potionMixing;
 	}
 
-	public Inventory getInventory() {
-		return inventory;
-	}
-	
+	@Getter
 	private Inventory inventory = new Inventory(this);
 	
 	
@@ -487,8 +479,8 @@ public abstract class Player {
 		return (objectDelay);
 	}
 	
-	public long setObjectDelay(long delay) {
-		return (objectDelay = delay);
+	public void setObjectDelay(long delay) {
+		objectDelay = delay;
 	}
 
 	public boolean isSnowy;
@@ -509,7 +501,7 @@ public abstract class Player {
 		}
 	}
 
-	private Map<Integer, TinterfaceText> interfaceText = new HashMap<Integer, TinterfaceText>();
+	private Map<Integer, TinterfaceText> interfaceText = new HashMap<>();
 
 	public class TinterfaceText {
 		public int id;
@@ -679,9 +671,7 @@ public abstract class Player {
 		isActive = false;
 		buffer = null;
 		playerListSize = 0;
-		for (int i = 0; i < maxPlayerListSize; i++) {
-			playerList[i] = null;
-		}
+		Arrays.fill(playerList, null);
 		absX = absY = -1;
 		mapRegionX = mapRegionY = -1;
 		currentX = currentY = 0;
@@ -702,9 +692,7 @@ public abstract class Player {
 
 	public void logout(boolean forceLogout) {
 		synchronized (this) {
-			if(GameEngine.trawler.players.contains(this)) {
-				GameEngine.trawler.players.remove(this);
-	        }
+			GameEngine.trawler.players.remove(this);
 			if (getCannon().hasCannon()) {
 				getCannon().removeObject(cannonX, cannonY);
 				for(int i = 0; i < GameEngine.cannonsX.length; i++) {
@@ -1324,9 +1312,9 @@ public abstract class Player {
 
 	public int CannonSetupStage;
 
-	public ArrayList<String> killedPlayers = new ArrayList<String>();
-	public ArrayList<Integer> attackedPlayers = new ArrayList<Integer>();
-	public ArrayList<String> lastKilledPlayers = new ArrayList<String>();
+	public ArrayList<String> killedPlayers = new ArrayList<>();
+	public ArrayList<Integer> attackedPlayers = new ArrayList<>();
+	public ArrayList<String> lastKilledPlayers = new ArrayList<>();
 
 	public int[][] barrowCrypt = {
 			{4921, 0},
@@ -1548,7 +1536,7 @@ public abstract class Player {
 	public int poisonMask;
 
 	public Npc getCloseRandomNpc(int distance) {
-		ArrayList<Npc> npcs = new ArrayList<Npc>();
+		ArrayList<Npc> npcs = new ArrayList<>();
 		for (Npc npc : NpcHandler.npcs) {
 			if (npc != null) {
 				Npc n = npc;
@@ -1874,28 +1862,6 @@ public abstract class Player {
 	public int playerRing = 12;
 	public int playerArrows = 13;
 
-	public int playerAttack = 0;
-	public int playerDefence = 1;
-	public int playerStrength = 2;
-	public int playerHitpoints = 3;
-	public int playerRanged = 4;
-	public int playerPrayer = 5;
-	public int playerMagic = 6;
-	public int playerCooking = 7;
-	public int playerWoodcutting = 8;
-	public int playerFletching = 9;
-	public int playerFishing = 10;
-	public int playerFiremaking = 11;
-	public int playerCrafting = 12;
-	public int playerSmithing = 13;
-	public int playerMining = 14;
-	public int playerHerblore = 15;
-	public int playerAgility = 16;
-	public int playerThieving = 17;
-	public int playerSlayer = 18;
-	public int playerFarming = 19;
-	public int playerRunecrafting = 20;
-
 	public int[] playerEquipment = new int[14];
 	public int[] playerEquipmentN = new int[14];
 	public int[] playerLevel = new int[25];
@@ -1918,12 +1884,8 @@ public abstract class Player {
 		playerId = _playerId;
 		playerRights = 0;
 
-		for (int i = 0; i < playerItems.length; i++) {
-			playerItems[i] = 0;
-		}
-		for (int i = 0; i < playerItemsN.length; i++) {
-			playerItemsN[i] = 0;
-		}
+		Arrays.fill(playerItems, 0);
+		Arrays.fill(playerItemsN, 0);
 
 		for (int i = 0; i < playerLevel.length; i++) {
 			if (i == 3) {
@@ -1940,13 +1902,8 @@ public abstract class Player {
 				playerXP[i] = 0;
 			}
 		}
-		for (int i = 0; i < ItemConstants.BANK_SIZE; i++) {
-			bankItems[i] = 0;
-		}
-
-		for (int i = 0; i < ItemConstants.BANK_SIZE; i++) {
-			bankItemsN[i] = 0;
-		}
+		Arrays.fill(bankItems, 0);
+		Arrays.fill(bankItemsN, 0);
 
 		playerAppearance[0] = 0; // gender
 		playerAppearance[1] = 7; // head
@@ -2522,13 +2479,13 @@ public abstract class Player {
 	}
 
 	public int calculateCombatLevel() {
-		int j = getLevelForXP(playerXP[playerAttack]);
-		int k = getLevelForXP(playerXP[playerDefence]);
-		int l = getLevelForXP(playerXP[playerStrength]);
-		int i1 = getLevelForXP(playerXP[playerHitpoints]);
-		int j1 = getLevelForXP(playerXP[playerPrayer]);
-		int k1 = getLevelForXP(playerXP[playerRanged]);
-		int l1 = getLevelForXP(playerXP[playerMagic]);
+		int j = getLevelForXP(playerXP[SkillData.ATTACK.getId()]);
+		int k = getLevelForXP(playerXP[SkillData.DEFENCE.getId()]);
+		int l = getLevelForXP(playerXP[SkillData.STRENGTH.getId()]);
+		int i1 = getLevelForXP(playerXP[SkillData.HITPOINTS.getId()]);
+		int j1 = getLevelForXP(playerXP[SkillData.PRAYER.getId()]);
+		int k1 = getLevelForXP(playerXP[SkillData.RANGED.getId()]);
+		int l1 = getLevelForXP(playerXP[SkillData.MAGIC.getId()]);
 		int combatLevel = (int) ((k + i1 + Math.floor(j1 / 2)) * 0.25D) + 1;
 		double d = (j + l) * 0.32500000000000001D;
 		double d1 = Math.floor(k1 * 1.5D) * 0.32500000000000001D;

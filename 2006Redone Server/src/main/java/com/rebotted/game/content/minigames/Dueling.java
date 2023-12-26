@@ -25,8 +25,8 @@ public class Dueling {
 		player = player2;
 	}
 
-	public CopyOnWriteArrayList<GameItem> otherStakedItems = new CopyOnWriteArrayList<GameItem>();
-	public CopyOnWriteArrayList<GameItem> stakedItems = new CopyOnWriteArrayList<GameItem>();
+	public CopyOnWriteArrayList<GameItem> otherStakedItems = new CopyOnWriteArrayList<>();
+	public CopyOnWriteArrayList<GameItem> stakedItems = new CopyOnWriteArrayList<>();
 
 	public void requestDuel(int id) {
 		try {

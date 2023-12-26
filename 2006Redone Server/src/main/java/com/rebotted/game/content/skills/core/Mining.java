@@ -1,6 +1,7 @@
 package com.rebotted.game.content.skills.core;
 
 import com.rebotted.event.*;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.items.ItemAssistant;
 import com.rebotted.game.objects.Object;
 import com.rebotted.game.players.Player;
@@ -74,21 +75,21 @@ public class Mining {
 	}
 
 	public enum rockData {
-		ESSENCE(new int[] { 2491 }, 1, 5, 2, 0, new int[] { 1436, 7936 }),
-		CLAY(new int[] { 2108, 2109, 11189, 11190, 11191, 9713, 9711, 14905, 14904 }, 1, 5, 1, 2, new int[] { 434 }),
-		COPPER(new int[] { 3042, 2091, 2090, 9708, 9709, 9710, 11960, 14906, 14907 }, 1, 18, 1, 4, new int[] { 436 }),
-		TIN(new int[] { 2094, 2095, 3043, 9716, 9714, 11958, 11957, 11959, 11933, 11934, 11935, 14903, 14902 }, 1, 18, 1, 4, new int[] { 438 }),
-		BLURITE(new int[] { 10574, 10583, 10584, 2110 }, 10, 20, 1, 42, new int[] { 668 }),
-		IRON(new int[] { 450, 2093, 2092, 9717, 9718, 9719, 11962, 11956, 11954, 14856, 14857, 14858, 14914, 14913 }, 15, 35, 2, 9, new int[] { 440 }),
-		SILVER(new int[] { 2101, 11186, 11187, 11188, 2100 }, 20, 40, 3, 100, new int[] { 442 }),
-		COAL(new int[] { 2096, 2097, 11963, 11964, 14850, 14851, 14852, 11930, 11931, 11932 }, 30, 50, 4, 50, new int[] { 453 }),
-		GOLD(new int[] { 2099, 2098, 11183, 11184, 11185, 9720, 9722 }, 40,	65, 6, 100, new int[] { 444 }),
-		MITHRIL(new int[] { 2103, 2102, 14853, 14854, 14855 }, 55, 80, 8, 200, new int[] { 447 }),
-		ADAMANT(new int[] { 2104, 2105, 14862, 14863, 14864 }, 70, 95, 10, 400, new int[] { 449 }),
-		RUNE(new int[] { 14859, 14860, 2106, 2107 }, 85, 125, 20, 1200, new int[] { 451 }),
-		GRANITE(new int[] { 10947 }, 45, 75, 10, 8, new int[] { 6979, 6981, 6983 }),
-		SANDSTONE(new int[] { 10946 }, 35, 60, 5, 8, new int[] { 6971, 6973, 6975, 6977 }),
-		GEM(new int[] {2111}, 40, 65, 6, 175, new int[] {});
+		ESSENCE(new int[] { 2491 }, 1, 5, 2, 0, 1436, 7936),
+		CLAY(new int[] { 2108, 2109, 11189, 11190, 11191, 9713, 9711, 14905, 14904 }, 1, 5, 1, 2, 434),
+		COPPER(new int[] { 3042, 2091, 2090, 9708, 9709, 9710, 11960, 14906, 14907 }, 1, 18, 1, 4, 436),
+		TIN(new int[] { 2094, 2095, 3043, 9716, 9714, 11958, 11957, 11959, 11933, 11934, 11935, 14903, 14902 }, 1, 18, 1, 4, 438),
+		BLURITE(new int[] { 10574, 10583, 10584, 2110 }, 10, 20, 1, 42, 668),
+		IRON(new int[] { 450, 2093, 2092, 9717, 9718, 9719, 11962, 11956, 11954, 14856, 14857, 14858, 14914, 14913 }, 15, 35, 2, 9, 440),
+		SILVER(new int[] { 2101, 11186, 11187, 11188, 2100 }, 20, 40, 3, 100, 442),
+		COAL(new int[] { 2096, 2097, 11963, 11964, 14850, 14851, 14852, 11930, 11931, 11932 }, 30, 50, 4, 50, 453),
+		GOLD(new int[] { 2099, 2098, 11183, 11184, 11185, 9720, 9722 }, 40,	65, 6, 100, 444),
+		MITHRIL(new int[] { 2103, 2102, 14853, 14854, 14855 }, 55, 80, 8, 200, 447),
+		ADAMANT(new int[] { 2104, 2105, 14862, 14863, 14864 }, 70, 95, 10, 400, 449),
+		RUNE(new int[] { 14859, 14860, 2106, 2107 }, 85, 125, 20, 1200, 451),
+		GRANITE(new int[] { 10947 }, 45, 75, 10, 8, 6979, 6981, 6983),
+		SANDSTONE(new int[] { 10946 }, 35, 60, 5, 8, 6971, 6973, 6975, 6977),
+		GEM(new int[] {2111}, 40, 65, 6, 175);
 
 		private final int levelReq, mineTimer, respawnTimer, xp;
 		private final int[] oreIds;
@@ -176,7 +177,7 @@ public class Mining {
 		CycleEventHandler.getSingleton().stopEvents(player, "miningEvent".hashCode());
 		if (player.isMining || player.miningRock) 
 			return;
-		int miningLevel = player.playerLevel[player.playerMining];
+		int miningLevel = player.playerLevel[SkillData.MINING.getId()];
 		rockData rock = rockData.getRock(objectID);
 		player.miningAxe = -1;
 		player.turnPlayerTo(objectX, objectY);
@@ -231,7 +232,7 @@ public class Mining {
 				if (player.isMining) {
 					if (!giveGem(player)) {
 						player.getItemAssistant().addItem(oreID, 1);
-						player.getPlayerAssistant().addSkillXP(rock.getXp(), player.playerMining);
+						player.getPlayerAssistant().addSkillXP(rock.getXp(), SkillData.MINING.getId());
 						player.getPacketSender().sendMessage("You manage to mine some " + ItemAssistant.getItemName(oreID).toLowerCase() + ".");
 					} else {
 						obtainGem(player);

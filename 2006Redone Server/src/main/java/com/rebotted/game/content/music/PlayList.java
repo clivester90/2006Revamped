@@ -119,7 +119,7 @@ public class PlayList {
 			this.arraySlot = arraySlot;
 		}
 
-		private static Map<Integer, Songs> songs = new HashMap<Integer, Songs>();
+		private static Map<Integer, Songs> songs = new HashMap<>();
 		static {
 			for (Songs songId : Songs.values()) {
 				songs.put(songId.songId(), songId);

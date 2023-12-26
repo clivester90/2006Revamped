@@ -58,7 +58,7 @@ public class Bot {
     }
 
     public void sendTradeChat() {
-        ArrayList<Integer> items = new ArrayList<Integer>();
+        ArrayList<Integer> items = new ArrayList<>();
         for (int slot = 0; slot < 40; slot++){
             if(botClient.bankItems[slot] > 0)
                 items.add(botClient.bankItems[slot] - 1);

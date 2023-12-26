@@ -19,7 +19,7 @@ public class CommandConsole implements Runnable {
 	private Thread self;
 	private Scanner scanner;
 	// Lazy, not intending to add runtime class loading.
-	private ArrayList<CommandProcessor> cmds = new ArrayList<CommandProcessor>();
+	private ArrayList<CommandProcessor> cmds = new ArrayList<>();
 
 	private CommandConsole() {
 		cmds.add(new ListPlayers());

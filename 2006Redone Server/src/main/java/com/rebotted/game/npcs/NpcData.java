@@ -73,7 +73,7 @@ public class NpcData {
 	}
 
 	public static int getCloseRandomPlayer(int i) {
-		ArrayList<Integer> players = new ArrayList<Integer>();
+		ArrayList<Integer> players = new ArrayList<>();
 		for (int j = 0; j < PlayerHandler.players.length; j++) {
 			if (PlayerHandler.players[j] != null) {
 				if (NpcHandler.goodDistance(

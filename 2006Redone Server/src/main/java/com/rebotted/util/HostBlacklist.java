@@ -9,7 +9,7 @@ public class HostBlacklist {
 
 	private static final String BLACKLIST_DIR = "./data/blacklist.txt";
 
-	private static List<String> blockedHostnames = new ArrayList<String>();
+	private static List<String> blockedHostnames = new ArrayList<>();
 
 	public static List<String> getBlockedHostnames() {
 		return blockedHostnames;

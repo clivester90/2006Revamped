@@ -25,7 +25,7 @@ public class Trading {
 	 * Trading
 	 **/
 
-	public CopyOnWriteArrayList<GameItem> offeredItems = new CopyOnWriteArrayList<GameItem>();
+	public CopyOnWriteArrayList<GameItem> offeredItems = new CopyOnWriteArrayList<>();
 
 	public void requestTrade(int id) {
 		try {

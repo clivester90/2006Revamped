@@ -2,6 +2,8 @@ package com.rebotted.game.content.combat.magic;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.players.Player;
 
 public class Enchanting {
@@ -81,7 +83,7 @@ public class Enchanting {
 			return reqEnchantmentLevel;
 		}
 
-		private static final Map<Integer, Enchant> enc = new HashMap<Integer, Enchant>();
+		private static final Map<Integer, Enchant> enc = new HashMap<>();
 
 		public static Enchant forId(int itemID) {
 			return enc.get(itemID);
@@ -143,7 +145,7 @@ public class Enchanting {
 			return reqAmtRune3;
 		}
 
-		public static final Map<Integer, EnchantSpell> ens = new HashMap<Integer, EnchantSpell>();
+		public static final Map<Integer, EnchantSpell> ens = new HashMap<>();
 
 		public static EnchantSpell forId(int id) {
 			return ens.get(id);
@@ -196,14 +198,13 @@ public class Enchanting {
 
 			return;
 		}
-		if (c.playerLevel[c.playerMagic] >= enc.getLevelReq()) {
+		if (c.playerLevel[SkillData.MAGIC.getId()] >= enc.getLevelReq()) {
 			if (c.getItemAssistant().playerHasItem(enc.getUnenchanted(), 1)) {
 				if(CastRequirements.hasRunes(c, getRequiredRunes(ens))){
 					if (getEnchantmentLevel(spellID) == enc.getELevel()) {
 						c.getItemAssistant().deleteItem(enc.getUnenchanted(), 1);
 						c.getItemAssistant().addItem(enc.getEnchanted(), 1);
-						c.getPlayerAssistant().addSkillXP(enc.getXp(),
-								c.playerMagic);
+						c.getPlayerAssistant().addSkillXP(enc.getXp(), SkillData.MAGIC.getId());
 						CastRequirements.deleteRunes(c, getRequiredRunes(ens));
 						c.startAnimation(enc.getAnim());
 						c.gfx100(enc.getGFX());

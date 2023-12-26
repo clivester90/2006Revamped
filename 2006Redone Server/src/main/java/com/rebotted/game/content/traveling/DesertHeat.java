@@ -3,6 +3,7 @@ package com.rebotted.game.content.traveling;
 import com.rebotted.event.CycleEvent;
 import com.rebotted.event.CycleEventContainer;
 import com.rebotted.event.CycleEventHandler;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.items.ItemConstants;
 import com.rebotted.game.players.Player;
 import com.rebotted.util.Misc;
@@ -51,7 +52,7 @@ public class DesertHeat {
 		player.getPacketSender().sendMessage("You should get a waterskin for any traveling in the desert.");
 		player.handleHitMask(DAMAGE);
 		player.dealDamage(DAMAGE);
-		player.getPlayerAssistant().refreshSkill(player.playerHitpoints);
+		player.getPlayerAssistant().refreshSkill(SkillData.HITPOINTS.getId());
 	}
 	
 	private static int getClothes(Player player) {
@@ -78,7 +79,7 @@ public class DesertHeat {
 
 	public static void callHeat(final Player player) {
 		if (!Boundary.isIn(player, Boundary.DESERT) 
-			|| player.playerLevel[player.playerHitpoints] < 0 
+			|| player.playerLevel[SkillData.HITPOINTS.getId()] < 0 
 			|| preventHeat(player)) {
 			return;
 		}
@@ -86,7 +87,7 @@ public class DesertHeat {
 			@Override
 			public void execute(CycleEventContainer container) {
 				if (!Boundary.isIn(player, Boundary.DESERT) 
-					|| player.playerLevel[player.playerHitpoints] < 0 
+					|| player.playerLevel[SkillData.HITPOINTS.getId()] < 0 
 					|| player.disconnected 
 					|| preventHeat(player)) {
 					container.stop();
@@ -98,7 +99,7 @@ public class DesertHeat {
 						doDamage(player);
 					}
 					container.stop();
-				} else if (player.playerLevel[player.playerHitpoints] < 0) {
+				} else if (player.playerLevel[SkillData.HITPOINTS.getId()] < 0) {
 					player.isDead = true;
 					container.stop();
 				}

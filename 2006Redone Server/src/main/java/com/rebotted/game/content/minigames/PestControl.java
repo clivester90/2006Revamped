@@ -26,8 +26,8 @@ public class PestControl {
 	/**
 	 * Hashmap for the players in lobby
 	 */
-	public static HashMap<Player, Integer> waitingBoat = new HashMap<Player, Integer>();
-	private static HashMap<Player, Integer> gamePlayers = new HashMap<Player, Integer>();
+	public static HashMap<Player, Integer> waitingBoat = new HashMap<>();
+	private static HashMap<Player, Integer> gamePlayers = new HashMap<>();
 
 	private static int gameTimer = -1;
 	private static int waitTimer = 60;

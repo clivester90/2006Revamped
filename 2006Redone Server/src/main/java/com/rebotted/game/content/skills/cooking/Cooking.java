@@ -7,6 +7,7 @@ import com.rebotted.event.CycleEventContainer;
 import com.rebotted.event.CycleEventHandler;
 import com.rebotted.game.content.music.sound.SoundList;
 import com.rebotted.game.content.randomevents.RandomEventHandler;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.content.skills.SkillHandler;
 import com.rebotted.game.items.ItemAssistant;
 import com.rebotted.game.items.ItemConstants;
@@ -145,13 +146,13 @@ public class Cooking extends SkillHandler {
 	private static void viewCookInterface(Player c, int item) {
 		c.getPacketSender().sendChatInterface(1743);
 		c.getPacketSender().sendInterfaceModel(13716, view190 ? 190 : 170, item);
-		c.getPacketSender().sendString(getLine(c) + "" + ItemAssistant.getItemName(item) + "", 13717);
+		c.getPacketSender().sendString(getLine(c) + ItemAssistant.getItemName(item), 13717);
 	}
 
 	public static boolean startCooking(Player c, int itemId, int objectId) {
 		CookingItems item = forId(itemId);
 		if (item != null) {
-			if (c.playerLevel[c.playerCooking] < item.getLevelReq()) {
+			if (c.playerLevel[SkillData.COOKING.getId()] < item.getLevelReq()) {
 				c.getPacketSender().closeAllWindows();
 				c.getDialogueHandler().sendStatement("You need a Cooking level of " + item.getLevelReq() + " to cook this.");
 				c.nextChat = 0;
@@ -174,17 +175,15 @@ public class Cooking extends SkillHandler {
 		return false;
 	}
 
-	private static boolean getSuccess(Player c, int burnBonus, int levelReq, int stopBurn) {
-		if (c.playerLevel[c.playerCooking] >= stopBurn) {
+	private static boolean getSuccess(Player c, int levelReq, int stopBurn) {
+		if (c.playerLevel[SkillData.COOKING.getId()] >= stopBurn) {
 			return true;
 		}
-		double burn_chance = 55.0 - burnBonus;
-		double cook_level = c.playerLevel[c.playerCooking];
-		double lev_needed = levelReq;
-		double burn_stop = stopBurn;
-		double multi_a = burn_stop - lev_needed;
+		double burn_chance = 55.0 - 3;
+		double cook_level = c.playerLevel[SkillData.COOKING.getId()];
+		double multi_a = (double) stopBurn - (double) levelReq;
 		double burn_dec = burn_chance / multi_a;
-		double multi_b = cook_level - lev_needed;
+		double multi_b = cook_level - (double) levelReq;
 		burn_chance -= multi_b * burn_dec;
 		double randNum = cookingRandom.nextDouble() * 100.0;
 		return burn_chance <= randNum;
@@ -220,9 +219,9 @@ public class Cooking extends SkillHandler {
 					}
 					boolean burn;
 					if (player.playerEquipment[ItemConstants.HANDS] == 775) {
-						burn = !getSuccess(player, 3, item.getLevelReq(), item.getStopBurnGloves());
+						burn = !getSuccess(player, item.getLevelReq(), item.getStopBurnGloves());
 					} else {
-						burn = !getSuccess(player, 3, item.getLevelReq(), item.getStopBurn());
+						burn = !getSuccess(player, item.getLevelReq(), item.getStopBurn());
 					}
 					player.getItemAssistant().deleteItem(item.getRawItem(),
 							player.getItemAssistant().getItemSlot(itemId), 1);
@@ -231,7 +230,7 @@ public class Cooking extends SkillHandler {
 						if (GameConstants.SOUND) {
 							player.getPacketSender().sendSound(SoundList.COOK_ITEM, 100, 0);
 						}
-						player.getPlayerAssistant().addSkillXP(item.getXp(), player.playerCooking);
+						player.getPlayerAssistant().addSkillXP(item.getXp(), SkillData.COOKING.getId());
 						player.getItemAssistant().addItem(item.getCookedItem(), 1);
 					} else {
 						player.getPacketSender().sendMessage(

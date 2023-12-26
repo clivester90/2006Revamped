@@ -5,6 +5,7 @@ import com.rebotted.event.CycleEvent;
 import com.rebotted.event.CycleEventContainer;
 import com.rebotted.event.CycleEventHandler;
 import com.rebotted.game.content.combat.CombatConstants;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.npcs.Npc;
 import com.rebotted.game.npcs.NpcHandler;
 import com.rebotted.game.objects.Objects;
@@ -79,7 +80,7 @@ public class DwarfCannon {
 						player.getItemAssistant().deleteItem(2353, 1);
 						player.getItemAssistant().addItem(2, 4);
 						player.getPacketSender().sendMessage("You make some cannonballs.");
-						player.getPlayerAssistant().addSkillXP(26, player.playerSmithing);
+						player.getPlayerAssistant().addSkillXP(26, SkillData.SMITHING.getId());
 						player.getPacketSender().sendSound(352, 100, 0);
 					}
 				}
@@ -424,7 +425,7 @@ public class DwarfCannon {
 				target.hitUpdateRequired2 = true;
 				target.updateRequired = true;
 				myBalls -= 1;
-				player.getPlayerAssistant().addSkillXP(damage * CombatConstants.RANGE_EXP_RATE, player.playerRanged);
+				player.getPlayerAssistant().addSkillXP(damage * CombatConstants.RANGE_EXP_RATE, SkillData.RANGED.getId());
 			}
 		}
 		
@@ -495,7 +496,7 @@ public class DwarfCannon {
 		}
 
 		public boolean canAttackSlayer(int i){
-			return player.playerLevel[player.playerSlayer] >= player.getSlayer().getRequiredLevel(NpcHandler.npcs[i].npcType);
+			return player.playerLevel[SkillData.SLAYER.getId()] >= player.getSlayer().getRequiredLevel(NpcHandler.npcs[i].npcType);
 		}
 		
 		private void cannonProjectile(Npc n) {

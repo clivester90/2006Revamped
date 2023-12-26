@@ -6,6 +6,7 @@ import java.util.Objects;
 import com.rebotted.event.CycleEvent;
 import com.rebotted.event.CycleEventContainer;
 import com.rebotted.event.CycleEventHandler;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.items.ItemAssistant;
 import com.rebotted.game.players.Player;
 /**
@@ -26,7 +27,7 @@ public class DairyChurn {
 		private int level;
 		private double experience;
 
-		public static HashMap<Integer, ChurnData> churnItems = new HashMap<Integer, ChurnData>();
+		public static HashMap<Integer, ChurnData> churnItems = new HashMap<>();
 
 		public static ChurnData forId(int id) {
 			return churnItems.get(id);
@@ -74,7 +75,7 @@ public class DairyChurn {
 		if (churnData == null || !Objects.equals(player.getStatedInterface(), "dairyChurn")) {
 			return;
 		}
-		if (player.playerLevel[player.playerCooking] < churnData.getLevel()) {
+		if (player.playerLevel[SkillData.COOKING.getId()] < churnData.getLevel()) {
 			player.getDialogueHandler().sendStatement("You need a cooking level of " + churnData.getLevel() + " to make this.");
 			return;
 		}
@@ -103,7 +104,7 @@ public class DairyChurn {
 					player.getItemAssistant().deleteItem(churnData.getUsed()[i], 1);
 				player.getItemAssistant().addItem(churnData.getResult(), 1);
 				player.getItemAssistant().addItem(1925, 1);
-				player.getPlayerAssistant().addSkillXP(churnData.getExperience(), player.playerCooking);
+				player.getPlayerAssistant().addSkillXP(churnData.getExperience(), SkillData.COOKING.getId());
 			}
 
 			@Override

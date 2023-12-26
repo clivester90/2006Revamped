@@ -23,11 +23,11 @@ public class CastleWars {
 	/*
 	 * Hashmap for the waitingroom players
 	 */
-	private static HashMap<Player, Integer> waitingRoom = new HashMap<Player, Integer>();
+	private static HashMap<Player, Integer> waitingRoom = new HashMap<>();
 	/*
 	 * hashmap for the gameRoom players
 	 */
-	private static HashMap<Player, Integer> gameRoom = new HashMap<Player, Integer>();
+	private static HashMap<Player, Integer> gameRoom = new HashMap<>();
 	/*
 	 * The coordinates for the waitingRoom both sara/zammy
 	 */

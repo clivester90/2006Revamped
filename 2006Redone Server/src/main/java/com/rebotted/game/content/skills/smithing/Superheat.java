@@ -2,6 +2,7 @@ package com.rebotted.game.content.skills.smithing;
 
 import com.rebotted.game.content.combat.magic.CastRequirements;
 import com.rebotted.game.content.music.sound.SoundList;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.items.ItemAssistant;
 import com.rebotted.game.players.Player;
 
@@ -39,15 +40,15 @@ public class Superheat {
 					return false;
 				}
 				if (itemID == 444 && player.playerEquipment[player.playerHands] == 776) {
-					player.getPlayerAssistant().addSkillXP(56.2, player.playerSmithing);
+					player.getPlayerAssistant().addSkillXP(56.2, SkillData.SMITHING.getId());
 				} else {
-					player.getPlayerAssistant().addSkillXP(smelt[7], player.playerSmithing);
+					player.getPlayerAssistant().addSkillXP(smelt[7], SkillData.SMITHING.getId());
 				}
-				if (player.playerLevel[player.playerSmithing] < smelt[6]) {
+				if (player.playerLevel[SkillData.SMITHING.getId()] < smelt[6]) {
 					player.getPacketSender().sendMessage("You need a smithing level of " + smelt[6] + " to superheat this ore.");
 					return false;
 				}
-				if (player.playerLevel[player.playerMagic] < 43) {
+				if (player.playerLevel[SkillData.MAGIC.getId()] < 43) {
 					player.getPacketSender().sendMessage("You need a magic level of 43 to superheat this ore.");
 					return false;
 				}
@@ -55,12 +56,12 @@ public class Superheat {
 				player.getItemAssistant().deleteItem(smelt[2], smelt[3]);
 				CastRequirements.deleteRunes(player, new int[][]{{554, 4}, {561, 1}});
 				player.getItemAssistant().addItem(smelt[4], 1);
-				player.getPlayerAssistant().addSkillXP(53, player.playerMagic);
+				player.getPlayerAssistant().addSkillXP(53, SkillData.MAGIC.getId());
 				player.startAnimation(722);
 				player.gfx0(148);
 				player.getPacketSender().sendSound(SoundList.SUPERHEAT, 100, 0);
 				if (itemID != 444) {
-					player.getPlayerAssistant().addSkillXP(smelt[7], player.playerSmithing);
+					player.getPlayerAssistant().addSkillXP(smelt[7], SkillData.SMITHING.getId());
 				}
 				player.getPacketSender().sendFrame106(6);
 				return true;

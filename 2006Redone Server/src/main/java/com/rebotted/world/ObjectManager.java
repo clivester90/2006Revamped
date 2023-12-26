@@ -21,8 +21,8 @@ import com.rebotted.world.clip.Region;
 
 public class ObjectManager {
 
-	public ArrayList<Object> objects = new ArrayList<Object>();
-	private final ArrayList<Object> toRemove = new ArrayList<Object>();
+	public ArrayList<Object> objects = new ArrayList<>();
+	private final ArrayList<Object> toRemove = new ArrayList<>();
 	
 	public static void objectTicks(final Player player, final int objectId, final int objectX, final int objectY, final int objectH, final int face, final int objectType, int ticks) {
 		CycleEventHandler.getSingleton().addEvent(player, new CycleEvent() {

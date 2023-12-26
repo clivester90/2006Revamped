@@ -1,6 +1,7 @@
 package com.rebotted.game.content.combat.melee;
 
 import com.rebotted.game.content.combat.magic.MagicData;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.items.ItemAssistant;
 import com.rebotted.game.items.ItemConstants;
 import com.rebotted.game.items.impl.Greegree.MonkeyData;
@@ -19,22 +20,20 @@ public class MeleeData {
 		int attackLevel = c.playerLevel[0];
 		// 2, 5, 11, 18, 19
 		if (c.getPrayer().prayerActive[2]) {
-			attackLevel += c.getLevelForXP(c.playerXP[c.playerAttack]) * 0.05;
+			attackLevel += c.getLevelForXP(c.playerXP[SkillData.ATTACK.getId()]) * 0.05;
 		} else if (c.getPrayer().prayerActive[7]) {
-			attackLevel += c.getLevelForXP(c.playerXP[c.playerAttack]) * 0.1;
+			attackLevel += c.getLevelForXP(c.playerXP[SkillData.ATTACK.getId()]) * 0.1;
 		} else if (c.getPrayer().prayerActive[15]) {
-			attackLevel += c.getLevelForXP(c.playerXP[c.playerAttack]) * 0.15;
+			attackLevel += c.getLevelForXP(c.playerXP[SkillData.ATTACK.getId()]) * 0.15;
 		} else if (c.getPrayer().prayerActive[24]) {
-			attackLevel += c.getLevelForXP(c.playerXP[c.playerAttack]) * 0.15;
+			attackLevel += c.getLevelForXP(c.playerXP[SkillData.ATTACK.getId()]) * 0.15;
 		} else if (c.getPrayer().prayerActive[25]) {
-			attackLevel += c.getLevelForXP(c.playerXP[c.playerAttack]) * 0.2;
+			attackLevel += c.getLevelForXP(c.playerXP[SkillData.ATTACK.getId()]) * 0.2;
 		}
 		if (fullVoidMelee(c)) {
-			attackLevel += c.getLevelForXP(c.playerXP[c.playerAttack]) * 0.1;
+			attackLevel += c.getLevelForXP(c.playerXP[SkillData.ATTACK.getId()]) * 0.1;
 		}
 		attackLevel *= c.specAccuracy;
-		// c.sendMessage("Attack: " + (attackLevel +
-		// (c.playerBonus[bestMeleeAtk()] * 2)));
 		int i = c.playerBonus[bestMeleeAtk(c)];
 		i += c.bonusAttack;
 		if (c.playerEquipment[c.playerAmulet] == 11128
@@ -61,15 +60,15 @@ public class MeleeData {
 		int defenceLevel = c.playerLevel[1];
 		int i = c.playerBonus[bestMeleeDef(c)];
 		if (c.getPrayer().prayerActive[0]) {
-			defenceLevel += c.getLevelForXP(c.playerXP[c.playerDefence]) * 0.05;
+			defenceLevel += c.getLevelForXP(c.playerXP[SkillData.STRENGTH.getId()]) * 0.05;
 		} else if (c.getPrayer().prayerActive[5]) {
-			defenceLevel += c.getLevelForXP(c.playerXP[c.playerDefence]) * 0.1;
+			defenceLevel += c.getLevelForXP(c.playerXP[SkillData.STRENGTH.getId()]) * 0.1;
 		} else if (c.getPrayer().prayerActive[13]) {
-			defenceLevel += c.getLevelForXP(c.playerXP[c.playerDefence]) * 0.15;
+			defenceLevel += c.getLevelForXP(c.playerXP[SkillData.STRENGTH.getId()]) * 0.15;
 		} else if (c.getPrayer().prayerActive[24]) {
-			defenceLevel += c.getLevelForXP(c.playerXP[c.playerDefence]) * 0.2;
+			defenceLevel += c.getLevelForXP(c.playerXP[SkillData.STRENGTH.getId()]) * 0.2;
 		} else if (c.getPrayer().prayerActive[25]) {
-			defenceLevel += c.getLevelForXP(c.playerXP[c.playerDefence]) * 0.25;
+			defenceLevel += c.getLevelForXP(c.playerXP[SkillData.STRENGTH.getId()]) * 0.25;
 		}
 		return (int) (defenceLevel + defenceLevel * 0.15 + (i + i * 0.05));
 	}
@@ -455,13 +454,10 @@ public class MeleeData {
 				return 4;
 			}
 
-			switch (c.playerEquipment[c.playerWeapon]) {
-			case 6522: // Toktz-xil-ul
+			if (c.playerEquipment[c.playerWeapon] == 6522) { // Toktz-xil-ul
 				return 3;
-
-			default:
-				return 2;
 			}
+			return 2;
 		}
 	}
 }

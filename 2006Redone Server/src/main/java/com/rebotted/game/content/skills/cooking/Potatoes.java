@@ -3,6 +3,7 @@ package com.rebotted.game.content.skills.cooking;
 import java.util.HashMap;
 import java.util.Map;
 import com.rebotted.game.content.randomevents.RandomEventHandler;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.content.skills.SkillHandler;
 import com.rebotted.game.players.Player;
 
@@ -57,7 +58,7 @@ public class Potatoes extends SkillHandler {
 			return XP;
 		}
 
-		private static final Map<Integer, PotatoMaking> potato = new HashMap<Integer, PotatoMaking>();
+		private static final Map<Integer, PotatoMaking> potato = new HashMap<>();
 
 		public static PotatoMaking forId(int id) {
 			return potato.get(id);
@@ -96,12 +97,12 @@ public class Potatoes extends SkillHandler {
 			return false;
 		}
 		if (c.getItemAssistant().playerHasItem(potato.getIngredient(), 1)) {
-			if (c.playerLevel[c.playerCooking] >= potato.getReq()) {
+			if (c.playerLevel[SkillData.COOKING.getId()] >= potato.getReq()) {
 				c.getItemAssistant().deleteItem(potato.getIngredient(), 1);
 				c.getItemAssistant().deleteItem(6703, 1);
 				c.getPacketSender().sendMessage("You put the topping on.");
 				c.getItemAssistant().addItem(potato.getNewPotatoID(), 1);
-				c.getPlayerAssistant().addSkillXP(potato.getXP(), c.playerCooking);
+				c.getPlayerAssistant().addSkillXP(potato.getXP(), SkillData.COOKING.getId());
 				RandomEventHandler.addRandom(c);
 			} else {
 				c.getPacketSender().sendMessage("You need a cooking level of " + potato.getReq() + " to make this potato.");

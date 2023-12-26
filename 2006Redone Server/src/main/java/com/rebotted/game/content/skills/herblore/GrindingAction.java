@@ -1,6 +1,7 @@
 package com.rebotted.game.content.skills.herblore;
 
 import com.rebotted.game.content.music.sound.SoundList;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.items.ItemAssistant;
 import com.rebotted.game.players.Player;
 
@@ -39,7 +40,7 @@ public class GrindingAction {
 				player.getItemAssistant().deleteItem(d.getId(), 1);
 				player.getItemAssistant().addItem(d.getEnd(), 1);
 				player.getPacketSender().sendMessage("You carefully grind the " + ItemAssistant.getItemName(d.getId()) + ".");
-				player.getPlayerAssistant().addSkillXP(1, player.playerHerblore);
+				player.getPlayerAssistant().addSkillXP(1, SkillData.HERBLORE.getId());
 			}
 		}
 	}

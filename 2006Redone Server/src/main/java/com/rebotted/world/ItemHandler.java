@@ -27,7 +27,7 @@ import java.util.Scanner;
 
 public class ItemHandler {
 
-    public              List<GroundItem> items      = new ArrayList<GroundItem>();
+    public              List<GroundItem> items      = new ArrayList<>();
     public static final int              HIDE_TICKS = 100;
 
     public ItemHandler() {
@@ -117,7 +117,7 @@ public class ItemHandler {
     }
 
     public void process() {
-        ArrayList<GroundItem> toRemove = new ArrayList<GroundItem>();
+        ArrayList<GroundItem> toRemove = new ArrayList<>();
         for (int j = 0; j < items.size(); j++) {
             if (items.get(j) != null) {
                 GroundItem i = items.get(j);

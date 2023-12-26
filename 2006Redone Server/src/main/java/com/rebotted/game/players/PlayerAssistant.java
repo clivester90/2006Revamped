@@ -111,7 +111,7 @@ public class PlayerAssistant {
 	        } else {
 	        	player.getPacketSender().sendString("You last logged in @red@" + (currentDay > 1 ? (currentDay + " @bla@days ago") : ("earlier today")) + " @bla@ from: @red@" + player.lastConnectedFrom, 15258);
 	        }
-		player.getPacketSender().sendString("" +GameConstants.SERVER_NAME + " will NEVER email you.\\n We use the forums or we \\nWill contact you through game.", 15260);
+		player.getPacketSender().sendString(GameConstants.SERVER_NAME + " will NEVER email you.\\n We use the forums or we \\nWill contact you through game.", 15260);
 		player.getPacketSender().sendString("You have 0 unread messages\\nin your message centre.", 15261);
 		player.getPacketSender().sendString("You have @gre@unlimited@yel@ days of member credit.", 15262);
 		player.getPacketSender().sendString("CLICK HERE TO PLAY", 15263);
@@ -125,8 +125,8 @@ public class PlayerAssistant {
 		player.getPacketSender().sendString(welcomeMessages[random][1], 15804);
 	}
 	
-	private String[][] welcomeMessages = {
-			{"Remember to vote daily to help " + GameConstants.SERVER_NAME + "", "Every vote counts! :)"}, 
+	private final String[][] welcomeMessages = {
+			{"Remember to vote daily to help " + GameConstants.SERVER_NAME, "Every vote counts! :)"},
 			{"Not a member of our discord community?", "Join our discord at: https://discord.gg/Nk9WQUK"},
 			{"Do you have any bugs that you would like to report?", "Report them on our discord or message a staff member. :)"},
 			{"Want to help the server grow?", "Remember to vote daily and invite your friends!"}
@@ -140,7 +140,7 @@ public class PlayerAssistant {
 
     public ArrayList<GameItem> randomFish(int fish) {
         Random r = new Random();
-        ArrayList<GameItem> toReturn = new ArrayList<GameItem>();
+        ArrayList<GameItem> toReturn = new ArrayList<>();
         boolean turtles = true;
         boolean mantas = true;
         boolean lobsters = true;
@@ -178,31 +178,31 @@ public class PlayerAssistant {
         int xpToAdd = 0;
         if (manta > 0) {
             toReturn.add(new GameItem(389, manta));
-            if (player.playerLevel[player.playerFishing] >= 81) {
+            if (player.playerLevel[SkillData.FISHING.getId()] >= 81) {
                 xpToAdd += (manta * 46);
             }
         }
         if (turt > 0) {
             toReturn.add(new GameItem(395, turt));
-            if (player.playerLevel[player.playerFishing] >= 79) {
+            if (player.playerLevel[SkillData.FISHING.getId()] >= 79) {
                 xpToAdd += (manta * 38);
             }
         }
         if (lobs > 0) {
             toReturn.add(new GameItem(377, lobs));
-            if (player.playerLevel[player.playerFishing] >= 40) {
+            if (player.playerLevel[SkillData.FISHING.getId()] >= 40) {
                 xpToAdd += (manta * 90);
             }
         }
         if (swordFish > 0) {
             toReturn.add(new GameItem(371, swordFish));
-            if (player.playerLevel[player.playerFishing] >= 50) {
+            if (player.playerLevel[SkillData.FISHING.getId()] >= 50) {
                 xpToAdd += (manta * 100);
             }
         }
         if (junk > 0)
             toReturn.add(new GameItem(685, junk));
-        player.getPlayerAssistant().addSkillXP(xpToAdd, player.playerFishing);
+        player.getPlayerAssistant().addSkillXP(xpToAdd, SkillData.FISHING.getId());
         return toReturn;
     }
     
@@ -357,19 +357,15 @@ public class PlayerAssistant {
 		player.getPacketSender().setSidebarInterface(6, player.playerMagicBook == 0 ? 1151 : 12855);
 	}
 
-	public boolean removeGloves() {
+	public void removeGloves() {
 		if (player.getItemAssistant().playerHasItem(776)) {
 			player.getItemAssistant().deleteItem(776, 1);
-			return true;
 		} else if (player.getItemAssistant().playerHasItem(775)) {
 			player.getItemAssistant().deleteItem(775, 1);
-			return true;
 		} else if (player.playerEquipment[player.playerHands] == 775 || player.playerEquipment[player.playerHands] == 776) {
 			player.getDialogueHandler().sendStatement("You need to take your gloves off to do this.");
 			player.nextChat = 0;
-			return false;
 		}
-		return false;
 	}
 
 	public void feature(String feature) {
@@ -402,7 +398,7 @@ public class PlayerAssistant {
 
 	public int raiseTimer() {
 		// calculations from https://oldschool.runescape.wiki/w/Energy
-		double seconds  = 60 / (8 + Math.floor(player.playerLevel[player.playerAgility] / 6));
+		double seconds  = 60 / (8 + Math.floor(player.playerLevel[SkillData.AGILITY.getId()] / 6));
 		return (int) Math.floor(seconds * 1000);
 	}
 
@@ -595,7 +591,7 @@ public class PlayerAssistant {
 		player.dialogueAction = 122;
 	}
 
-	public boolean bananasCheck() {
+	public void bananasCheck() {
 		int reqAmount = 10 - player.getItemAssistant().getItemAmount(1963);
 		switch (player.getItemAssistant().getItemAmount(1963)) {
 		case 0:
@@ -613,7 +609,6 @@ public class PlayerAssistant {
 			player.getDialogueHandler().sendPlayerChat("I'll go collect " + reqAmount + " more bananas then come back...");
 			break;
 		}
-		return true;
 	}
 
 	/**
@@ -1288,17 +1283,17 @@ public class PlayerAssistant {
 		case 1:
 			return "It's a humiliating defeat for " + player.playerName + ".";
 		case 2:
-			return "" + player.playerName
+			return player.playerName
 					+ " didn't stand a chance against you.";
 		case 3:
 			return "You've defeated " + player.playerName + ".";
 		case 4:
-			return "" + player.playerName
+			return player.playerName
 					+ " regrets the day they met you in combat.";
 		case 5:
 			return "It's all over for " + player.playerName + ".";
 		case 6:
-			return "" + player.playerName + " falls before your might.";
+			return player.playerName + " falls before your might.";
 		case 7:
 			return "Can anyone defeat you? Certainly not " + player.playerName
 					+ ".";
@@ -1349,10 +1344,10 @@ public class PlayerAssistant {
 					}
 				}
 				if (player.getPlayerAssistant().isPlayer() && player.inWild() && player.npcIndex < 1) {
-					GameLogger.writeLog(opponent.playerName, "pkingkiller", opponent.playerName + " killed " + player.playerName + " absX: " + player.absX + " absY: " + player.absY + "");
+					GameLogger.writeLog(opponent.playerName, "pkingkiller", opponent.playerName + " killed " + player.playerName + " absX: " + player.absX + " absY: " + player.absY);
 				}
 				if (opponent.getPlayerAssistant().isPlayer() && player.inWild() && player.npcIndex < 1) {
-					GameLogger.writeLog(player.playerName, "pkingkilled", player.playerName + " was killed by " + opponent.playerName + " absX: " + opponent.absX + " absY: " + opponent.absY + "");
+					GameLogger.writeLog(player.playerName, "pkingkilled", player.playerName + " was killed by " + opponent.playerName + " absX: " + opponent.absX + " absY: " + opponent.absY);
 				}
 				if (weapon == CastleWars.SARA_BANNER || weapon == CastleWars.ZAMMY_BANNER) {
 					player.getItemAssistant().removeItem(weapon, 3);
@@ -1580,14 +1575,14 @@ public class PlayerAssistant {
 
 		boolean projectile = player.usingMagic || player.usingBow || player.usingRangeWeapon;
 
-		for (int i = 0; i < nodes.length; i++) {
-			double dist = Misc.distance(player.absX, player.absY, nodes[i][0], nodes[i][1]);
+		for (int[] node : nodes) {
+			double dist = Misc.distance(player.absX, player.absY, node[0], node[1]);
 			if (dist < bestDist) {
-				if (PathFinder.getPathFinder().accessible(player.absX, player.absY, player.heightLevel, nodes[i][0], nodes[i][1])) {
-					if (!projectile || PathFinder.isProjectilePathClear(nodes[i][0], nodes[i][1], player.heightLevel, x, y)) {
+				if (PathFinder.getPathFinder().accessible(player.absX, player.absY, player.heightLevel, node[0], node[1])) {
+					if (!projectile || PathFinder.isProjectilePathClear(node[0], node[1], player.heightLevel, x, y)) {
 						bestDist = dist;
-						bestX = nodes[i][0];
-						bestY = nodes[i][1];
+						bestX = node[0];
+						bestY = node[1];
 					}
 				}
 			}
@@ -1838,7 +1833,7 @@ public class PlayerAssistant {
 	public void levelUp(int skill) {
 		SkillHandler.resetSkills(player);
 		player.getPacketSender().sendString("Total Lvl: "+getTotalLevel(), 3984);
-		player.getPacketSender().sendString("Combat Lvl: "+player.calculateCombatLevel()+"", 3983);
+		player.getPacketSender().sendString("Combat Lvl: "+player.calculateCombatLevel(), 3983);
 
 		Optional<SkillData> data = SkillData.getSkill(skill);
 		
@@ -1857,18 +1852,18 @@ public class PlayerAssistant {
 
 	public void refreshSkill(int skill) {
 		player.getPacketSender().sendString("Total Lvl: "+getTotalLevel(), 3984);
-		player.getPacketSender().sendString("Combat Lvl: "+player.calculateCombatLevel()+"", 3983);
+		player.getPacketSender().sendString("Combat Lvl: "+player.calculateCombatLevel(), 3983);
 		Optional<SkillData> data = SkillData.getSkill(skill);
 
 		if(!data.isPresent())
 			return;
 
-		player.getPacketSender().sendString("" + player.playerLevel[skill] + "", data.get().getFrame4());
-		player.getPacketSender().sendString("" + getLevelForXP(player.playerXP[skill]) + "", data.get().getFrame5());
-		player.getPacketSender().sendString("" + player.playerXP[skill] + "", data.get().getFrame6());
-		player.getPacketSender().sendString("" + getXPForLevel(getLevelForXP(player.playerXP[skill]) + 1) + "", data.get().getFrame7());
+		player.getPacketSender().sendString(String.valueOf(player.playerLevel[skill]), data.get().getFrame4());
+		player.getPacketSender().sendString(String.valueOf(getLevelForXP(player.playerXP[skill])), data.get().getFrame5());
+		player.getPacketSender().sendString(String.valueOf(player.playerXP[skill]), data.get().getFrame6());
+		player.getPacketSender().sendString(String.valueOf(getXPForLevel(getLevelForXP(player.playerXP[skill]) + 1)), data.get().getFrame7());
 		if (skill == 5) {
-			player.getPacketSender().sendString("" + player.playerLevel[5] + "/" + getLevelForXP(player.playerXP[5]) + "", 687);// Prayer
+			player.getPacketSender().sendString(player.playerLevel[5] + "/" + getLevelForXP(player.playerXP[5]), 687);// Prayer
 		}
 	}
 

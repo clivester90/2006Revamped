@@ -1,5 +1,6 @@
 package com.rebotted.game.content.skills.agility;
 
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.players.Player;
 
 /**
@@ -12,7 +13,7 @@ public class AgilityShortcut {
 	private static final int WALK = 1, MOVE = 2, AGILITY = 3;
 
 	private static void handleAgility(Player player, int x, int y, int levelReq, int anim, int walk, String message) {
-		if (player.playerLevel[player.playerAgility] < levelReq) {
+		if (player.playerLevel[SkillData.AGILITY.getId()] < levelReq) {
 			player.getPacketSender().sendMessage("You need " + levelReq + " agility to use this shortcut.");
 			return;
 		}

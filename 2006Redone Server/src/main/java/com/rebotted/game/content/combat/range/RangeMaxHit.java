@@ -1,5 +1,6 @@
 package com.rebotted.game.content.combat.range;
 
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.players.Player;
 
 public class RangeMaxHit {
@@ -7,15 +8,15 @@ public class RangeMaxHit {
 	public static int calculateRangeDefence(Player c) {
 		int defenceLevel = c.playerLevel[1];
 		if (c.getPrayer().prayerActive[0]) {
-			defenceLevel += c.getLevelForXP(c.playerXP[c.playerDefence]) * 0.05;
+			defenceLevel += c.getLevelForXP(c.playerXP[SkillData.STRENGTH.getId()]) * 0.05;
 		} else if (c.getPrayer().prayerActive[5]) {
-			defenceLevel += c.getLevelForXP(c.playerXP[c.playerDefence]) * 0.1;
+			defenceLevel += c.getLevelForXP(c.playerXP[SkillData.STRENGTH.getId()]) * 0.1;
 		} else if (c.getPrayer().prayerActive[13]) {
-			defenceLevel += c.getLevelForXP(c.playerXP[c.playerDefence]) * 0.15;
+			defenceLevel += c.getLevelForXP(c.playerXP[SkillData.STRENGTH.getId()]) * 0.15;
 		} else if (c.getPrayer().prayerActive[24]) {
-			defenceLevel += c.getLevelForXP(c.playerXP[c.playerDefence]) * 0.2;
+			defenceLevel += c.getLevelForXP(c.playerXP[SkillData.STRENGTH.getId()]) * 0.2;
 		} else if (c.getPrayer().prayerActive[25]) {
-			defenceLevel += c.getLevelForXP(c.playerXP[c.playerDefence]) * 0.25;
+			defenceLevel += c.getLevelForXP(c.playerXP[SkillData.STRENGTH.getId()]) * 0.25;
 		}
 		return defenceLevel + c.playerBonus[9] + c.playerBonus[9] / 2;
 	}
@@ -24,7 +25,7 @@ public class RangeMaxHit {
 		int rangeLevel = c.playerLevel[4];
 		rangeLevel *= c.specAccuracy;
 		if (RangeData.fullVoidRange(c)) {
-			rangeLevel += c.getLevelForXP(c.playerXP[c.playerRanged]) * 0.1;
+			rangeLevel += c.getLevelForXP(c.playerXP[SkillData.RANGED.getId()]) * 0.1;
 		}
 		if (c.getPrayer().prayerActive[3]) {
 			rangeLevel *= 1.05;

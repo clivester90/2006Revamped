@@ -1,6 +1,8 @@
 package com.rebotted.game.content.skills.slayer;
 
 import java.util.ArrayList;
+
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.npcs.NpcHandler;
 import com.rebotted.game.players.Player;
 import com.rebotted.util.Misc;
@@ -21,11 +23,11 @@ public class Slayer {
 			VERY_HARD_AMOUNT =  new int[]{130, 200},
 			DRAGON_AMOUNT = new int[]{20, 60};
 
-	public static ArrayList<Integer> veryEasyTask = new ArrayList<Integer>();
-	public static ArrayList<Integer> easyTask = new ArrayList<Integer>();
-	public static ArrayList<Integer> mediumTask = new ArrayList<Integer>();
-	public static ArrayList<Integer> hardTask = new ArrayList<Integer>();
-	public static ArrayList<Integer> veryHardTask = new ArrayList<Integer>();
+	public static ArrayList<Integer> veryEasyTask = new ArrayList<>();
+	public static ArrayList<Integer> easyTask = new ArrayList<>();
+	public static ArrayList<Integer> mediumTask = new ArrayList<>();
+	public static ArrayList<Integer> hardTask = new ArrayList<>();
+	public static ArrayList<Integer> veryHardTask = new ArrayList<>();
 
 	private final Player c;
 
@@ -163,7 +165,7 @@ public class Slayer {
 	}
 
 	public boolean canAttackNpc(int i) {
-		if (c.playerLevel[c.playerSlayer] < getRequiredLevel(NpcHandler.npcs[i].npcType)) {
+		if (c.playerLevel[SkillData.SLAYER.getId()] < getRequiredLevel(NpcHandler.npcs[i].npcType)) {
 			c.getPacketSender().sendMessage("You need a slayer level of " + getRequiredLevel(NpcHandler.npcs[i].npcType) + " to attack this npc.");
 			c.getCombatAssistant().resetPlayerAttack();
 			return false;

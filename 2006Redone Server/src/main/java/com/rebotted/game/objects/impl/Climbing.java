@@ -4,6 +4,7 @@ import com.rebotted.event.CycleEvent;
 import com.rebotted.event.CycleEventContainer;
 import com.rebotted.event.CycleEventHandler;
 import com.rebotted.game.content.quests.QuestAssistant;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.items.impl.LightSources;
 import com.rebotted.game.players.Player;
 import com.rebotted.util.Misc;
@@ -442,7 +443,7 @@ public class Climbing {
 				} else if (client.objectX == 3258 && client.objectY == 3487) {
 					client.getPlayerAssistant().movePlayer(3257, 3487, 1);
 					client.resetWalkingQueue();
-				} else if (client.objectX == 3144 && client.objectY == 3447 && client.playerLevel[client.playerCooking] > 31 && client.playerEquipment[client.playerHat] == 1949) {
+				} else if (client.objectX == 3144 && client.objectY == 3447 && client.playerLevel[SkillData.COOKING.getId()] > 31 && client.playerEquipment[client.playerHat] == 1949) {
 					client.getPlayerAssistant().movePlayer(3143, 3448, 1);
 					client.resetWalkingQueue();
 				} else if (client.objectX == 3010 && client.objectY == 3515) {
@@ -574,7 +575,7 @@ public class Climbing {
 							"You go down the trapdoor.");
 					client.startAnimation(827);
 					client.getPlayerAssistant().addSkillXP(.5,
-							client.playerThieving);
+							SkillData.THIEVING.getId());
 					client.getPacketSender().closeAllWindows();
 				} else if (!client.getItemAssistant().playerHasItem(1523, 1)
 						&& Misc.random(5) < 2) {
@@ -583,7 +584,7 @@ public class Climbing {
 							"You go down the trapdoor.");
 					client.startAnimation(827);
 					client.getPlayerAssistant().addSkillXP(.5,
-							client.playerThieving);
+							SkillData.THIEVING.getId());
 					client.getPacketSender().closeAllWindows();
 					client.resetWalkingQueue();
 				} else if (client.getItemAssistant().playerHasItem(1523, 1)

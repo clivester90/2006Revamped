@@ -1,5 +1,6 @@
 package com.rebotted.game.items.impl;
 
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.items.ItemData;
 import com.rebotted.game.items.ItemAssistant;
 import com.rebotted.game.players.Player;
@@ -65,7 +66,7 @@ public enum Dye {
 				player.getItemAssistant().deleteItem(itemUsed, 1);
 				player.getItemAssistant().deleteItem(useWith, 1);
 				player.getItemAssistant().addItem(cape.getReward(), 1);
-				player.getPlayerAssistant().addSkillXP(2.5, player.playerCrafting);
+				player.getPlayerAssistant().addSkillXP(2.5, SkillData.CRAFTING.getId());
 			}
 		}
 	}

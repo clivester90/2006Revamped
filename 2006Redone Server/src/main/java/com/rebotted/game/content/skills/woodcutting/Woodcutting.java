@@ -6,6 +6,7 @@ import com.rebotted.event.CycleEventHandler;
 import com.rebotted.game.content.music.sound.SoundList;
 import com.rebotted.game.content.randomevents.RandomEventHandler;
 import com.rebotted.game.content.randomevents.TreeSpirit;
+import com.rebotted.game.content.skills.SkillData;
 import com.rebotted.game.content.skills.SkillHandler;
 import com.rebotted.game.items.ItemAssistant;
 import com.rebotted.game.objects.Object;
@@ -125,8 +126,8 @@ public class Woodcutting {
 	}
 
 	public static void handleCanoe(final Player player, final int objectId) {
-		Boolean gotAxe = false;
-		if (player.playerLevel[player.playerWoodcutting] < 12) {
+		boolean gotAxe = false;
+		if (player.playerLevel[SkillData.WOODCUTTING.getId()] < 12) {
 			player.getPacketSender().sendMessage("You need a woodcutting level of at least 12 to use the canoe station.");
 			return;
 		}
@@ -147,7 +148,7 @@ public class Woodcutting {
 			int type = axes[0];
 			int level = axes[1];
 			int anim = axes[3];
-			if (player.playerLevel[player.playerWoodcutting] >= level && player.getItemAssistant().playerHasItem(type) || player.playerLevel[player.playerWoodcutting] >= level && player.playerEquipment[player.playerWeapon] == type) {
+			if (player.playerLevel[SkillData.WOODCUTTING.getId()] >= level && player.getItemAssistant().playerHasItem(type) || player.playerLevel[SkillData.WOODCUTTING.getId()] >= level && player.playerEquipment[player.playerWeapon] == type) {
 				player.turnPlayerTo(player.objectX, player.objectY);
 				player.startAnimation(anim);
 				CycleEventHandler.getSingleton().addEvent(player, new CycleEvent() {
