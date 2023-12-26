@@ -67,8 +67,7 @@ public class ItemAssistant {
 				{ "You probably won't be able to", "14182" }, { "get this item back once lost.", "14183" },
 				{ itemName, "14184" } };// make some kind of c.getItemInfo
 		player.getPacketSender().sendFrame34(itemId, 0, 14171, 1);
-		for (int i = 0; i < info.length; i++)
-			player.getPacketSender().sendString(info[i][0], Integer.parseInt(info[i][1]));
+		for (String[] strings : info) player.getPacketSender().sendString(strings[0], Integer.parseInt(strings[1]));
 		player.getPacketSender().sendChatInterface(14170);
 	}
 

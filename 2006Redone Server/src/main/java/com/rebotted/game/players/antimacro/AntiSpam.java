@@ -18,17 +18,17 @@ public class AntiSpam {
 	};
 	
 	public static boolean blockedWords(Player player, String word, boolean chat) {
-		for (int i = 0; i < BLOCKED_WORDS.length; i++) {
-			if (player.getPlayerAssistant().isPlayer()) {
-				if (word.contains(BLOCKED_WORDS[i]) || word.equalsIgnoreCase(player.playerPass)) {
-					player.getPacketSender().sendMessage("You can't say that word!");
-					if (chat) {
-						player.setChatTextUpdateRequired(false);
-					}
-					return false;
-				}	
-			}
-		}
+        for (String blockedWord : BLOCKED_WORDS) {
+            if (player.getPlayerAssistant().isPlayer()) {
+                if (word.contains(blockedWord) || word.equalsIgnoreCase(player.playerPass)) {
+                    player.getPacketSender().sendMessage("You can't say that word!");
+                    if (chat) {
+                        player.setChatTextUpdateRequired(false);
+                    }
+                    return false;
+                }
+            }
+        }
 		return true;
 	}
 

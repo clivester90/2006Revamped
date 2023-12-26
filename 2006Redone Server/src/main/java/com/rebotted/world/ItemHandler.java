@@ -118,9 +118,9 @@ public class ItemHandler {
 
     public void process() {
         ArrayList<GroundItem> toRemove = new ArrayList<>();
-        for (int j = 0; j < items.size(); j++) {
-            if (items.get(j) != null) {
-                GroundItem i = items.get(j);
+        for (GroundItem item : items) {
+            if (item != null) {
+                GroundItem i = item;
                 if (i.hideTicks > 0) {
                     i.hideTicks--;
                 }
@@ -141,8 +141,7 @@ public class ItemHandler {
 
         }
 
-        for (int j = 0; j < toRemove.size(); j++) {
-            GroundItem i = toRemove.get(j);
+        for (GroundItem i : toRemove) {
             removeGlobalItem(i, i.getItemId(), i.getItemX(), i.getItemY(),
                     i.getItemAmount());
         }

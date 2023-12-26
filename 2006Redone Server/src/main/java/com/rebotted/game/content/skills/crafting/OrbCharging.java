@@ -27,7 +27,7 @@ public class OrbCharging {
 					CycleEventHandler.getSingleton().addEvent(player, new CycleEvent() {
 						@Override
 						public void execute(CycleEventContainer container) {
-							if (player.isCrafting && player != null) {
+							if (player.isCrafting) {
 								if (!player.getItemAssistant().playerHasItem(567, 1)) {
 									player.getPacketSender().sendMessage("You have run out of unpowered orbs.");
 									container.stop();
@@ -72,9 +72,14 @@ public class OrbCharging {
 		EARTH(new int[][] { { 2150, 28} }, 1054, 567, 575, 58, 70, 151, 91),
 		WATER(new int[][] { { 2151, 28 } }, 1051, 567, 571, 54, 66, 149, 90);
 
-		private int[][] objectId;
-		private int spellId, orb, product, level, gfx, spellConfig;
-		private double xp;
+		private final int[][] objectId;
+		private final int spellId;
+		private final int orb;
+		private final int product;
+		private final int level;
+		private final int gfx;
+		private final int spellConfig;
+		private final double xp;
 
 		Orb(final int[][] objectId, final int spellId, final int orb, final int product, final int level, final double xp, final int gfx, final int spellConfig) {
 			this.objectId = objectId;
@@ -88,18 +93,18 @@ public class OrbCharging {
 		}
 
 		public int getObjectId(final int object) {
-			for (int i = 0; i < objectId.length; i++) {
-				if (object == objectId[i][0]) {
-					return objectId[i][0];
+			for (int[] ints : objectId) {
+				if (object == ints[0]) {
+					return ints[0];
 				}
 			}
 			return -1;
 		}
 
 		public int getAmount(final int object) {
-			for (int i = 0; i < objectId.length; i++) {
-				if (object == objectId[i][0]) {
-					return objectId[i][1];
+			for (int[] ints : objectId) {
+				if (object == ints[0]) {
+					return ints[1];
 				}
 			}
 			return -1;

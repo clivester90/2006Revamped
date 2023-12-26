@@ -58,9 +58,9 @@ public class TileControl {
 			else
 				pointer[count++] = calculateDistance(newTiles, following);
 		}
-		for (int i = 0; i < pointer.length; i++)
-			if (pointer[i] < lowestCount)
-				lowestCount = pointer[i];
+        for (int j : pointer)
+            if (j < lowestCount)
+                lowestCount = j;
 
 		return lowestCount;
 	}
@@ -80,9 +80,9 @@ public class TileControl {
 			else
 				pointer[count++] = calculateDistance(newTiles, following);
 		}
-		for (int i = 0; i < pointer.length; i++)
-			if (pointer[i] < lowestCount)
-				lowestCount = pointer[i];
+        for (int j : pointer)
+            if (j < lowestCount)
+                lowestCount = j;
 
 		return lowestCount;
 	}
@@ -102,9 +102,9 @@ public class TileControl {
 			else
 				pointer[count++] = calculateDistance(newTiles, npc);
 		}
-		for (int i = 0; i < pointer.length; i++)
-			if (pointer[i] < lowestCount)
-				lowestCount = pointer[i];
+        for (int j : pointer)
+            if (j < lowestCount)
+                lowestCount = j;
 
 		return lowestCount;
 	}

@@ -517,12 +517,12 @@ public class ShopAssistant {
 			if(!player.isShopping) {
 		        return false;
 			}
-			for (int i = 0; i < FISHING_ITEMS.length; i++) {
-				if (player.shopId == 32 && itemID == FISHING_ITEMS[i]) {
-					player.getPacketSender().sendMessage("You can't buy that item from this store!");
-					return false;
-				}		
-			}
+            for (int fishingItem : FISHING_ITEMS) {
+                if (player.shopId == 32 && itemID == fishingItem) {
+                    player.getPacketSender().sendMessage("You can't buy that item from this store!");
+                    return false;
+                }
+            }
 			int value = 0;
 			int currency = 995;
 			// player owned shop

@@ -189,29 +189,29 @@ public class Ectofuntus {
 	 * @param itemId
 	 */
 	public static void fillBucketWithSlime(Player player, final int objectId) {
-		for (int i = 0; i < SLIME.length; i++) {
-			if (objectId == SLIME[i]) {
-				CycleEventHandler.getSingleton().addEvent(player, new CycleEvent() {
-					@Override
-					public void execute(CycleEventContainer container) {
-						if (player.getItemAssistant().playerHasItem(BUCKET)) {
-							player.getItemAssistant().deleteItem(BUCKET, 1);
-							player.getItemAssistant().addItem(BUCKET_OF_SLIME, 1);
-							player.startAnimation(BUCKET_FILL);
-						} else {
-							player.getPacketSender().sendMessage("You have ran out of buckets.");
-							container.stop();
-						}
-					}
+        for (int j : SLIME) {
+            if (objectId == j) {
+                CycleEventHandler.getSingleton().addEvent(player, new CycleEvent() {
+                    @Override
+                    public void execute(CycleEventContainer container) {
+                        if (player.getItemAssistant().playerHasItem(BUCKET)) {
+                            player.getItemAssistant().deleteItem(BUCKET, 1);
+                            player.getItemAssistant().addItem(BUCKET_OF_SLIME, 1);
+                            player.startAnimation(BUCKET_FILL);
+                        } else {
+                            player.getPacketSender().sendMessage("You have ran out of buckets.");
+                            container.stop();
+                        }
+                    }
 
-					@Override
-					public void stop() {
-						// TODO Auto-generated method stub
-						
-					}
-				}, 3);
-			}
-		}
+                    @Override
+                    public void stop() {
+                        // TODO Auto-generated method stub
+
+                    }
+                }, 3);
+            }
+        }
 	}
 
 	/**

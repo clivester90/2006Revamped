@@ -155,8 +155,8 @@ public class Trawler extends GroupMinigame {
  
         public int getAvaliableWallSize() {
                 int toReturn = 0;
-                for (int j = 0; j < wall_status.length; j++) {
-                        if (!wall_status[j]) {
+                for (boolean wallStatus : wall_status) {
+                        if (!wallStatus) {
                                 toReturn++;
                         }
                 }
@@ -603,25 +603,25 @@ public class Trawler extends GroupMinigame {
         public void switchBoats() {
                 if (water_level > 25 && !isSunk) {
                         isSunk = true;
-                        for (int j = 0; j < players.size(); j++) {
-                                if (players.get(j) != null) {
-                                        players.get(j).stopMovement();
-                                        players.get(j).getPlayerAssistant()
-                                                       .movePlayer(players.get(j).absX + 128,
-                                                                        players.get(j).absY,
-                                                                        players.get(j).heightLevel);
+                        for (Player player : players) {
+                                if (player != null) {
+                                        player.stopMovement();
+                                        player.getPlayerAssistant()
+                                                .movePlayer(player.absX + 128,
+                                                        player.absY,
+                                                        player.heightLevel);
                                 }
                         }
                 }
                 if (water_level <= 25 && isSunk) {
                         isSunk = false;
-                        for (int j = 0; j < players.size(); j++) {
-                                if (players.get(j) != null) {
-                                        players.get(j).stopMovement();
-                                        players.get(j).getPlayerAssistant().
-                                                        movePlayer(players.get(j).absX - 128,
-                                                                        players.get(j).absY,
-                                                                        players.get(j).heightLevel);
+                        for (Player player : players) {
+                                if (player != null) {
+                                        player.stopMovement();
+                                        player.getPlayerAssistant().
+                                                movePlayer(player.absX - 128,
+                                                        player.absY,
+                                                        player.heightLevel);
                                 }
                         }
                 }

@@ -485,8 +485,8 @@ public class PlayerAssistant {
 			path[next][4] = nextMoveY;
 			next++;
 		}
-		for (int i = 0; i < path.length; i++) {
-			if (!Region.getClipping(path[i][0], path[i][1], path[i][2], path[i][3], path[i][4])/* && !Region.blockedShot(path[i][0], path[i][1], path[i][2])*/) {
+		for (int[] ints : path) {
+			if (!Region.getClipping(ints[0], ints[1], ints[2], ints[3], ints[4])/* && !Region.blockedShot(path[i][0], path[i][1], path[i][2])*/) {
 				return true;
 			}
 		}

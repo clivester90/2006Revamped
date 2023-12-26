@@ -45,30 +45,30 @@ public class BirdNest {
 		switch (nestType) {
 		case 0:
 			int randomTree = Misc.random(1000);
-			for (int i = 0; i < TREE_CHANCE.length; i++) {
-				if (randomTree >= TREE_CHANCE[i][1] && randomTree <= TREE_CHANCE[i][2]) {
-					player.getItemAssistant().addItem(TREE_CHANCE[i][0], 1);
-					player.getPacketSender().sendMessage("You find a " + ItemAssistant.getItemName(TREE_CHANCE[i][0]) + ".");
-				}
-			}
+            for (int[] item : TREE_CHANCE) {
+                if (randomTree >= item[1] && randomTree <= item[2]) {
+                    player.getItemAssistant().addItem(item[0], 1);
+                    player.getPacketSender().sendMessage("You find a " + ItemAssistant.getItemName(item[0]) + ".");
+                }
+            }
 			break;
 		case 1:
 			int randomRing = Misc.random(1001);
-			for (int i = 0; i < RING_CHANCE.length; i++) {
-				if (randomRing >= RING_CHANCE[i][1] && randomRing <= RING_CHANCE[i][2]) {
-					player.getItemAssistant().addItem(RING_CHANCE[i][0], 1);
-					player.getPacketSender().sendMessage("You find a " + ItemAssistant.getItemName(RING_CHANCE[i][0]) + ".");
-				}
-			}
+            for (int[] value : RING_CHANCE) {
+                if (randomRing >= value[1] && randomRing <= value[2]) {
+                    player.getItemAssistant().addItem(value[0], 1);
+                    player.getPacketSender().sendMessage("You find a " + ItemAssistant.getItemName(value[0]) + ".");
+                }
+            }
 			break;
 		case 2:
 			int randomWyson = Misc.random(8499);
-			for (int i = 0; i < WYSON_CHANCE.length; i++) {
-				if (randomWyson >= WYSON_CHANCE[i][2] && randomWyson <= WYSON_CHANCE[i][3]) {
-					player.getItemAssistant().addItem(WYSON_CHANCE[i][0], WYSON_CHANCE[i][1]);
-					player.getPacketSender().sendMessage("You find a " + ItemAssistant.getItemName(WYSON_CHANCE[i][0]) + ".");
-				}
-			}
+            for (int[] ints : WYSON_CHANCE) {
+                if (randomWyson >= ints[2] && randomWyson <= ints[3]) {
+                    player.getItemAssistant().addItem(ints[0], ints[1]);
+                    player.getPacketSender().sendMessage("You find a " + ItemAssistant.getItemName(ints[0]) + ".");
+                }
+            }
 			break;
 		}
 	}

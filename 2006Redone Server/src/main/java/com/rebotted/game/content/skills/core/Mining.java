@@ -18,11 +18,11 @@ public class Mining {
 	private static final int[] GLORIES = {1706, 1708, 1710, 1712};
 	
 	public boolean giveGem(Player player) {
-		for (int i = 0; i < GLORIES.length; i++) {
-			if ((player.playerEquipment[player.playerAmulet] == GLORIES[i] && Misc.random(86) == 1) || Misc.random(256) == 1) {
-				return true;
-			}
-		}
+        for (int glory : GLORIES) {
+            if ((player.playerEquipment[player.playerAmulet] == glory && Misc.random(86) == 1) || Misc.random(256) == 1) {
+                return true;
+            }
+        }
 		return false;
 	}
 	

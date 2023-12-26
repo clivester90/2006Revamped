@@ -72,29 +72,29 @@ public class Smelting extends SkillHandler {
 	 * @param c
 	 */
 	public static void smeltBar(final Player c, int bartype) {
-		for (int i = 0; i < data.length; i++) {
-			if (bartype == data[i][0]) {
+		for (int[] datum : data) {
+			if (bartype == datum[0]) {
 				// Check player has the correct smithing level
-				if (c.playerLevel[SkillData.SMITHING.getId()] < data[i][1]) { // Smithing level
-					c.getDialogueHandler().sendStatement("You need a smithing level of at least "+ data[i][1] + " in order smelt this bar.");
+				if (c.playerLevel[SkillData.SMITHING.getId()] < datum[1]) { // Smithing level
+					c.getDialogueHandler().sendStatement("You need a smithing level of at least " + datum[1] + " in order smelt this bar.");
 					return;
 				}
 
 				// Check the player has all required items
-				if (data[i][4] <= 0) { // Bars with only a primary requirement
-					if (!c.getItemAssistant().playerHasItem(data[i][3])) {
-						c.getPacketSender().sendMessage("You need " + ItemAssistant.getItemName(data[i][3]).toLowerCase() + " to make this bar.");
+				if (datum[4] <= 0) { // Bars with only a primary requirement
+					if (!c.getItemAssistant().playerHasItem(datum[3])) {
+						c.getPacketSender().sendMessage("You need " + ItemAssistant.getItemName(datum[3]).toLowerCase() + " to make this bar.");
 						c.getPacketSender().closeAllWindows();
 						return;
 					}
 				} else { // Bars with a secondary requirement
-					if (!c.getItemAssistant().playerHasItem(data[i][3]) || !c.getItemAssistant().playerHasItem(data[i][4], data[i][5])) {
-						c.getPacketSender().sendMessage("You need 1 " + ItemAssistant.getItemName(data[i][3]).toLowerCase() + " and " + data[i][5] + " " + ItemAssistant.getItemName(data[i][4]).toLowerCase() + " to make this bar.");
+					if (!c.getItemAssistant().playerHasItem(datum[3]) || !c.getItemAssistant().playerHasItem(datum[4], datum[5])) {
+						c.getPacketSender().sendMessage("You need 1 " + ItemAssistant.getItemName(datum[3]).toLowerCase() + " and " + datum[5] + " " + ItemAssistant.getItemName(datum[4]).toLowerCase() + " to make this bar.");
 						c.getPacketSender().closeAllWindows();
 						return;
 					}
 				}
-				
+
 				if (c.playerSkilling[13]) {
 					return;
 				}
@@ -102,13 +102,13 @@ public class Smelting extends SkillHandler {
 				c.playerSkilling[13] = true;
 				c.stopPlayerSkill = true;
 
-				c.playerSkillProp[13][0] = data[i][0];// index
-				c.playerSkillProp[13][1] = data[i][1];// Level required
-				c.playerSkillProp[13][2] = data[i][2];// XP
-				c.playerSkillProp[13][3] = data[i][3];// primary item required
-				c.playerSkillProp[13][4] = data[i][4];// secondary item required
-				c.playerSkillProp[13][5] = data[i][5];// secondary item amount
-				c.playerSkillProp[13][6] = data[i][6];// output item
+				c.playerSkillProp[13][0] = datum[0];// index
+				c.playerSkillProp[13][1] = datum[1];// Level required
+				c.playerSkillProp[13][2] = datum[2];// XP
+				c.playerSkillProp[13][3] = datum[3];// primary item required
+				c.playerSkillProp[13][4] = datum[4];// secondary item required
+				c.playerSkillProp[13][5] = datum[5];// secondary item amount
+				c.playerSkillProp[13][6] = datum[6];// output item
 
 				c.getPacketSender().closeAllWindows();
 				c.startAnimation(899);
@@ -143,7 +143,7 @@ public class Smelting extends SkillHandler {
 							}
 						} else if (c.playerSkillProp[13][3] == GOLD && c.playerEquipment[c.playerHands] == 776) {
 							c.getPacketSender().sendMessage("You receive a " + ItemAssistant.getItemName(c.playerSkillProp[13][6]).toLowerCase() + ".");
-							c.getPlayerAssistant().addSkillXP(56.2,	SkillData.SMITHING.getId());
+							c.getPlayerAssistant().addSkillXP(56.2, SkillData.SMITHING.getId());
 							c.getItemAssistant().addItem(c.playerSkillProp[13][6], 1);// item
 						} else {
 							c.getPacketSender().sendMessage("You receive a " + ItemAssistant.getItemName(c.playerSkillProp[13][6]).toLowerCase() + ".");
@@ -187,25 +187,25 @@ public class Smelting extends SkillHandler {
 
 				CycleEventHandler.getSingleton().addEvent(c, new CycleEvent() {// animation
 
-							@Override
-							public void execute(CycleEventContainer container) {
-								if (!c.playerSkilling[13]) {
-									resetSmelting(c);
-									container.stop();
-									return;
-								}
-								c.startAnimation(899);
-								c.getPacketSender().sendSound(352, 100, 1);
-								if (!c.stopPlayerSkill) {
-									container.stop();
-								}
-							}
+					@Override
+					public void execute(CycleEventContainer container) {
+						if (!c.playerSkilling[13]) {
+							resetSmelting(c);
+							container.stop();
+							return;
+						}
+						c.startAnimation(899);
+						c.getPacketSender().sendSound(352, 100, 1);
+						if (!c.stopPlayerSkill) {
+							container.stop();
+						}
+					}
 
-							@Override
-							public void stop() {
+					@Override
+					public void stop() {
 
-							}
-						}, (int) 5.8);
+					}
+				}, (int) 5.8);
 
 			}
 		}

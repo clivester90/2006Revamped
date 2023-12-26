@@ -183,30 +183,30 @@ public class ObjectHandler {
 	}
 
 	public void process() {
-		for (int j = 0; j < globalObjects.size(); j++) {
-			if (globalObjects.get(j) != null) {
-				Objects o = globalObjects.get(j);
-				if (o.objectTicks > 0) {
-					o.objectTicks--;
-				}
-				if (o.objectTicks == 1) {
-					Objects deleteObject = objectExists(o.getObjectX(),
-							o.getObjectY(), o.getObjectHeight());
-					removeObject(deleteObject);
-					o.objectTicks = 0;
-					placeObject(o);
-					removeObject(o);
-					if (isObelisk(o.objectId)) {
-						int index = getObeliskIndex(o.objectId);
-						if (activated[index]) {
-							activated[index] = false;
-							teleportObelisk(index);
-						}
-					}
-				}
-			}
+        for (Objects globalObject : globalObjects) {
+            if (globalObject != null) {
+                Objects o = globalObject;
+                if (o.objectTicks > 0) {
+                    o.objectTicks--;
+                }
+                if (o.objectTicks == 1) {
+                    Objects deleteObject = objectExists(o.getObjectX(),
+                            o.getObjectY(), o.getObjectHeight());
+                    removeObject(deleteObject);
+                    o.objectTicks = 0;
+                    placeObject(o);
+                    removeObject(o);
+                    if (isObelisk(o.objectId)) {
+                        int index = getObeliskIndex(o.objectId);
+                        if (activated[index]) {
+                            activated[index] = false;
+                            teleportObelisk(index);
+                        }
+                    }
+                }
+            }
 
-		}
+        }
 	}
 
 	public final int IN_USE_ID = 14825;

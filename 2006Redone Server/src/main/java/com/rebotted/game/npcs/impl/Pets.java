@@ -36,20 +36,20 @@ public class Pets {
 		};
 	
 	public static boolean isCatItem(int itemId) {
-		for (int i = 0; i < CAT_ITEMS.length; i++) {
-			if (itemId == CAT_ITEMS[i]) {
-				return true;
-			}
-		}
+        for (int catItem : CAT_ITEMS) {
+            if (itemId == catItem) {
+                return true;
+            }
+        }
 		return false;
 	}
 	
 	public static boolean isCat(int npcId) {
-		for (int i = 0; i < CATS.length; i++) {
-			if (npcId == CATS[i][0]) {
-				return true;
-			}
-		}
+        for (int[] cat : CATS) {
+            if (npcId == cat[0]) {
+                return true;
+            }
+        }
 		return false;
 	}
 
@@ -115,11 +115,11 @@ public class Pets {
 	}
 
 	public static int summonItemId(int itemId) {
-		for (int i = 0; i < CATS.length; i++) {
-			if (itemId == CATS[i][1]) {
-				return CATS[i][0];
-			}
-		}
+        for (int[] cat : CATS) {
+            if (itemId == cat[1]) {
+                return cat[0];
+            }
+        }
 		return 0;
 	}
 	

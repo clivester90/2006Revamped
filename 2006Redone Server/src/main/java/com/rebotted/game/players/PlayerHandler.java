@@ -113,11 +113,11 @@ public class PlayerHandler {
 		// synchronized (PlayerHandler.players) {
 		updatePlayerNames();
 		if (kickAllPlayers) {
-			for (int i = 0; i < PlayerHandler.players.length; i++) {
-				if (players[i] != null) {
-					players[i].disconnected = true;
-				}
-			}
+            for (Player player : PlayerHandler.players) {
+                if (player != null) {
+                    player.disconnected = true;
+                }
+            }
 			if (updateRunning) //If there's an update intended, and that's why we kicked everyone:
 			{
 				GameEngine.shutdownServer = true;
@@ -269,16 +269,16 @@ public class PlayerHandler {
 			kickAllPlayers = true;
 		}
 
-		for (int i = 0; i < PlayerHandler.players.length; i++) {
-			if (players[i] == null || !players[i].isActive) {
-				continue;
-			}
-			try {
-				players[i].clearUpdateFlags();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+        for (Player player : PlayerHandler.players) {
+            if (player == null || !player.isActive) {
+                continue;
+            }
+            try {
+                player.clearUpdateFlags();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 	}
 
 	public void updateNPC(Player plr, Stream str) {
@@ -371,19 +371,19 @@ public class PlayerHandler {
 				}
 			}
 		}
-		for (int i = 0; i < PlayerHandler.players.length; i++) {
-			if (players[i] == null || !players[i].isActive || players[i] == plr) {
-				continue;
-			}
-			int id = players[i].playerId;
-			if ((plr.playerInListBitmap[id >> 3] & 1 << (id & 7)) != 0) {
-				continue;
-			}
-			if (!plr.withinDistance(players[i])) {
-				continue;
-			}
-			plr.addNewPlayer(players[i], outStr, updateBlock);
-		}
+        for (Player player : PlayerHandler.players) {
+            if (player == null || !player.isActive || player == plr) {
+                continue;
+            }
+            int id = player.playerId;
+            if ((plr.playerInListBitmap[id >> 3] & 1 << (id & 7)) != 0) {
+                continue;
+            }
+            if (!plr.withinDistance(player)) {
+                continue;
+            }
+            plr.addNewPlayer(player, outStr, updateBlock);
+        }
 		if (outStr != null) {
 			if (updateBlock.currentOffset > 0) {
 				outStr.writeBits(11, 2047);
