@@ -145,7 +145,7 @@ public class BankPin {
 			return;
 		}
 		for (int i = 0; i < getBankPins().length; i++) {
-			client.getPacketSender().sendString("" + getBankPins()[i],
+			client.getPacketSender().sendString(String.valueOf(getBankPins()[i]),
 					stringIds[i]);
 		}
 	}

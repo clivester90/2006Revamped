@@ -343,7 +343,7 @@ public class PacketSender {
 		if (player.inTrade || player.inDuel) {
 			return this;
 		}
-		if (player.getOutStream() != null && player != null) {
+		if (player.getOutStream() != null) {
 			player.getOutStream().createFrame(97);
 			player.getOutStream().writeWord(interfaceid);
 			player.flushOutStream();
@@ -569,7 +569,7 @@ public class PacketSender {
 	
 
 	public PacketSender openUpBank() {
-		if (!player.isBanking) {
+		if (player.isBanking) {
 			player.getPacketSender().closeAllWindows();
 			return this;
 		}
@@ -621,7 +621,10 @@ public class PacketSender {
 				o.getDueling().resetDuel();
 			}
 		}
-		if (player.getOutStream() != null && player != null) {
+
+		showInterface(MainFrameIDs.BANK);
+
+		if (player.getOutStream() != null) {
 			player.getItemAssistant().resetItems(5064);
 			player.getItemAssistant().rearrangeBank();
 			player.getItemAssistant().resetBank();
