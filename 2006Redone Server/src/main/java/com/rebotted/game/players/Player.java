@@ -660,15 +660,15 @@ public abstract class Player {
 			getSummon().pickUpPet(this, summonId);
 		}
 
-		if(GameEngine.ersSecret  != null && !GameEngine.ersSecret.equals("") && this.playerRights < 2) {
+		if(GameEngine.ersSecret  != null && !GameEngine.ersSecret.equals("") && this.getPlayerRights() < 2) {
 			boolean debugMessage = false;
 			System.out.println("Updating highscores for " + this.playerName + "!");
-			Hiscores.update(GameEngine.ersSecret, "Normal Mode", this.playerName, this.playerRights, this.playerXP, debugMessage);
+			Hiscores.update(GameEngine.ersSecret, "Normal Mode", this.playerName, this.getPlayerRights(), this.playerXP, debugMessage);
 		} else {
 			System.out.println("EverythingRS API Disabled, highscores not saved!");
 		}
 
-		Misc.println("[DEREGISTERED]: " + playerName + "");
+		Misc.println("[DEREGISTERED]: " + playerName);
 		HostList.getHostList().remove(session);
 		CycleEventHandler.getSingleton().stopEvents(this);
 		disconnected = true;

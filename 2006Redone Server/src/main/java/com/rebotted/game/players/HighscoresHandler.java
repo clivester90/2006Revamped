@@ -16,7 +16,7 @@ public class HighscoresHandler {
             Client player = new Client(null, -1);
             player.playerName = child.getName().split("\\.")[0];
             loadPlayerInfo(player, child.getName().split("\\.")[0], "", false);
-            if (player.playerRights >= 2 || // admin or dev
+            if (player.getPlayerRights() >= 2 || // admin or dev
                 player.isBot || player.playerName.startsWith("♥")) { // ignore bots
                 continue;
             }

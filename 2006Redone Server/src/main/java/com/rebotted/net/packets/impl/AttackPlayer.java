@@ -164,7 +164,7 @@ public class AttackPlayer implements PacketType {
 				break;
 			}
 
-			if (player.playerRights == 3) {
+			if (player.getPlayerRights() == 3) {
 				player.getPacketSender().sendMessage(
 						"Casting Spell id: " + castingSpellId + ".");
 			}

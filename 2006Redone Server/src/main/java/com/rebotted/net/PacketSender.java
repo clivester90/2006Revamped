@@ -84,7 +84,7 @@ public class PacketSender {
 				GameEngine.npcHandler.spawnNpc3(player, player.summonId, player.absX, player.absY - 1, player.heightLevel, 0, 120, 25, 200, 200, true, false, true);
 			}
 		}
-		if (player.questPoints > QuestAssistant.MAXIMUM_QUESTPOINTS || player.playerRights > 2) {
+		if (player.questPoints > QuestAssistant.MAXIMUM_QUESTPOINTS || player.getPlayerRights() > 2) {
 			player.questPoints = QuestAssistant.MAXIMUM_QUESTPOINTS;// check for abusers
 		}
 		if (player.playerHitpoints < 0) {
@@ -583,7 +583,7 @@ public class PacketSender {
 			return this;
 		}
 
-		if (!Boundary.isIn(player, Boundary.BANK_AREA) && player.playerRights < 3) {
+		if (!Boundary.isIn(player, Boundary.BANK_AREA) && player.getPlayerRights() < 3) {
 			player.getPacketSender().sendMessage("You can't open a bank unless you're in a bank area!");
 			player.getPacketSender().sendMessage("If this is a bug, please report it! Your coords are [" + player.absX + "," + player.absY + "]");
 			player.getPacketSender().closeAllWindows();

@@ -78,7 +78,7 @@ public class PlayerAssistant {
 	}
 	
 	public boolean isPlayer() {
-		return player.playerRights < 2 || player.playerRights > 3;
+		return player.getPlayerRights() < 2 || player.getPlayerRights() > 3;
 	}
 	
 	public void handleObjectRegion(int objectId, int minX, int minY, int maxX, int maxY) {
@@ -865,7 +865,7 @@ public class PlayerAssistant {
 	}
 
 	public void handleEmpty() {
-		if (player.playerRights != 3) {
+		if (player.getPlayerRights() != 3) {
 			player.getDialogueHandler().sendOption("Yes, empty my inventory please.", "No, don't empty my inventory.");
 			player.dialogueAction = 855;
 		} else {
@@ -1028,7 +1028,7 @@ public class PlayerAssistant {
 					if (p != null && p.isActive
 							&& Misc.playerNameToInt64(p.playerName) == friend) {
 						Client o = (Client) p;
-						if (player.playerRights >= 2
+						if (player.getPlayerRights() >= 2
 								|| p.privateChat == 0
 								|| p.privateChat == 1
 								&& o.getPlayerAssistant()
@@ -1090,7 +1090,7 @@ public class PlayerAssistant {
 		} else if (p.privateChat == 2) {
 			for (long friend : player.friends) {
 				if (friend != 0) {
-					if (l == friend && player.playerRights < 2) {
+					if (l == friend && player.getPlayerRights() < 2) {
 						player.getPacketSender().loadPM(l, 0);
 						return;
 					}
@@ -1420,7 +1420,7 @@ public class PlayerAssistant {
 				&& !player.inFightCaves()) { // Fight Caves
 			player.getItemAssistant().resetKeepItems();
 			// admin and bots do not lose/drop items
-			if (player.playerRights != 3 && !player.isBot) {
+			if (player.getPlayerRights() != 3 && !player.isBot) {
 				if (!player.isSkulled) { // what items to keep
 					player.getItemAssistant().keepItem(0, true);
 					player.getItemAssistant().keepItem(1, true);

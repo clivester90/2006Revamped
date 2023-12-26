@@ -253,10 +253,10 @@ public class RS2LoginProtocolDecoder extends CumulativeProtocolDecoder {
 		bldr.addByte((byte) returnCode);
 		if (returnCode == 2) {
 			cl.saveCharacter = true;
-			if (cl.playerRights == 3) {
+			if (cl.getPlayerRights() == 3) {
 				bldr.addByte((byte) 2);
 			} else {
-				bldr.addByte((byte) cl.playerRights);
+				bldr.addByte((byte) cl.getPlayerRights());
 			}
 		} else {
 			bldr.addByte((byte) 0);

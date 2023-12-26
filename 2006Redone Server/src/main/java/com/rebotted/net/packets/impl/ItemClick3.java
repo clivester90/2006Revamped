@@ -100,7 +100,7 @@ public class ItemClick3 implements PacketType {
 
 		default:
 
-			if (player.playerRights == 3) {
+			if (player.getPlayerRights() == 3) {
 				Misc.println(player.playerName + " - Item3rdOption: " + itemId
 						+ " : " + itemId11 + " : " + itemId1);
 			}

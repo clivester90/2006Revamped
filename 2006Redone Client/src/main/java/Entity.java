@@ -5,7 +5,7 @@
 public class Entity extends SceneNode {
 
 	public final void setPos(int i, int j, boolean flag) {
-		if (anim != -1 && Animation.anims[anim].anInt364 == 1) {
+		if (anim != -1 && Animation.anims[anim].walkFlag == 1) {
 			anim = -1;
 		}
 		if (!flag) {
@@ -32,8 +32,8 @@ public class Entity extends SceneNode {
 		anInt1503 = 0;
 		smallX[0] = i;
 		smallY[0] = j;
-		x = smallX[0] * 128 + anInt1540 * 64;
-		y = smallY[0] * 128 + anInt1540 * 64;
+		x = smallX[0] * 128 + size * 64;
+		y = smallY[0] * 128 + size * 64;
 	}
 
 	public final void method446() {
@@ -83,7 +83,7 @@ public class Entity extends SceneNode {
 			j++;
 			k--;
 		}
-		if (anim != -1 && Animation.anims[anim].anInt364 == 1) {
+		if (anim != -1 && Animation.anims[anim].walkFlag == 1) {
 			anim = -1;
 		}
 		if (smallXYIndex < 9) {
@@ -123,8 +123,8 @@ public class Entity extends SceneNode {
 		anim = -1;
 		loopCycleStatus = -1000;
 		textCycle = 100;
-		anInt1540 = 1;
-		aBoolean1541 = false;
+		size = 1;
+		canRotate = false;
 		aBooleanArray1553 = new boolean[10];
 		anInt1554 = -1;
 		anInt1555 = -1;
@@ -166,11 +166,11 @@ public class Entity extends SceneNode {
 	public int currentHealth;
 	public int maxHealth;
 	int textCycle;
-	int anInt1537;
+	int updateCycle;
 	int anInt1538;
 	int anInt1539;
-	int anInt1540;
-	boolean aBoolean1541;
+	int size;
+	boolean canRotate;
 	int anInt1542;
 	int anInt1543;
 	int anInt1544;
@@ -181,7 +181,7 @@ public class Entity extends SceneNode {
 	int anInt1549;
 	public int x;
 	public int y;
-	int anInt1552;
+	int yaw;
 	final boolean[] aBooleanArray1553;
 	int anInt1554;
 	int anInt1555;

@@ -118,7 +118,7 @@ public class ClickObject implements PacketType {
 
 		switch (objectOption) {
 		case 1:
-			if (player.playerRights == 3 || player.debugMode) {
+			if (player.getPlayerRights() == 3 || player.debugMode) {
 				player.getPacketSender().sendMessage("ObjectId: " + player.objectId + " ObjectX: " + player.objectX + " ObjectY: " + player.objectY + " Objectclick = 1, Xoff: " + (player.getX() - player.objectX) + " Yoff: " + (player.getY() - player.objectY));
 			}
 
@@ -413,14 +413,14 @@ public class ClickObject implements PacketType {
 			break;
 
 		case 2:
-			if (player.playerRights == 3) {
+			if (player.getPlayerRights() == 3) {
 				player.getPacketSender().sendMessage("ObjectId: " + player.objectId + " ObjectX: " + player.objectX + " ObjectY: " + player.objectY + " Objectclick = 2, Xoff: " + (player.getX() - player.objectX) + " Yoff: " + (player.getY() - player.objectY));
 			}
 			player.getObjects().secondClickObject(player.objectId, player.objectX, player.objectY);
 			break;
 
 		case 3: // 'F'
-			if (player.playerRights == 3) {
+			if (player.getPlayerRights() == 3) {
 				player.getPacketSender().sendMessage("ObjectId: " + player.objectId + " ObjectX: " + player.objectX + " ObjectY: " + player.objectY + " Objectclick = 3, Xoff: " + (player.getX() - player.objectX) + " Yoff: " + (player.getY() - player.objectY));
 			}
 
@@ -429,7 +429,7 @@ public class ClickObject implements PacketType {
 			
 
 		case 4:
-			if (player.playerRights == 3) {
+			if (player.getPlayerRights() == 3) {
 				player.getPacketSender().sendMessage("ObjectId: " + player.objectId + " ObjectX: " + player.objectX + " ObjectY: " + player.objectY + " Objectclick = 4, Xoff: " + (player.getX() - player.objectX) + " Yoff: " + (player.getY() - player.objectY));
 			}
 			

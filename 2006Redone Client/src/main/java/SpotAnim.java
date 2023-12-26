@@ -31,18 +31,18 @@ public final class SpotAnim {
 			} else if (i == 2) {
 				anInt406 = stream.readUnsignedWord();
 				if (Animation.anims != null) {
-					aAnimation_407 = Animation.anims[anInt406];
+					animationSequence = Animation.anims[anInt406];
 				}
 			} else if (i == 4) {
-				anInt410 = stream.readUnsignedWord();
+				scale = stream.readUnsignedWord();
 			} else if (i == 5) {
-				anInt411 = stream.readUnsignedWord();
+				height = stream.readUnsignedWord();
 			} else if (i == 6) {
 				anInt412 = stream.readUnsignedWord();
 			} else if (i == 7) {
-				anInt413 = stream.readUnsignedByte();
+				ambient = stream.readUnsignedByte();
 			} else if (i == 8) {
-				anInt414 = stream.readUnsignedByte();
+				contrast = stream.readUnsignedByte();
 			} else if (i >= 40 && i < 50) {
 				anIntArray408[i - 40] = stream.readUnsignedWord();
 			} else if (i >= 50 && i < 60) {
@@ -76,22 +76,22 @@ public final class SpotAnim {
 		anInt406 = -1;
 		anIntArray408 = new int[6];
 		anIntArray409 = new int[6];
-		anInt410 = 128;
-		anInt411 = 128;
+		scale = 128;
+		height = 128;
 	}
 
 	public static SpotAnim[] cache;
 	private int anInt404;
 	private int anInt405;
 	private int anInt406;
-	public Animation aAnimation_407;
+	public Animation animationSequence;
 	private final int[] anIntArray408;
 	private final int[] anIntArray409;
-	public int anInt410;
-	public int anInt411;
+	public int scale;
+	public int height;
 	public int anInt412;
-	public int anInt413;
-	public int anInt414;
+	public int ambient;
+	public int contrast;
 	public static MRUNodes aMRUNodes_415 = new MRUNodes(30);
 
 }

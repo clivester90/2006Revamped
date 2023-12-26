@@ -74,30 +74,28 @@ public class ReportHandler {
 			return;
 		}
 		if (hasSpoke(player)) {
-			String sendText = "";
+			StringBuilder sendText = new StringBuilder();
 
 			for (int i = 20; i > 0; i--) {
 				if (savedNames[i] != null) {
 					if (savedNames[i].equalsIgnoreCase(c.playerName)
 							|| savedNames[i].equalsIgnoreCase(player)) {
-						sendText += " -[" + savedTimes[i] + ": "
-								+ savedNames[i] + "]: " + savedSpeach[i]
-								+ "\r\n";
+						sendText.append(" -[").append(savedTimes[i]).append(": ").append(savedNames[i]).append("]: ").append(savedSpeach[i]).append("\r\n");
 					}
 				}
 			}
 
-			sendText = sendText.replaceAll("'", " ");
+			sendText = new StringBuilder(sendText.toString().replaceAll("'", " "));
 			String month = getMonth(new SimpleDateFormat("MM")
 					.format(new Date()));
 			String day = new SimpleDateFormat("dd").format(new Date());
-			writeReport("" + player + " was reported by " + c.playerName + ", "
-					+ reportNames[rule] + ", " + month + ", " + day + "",
+			writeReport(player + " was reported by " + c.playerName + ", "
+					+ reportNames[rule] + ", " + month + ", " + day,
 					sendText + ".", reportNames[rule]);
 			c.getPacketSender()
 					.sendMessage(
 							"Thank you, your report has been received and will be reviewed.");
-			if (mute == 1 && c.playerRights > 0) {
+			if (mute == 1 && c.getPlayerRights() > 0) {
 				c.getPacketSender()
 						.sendMessage(
 								"This user is not muted yet! Go to the MODCP on the forums to mute him!");

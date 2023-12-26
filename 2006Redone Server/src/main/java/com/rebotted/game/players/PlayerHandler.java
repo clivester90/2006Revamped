@@ -58,7 +58,7 @@ public class PlayerHandler {
 		int count = 0;
 		for (int i = 0; i < GameConstants.MAX_PLAYERS; i++) {
 			if (players[i] != null) {
-				if (players[i].playerRights >= 1) {
+				if (players[i].getPlayerRights() >= 1) {
 					count++;
 				}
 			}

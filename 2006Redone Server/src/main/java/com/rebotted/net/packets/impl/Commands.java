@@ -26,19 +26,19 @@ public class Commands implements PacketType {
         String[] messageArr = player.getInStream().readString().split(" ");
         String playerCommand = messageArr[0];
         String[] commandArguments = Arrays.copyOfRange(messageArr, 1, messageArr.length);
-        if ((playerCommand.startsWith("ban") || playerCommand.startsWith("ip") || playerCommand.startsWith("mute") || playerCommand.startsWith("un")) && player.playerRights > 0 && player.playerRights < 4) {
+        if ((playerCommand.startsWith("ban") || playerCommand.startsWith("ip") || playerCommand.startsWith("mute") || playerCommand.startsWith("un")) && player.getPlayerRights() > 0 && player.getPlayerRights() < 4) {
             writeLog(player.playerName, "commands", player.playerName + " used command: " + playerCommand);
         }
-        if (player.playerRights >= 0) {
+        if (player.getPlayerRights() >= 0) {
             playerCommands(player, playerCommand, commandArguments);
         }
-        if (player.playerRights >= 1) {
+        if (player.getPlayerRights() >= 1) {
             moderatorCommands(player, playerCommand, commandArguments);
         }
-        if (player.playerRights >= 2 && player.playerRights < 4) {
+        if (player.getPlayerRights() >= 2 && player.getPlayerRights() < 4) {
             adminCommands(player, playerCommand, commandArguments);
         }
-        if (player.playerRights == 3) {
+        if (player.getPlayerRights() == 3) {
             developerCommands(player, playerCommand, commandArguments);
         }
     }
@@ -51,7 +51,7 @@ public class Commands implements PacketType {
                 break;
             case "yell":
                 int delay = 0;
-                if (player.playerRights <= 1) {
+                if (player.getPlayerRights() <= 1) {
                     delay = 30000;
                 }
                 if (!AntiSpam.blockedWords(player, arguments[0].substring(5), true)) {
@@ -71,13 +71,13 @@ public class Commands implements PacketType {
                         if (c2.hideYell) {
                             return;
                         }
-                        if (player.playerRights == 0) {
+                        if (player.getPlayerRights() == 0) {
                             c2.getPacketSender().sendMessage("[Player]" + Misc.optimizeText(player.playerName) + ": " + Misc.optimizeText(String.join(" ", arguments)));
-                        } else if (player.playerRights == 1) {
+                        } else if (player.getPlayerRights() == 1) {
                             c2.getPacketSender().sendMessage("@blu@[Moderator] @bla@" + Misc.optimizeText(player.playerName) + ": " + Misc.optimizeText(String.join(" ", arguments)));
-                        } else if (player.playerRights == 2) {
+                        } else if (player.getPlayerRights() == 2) {
                             c2.getPacketSender().sendMessage("@gre@[Administator] @bla@" + Misc.optimizeText(player.playerName) + ": " + Misc.optimizeText(String.join(" ", arguments)));
-                        } else if (player.playerRights == 3) {
+                        } else if (player.getPlayerRights() == 3) {
                             c2.getPacketSender().sendMessage("@red@[Developer] @bla@" + Misc.optimizeText(player.playerName) + ": " + Misc.optimizeText(String.join(" ", arguments)));
                         }
                         player.lastYell = System.currentTimeMillis();
@@ -782,7 +782,7 @@ public class Commands implements PacketType {
                             if (PlayerHandler.players[i].playerName.equalsIgnoreCase(playerToAdmin)) {
                                 Client c2 = (Client) PlayerHandler.players[i];
                                 player.getPacketSender().sendMessage("You have given " + playerToAdmin + " admin.");
-                                c2.playerRights = 2;
+                                c2.setPlayerRights(2);
                                 c2.logout(true);
                                 break;
                             }
@@ -798,13 +798,13 @@ public class Commands implements PacketType {
                         player.getPacketSender().sendMessage("You must specify a player name: ::demote playername");
                         return;
                     }
-                    String playerToAdmin = String.join(" ", arguments);
+                    String toDemote = String.join(" ", arguments);
                     for (int i = 0; i < GameConstants.MAX_PLAYERS; i++) {
                         if (PlayerHandler.players[i] != null) {
-                            if (PlayerHandler.players[i].playerName.equalsIgnoreCase(playerToAdmin)) {
+                            if (PlayerHandler.players[i].playerName.equalsIgnoreCase(toDemote)) {
                                 Client c2 = (Client) PlayerHandler.players[i];
-                                player.getPacketSender().sendMessage("You have demoted " + playerToAdmin + ".");
-                                c2.playerRights = 0;
+                                player.getPacketSender().sendMessage("You have demoted " + toDemote + ".");
+                                c2.setPlayerRights(0);
                                 c2.logout(true);
                                 break;
                             }
@@ -826,7 +826,7 @@ public class Commands implements PacketType {
                             if (PlayerHandler.players[i].playerName.equalsIgnoreCase(playerToMod)) {
                                 Client c2 = (Client) PlayerHandler.players[i];
                                 player.getPacketSender().sendMessage("You have given " + playerToMod + " mod.");
-                                c2.playerRights = 1;
+                                c2.setPlayerRights(1);
                                 c2.logout(true);
                                 break;
                             }

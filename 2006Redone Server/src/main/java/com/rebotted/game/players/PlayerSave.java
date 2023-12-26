@@ -91,7 +91,7 @@ public class PlayerSave {
 								player.teleportToY = Integer.parseInt(token2) <= 0 ? player.lastY : Integer.parseInt(token2);
 								break;
 							case "character-rights":
-								player.playerRights = Integer.parseInt(token2);
+								player.getPlayerRights() = Integer.parseInt(token2);
 								break;
 							case "character-mode":
 								ModeType type;
@@ -582,7 +582,7 @@ public class PlayerSave {
 			characterfile.newLine();
 			characterfile.write("character-posy = " + player.absY);
 			characterfile.newLine();
-			characterfile.write("character-rights = " + player.playerRights);
+			characterfile.write("character-rights = " + player.getPlayerRights());
 			characterfile.newLine();
 			if (player.getMode() != null) {
 				characterfile.write("mode = " + player.getMode().getType().name());

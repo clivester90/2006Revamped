@@ -281,7 +281,7 @@ final class Texture extends DrawingArea {
 		return (j << 16) + (k << 8) + l;
 	}
 
-	public static void method374(int i, int j, int k, int l, int i1, int j1, int k1, int l1, int i2) {
+	public static void drawGouraudTriangle(int i, int j, int k, int l, int i1, int j1, int k1, int l1, int i2) {
 		int j2 = 0;
 		int k2 = 0;
 		if (j != i) {
@@ -679,7 +679,7 @@ final class Texture extends DrawingArea {
 		int k;// was parameter
 		if (aBoolean1464) {
 			int l1;
-			if (aBoolean1462) {
+			if (checkBounds) {
 				if (i1 - l > 3) {
 					l1 = (k1 - j1) / (i1 - l);
 				} else {
@@ -754,7 +754,7 @@ final class Texture extends DrawingArea {
 			return;
 		}
 		int i2 = (k1 - j1) / (i1 - l);
-		if (aBoolean1462) {
+		if (checkBounds) {
 			if (i1 > DrawingArea.centerX) {
 				i1 = DrawingArea.centerX;
 			}
@@ -785,7 +785,7 @@ final class Texture extends DrawingArea {
 		} while (--k > 0);
 	}
 
-	public static void method376(int i, int j, int k, int l, int i1, int j1, int k1) {
+	public static void drawTriangle(int i, int j, int k, int l, int i1, int j1, int k1) {
 		int l1 = 0;
 		if (j != i) {
 			l1 = (i1 - l << 16) / (j - i);
@@ -824,13 +824,13 @@ final class Texture extends DrawingArea {
 					k -= j;
 					j -= i;
 					for (i = lineOffsets[i]; --j >= 0; i += DrawingArea.width) {
-						method377(DrawingArea.pixels, i, k1, j1 >> 16, l >> 16);
+						drawGradientScanline(DrawingArea.pixels, i, k1, j1 >> 16, l >> 16);
 						j1 += j2;
 						l += l1;
 					}
 
 					while (--k >= 0) {
-						method377(DrawingArea.pixels, i, k1, j1 >> 16, i1 >> 16);
+						drawGradientScanline(DrawingArea.pixels, i, k1, j1 >> 16, i1 >> 16);
 						j1 += j2;
 						i1 += i2;
 						i += DrawingArea.width;
@@ -840,13 +840,13 @@ final class Texture extends DrawingArea {
 				k -= j;
 				j -= i;
 				for (i = lineOffsets[i]; --j >= 0; i += DrawingArea.width) {
-					method377(DrawingArea.pixels, i, k1, l >> 16, j1 >> 16);
+					drawGradientScanline(DrawingArea.pixels, i, k1, l >> 16, j1 >> 16);
 					j1 += j2;
 					l += l1;
 				}
 
 				while (--k >= 0) {
-					method377(DrawingArea.pixels, i, k1, i1 >> 16, j1 >> 16);
+					drawGradientScanline(DrawingArea.pixels, i, k1, i1 >> 16, j1 >> 16);
 					j1 += j2;
 					i1 += i2;
 					i += DrawingArea.width;
@@ -868,13 +868,13 @@ final class Texture extends DrawingArea {
 				j -= k;
 				k -= i;
 				for (i = lineOffsets[i]; --k >= 0; i += DrawingArea.width) {
-					method377(DrawingArea.pixels, i, k1, i1 >> 16, l >> 16);
+					drawGradientScanline(DrawingArea.pixels, i, k1, i1 >> 16, l >> 16);
 					i1 += j2;
 					l += l1;
 				}
 
 				while (--j >= 0) {
-					method377(DrawingArea.pixels, i, k1, j1 >> 16, l >> 16);
+					drawGradientScanline(DrawingArea.pixels, i, k1, j1 >> 16, l >> 16);
 					j1 += i2;
 					l += l1;
 					i += DrawingArea.width;
@@ -884,13 +884,13 @@ final class Texture extends DrawingArea {
 			j -= k;
 			k -= i;
 			for (i = lineOffsets[i]; --k >= 0; i += DrawingArea.width) {
-				method377(DrawingArea.pixels, i, k1, l >> 16, i1 >> 16);
+				drawGradientScanline(DrawingArea.pixels, i, k1, l >> 16, i1 >> 16);
 				i1 += j2;
 				l += l1;
 			}
 
 			while (--j >= 0) {
-				method377(DrawingArea.pixels, i, k1, l >> 16, j1 >> 16);
+				drawGradientScanline(DrawingArea.pixels, i, k1, l >> 16, j1 >> 16);
 				j1 += i2;
 				l += l1;
 				i += DrawingArea.width;
@@ -923,13 +923,13 @@ final class Texture extends DrawingArea {
 					i -= k;
 					k -= j;
 					for (j = lineOffsets[j]; --k >= 0; j += DrawingArea.width) {
-						method377(DrawingArea.pixels, j, k1, l >> 16, i1 >> 16);
+						drawGradientScanline(DrawingArea.pixels, j, k1, l >> 16, i1 >> 16);
 						l += l1;
 						i1 += i2;
 					}
 
 					while (--i >= 0) {
-						method377(DrawingArea.pixels, j, k1, l >> 16, j1 >> 16);
+						drawGradientScanline(DrawingArea.pixels, j, k1, l >> 16, j1 >> 16);
 						l += l1;
 						j1 += j2;
 						j += DrawingArea.width;
@@ -939,13 +939,13 @@ final class Texture extends DrawingArea {
 				i -= k;
 				k -= j;
 				for (j = lineOffsets[j]; --k >= 0; j += DrawingArea.width) {
-					method377(DrawingArea.pixels, j, k1, i1 >> 16, l >> 16);
+					drawGradientScanline(DrawingArea.pixels, j, k1, i1 >> 16, l >> 16);
 					l += l1;
 					i1 += i2;
 				}
 
 				while (--i >= 0) {
-					method377(DrawingArea.pixels, j, k1, j1 >> 16, l >> 16);
+					drawGradientScanline(DrawingArea.pixels, j, k1, j1 >> 16, l >> 16);
 					l += l1;
 					j1 += j2;
 					j += DrawingArea.width;
@@ -967,13 +967,13 @@ final class Texture extends DrawingArea {
 				k -= i;
 				i -= j;
 				for (j = lineOffsets[j]; --i >= 0; j += DrawingArea.width) {
-					method377(DrawingArea.pixels, j, k1, j1 >> 16, i1 >> 16);
+					drawGradientScanline(DrawingArea.pixels, j, k1, j1 >> 16, i1 >> 16);
 					j1 += l1;
 					i1 += i2;
 				}
 
 				while (--k >= 0) {
-					method377(DrawingArea.pixels, j, k1, l >> 16, i1 >> 16);
+					drawGradientScanline(DrawingArea.pixels, j, k1, l >> 16, i1 >> 16);
 					l += j2;
 					i1 += i2;
 					j += DrawingArea.width;
@@ -983,13 +983,13 @@ final class Texture extends DrawingArea {
 			k -= i;
 			i -= j;
 			for (j = lineOffsets[j]; --i >= 0; j += DrawingArea.width) {
-				method377(DrawingArea.pixels, j, k1, i1 >> 16, j1 >> 16);
+				drawGradientScanline(DrawingArea.pixels, j, k1, i1 >> 16, j1 >> 16);
 				j1 += l1;
 				i1 += i2;
 			}
 
 			while (--k >= 0) {
-				method377(DrawingArea.pixels, j, k1, i1 >> 16, l >> 16);
+				drawGradientScanline(DrawingArea.pixels, j, k1, i1 >> 16, l >> 16);
 				l += j2;
 				i1 += i2;
 				j += DrawingArea.width;
@@ -1021,13 +1021,13 @@ final class Texture extends DrawingArea {
 				j -= i;
 				i -= k;
 				for (k = lineOffsets[k]; --i >= 0; k += DrawingArea.width) {
-					method377(DrawingArea.pixels, k, k1, i1 >> 16, j1 >> 16);
+					drawGradientScanline(DrawingArea.pixels, k, k1, i1 >> 16, j1 >> 16);
 					i1 += i2;
 					j1 += j2;
 				}
 
 				while (--j >= 0) {
-					method377(DrawingArea.pixels, k, k1, i1 >> 16, l >> 16);
+					drawGradientScanline(DrawingArea.pixels, k, k1, i1 >> 16, l >> 16);
 					i1 += i2;
 					l += l1;
 					k += DrawingArea.width;
@@ -1037,13 +1037,13 @@ final class Texture extends DrawingArea {
 			j -= i;
 			i -= k;
 			for (k = lineOffsets[k]; --i >= 0; k += DrawingArea.width) {
-				method377(DrawingArea.pixels, k, k1, j1 >> 16, i1 >> 16);
+				drawGradientScanline(DrawingArea.pixels, k, k1, j1 >> 16, i1 >> 16);
 				i1 += i2;
 				j1 += j2;
 			}
 
 			while (--j >= 0) {
-				method377(DrawingArea.pixels, k, k1, l >> 16, i1 >> 16);
+				drawGradientScanline(DrawingArea.pixels, k, k1, l >> 16, i1 >> 16);
 				i1 += i2;
 				l += l1;
 				k += DrawingArea.width;
@@ -1065,13 +1065,13 @@ final class Texture extends DrawingArea {
 			i -= j;
 			j -= k;
 			for (k = lineOffsets[k]; --j >= 0; k += DrawingArea.width) {
-				method377(DrawingArea.pixels, k, k1, l >> 16, j1 >> 16);
+				drawGradientScanline(DrawingArea.pixels, k, k1, l >> 16, j1 >> 16);
 				l += i2;
 				j1 += j2;
 			}
 
 			while (--i >= 0) {
-				method377(DrawingArea.pixels, k, k1, i1 >> 16, j1 >> 16);
+				drawGradientScanline(DrawingArea.pixels, k, k1, i1 >> 16, j1 >> 16);
 				i1 += l1;
 				j1 += j2;
 				k += DrawingArea.width;
@@ -1081,22 +1081,22 @@ final class Texture extends DrawingArea {
 		i -= j;
 		j -= k;
 		for (k = lineOffsets[k]; --j >= 0; k += DrawingArea.width) {
-			method377(DrawingArea.pixels, k, k1, j1 >> 16, l >> 16);
+			drawGradientScanline(DrawingArea.pixels, k, k1, j1 >> 16, l >> 16);
 			l += i2;
 			j1 += j2;
 		}
 
 		while (--i >= 0) {
-			method377(DrawingArea.pixels, k, k1, j1 >> 16, i1 >> 16);
+			drawGradientScanline(DrawingArea.pixels, k, k1, j1 >> 16, i1 >> 16);
 			i1 += l1;
 			j1 += j2;
 			k += DrawingArea.width;
 		}
 	}
 
-	private static void method377(int[] ai, int i, int j, int l, int i1) {
+	private static void drawGradientScanline(int[] ai, int i, int j, int l, int i1) {
 		int k;// was parameter
-		if (aBoolean1462) {
+		if (checkBounds) {
 			if (i1 > DrawingArea.centerX) {
 				i1 = DrawingArea.centerX;
 			}
@@ -1663,7 +1663,7 @@ final class Texture extends DrawingArea {
 		}
 		int j3;
 		int k3;
-		if (aBoolean1462) {
+		if (checkBounds) {
 			j3 = (k1 - j1) / (i1 - l);
 			if (i1 > DrawingArea.centerX) {
 				i1 = DrawingArea.centerX;
@@ -2026,7 +2026,7 @@ final class Texture extends DrawingArea {
 
 	public static final int anInt1459 = -477;
 	public static boolean lowMem = true;
-	static boolean aBoolean1462;
+	static boolean checkBounds;
 	private static boolean aBoolean1463;
 	public static boolean aBoolean1464 = true;
 	public static int anInt1465;

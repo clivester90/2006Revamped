@@ -33,7 +33,7 @@ public class ItemOnObject implements PacketType {
 		if (!player.goodDistance(player.objectX, player.objectY, player.absX, player.absY, 3)) {
 			return;
 		}
-		if (player.playerRights == 3) {
+		if (player.getPlayerRights() == 3) {
 			player.getPacketSender().sendMessage(
 					"Object Id:" + objectId + " ObjectX: " + objectX
 							+ " ObjectY: " + objectY + ".");

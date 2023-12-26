@@ -18,12 +18,12 @@ public final class Animation {
 		}
 	}
 
-	public int method258(int i) {
-		int j = anIntArray355[i];
+	public int getDuration(int i) {
+		int j = duration[i];
 		if (j == 0) {
-			Class36 class36 = Class36.method531(anIntArray353[i]);
+			Class36 class36 = Class36.method531(primary[i]);
 			if (class36 != null) {
-				j = anIntArray355[i] = class36.anInt636;
+				j = duration[i] = class36.anInt636;
 			}
 		}
 		if (j == 0) {
@@ -39,102 +39,102 @@ public final class Animation {
 				break;
 			}
 			if (i == 1) {
-				anInt352 = stream.readUnsignedByte();
-				anIntArray353 = new int[anInt352];
-				anIntArray354 = new int[anInt352];
-				anIntArray355 = new int[anInt352];
-				for (int j = 0; j < anInt352; j++) {
-					anIntArray353[j] = stream.readUnsignedWord();
-					anIntArray354[j] = stream.readUnsignedWord();
-					if (anIntArray354[j] == 65535) {
-						anIntArray354[j] = -1;
+				length = stream.readUnsignedByte();
+				primary = new int[length];
+				secondary = new int[length];
+				duration = new int[length];
+				for (int j = 0; j < length; j++) {
+					primary[j] = stream.readUnsignedWord();
+					secondary[j] = stream.readUnsignedWord();
+					if (secondary[j] == 65535) {
+						secondary[j] = -1;
 					}
-					anIntArray355[j] = stream.readUnsignedWord();
+					duration[j] = stream.readUnsignedWord();
 				}
 
 			} else if (i == 2) {
-				anInt356 = stream.readUnsignedWord();
+				padding = stream.readUnsignedWord();
 			} else if (i == 3) {
 				int k = stream.readUnsignedByte();
-				anIntArray357 = new int[k + 1];
+				vertices = new int[k + 1];
 				for (int l = 0; l < k; l++) {
-					anIntArray357[l] = stream.readUnsignedByte();
+					vertices[l] = stream.readUnsignedByte();
 				}
 
-				anIntArray357[k] = 0x98967f;
+				vertices[k] = 0x98967f;
 			} else if (i == 4) {
-				aBoolean358 = true;
+				allowsRotation = true;
 			} else if (i == 5) {
-				anInt359 = stream.readUnsignedByte();
+				priority1 = stream.readUnsignedByte();
 			} else if (i == 6) {
-				anInt360 = stream.readUnsignedWord();
+				shield = stream.readUnsignedWord();
 			} else if (i == 7) {
-				anInt361 = stream.readUnsignedWord();
+				weapon = stream.readUnsignedWord();
 			} else if (i == 8) {
-				anInt362 = stream.readUnsignedByte();
+				resetCycle = stream.readUnsignedByte();
 			} else if (i == 9) {
-				anInt363 = stream.readUnsignedByte();
+				runFlag = stream.readUnsignedByte();
 			} else if (i == 10) {
-				anInt364 = stream.readUnsignedByte();
+				walkFlag = stream.readUnsignedByte();
 			} else if (i == 11) {
-				anInt365 = stream.readUnsignedByte();
+				delayType = stream.readUnsignedByte();
 			} else if (i == 12) {
 				stream.readDWord();
 			} else {
 				System.out.println("Error unrecognised seq config code: " + i);
 			}
 		} while (true);
-		if (anInt352 == 0) {
-			anInt352 = 1;
-			anIntArray353 = new int[1];
-			anIntArray353[0] = -1;
-			anIntArray354 = new int[1];
-			anIntArray354[0] = -1;
-			anIntArray355 = new int[1];
-			anIntArray355[0] = -1;
+		if (length == 0) {
+			length = 1;
+			primary = new int[1];
+			primary[0] = -1;
+			secondary = new int[1];
+			secondary[0] = -1;
+			duration = new int[1];
+			duration[0] = -1;
 		}
-		if (anInt363 == -1) {
-			if (anIntArray357 != null) {
-				anInt363 = 2;
+		if (runFlag == -1) {
+			if (vertices != null) {
+				runFlag = 2;
 			} else {
-				anInt363 = 0;
+				runFlag = 0;
 			}
 		}
-		if (anInt364 == -1) {
-			if (anIntArray357 != null) {
-				anInt364 = 2;
+		if (walkFlag == -1) {
+			if (vertices != null) {
+				walkFlag = 2;
 				return;
 			}
-			anInt364 = 0;
+			walkFlag = 0;
 		}
 	}
 
 	private Animation() {
-		anInt356 = -1;
-		aBoolean358 = false;
-		anInt359 = 5;
-		anInt360 = -1;
-		anInt361 = -1;
-		anInt362 = 99;
-		anInt363 = -1;
-		anInt364 = -1;
-		anInt365 = 2;
+		padding = -1;
+		allowsRotation = false;
+		priority1 = 5;
+		shield = -1;
+		weapon = -1;
+		resetCycle = 99;
+		runFlag = -1;
+		walkFlag = -1;
+		delayType = 2;
 	}
 
 	public static Animation[] anims;
-	public int anInt352;
-	public int[] anIntArray353;
-	public int[] anIntArray354;
-	private int[] anIntArray355;
-	public int anInt356;
-	public int[] anIntArray357;
-	public boolean aBoolean358;
-	public int anInt359;
-	public int anInt360;
-	public int anInt361;
-	public int anInt362;
-	public int anInt363;
-	public int anInt364;
-	public int anInt365;
+	public int length;
+	public int[] primary;
+	public int[] secondary;
+	private int[] duration;
+	public int padding;
+	public int[] vertices;
+	public boolean allowsRotation;
+	public int priority1;
+	public int shield;
+	public int weapon;
+	public int resetCycle;
+	public int runFlag;
+	public int walkFlag;
+	public int delayType;
 	public static int anInt367;
 }

@@ -25,13 +25,13 @@ public final class Player extends Entity {
 				Model model_3 = new Model(true, Class36.method532(super.anInt1521), false, model_2);
 				model_3.method475(0, -super.anInt1524, 0);
 				model_3.method469();
-				model_3.method470(spotAnim.aAnimation_407.anIntArray353[super.anInt1521]);
+				model_3.method470(spotAnim.animationSequence.primary[super.anInt1521]);
 				model_3.anIntArrayArray1658 = null;
 				model_3.anIntArrayArray1657 = null;
-				if (spotAnim.anInt410 != 128 || spotAnim.anInt411 != 128) {
-					model_3.method478(spotAnim.anInt410, spotAnim.anInt410, spotAnim.anInt411);
+				if (spotAnim.scale != 128 || spotAnim.height != 128) {
+					model_3.scaleModel(spotAnim.scale, spotAnim.scale, spotAnim.height);
 				}
-				model_3.method479(64 + spotAnim.anInt413, 850 + spotAnim.anInt414, -30, -50, -30, true);
+				model_3.method479(64 + spotAnim.ambient, 850 + spotAnim.contrast, -30, -50, -30, true);
 				Model[] aclass30_sub2_sub4_sub6_1s = {model, model_3};
 				model = new Model(aclass30_sub2_sub4_sub6_1s);
 			}
@@ -40,9 +40,9 @@ public final class Player extends Entity {
 			if (Game.loopCycle >= anInt1708) {
 				aModel_1714 = null;
 			}
-			if (Game.loopCycle >= anInt1707 && Game.loopCycle < anInt1708) {
+			if (Game.loopCycle >= objectStartCycle && Game.loopCycle < anInt1708) {
 				Model model_1 = aModel_1714;
-				model_1.method475(anInt1711 - super.x, anInt1712 - anInt1709, anInt1713 - super.y);
+				model_1.method475(anInt1711 - super.x, anInt1712 - z, anInt1713 - super.y);
 				if (super.turnDirection == 512) {
 					model_1.method473();
 					model_1.method473();
@@ -65,7 +65,7 @@ public final class Player extends Entity {
 					model_1.method473();
 					model_1.method473();
 				}
-				model_1.method475(super.x - anInt1711, anInt1709 - anInt1712, super.y - anInt1713);
+				model_1.method475(super.x - anInt1711, z - anInt1712, super.y - anInt1713);
 			}
 		}
 		model.aBoolean1659 = true;
@@ -166,9 +166,9 @@ public final class Player extends Entity {
 		if (desc != null) {
 			int j = -1;
 			if (super.anim >= 0 && super.anInt1529 == 0) {
-				j = Animation.anims[super.anim].anIntArray353[super.anInt1527];
+				j = Animation.anims[super.anim].primary[super.anInt1527];
 			} else if (super.anInt1517 >= 0) {
-				j = Animation.anims[super.anInt1517].anIntArray353[super.anInt1518];
+				j = Animation.anims[super.anInt1517].primary[super.anInt1518];
 			}
 			Model model = desc.method164(-1, j, null);
 			return model;
@@ -180,20 +180,20 @@ public final class Player extends Entity {
 		int k1 = -1;
 		if (super.anim >= 0 && super.anInt1529 == 0) {
 			Animation animation = Animation.anims[super.anim];
-			k = animation.anIntArray353[super.anInt1527];
+			k = animation.primary[super.anInt1527];
 			if (super.anInt1517 >= 0 && super.anInt1517 != super.anInt1511) {
-				i1 = Animation.anims[super.anInt1517].anIntArray353[super.anInt1518];
+				i1 = Animation.anims[super.anInt1517].primary[super.anInt1518];
 			}
-			if (animation.anInt360 >= 0) {
-				j1 = animation.anInt360;
+			if (animation.shield >= 0) {
+				j1 = animation.shield;
 				l += j1 - equipment[5] << 40;
 			}
-			if (animation.anInt361 >= 0) {
-				k1 = animation.anInt361;
+			if (animation.weapon >= 0) {
+				k1 = animation.weapon;
 				l += k1 - equipment[3] << 48;
 			}
 		} else if (super.anInt1517 >= 0) {
-			k = Animation.anims[super.anInt1517].anIntArray353[super.anInt1518];
+			k = Animation.anims[super.anInt1517].primary[super.anInt1518];
 		}
 		Model model_1 = (Model) mruNodes.insertFromCache(l);
 		if (model_1 == null) {
@@ -269,7 +269,7 @@ public final class Player extends Entity {
 		Model model_2 = Model.aModel_1621;
 		model_2.method464(model_1, Class36.method532(k) & Class36.method532(i1));
 		if (k != -1 && i1 != -1) {
-			model_2.method471(Animation.anims[super.anim].anIntArray357, i1, k);
+			model_2.method471(Animation.anims[super.anim].vertices, i1, k);
 		} else if (k != -1) {
 			model_2.method470(k);
 		}
@@ -357,9 +357,9 @@ public final class Player extends Entity {
 	public int headIcon;
 	public int skullIcon;
 	public int hintIcon;
-	public int anInt1707;
+	public int objectStartCycle;
 	int anInt1708;
-	int anInt1709;
+	int z;
 	boolean visible;
 	int anInt1711;
 	int anInt1712;

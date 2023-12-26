@@ -166,7 +166,7 @@ public final class EntityDef {
 			model_1.method470(k);
 		}
 		if (anInt91 != 128 || anInt86 != 128) {
-			model_1.method478(anInt91, anInt91, anInt86);
+			model_1.scaleModel(anInt91, anInt91, anInt86);
 		}
 		model_1.method466();
 		model_1.anIntArrayArray1658 = null;
@@ -244,7 +244,7 @@ public final class EntityDef {
 			} else if (i == 98) {
 				anInt86 = stream.readUnsignedWord();
 			} else if (i == 99) {
-				aBoolean93 = true;
+				hasRenderPriority = true;
 			} else if (i == 100) {
 				anInt85 = stream.readSignedByte();
 			} else if (i == 101) {
@@ -272,7 +272,7 @@ public final class EntityDef {
 				}
 
 			} else if (i == 107) {
-				aBoolean84 = false;
+				interactable = false;
 			}
 		} while (true);
 	}
@@ -290,11 +290,11 @@ public final class EntityDef {
 		type = -1L;
 		anInt79 = 32;
 		anInt83 = -1;
-		aBoolean84 = true;
+		interactable = true;
 		anInt86 = 128;
 		aBoolean87 = true;
 		anInt91 = 128;
-		aBoolean93 = false;
+		hasRenderPriority = false;
 	}
 
 	public int anInt55;
@@ -319,7 +319,7 @@ public final class EntityDef {
 	private static EntityDef[] cache;
 	public static Game clientInstance;
 	public int anInt83;
-	public boolean aBoolean84;
+	public boolean interactable;
 	private int anInt85;
 	private int anInt86;
 	public boolean aBoolean87;
@@ -327,7 +327,7 @@ public final class EntityDef {
 	public byte[] description;
 	private int anInt91;
 	private int anInt92;
-	public boolean aBoolean93;
+	public boolean hasRenderPriority;
 	private int[] anIntArray94;
 	public static MRUNodes mruNodes = new MRUNodes(30);
 

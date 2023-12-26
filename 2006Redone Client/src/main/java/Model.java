@@ -8,11 +8,11 @@ public final class Model extends SceneNode {
 		aClass21Array1661 = null;
 		aBooleanArray1663 = null;
 		aBooleanArray1664 = null;
-		anIntArray1665 = null;
-		anIntArray1666 = null;
+		projected_vertex_x = null;
+		projected_vertex_y = null;
 		anIntArray1667 = null;
-		anIntArray1668 = null;
-		anIntArray1669 = null;
+		camera_vertex_y = null;
+		camera_vertex_x = null;
 		anIntArray1670 = null;
 		anIntArray1671 = null;
 		anIntArrayArray1672 = null;
@@ -24,7 +24,7 @@ public final class Model extends SceneNode {
 		modelIntArray1 = null;
 		modelIntArray2 = null;
 		modelIntArray3 = null;
-		modelIntArray4 = null;
+		lightDecay = null;
 	}
 
 	public static void method459(int i, OnDemandFetcherParent onDemandFetcherParent) {
@@ -32,7 +32,7 @@ public final class Model extends SceneNode {
 		aOnDemandFetcherParent_1662 = onDemandFetcherParent;
 	}
 
-	public static void method460(byte[] abyte0, int j) {
+	public static void loadModel(byte[] abyte0, int j) {
 		if (abyte0 == null) {
 			Class21 class21 = aClass21Array1661[j] = new Class21();
 			class21.anInt369 = 0;
@@ -145,9 +145,9 @@ public final class Model extends SceneNode {
 		anInt1626 = class21.anInt369;
 		anInt1630 = class21.anInt370;
 		anInt1642 = class21.anInt371;
-		anIntArray1627 = new int[anInt1626];
-		anIntArray1628 = new int[anInt1626];
-		anIntArray1629 = new int[anInt1626];
+		vertexX = new int[anInt1626];
+		vertexY = new int[anInt1626];
+		vertexZ = new int[anInt1626];
 		anIntArray1631 = new int[anInt1630];
 		anIntArray1632 = new int[anInt1630];
 		anIntArray1633 = new int[anInt1630];
@@ -199,12 +199,12 @@ public final class Model extends SceneNode {
 			if ((k1 & 4) != 0) {
 				i3 = stream_3.method421();
 			}
-			anIntArray1627[j1] = k + i2;
-			anIntArray1628[j1] = l + k2;
-			anIntArray1629[j1] = i1 + i3;
-			k = anIntArray1627[j1];
-			l = anIntArray1628[j1];
-			i1 = anIntArray1629[j1];
+			vertexX[j1] = k + i2;
+			vertexY[j1] = l + k2;
+			vertexZ[j1] = i1 + i3;
+			k = vertexX[j1];
+			l = vertexY[j1];
+			i1 = vertexZ[j1];
 			if (anIntArray1655 != null) {
 				anIntArray1655[j1] = stream_4.readUnsignedByte();
 			}
@@ -319,9 +319,9 @@ public final class Model extends SceneNode {
 			}
 		}
 
-		anIntArray1627 = new int[anInt1626];
-		anIntArray1628 = new int[anInt1626];
-		anIntArray1629 = new int[anInt1626];
+		vertexX = new int[anInt1626];
+		vertexY = new int[anInt1626];
+		vertexZ = new int[anInt1626];
 		anIntArray1655 = new int[anInt1626];
 		anIntArray1631 = new int[anInt1630];
 		anIntArray1632 = new int[anInt1630];
@@ -431,15 +431,15 @@ public final class Model extends SceneNode {
 			}
 		}
 
-		anIntArray1627 = new int[anInt1626];
-		anIntArray1628 = new int[anInt1626];
-		anIntArray1629 = new int[anInt1626];
+		vertexX = new int[anInt1626];
+		vertexY = new int[anInt1626];
+		vertexZ = new int[anInt1626];
 		anIntArray1631 = new int[anInt1630];
 		anIntArray1632 = new int[anInt1630];
 		anIntArray1633 = new int[anInt1630];
-		anIntArray1634 = new int[anInt1630];
+		face_shade_c = new int[anInt1630];
 		anIntArray1635 = new int[anInt1630];
-		anIntArray1636 = new int[anInt1630];
+		face_shade_a = new int[anInt1630];
 		anIntArray1643 = new int[anInt1642];
 		anIntArray1644 = new int[anInt1642];
 		anIntArray1645 = new int[anInt1642];
@@ -464,9 +464,9 @@ public final class Model extends SceneNode {
 			if (model_1 != null) {
 				int k1 = anInt1626;
 				for (int l1 = 0; l1 < model_1.anInt1626; l1++) {
-					anIntArray1627[anInt1626] = model_1.anIntArray1627[l1];
-					anIntArray1628[anInt1626] = model_1.anIntArray1628[l1];
-					anIntArray1629[anInt1626] = model_1.anIntArray1629[l1];
+					vertexX[anInt1626] = model_1.vertexX[l1];
+					vertexY[anInt1626] = model_1.vertexY[l1];
+					vertexZ[anInt1626] = model_1.vertexZ[l1];
 					anInt1626++;
 				}
 
@@ -474,9 +474,9 @@ public final class Model extends SceneNode {
 					anIntArray1631[anInt1630] = model_1.anIntArray1631[i2] + k1;
 					anIntArray1632[anInt1630] = model_1.anIntArray1632[i2] + k1;
 					anIntArray1633[anInt1630] = model_1.anIntArray1633[i2] + k1;
-					anIntArray1634[anInt1630] = model_1.anIntArray1634[i2];
+					face_shade_c[anInt1630] = model_1.face_shade_c[i2];
 					anIntArray1635[anInt1630] = model_1.anIntArray1635[i2];
-					anIntArray1636[anInt1630] = model_1.anIntArray1636[i2];
+					face_shade_a[anInt1630] = model_1.face_shade_a[i2];
 					if (flag1) {
 						if (model_1.anIntArray1637 == null) {
 							anIntArray1637[anInt1630] = 0;
@@ -528,17 +528,17 @@ public final class Model extends SceneNode {
 		anInt1630 = model.anInt1630;
 		anInt1642 = model.anInt1642;
 		if (flag2) {
-			anIntArray1627 = model.anIntArray1627;
-			anIntArray1628 = model.anIntArray1628;
-			anIntArray1629 = model.anIntArray1629;
+			vertexX = model.vertexX;
+			vertexY = model.vertexY;
+			vertexZ = model.vertexZ;
 		} else {
-			anIntArray1627 = new int[anInt1626];
-			anIntArray1628 = new int[anInt1626];
-			anIntArray1629 = new int[anInt1626];
+			vertexX = new int[anInt1626];
+			vertexY = new int[anInt1626];
+			vertexZ = new int[anInt1626];
 			for (int j = 0; j < anInt1626; j++) {
-				anIntArray1627[j] = model.anIntArray1627[j];
-				anIntArray1628[j] = model.anIntArray1628[j];
-				anIntArray1629[j] = model.anIntArray1629[j];
+				vertexX[j] = model.vertexX[j];
+				vertexY[j] = model.vertexY[j];
+				vertexZ[j] = model.vertexZ[j];
 			}
 
 		}
@@ -582,20 +582,20 @@ public final class Model extends SceneNode {
 		anInt1630 = model.anInt1630;
 		anInt1642 = model.anInt1642;
 		if (flag) {
-			anIntArray1628 = new int[anInt1626];
-			System.arraycopy(model.anIntArray1628, 0, anIntArray1628, 0, anInt1626);
+			vertexY = new int[anInt1626];
+			System.arraycopy(model.vertexY, 0, vertexY, 0, anInt1626);
 
 		} else {
-			anIntArray1628 = model.anIntArray1628;
+			vertexY = model.vertexY;
 		}
 		if (flag1) {
-			anIntArray1634 = new int[anInt1630];
+			face_shade_c = new int[anInt1630];
 			anIntArray1635 = new int[anInt1630];
-			anIntArray1636 = new int[anInt1630];
+			face_shade_a = new int[anInt1630];
 			for (int k = 0; k < anInt1630; k++) {
-				anIntArray1634[k] = model.anIntArray1634[k];
+				face_shade_c[k] = model.face_shade_c[k];
 				anIntArray1635[k] = model.anIntArray1635[k];
-				anIntArray1636[k] = model.anIntArray1636[k];
+				face_shade_a[k] = model.face_shade_a[k];
 			}
 
 			anIntArray1637 = new int[anInt1630];
@@ -620,13 +620,13 @@ public final class Model extends SceneNode {
 
 			aVertexArray1660 = model.aVertexArray1660;
 		} else {
-			anIntArray1634 = model.anIntArray1634;
+			face_shade_c = model.face_shade_c;
 			anIntArray1635 = model.anIntArray1635;
-			anIntArray1636 = model.anIntArray1636;
+			face_shade_a = model.face_shade_a;
 			anIntArray1637 = model.anIntArray1637;
 		}
-		anIntArray1627 = model.anIntArray1627;
-		anIntArray1629 = model.anIntArray1629;
+		vertexX = model.vertexX;
+		vertexZ = model.vertexZ;
 		anIntArray1640 = model.anIntArray1640;
 		anIntArray1639 = model.anIntArray1639;
 		anIntArray1638 = model.anIntArray1638;
@@ -657,13 +657,13 @@ public final class Model extends SceneNode {
 			anIntArray1623 = new int[anInt1626 + 100];
 			anIntArray1624 = new int[anInt1626 + 100];
 		}
-		anIntArray1627 = anIntArray1622;
-		anIntArray1628 = anIntArray1623;
-		anIntArray1629 = anIntArray1624;
+		vertexX = anIntArray1622;
+		vertexY = anIntArray1623;
+		vertexZ = anIntArray1624;
 		for (int k = 0; k < anInt1626; k++) {
-			anIntArray1627[k] = model.anIntArray1627[k];
-			anIntArray1628[k] = model.anIntArray1628[k];
-			anIntArray1629[k] = model.anIntArray1629[k];
+			vertexX[k] = model.vertexX[k];
+			vertexY[k] = model.vertexY[k];
+			vertexZ[k] = model.vertexZ[k];
 		}
 
 		if (flag) {
@@ -692,9 +692,9 @@ public final class Model extends SceneNode {
 		anIntArray1631 = model.anIntArray1631;
 		anIntArray1632 = model.anIntArray1632;
 		anIntArray1633 = model.anIntArray1633;
-		anIntArray1634 = model.anIntArray1634;
+		face_shade_c = model.face_shade_c;
 		anIntArray1635 = model.anIntArray1635;
-		anIntArray1636 = model.anIntArray1636;
+		face_shade_a = model.face_shade_a;
 		anIntArray1643 = model.anIntArray1643;
 		anIntArray1644 = model.anIntArray1644;
 		anIntArray1645 = model.anIntArray1645;
@@ -702,11 +702,11 @@ public final class Model extends SceneNode {
 
 	private int method465(Model model, int i) {
 		int j = -1;
-		int k = model.anIntArray1627[i];
-		int l = model.anIntArray1628[i];
-		int i1 = model.anIntArray1629[i];
+		int k = model.vertexX[i];
+		int l = model.vertexY[i];
+		int i1 = model.vertexZ[i];
 		for (int j1 = 0; j1 < anInt1626; j1++) {
-			if (k != anIntArray1627[j1] || l != anIntArray1628[j1] || i1 != anIntArray1629[j1]) {
+			if (k != vertexX[j1] || l != vertexY[j1] || i1 != vertexZ[j1]) {
 				continue;
 			}
 			j = j1;
@@ -714,9 +714,9 @@ public final class Model extends SceneNode {
 		}
 
 		if (j == -1) {
-			anIntArray1627[anInt1626] = k;
-			anIntArray1628[anInt1626] = l;
-			anIntArray1629[anInt1626] = i1;
+			vertexX[anInt1626] = k;
+			vertexY[anInt1626] = l;
+			vertexZ[anInt1626] = i1;
 			if (model.anIntArray1655 != null) {
 				anIntArray1655[anInt1626] = model.anIntArray1655[i];
 			}
@@ -730,9 +730,9 @@ public final class Model extends SceneNode {
 		maxVertexDistanceXZPlane = 0;
 		anInt1651 = 0;
 		for (int i = 0; i < anInt1626; i++) {
-			int j = anIntArray1627[i];
-			int k = anIntArray1628[i];
-			int l = anIntArray1629[i];
+			int j = vertexX[i];
+			int k = vertexY[i];
+			int l = vertexZ[i];
 			if (-k > super.modelHeight) {
 				super.modelHeight = -k;
 			}
@@ -753,7 +753,7 @@ public final class Model extends SceneNode {
 		super.modelHeight = 0;
 		anInt1651 = 0;
 		for (int i = 0; i < anInt1626; i++) {
-			int j = anIntArray1628[i];
+			int j = vertexY[i];
 			if (-j > super.modelHeight) {
 				super.modelHeight = -j;
 			}
@@ -775,9 +775,9 @@ public final class Model extends SceneNode {
 		anInt1648 = 0xfffe7961;
 		anInt1649 = 0x1869f;
 		for (int j = 0; j < anInt1626; j++) {
-			int k = anIntArray1627[j];
-			int l = anIntArray1628[j];
-			int i1 = anIntArray1629[j];
+			int k = vertexX[j];
+			int l = vertexY[j];
+			int i1 = vertexZ[j];
 			if (k < anInt1646) {
 				anInt1646 = k;
 			}
@@ -939,9 +939,9 @@ public final class Model extends SceneNode {
 				if (l3 < anIntArrayArray1657.length) {
 					int[] ai5 = anIntArrayArray1657[l3];
 					for (int j6 : ai5) {
-						anInt1681 += anIntArray1627[j6];
-						anInt1682 += anIntArray1628[j6];
-						anInt1683 += anIntArray1629[j6];
+						anInt1681 += vertexX[j6];
+						anInt1682 += vertexY[j6];
+						anInt1683 += vertexZ[j6];
 						j1++;
 					}
 
@@ -966,9 +966,9 @@ public final class Model extends SceneNode {
 					int[] ai1 = anIntArrayArray1657[l2];
 					for (int element : ai1) {
 						int j5 = element;
-						anIntArray1627[j5] += j;
-						anIntArray1628[j5] += k;
-						anIntArray1629[j5] += l;
+						vertexX[j5] += j;
+						vertexY[j5] += k;
+						vertexZ[j5] += l;
 					}
 
 				}
@@ -982,36 +982,36 @@ public final class Model extends SceneNode {
 					int[] ai2 = anIntArrayArray1657[i3];
 					for (int element : ai2) {
 						int k5 = element;
-						anIntArray1627[k5] -= anInt1681;
-						anIntArray1628[k5] -= anInt1682;
-						anIntArray1629[k5] -= anInt1683;
+						vertexX[k5] -= anInt1681;
+						vertexY[k5] -= anInt1682;
+						vertexZ[k5] -= anInt1683;
 						int k6 = (j & 0xff) * 8;
 						int l6 = (k & 0xff) * 8;
 						int i7 = (l & 0xff) * 8;
 						if (i7 != 0) {
 							int j7 = modelIntArray1[i7];
 							int i8 = modelIntArray2[i7];
-							int l8 = anIntArray1628[k5] * j7 + anIntArray1627[k5] * i8 >> 16;
-							anIntArray1628[k5] = anIntArray1628[k5] * i8 - anIntArray1627[k5] * j7 >> 16;
-							anIntArray1627[k5] = l8;
+							int l8 = vertexY[k5] * j7 + vertexX[k5] * i8 >> 16;
+							vertexY[k5] = vertexY[k5] * i8 - vertexX[k5] * j7 >> 16;
+							vertexX[k5] = l8;
 						}
 						if (k6 != 0) {
 							int k7 = modelIntArray1[k6];
 							int j8 = modelIntArray2[k6];
-							int i9 = anIntArray1628[k5] * j8 - anIntArray1629[k5] * k7 >> 16;
-							anIntArray1629[k5] = anIntArray1628[k5] * k7 + anIntArray1629[k5] * j8 >> 16;
-							anIntArray1628[k5] = i9;
+							int i9 = vertexY[k5] * j8 - vertexZ[k5] * k7 >> 16;
+							vertexZ[k5] = vertexY[k5] * k7 + vertexZ[k5] * j8 >> 16;
+							vertexY[k5] = i9;
 						}
 						if (l6 != 0) {
 							int l7 = modelIntArray1[l6];
 							int k8 = modelIntArray2[l6];
-							int j9 = anIntArray1629[k5] * l7 + anIntArray1627[k5] * k8 >> 16;
-							anIntArray1629[k5] = anIntArray1629[k5] * k8 - anIntArray1627[k5] * l7 >> 16;
-							anIntArray1627[k5] = j9;
+							int j9 = vertexZ[k5] * l7 + vertexX[k5] * k8 >> 16;
+							vertexZ[k5] = vertexZ[k5] * k8 - vertexX[k5] * l7 >> 16;
+							vertexX[k5] = j9;
 						}
-						anIntArray1627[k5] += anInt1681;
-						anIntArray1628[k5] += anInt1682;
-						anIntArray1629[k5] += anInt1683;
+						vertexX[k5] += anInt1681;
+						vertexY[k5] += anInt1682;
+						vertexZ[k5] += anInt1683;
 					}
 
 				}
@@ -1025,15 +1025,15 @@ public final class Model extends SceneNode {
 					int[] ai3 = anIntArrayArray1657[j3];
 					for (int element : ai3) {
 						int l5 = element;
-						anIntArray1627[l5] -= anInt1681;
-						anIntArray1628[l5] -= anInt1682;
-						anIntArray1629[l5] -= anInt1683;
-						anIntArray1627[l5] = anIntArray1627[l5] * j / 128;
-						anIntArray1628[l5] = anIntArray1628[l5] * k / 128;
-						anIntArray1629[l5] = anIntArray1629[l5] * l / 128;
-						anIntArray1627[l5] += anInt1681;
-						anIntArray1628[l5] += anInt1682;
-						anIntArray1629[l5] += anInt1683;
+						vertexX[l5] -= anInt1681;
+						vertexY[l5] -= anInt1682;
+						vertexZ[l5] -= anInt1683;
+						vertexX[l5] = vertexX[l5] * j / 128;
+						vertexY[l5] = vertexY[l5] * k / 128;
+						vertexZ[l5] = vertexZ[l5] * l / 128;
+						vertexX[l5] += anInt1681;
+						vertexY[l5] += anInt1682;
+						vertexZ[l5] += anInt1683;
 					}
 
 				}
@@ -1064,9 +1064,9 @@ public final class Model extends SceneNode {
 
 	public void method473() {
 		for (int j = 0; j < anInt1626; j++) {
-			int k = anIntArray1627[j];
-			anIntArray1627[j] = anIntArray1629[j];
-			anIntArray1629[j] = -k;
+			int k = vertexX[j];
+			vertexX[j] = vertexZ[j];
+			vertexZ[j] = -k;
 		}
 
 	}
@@ -1075,17 +1075,17 @@ public final class Model extends SceneNode {
 		int k = modelIntArray1[i];
 		int l = modelIntArray2[i];
 		for (int i1 = 0; i1 < anInt1626; i1++) {
-			int j1 = anIntArray1628[i1] * l - anIntArray1629[i1] * k >> 16;
-			anIntArray1629[i1] = anIntArray1628[i1] * k + anIntArray1629[i1] * l >> 16;
-			anIntArray1628[i1] = j1;
+			int j1 = vertexY[i1] * l - vertexZ[i1] * k >> 16;
+			vertexZ[i1] = vertexY[i1] * k + vertexZ[i1] * l >> 16;
+			vertexY[i1] = j1;
 		}
 	}
 
 	public void method475(int i, int j, int l) {
 		for (int i1 = 0; i1 < anInt1626; i1++) {
-			anIntArray1627[i1] += i;
-			anIntArray1628[i1] += j;
-			anIntArray1629[i1] += l;
+			vertexX[i1] += i;
+			vertexY[i1] += j;
+			vertexZ[i1] += l;
 		}
 
 	}
@@ -1101,7 +1101,7 @@ public final class Model extends SceneNode {
 
 	public void method477() {
 		for (int j = 0; j < anInt1626; j++) {
-			anIntArray1629[j] = -anIntArray1629[j];
+			vertexZ[j] = -vertexZ[j];
 		}
 
 		for (int k = 0; k < anInt1630; k++) {
@@ -1111,11 +1111,11 @@ public final class Model extends SceneNode {
 		}
 	}
 
-	public void method478(int i, int j, int l) {
+	public void scaleModel(int i, int j, int l) {
 		for (int i1 = 0; i1 < anInt1626; i1++) {
-			anIntArray1627[i1] = anIntArray1627[i1] * i / 128;
-			anIntArray1628[i1] = anIntArray1628[i1] * l / 128;
-			anIntArray1629[i1] = anIntArray1629[i1] * j / 128;
+			vertexX[i1] = vertexX[i1] * i / 128;
+			vertexY[i1] = vertexY[i1] * l / 128;
+			vertexZ[i1] = vertexZ[i1] * j / 128;
 		}
 
 	}
@@ -1123,10 +1123,10 @@ public final class Model extends SceneNode {
 	public void method479(int i, int j, int k, int l, int i1, boolean flag) {
 		int j1 = (int) Math.sqrt(k * k + l * l + i1 * i1);
 		int k1 = j * j1 >> 8;
-		if (anIntArray1634 == null) {
-			anIntArray1634 = new int[anInt1630];
+		if (face_shade_c == null) {
+			face_shade_c = new int[anInt1630];
 			anIntArray1635 = new int[anInt1630];
-			anIntArray1636 = new int[anInt1630];
+			face_shade_a = new int[anInt1630];
 		}
 		if (super.normals == null) {
 			super.normals = new Vertex[anInt1626];
@@ -1139,12 +1139,12 @@ public final class Model extends SceneNode {
 			int j2 = anIntArray1631[i2];
 			int l2 = anIntArray1632[i2];
 			int i3 = anIntArray1633[i2];
-			int j3 = anIntArray1627[l2] - anIntArray1627[j2];
-			int k3 = anIntArray1628[l2] - anIntArray1628[j2];
-			int l3 = anIntArray1629[l2] - anIntArray1629[j2];
-			int i4 = anIntArray1627[i3] - anIntArray1627[j2];
-			int j4 = anIntArray1628[i3] - anIntArray1628[j2];
-			int k4 = anIntArray1629[i3] - anIntArray1629[j2];
+			int j3 = vertexX[l2] - vertexX[j2];
+			int k3 = vertexY[l2] - vertexY[j2];
+			int l3 = vertexZ[l2] - vertexZ[j2];
+			int i4 = vertexX[i3] - vertexX[j2];
+			int j4 = vertexY[i3] - vertexY[j2];
+			int k4 = vertexZ[i3] - vertexZ[j2];
 			int l4 = k3 * k4 - j4 * l3;
 			int i5 = l3 * i4 - k4 * j3;
 			int j5;
@@ -1178,7 +1178,7 @@ public final class Model extends SceneNode {
 				vertex_2.anInt605++;
 			} else {
 				int l5 = i + (k * l4 + l * i5 + i1 * j5) / (k1 + k1 / 2);
-				anIntArray1634[i2] = method481(anIntArray1640[i2], l5, anIntArray1637[i2]);
+				face_shade_c[i2] = calculateCheckedLighting(anIntArray1640[i2], l5, anIntArray1637[i2]);
 			}
 		}
 
@@ -1212,25 +1212,25 @@ public final class Model extends SceneNode {
 				int i3 = anIntArray1640[j1];
 				Vertex vertex = super.normals[k1];
 				int k2 = i + (k * vertex.anInt602 + l * vertex.anInt603 + i1 * vertex.anInt604) / (j * vertex.anInt605);
-				anIntArray1634[j1] = method481(i3, k2, 0);
+				face_shade_c[j1] = calculateCheckedLighting(i3, k2, 0);
 				vertex = super.normals[i2];
 				k2 = i + (k * vertex.anInt602 + l * vertex.anInt603 + i1 * vertex.anInt604) / (j * vertex.anInt605);
-				anIntArray1635[j1] = method481(i3, k2, 0);
+				anIntArray1635[j1] = calculateCheckedLighting(i3, k2, 0);
 				vertex = super.normals[j2];
 				k2 = i + (k * vertex.anInt602 + l * vertex.anInt603 + i1 * vertex.anInt604) / (j * vertex.anInt605);
-				anIntArray1636[j1] = method481(i3, k2, 0);
+				face_shade_a[j1] = calculateCheckedLighting(i3, k2, 0);
 			} else if ((anIntArray1637[j1] & 1) == 0) {
 				int j3 = anIntArray1640[j1];
 				int k3 = anIntArray1637[j1];
 				Vertex vertex_1 = super.normals[k1];
 				int l2 = i + (k * vertex_1.anInt602 + l * vertex_1.anInt603 + i1 * vertex_1.anInt604) / (j * vertex_1.anInt605);
-				anIntArray1634[j1] = method481(j3, l2, k3);
+				face_shade_c[j1] = calculateCheckedLighting(j3, l2, k3);
 				vertex_1 = super.normals[i2];
 				l2 = i + (k * vertex_1.anInt602 + l * vertex_1.anInt603 + i1 * vertex_1.anInt604) / (j * vertex_1.anInt605);
-				anIntArray1635[j1] = method481(j3, l2, k3);
+				anIntArray1635[j1] = calculateCheckedLighting(j3, l2, k3);
 				vertex_1 = super.normals[j2];
 				l2 = i + (k * vertex_1.anInt602 + l * vertex_1.anInt603 + i1 * vertex_1.anInt604) / (j * vertex_1.anInt605);
-				anIntArray1636[j1] = method481(j3, l2, k3);
+				face_shade_a[j1] = calculateCheckedLighting(j3, l2, k3);
 			}
 		}
 
@@ -1249,23 +1249,23 @@ public final class Model extends SceneNode {
 		anIntArray1640 = null;
 	}
 
-	private static int method481(int i, int j, int k) {
-		if ((k & 2) == 2) {
-			if (j < 0) {
-				j = 0;
-			} else if (j > 127) {
-				j = 127;
+	private static int calculateCheckedLighting(int color, int light, int index) {
+		if ((index & 2) == 2) {
+			if (light < 0) {
+				light = 0;
+			} else if (light > 127) {
+				light = 127;
 			}
-			j = 127 - j;
-			return j;
+			light = 127 - light;
+			return light;
 		}
-		j = j * (i & 0x7f) >> 7;
-		if (j < 2) {
-			j = 2;
-		} else if (j > 126) {
-			j = 126;
+		light = light * (color & 0x7f) >> 7;
+		if (light < 2) {
+			light = 2;
+		} else if (light > 126) {
+			light = 126;
 		}
-		return (i & 0xff80) + j;
+		return (color & 0xff80) + light;
 	}
 
 	public void method482(int j, int k, int l, int i1, int j1, int k1) {
@@ -1282,9 +1282,9 @@ public final class Model extends SceneNode {
 		int i4 = modelIntArray2[l];
 		int j4 = j1 * l3 + k1 * i4 >> 16;
 		for (int k4 = 0; k4 < anInt1626; k4++) {
-			int l4 = anIntArray1627[k4];
-			int i5 = anIntArray1628[k4];
-			int j5 = anIntArray1629[k4];
+			int l4 = vertexX[k4];
+			int i5 = vertexY[k4];
+			int j5 = vertexZ[k4];
 			if (k != 0) {
 				int k5 = i5 * j3 + l4 * k3 >> 16;
 				i5 = i5 * k3 - l4 * j3 >> 16;
@@ -1307,11 +1307,11 @@ public final class Model extends SceneNode {
 			j5 = i5 * l3 + j5 * i4 >> 16;
 			i5 = j6;
 			anIntArray1667[k4] = j5 - j4;
-			anIntArray1665[k4] = l1 + (l4 << 9) / j5;
-			anIntArray1666[k4] = i2 + (i5 << 9) / j5;
+			projected_vertex_x[k4] = l1 + (l4 << 9) / j5;
+			projected_vertex_y[k4] = i2 + (i5 << 9) / j5;
 			if (anInt1642 > 0) {
-				anIntArray1668[k4] = l4;
-				anIntArray1669[k4] = i5;
+				camera_vertex_y[k4] = l4;
+				camera_vertex_x[k4] = i5;
 				anIntArray1670[k4] = j5;
 			}
 		}
@@ -1395,9 +1395,9 @@ public final class Model extends SceneNode {
 			i7 = modelIntArray2[i];
 		}
 		for (int j7 = 0; j7 < anInt1626; j7++) {
-			int k7 = anIntArray1627[j7];
-			int l7 = anIntArray1628[j7];
-			int i8 = anIntArray1629[j7];
+			int k7 = vertexX[j7];
+			int l7 = vertexY[j7];
+			int i8 = vertexZ[j7];
 			if (i != 0) {
 				int j8 = i8 * l6 + k7 * i7 >> 16;
 				i8 = i8 * i7 - k7 * l6 >> 16;
@@ -1414,15 +1414,15 @@ public final class Model extends SceneNode {
 			l7 = k8;
 			anIntArray1667[j7] = i8 - k2;
 			if (i8 >= 50) {
-				anIntArray1665[j7] = l5 + (k7 << 9) / i8;
-				anIntArray1666[j7] = j6 + (l7 << 9) / i8;
+				projected_vertex_x[j7] = l5 + (k7 << 9) / i8;
+				projected_vertex_y[j7] = j6 + (l7 << 9) / i8;
 			} else {
-				anIntArray1665[j7] = -5000;
+				projected_vertex_x[j7] = -5000;
 				flag = true;
 			}
 			if (flag || anInt1642 > 0) {
-				anIntArray1668[j7] = k7;
-				anIntArray1669[j7] = l7;
+				camera_vertex_y[j7] = k7;
+				camera_vertex_x[j7] = l7;
 				anIntArray1670[j7] = i8;
 			}
 		}
@@ -1443,19 +1443,19 @@ public final class Model extends SceneNode {
 				int l = anIntArray1631[k];
 				int k1 = anIntArray1632[k];
 				int j2 = anIntArray1633[k];
-				int i3 = anIntArray1665[l];
-				int l3 = anIntArray1665[k1];
-				int k4 = anIntArray1665[j2];
+				int i3 = projected_vertex_x[l];
+				int l3 = projected_vertex_x[k1];
+				int k4 = projected_vertex_x[j2];
 				if (flag && (i3 == -5000 || l3 == -5000 || k4 == -5000)) {
 					aBooleanArray1664[k] = true;
 					int j5 = (anIntArray1667[l] + anIntArray1667[k1] + anIntArray1667[j2]) / 3 + anInt1653;
 					anIntArrayArray1672[j5][anIntArray1671[j5]++] = k;
 				} else {
-					if (flag1 && method486(anInt1685, anInt1686, anIntArray1666[l], anIntArray1666[k1], anIntArray1666[j2], i3, l3, k4)) {
+					if (flag1 && method486(anInt1685, anInt1686, projected_vertex_y[l], projected_vertex_y[k1], projected_vertex_y[j2], i3, l3, k4)) {
 						anIntArray1688[anInt1687++] = i;
 						flag1 = false;
 					}
-					if ((i3 - l3) * (anIntArray1666[j2] - anIntArray1666[k1]) - (anIntArray1666[l] - anIntArray1666[k1]) * (k4 - l3) > 0) {
+					if ((i3 - l3) * (projected_vertex_y[j2] - projected_vertex_y[k1]) - (projected_vertex_y[l] - projected_vertex_y[k1]) * (k4 - l3) > 0) {
 						aBooleanArray1664[k] = false;
 						aBooleanArray1663[k] = i3 < 0 || l3 < 0 || k4 < 0 || i3 > DrawingArea.centerX || l3 > DrawingArea.centerX || k4 > DrawingArea.centerX;
 						int k5 = (anIntArray1667[l] + anIntArray1667[k1] + anIntArray1667[j2]) / 3 + anInt1653;
@@ -1608,7 +1608,7 @@ public final class Model extends SceneNode {
 		int j = anIntArray1631[i];
 		int k = anIntArray1632[i];
 		int l = anIntArray1633[i];
-		Texture.aBoolean1462 = aBooleanArray1663[i];
+		Texture.checkBounds = aBooleanArray1663[i];
 		if (anIntArray1639 == null) {
 			Texture.anInt1465 = 0;
 		} else {
@@ -1621,11 +1621,11 @@ public final class Model extends SceneNode {
 			i1 = anIntArray1637[i] & 3;
 		}
 		if (i1 == 0) {
-			Texture.method374(anIntArray1666[j], anIntArray1666[k], anIntArray1666[l], anIntArray1665[j], anIntArray1665[k], anIntArray1665[l], anIntArray1634[i], anIntArray1635[i], anIntArray1636[i]);
+			Texture.drawGouraudTriangle(projected_vertex_y[j], projected_vertex_y[k], projected_vertex_y[l], projected_vertex_x[j], projected_vertex_x[k], projected_vertex_x[l], face_shade_c[i], anIntArray1635[i], face_shade_a[i]);
 			return;
 		}
 		if (i1 == 1) {
-			Texture.method376(anIntArray1666[j], anIntArray1666[k], anIntArray1666[l], anIntArray1665[j], anIntArray1665[k], anIntArray1665[l], modelIntArray3[anIntArray1634[i]]);
+			Texture.drawTriangle(projected_vertex_y[j], projected_vertex_y[k], projected_vertex_y[l], projected_vertex_x[j], projected_vertex_x[k], projected_vertex_x[l], modelIntArray3[face_shade_c[i]]);
 			return;
 		}
 		if (i1 == 2) {
@@ -1633,7 +1633,7 @@ public final class Model extends SceneNode {
 			int l1 = anIntArray1643[j1];
 			int j2 = anIntArray1644[j1];
 			int l2 = anIntArray1645[j1];
-			Texture.method378(anIntArray1666[j], anIntArray1666[k], anIntArray1666[l], anIntArray1665[j], anIntArray1665[k], anIntArray1665[l], anIntArray1634[i], anIntArray1635[i], anIntArray1636[i], anIntArray1668[l1], anIntArray1668[j2], anIntArray1668[l2], anIntArray1669[l1], anIntArray1669[j2], anIntArray1669[l2], anIntArray1670[l1], anIntArray1670[j2], anIntArray1670[l2], anIntArray1640[i]);
+			Texture.method378(projected_vertex_y[j], projected_vertex_y[k], projected_vertex_y[l], projected_vertex_x[j], projected_vertex_x[k], projected_vertex_x[l], face_shade_c[i], anIntArray1635[i], face_shade_a[i], camera_vertex_y[l1], camera_vertex_y[j2], camera_vertex_y[l2], camera_vertex_x[l1], camera_vertex_x[j2], camera_vertex_x[l2], anIntArray1670[l1], anIntArray1670[j2], anIntArray1670[l2], anIntArray1640[i]);
 			return;
 		}
 		if (i1 == 3) {
@@ -1641,7 +1641,7 @@ public final class Model extends SceneNode {
 			int i2 = anIntArray1643[k1];
 			int k2 = anIntArray1644[k1];
 			int i3 = anIntArray1645[k1];
-			Texture.method378(anIntArray1666[j], anIntArray1666[k], anIntArray1666[l], anIntArray1665[j], anIntArray1665[k], anIntArray1665[l], anIntArray1634[i], anIntArray1634[i], anIntArray1634[i], anIntArray1668[i2], anIntArray1668[k2], anIntArray1668[i3], anIntArray1669[i2], anIntArray1669[k2], anIntArray1669[i3], anIntArray1670[i2], anIntArray1670[k2], anIntArray1670[i3], anIntArray1640[i]);
+			Texture.method378(projected_vertex_y[j], projected_vertex_y[k], projected_vertex_y[l], projected_vertex_x[j], projected_vertex_x[k], projected_vertex_x[l], face_shade_c[i], face_shade_c[i], face_shade_c[i], camera_vertex_y[i2], camera_vertex_y[k2], camera_vertex_y[i3], camera_vertex_x[i2], camera_vertex_x[k2], camera_vertex_x[i3], anIntArray1670[i2], anIntArray1670[k2], anIntArray1670[i3], anIntArray1640[i]);
 		}
 	}
 
@@ -1656,66 +1656,66 @@ public final class Model extends SceneNode {
 		int i2 = anIntArray1670[j1];
 		int j2 = anIntArray1670[k1];
 		if (l1 >= 50) {
-			anIntArray1678[l] = anIntArray1665[i1];
-			anIntArray1679[l] = anIntArray1666[i1];
-			anIntArray1680[l++] = anIntArray1634[i];
+			anIntArray1678[l] = projected_vertex_x[i1];
+			anIntArray1679[l] = projected_vertex_y[i1];
+			anIntArray1680[l++] = face_shade_c[i];
 		} else {
-			int k2 = anIntArray1668[i1];
-			int k3 = anIntArray1669[i1];
-			int k4 = anIntArray1634[i];
+			int k2 = camera_vertex_y[i1];
+			int k3 = camera_vertex_x[i1];
+			int k4 = face_shade_c[i];
 			if (j2 >= 50) {
-				int k5 = (50 - l1) * modelIntArray4[j2 - l1];
-				anIntArray1678[l] = j + (k2 + ((anIntArray1668[k1] - k2) * k5 >> 16) << 9) / 50;
-				anIntArray1679[l] = k + (k3 + ((anIntArray1669[k1] - k3) * k5 >> 16) << 9) / 50;
-				anIntArray1680[l++] = k4 + ((anIntArray1636[i] - k4) * k5 >> 16);
+				int k5 = (50 - l1) * lightDecay[j2 - l1];
+				anIntArray1678[l] = j + (k2 + ((camera_vertex_y[k1] - k2) * k5 >> 16) << 9) / 50;
+				anIntArray1679[l] = k + (k3 + ((camera_vertex_x[k1] - k3) * k5 >> 16) << 9) / 50;
+				anIntArray1680[l++] = k4 + ((face_shade_a[i] - k4) * k5 >> 16);
 			}
 			if (i2 >= 50) {
-				int l5 = (50 - l1) * modelIntArray4[i2 - l1];
-				anIntArray1678[l] = j + (k2 + ((anIntArray1668[j1] - k2) * l5 >> 16) << 9) / 50;
-				anIntArray1679[l] = k + (k3 + ((anIntArray1669[j1] - k3) * l5 >> 16) << 9) / 50;
+				int l5 = (50 - l1) * lightDecay[i2 - l1];
+				anIntArray1678[l] = j + (k2 + ((camera_vertex_y[j1] - k2) * l5 >> 16) << 9) / 50;
+				anIntArray1679[l] = k + (k3 + ((camera_vertex_x[j1] - k3) * l5 >> 16) << 9) / 50;
 				anIntArray1680[l++] = k4 + ((anIntArray1635[i] - k4) * l5 >> 16);
 			}
 		}
 		if (i2 >= 50) {
-			anIntArray1678[l] = anIntArray1665[j1];
-			anIntArray1679[l] = anIntArray1666[j1];
+			anIntArray1678[l] = projected_vertex_x[j1];
+			anIntArray1679[l] = projected_vertex_y[j1];
 			anIntArray1680[l++] = anIntArray1635[i];
 		} else {
-			int l2 = anIntArray1668[j1];
-			int l3 = anIntArray1669[j1];
+			int l2 = camera_vertex_y[j1];
+			int l3 = camera_vertex_x[j1];
 			int l4 = anIntArray1635[i];
 			if (l1 >= 50) {
-				int i6 = (50 - i2) * modelIntArray4[l1 - i2];
-				anIntArray1678[l] = j + (l2 + ((anIntArray1668[i1] - l2) * i6 >> 16) << 9) / 50;
-				anIntArray1679[l] = k + (l3 + ((anIntArray1669[i1] - l3) * i6 >> 16) << 9) / 50;
-				anIntArray1680[l++] = l4 + ((anIntArray1634[i] - l4) * i6 >> 16);
+				int i6 = (50 - i2) * lightDecay[l1 - i2];
+				anIntArray1678[l] = j + (l2 + ((camera_vertex_y[i1] - l2) * i6 >> 16) << 9) / 50;
+				anIntArray1679[l] = k + (l3 + ((camera_vertex_x[i1] - l3) * i6 >> 16) << 9) / 50;
+				anIntArray1680[l++] = l4 + ((face_shade_c[i] - l4) * i6 >> 16);
 			}
 			if (j2 >= 50) {
-				int j6 = (50 - i2) * modelIntArray4[j2 - i2];
-				anIntArray1678[l] = j + (l2 + ((anIntArray1668[k1] - l2) * j6 >> 16) << 9) / 50;
-				anIntArray1679[l] = k + (l3 + ((anIntArray1669[k1] - l3) * j6 >> 16) << 9) / 50;
-				anIntArray1680[l++] = l4 + ((anIntArray1636[i] - l4) * j6 >> 16);
+				int j6 = (50 - i2) * lightDecay[j2 - i2];
+				anIntArray1678[l] = j + (l2 + ((camera_vertex_y[k1] - l2) * j6 >> 16) << 9) / 50;
+				anIntArray1679[l] = k + (l3 + ((camera_vertex_x[k1] - l3) * j6 >> 16) << 9) / 50;
+				anIntArray1680[l++] = l4 + ((face_shade_a[i] - l4) * j6 >> 16);
 			}
 		}
 		if (j2 >= 50) {
-			anIntArray1678[l] = anIntArray1665[k1];
-			anIntArray1679[l] = anIntArray1666[k1];
-			anIntArray1680[l++] = anIntArray1636[i];
+			anIntArray1678[l] = projected_vertex_x[k1];
+			anIntArray1679[l] = projected_vertex_y[k1];
+			anIntArray1680[l++] = face_shade_a[i];
 		} else {
-			int i3 = anIntArray1668[k1];
-			int i4 = anIntArray1669[k1];
-			int i5 = anIntArray1636[i];
+			int i3 = camera_vertex_y[k1];
+			int i4 = camera_vertex_x[k1];
+			int i5 = face_shade_a[i];
 			if (i2 >= 50) {
-				int k6 = (50 - j2) * modelIntArray4[i2 - j2];
-				anIntArray1678[l] = j + (i3 + ((anIntArray1668[j1] - i3) * k6 >> 16) << 9) / 50;
-				anIntArray1679[l] = k + (i4 + ((anIntArray1669[j1] - i4) * k6 >> 16) << 9) / 50;
+				int k6 = (50 - j2) * lightDecay[i2 - j2];
+				anIntArray1678[l] = j + (i3 + ((camera_vertex_y[j1] - i3) * k6 >> 16) << 9) / 50;
+				anIntArray1679[l] = k + (i4 + ((camera_vertex_x[j1] - i4) * k6 >> 16) << 9) / 50;
 				anIntArray1680[l++] = i5 + ((anIntArray1635[i] - i5) * k6 >> 16);
 			}
 			if (l1 >= 50) {
-				int l6 = (50 - j2) * modelIntArray4[l1 - j2];
-				anIntArray1678[l] = j + (i3 + ((anIntArray1668[i1] - i3) * l6 >> 16) << 9) / 50;
-				anIntArray1679[l] = k + (i4 + ((anIntArray1669[i1] - i4) * l6 >> 16) << 9) / 50;
-				anIntArray1680[l++] = i5 + ((anIntArray1634[i] - i5) * l6 >> 16);
+				int l6 = (50 - j2) * lightDecay[l1 - j2];
+				anIntArray1678[l] = j + (i3 + ((camera_vertex_y[i1] - i3) * l6 >> 16) << 9) / 50;
+				anIntArray1679[l] = k + (i4 + ((camera_vertex_x[i1] - i4) * l6 >> 16) << 9) / 50;
+				anIntArray1680[l++] = i5 + ((face_shade_c[i] - i5) * l6 >> 16);
 			}
 		}
 		int j3 = anIntArray1678[0];
@@ -1725,10 +1725,10 @@ public final class Model extends SceneNode {
 		int j7 = anIntArray1679[1];
 		int k7 = anIntArray1679[2];
 		if ((j3 - j4) * (k7 - j7) - (i7 - j7) * (j5 - j4) > 0) {
-			Texture.aBoolean1462 = false;
+			Texture.checkBounds = false;
 			if (l == 3) {
 				if (j3 < 0 || j4 < 0 || j5 < 0 || j3 > DrawingArea.centerX || j4 > DrawingArea.centerX || j5 > DrawingArea.centerX) {
-					Texture.aBoolean1462 = true;
+					Texture.checkBounds = true;
 				}
 				int l7;
 				if (anIntArray1637 == null) {
@@ -1737,60 +1737,60 @@ public final class Model extends SceneNode {
 					l7 = anIntArray1637[i] & 3;
 				}
 				if (l7 == 0) {
-					Texture.method374(i7, j7, k7, j3, j4, j5, anIntArray1680[0], anIntArray1680[1], anIntArray1680[2]);
+					Texture.drawGouraudTriangle(i7, j7, k7, j3, j4, j5, anIntArray1680[0], anIntArray1680[1], anIntArray1680[2]);
 				} else if (l7 == 1) {
-					Texture.method376(i7, j7, k7, j3, j4, j5, modelIntArray3[anIntArray1634[i]]);
+					Texture.drawTriangle(i7, j7, k7, j3, j4, j5, modelIntArray3[face_shade_c[i]]);
 				} else if (l7 == 2) {
 					int j8 = anIntArray1637[i] >> 2;
 					int k9 = anIntArray1643[j8];
 					int k10 = anIntArray1644[j8];
 					int k11 = anIntArray1645[j8];
-					Texture.method378(i7, j7, k7, j3, j4, j5, anIntArray1680[0], anIntArray1680[1], anIntArray1680[2], anIntArray1668[k9], anIntArray1668[k10], anIntArray1668[k11], anIntArray1669[k9], anIntArray1669[k10], anIntArray1669[k11], anIntArray1670[k9], anIntArray1670[k10], anIntArray1670[k11], anIntArray1640[i]);
+					Texture.method378(i7, j7, k7, j3, j4, j5, anIntArray1680[0], anIntArray1680[1], anIntArray1680[2], camera_vertex_y[k9], camera_vertex_y[k10], camera_vertex_y[k11], camera_vertex_x[k9], camera_vertex_x[k10], camera_vertex_x[k11], anIntArray1670[k9], anIntArray1670[k10], anIntArray1670[k11], anIntArray1640[i]);
 				} else if (l7 == 3) {
 					int k8 = anIntArray1637[i] >> 2;
 					int l9 = anIntArray1643[k8];
 					int l10 = anIntArray1644[k8];
 					int l11 = anIntArray1645[k8];
-					Texture.method378(i7, j7, k7, j3, j4, j5, anIntArray1634[i], anIntArray1634[i], anIntArray1634[i], anIntArray1668[l9], anIntArray1668[l10], anIntArray1668[l11], anIntArray1669[l9], anIntArray1669[l10], anIntArray1669[l11], anIntArray1670[l9], anIntArray1670[l10], anIntArray1670[l11], anIntArray1640[i]);
+					Texture.method378(i7, j7, k7, j3, j4, j5, face_shade_c[i], face_shade_c[i], face_shade_c[i], camera_vertex_y[l9], camera_vertex_y[l10], camera_vertex_y[l11], camera_vertex_x[l9], camera_vertex_x[l10], camera_vertex_x[l11], anIntArray1670[l9], anIntArray1670[l10], anIntArray1670[l11], anIntArray1640[i]);
 				}
 			}
 			if (l == 4) {
 				if (j3 < 0 || j4 < 0 || j5 < 0 || j3 > DrawingArea.centerX || j4 > DrawingArea.centerX || j5 > DrawingArea.centerX || anIntArray1678[3] < 0 || anIntArray1678[3] > DrawingArea.centerX) {
-					Texture.aBoolean1462 = true;
+					Texture.checkBounds = true;
 				}
-				int i8;
+				int type;
 				if (anIntArray1637 == null) {
-					i8 = 0;
+					type = 0;
 				} else {
-					i8 = anIntArray1637[i] & 3;
+					type = anIntArray1637[i] & 3;
 				}
-				if (i8 == 0) {
-					Texture.method374(i7, j7, k7, j3, j4, j5, anIntArray1680[0], anIntArray1680[1], anIntArray1680[2]);
-					Texture.method374(i7, k7, anIntArray1679[3], j3, j5, anIntArray1678[3], anIntArray1680[0], anIntArray1680[2], anIntArray1680[3]);
+				if (type == 0) {
+					Texture.drawGouraudTriangle(i7, j7, k7, j3, j4, j5, anIntArray1680[0], anIntArray1680[1], anIntArray1680[2]);
+					Texture.drawGouraudTriangle(i7, k7, anIntArray1679[3], j3, j5, anIntArray1678[3], anIntArray1680[0], anIntArray1680[2], anIntArray1680[3]);
 					return;
 				}
-				if (i8 == 1) {
-					int l8 = modelIntArray3[anIntArray1634[i]];
-					Texture.method376(i7, j7, k7, j3, j4, j5, l8);
-					Texture.method376(i7, k7, anIntArray1679[3], j3, j5, anIntArray1678[3], l8);
+				if (type == 1) {
+					int l8 = modelIntArray3[face_shade_c[i]];
+					Texture.drawTriangle(i7, j7, k7, j3, j4, j5, l8);
+					Texture.drawTriangle(i7, k7, anIntArray1679[3], j3, j5, anIntArray1678[3], l8);
 					return;
 				}
-				if (i8 == 2) {
+				if (type == 2) {
 					int i9 = anIntArray1637[i] >> 2;
 					int i10 = anIntArray1643[i9];
 					int i11 = anIntArray1644[i9];
 					int i12 = anIntArray1645[i9];
-					Texture.method378(i7, j7, k7, j3, j4, j5, anIntArray1680[0], anIntArray1680[1], anIntArray1680[2], anIntArray1668[i10], anIntArray1668[i11], anIntArray1668[i12], anIntArray1669[i10], anIntArray1669[i11], anIntArray1669[i12], anIntArray1670[i10], anIntArray1670[i11], anIntArray1670[i12], anIntArray1640[i]);
-					Texture.method378(i7, k7, anIntArray1679[3], j3, j5, anIntArray1678[3], anIntArray1680[0], anIntArray1680[2], anIntArray1680[3], anIntArray1668[i10], anIntArray1668[i11], anIntArray1668[i12], anIntArray1669[i10], anIntArray1669[i11], anIntArray1669[i12], anIntArray1670[i10], anIntArray1670[i11], anIntArray1670[i12], anIntArray1640[i]);
+					Texture.method378(i7, j7, k7, j3, j4, j5, anIntArray1680[0], anIntArray1680[1], anIntArray1680[2], camera_vertex_y[i10], camera_vertex_y[i11], camera_vertex_y[i12], camera_vertex_x[i10], camera_vertex_x[i11], camera_vertex_x[i12], anIntArray1670[i10], anIntArray1670[i11], anIntArray1670[i12], anIntArray1640[i]);
+					Texture.method378(i7, k7, anIntArray1679[3], j3, j5, anIntArray1678[3], anIntArray1680[0], anIntArray1680[2], anIntArray1680[3], camera_vertex_y[i10], camera_vertex_y[i11], camera_vertex_y[i12], camera_vertex_x[i10], camera_vertex_x[i11], camera_vertex_x[i12], anIntArray1670[i10], anIntArray1670[i11], anIntArray1670[i12], anIntArray1640[i]);
 					return;
 				}
-				if (i8 == 3) {
+				if (type == 3) {
 					int j9 = anIntArray1637[i] >> 2;
 					int j10 = anIntArray1643[j9];
 					int j11 = anIntArray1644[j9];
 					int j12 = anIntArray1645[j9];
-					Texture.method378(i7, j7, k7, j3, j4, j5, anIntArray1634[i], anIntArray1634[i], anIntArray1634[i], anIntArray1668[j10], anIntArray1668[j11], anIntArray1668[j12], anIntArray1669[j10], anIntArray1669[j11], anIntArray1669[j12], anIntArray1670[j10], anIntArray1670[j11], anIntArray1670[j12], anIntArray1640[i]);
-					Texture.method378(i7, k7, anIntArray1679[3], j3, j5, anIntArray1678[3], anIntArray1634[i], anIntArray1634[i], anIntArray1634[i], anIntArray1668[j10], anIntArray1668[j11], anIntArray1668[j12], anIntArray1669[j10], anIntArray1669[j11], anIntArray1669[j12], anIntArray1670[j10], anIntArray1670[j11], anIntArray1670[j12], anIntArray1640[i]);
+					Texture.method378(i7, j7, k7, j3, j4, j5, face_shade_c[i], face_shade_c[i], face_shade_c[i], camera_vertex_y[j10], camera_vertex_y[j11], camera_vertex_y[j12], camera_vertex_x[j10], camera_vertex_x[j11], camera_vertex_x[j12], anIntArray1670[j10], anIntArray1670[j11], anIntArray1670[j12], anIntArray1640[i]);
+					Texture.method378(i7, k7, anIntArray1679[3], j3, j5, anIntArray1678[3], face_shade_c[i], face_shade_c[i], face_shade_c[i], camera_vertex_y[j10], camera_vertex_y[j11], camera_vertex_y[j12], camera_vertex_x[j10], camera_vertex_x[j11], camera_vertex_x[j12], anIntArray1670[j10], anIntArray1670[j11], anIntArray1670[j12], anIntArray1640[i]);
 				}
 			}
 		}
@@ -1806,16 +1806,16 @@ public final class Model extends SceneNode {
 	private static int[] anIntArray1624 = new int[2000];
 	private static int[] anIntArray1625 = new int[2000];
 	public int anInt1626;
-	public int[] anIntArray1627;
-	public int[] anIntArray1628;
-	public int[] anIntArray1629;
+	public int[] vertexX;
+	public int[] vertexY;
+	public int[] vertexZ;
 	public int anInt1630;
 	public int[] anIntArray1631;
 	public int[] anIntArray1632;
 	public int[] anIntArray1633;
-	private int[] anIntArray1634;
+	private int[] face_shade_c;
 	private int[] anIntArray1635;
-	private int[] anIntArray1636;
+	private int[] face_shade_a;
 	public int[] anIntArray1637;
 	private int[] anIntArray1638;
 	private int[] anIntArray1639;
@@ -1844,11 +1844,11 @@ public final class Model extends SceneNode {
 	private static OnDemandFetcherParent aOnDemandFetcherParent_1662;
 	private static boolean[] aBooleanArray1663 = new boolean[4096];
 	private static boolean[] aBooleanArray1664 = new boolean[4096];
-	private static int[] anIntArray1665 = new int[4096];
-	private static int[] anIntArray1666 = new int[4096];
+	private static int[] projected_vertex_x = new int[4096];
+	private static int[] projected_vertex_y = new int[4096];
 	private static int[] anIntArray1667 = new int[4096];
-	private static int[] anIntArray1668 = new int[4096];
-	private static int[] anIntArray1669 = new int[4096];
+	private static int[] camera_vertex_y = new int[4096];
+	private static int[] camera_vertex_x = new int[4096];
 	private static int[] anIntArray1670 = new int[4096];
 	private static int[] anIntArray1671 = new int[1500];
 	private static int[][] anIntArrayArray1672 = new int[1500][512];
@@ -1871,12 +1871,12 @@ public final class Model extends SceneNode {
 	public static int[] modelIntArray1;
 	public static int[] modelIntArray2;
 	private static int[] modelIntArray3;
-	private static int[] modelIntArray4;
+	private static int[] lightDecay;
 
 	static {
 		modelIntArray1 = Texture.anIntArray1470;
 		modelIntArray2 = Texture.anIntArray1471;
 		modelIntArray3 = Texture.anIntArray1482;
-		modelIntArray4 = Texture.anIntArray1469;
+		lightDecay = Texture.anIntArray1469;
 	}
 }

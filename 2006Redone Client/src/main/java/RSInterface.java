@@ -138,7 +138,7 @@ public final class RSInterface {
 				rsInterface.enabledText = stream.readString();
 			}
 			if (rsInterface.type == 1 || rsInterface.type == 3 || rsInterface.type == 4) {
-				rsInterface.textColor = stream.readDWord();
+				rsInterface.textColour = stream.readDWord();
 			}
 			if (rsInterface.type == 3 || rsInterface.type == 4) {
 				rsInterface.anInt219 = stream.readDWord();
@@ -160,7 +160,7 @@ public final class RSInterface {
 			if (rsInterface.type == 6) {
 				int l = stream.readUnsignedByte();
 				if (l != 0) {
-					rsInterface.anInt233 = 1;
+					rsInterface.modelTypeDisabled = 1;
 					rsInterface.mediaID = (l - 1 << 8) + stream.readUnsignedByte();
 				}
 				l = stream.readUnsignedByte();
@@ -180,9 +180,9 @@ public final class RSInterface {
 				} else {
 					rsInterface.anInt258 = -1;
 				}
-				rsInterface.anInt269 = stream.readUnsignedWord();
-				rsInterface.anInt270 = stream.readUnsignedWord();
-				rsInterface.anInt271 = stream.readUnsignedWord();
+				rsInterface.modelZoom = stream.readUnsignedWord();
+				rsInterface.modelRotationY = stream.readUnsignedWord();
+				rsInterface.modelRotationX = stream.readUnsignedWord();
 			}
 			if (rsInterface.type == 7) {
 				rsInterface.inv = new int[rsInterface.width * rsInterface.height];
@@ -193,7 +193,7 @@ public final class RSInterface {
 					rsInterface.textDrawingAreas = textDrawingAreas[l2];
 				}
 				rsInterface.aBoolean268 = stream.readUnsignedByte() == 1;
-				rsInterface.textColor = stream.readDWord();
+				rsInterface.textColour = stream.readDWord();
 				rsInterface.invSpritePadX = stream.readSignedWord();
 				rsInterface.invSpritePadY = stream.readSignedWord();
 				rsInterface.isInventoryInterface = stream.readUnsignedByte() == 1;
@@ -300,7 +300,7 @@ public final class RSInterface {
 		if (flag) {
 			model = method206(anInt255, anInt256);
 		} else {
-			model = method206(anInt233, mediaID);
+			model = method206(modelTypeDisabled, mediaID);
 		}
 		if (model == null) {
 			return null;
@@ -326,7 +326,7 @@ public final class RSInterface {
 	}
 
 	public Sprite sprite1;
-	public int anInt208;
+	public int sequenceCycle;
 	public Sprite[] sprites;
 	public static RSInterface[] interfaceCache;
 	public int[] anIntArray212;
@@ -347,8 +347,8 @@ public final class RSInterface {
 	public String enabledText;
 	public int anInt230;
 	public int invSpritePadX;
-	public int textColor;
-	public int anInt233;
+	public int textColour;
+	public int modelTypeDisabled;
 	public int mediaID;
 	public boolean aBoolean235;
 	public int parentID;
@@ -361,7 +361,7 @@ public final class RSInterface {
 	public TextDrawingArea textDrawingAreas;
 	public int invSpritePadY;
 	public int[] anIntArray245;
-	public int anInt246;
+	public int sequenceFrame;
 	public int[] spritesY;
 	public String disabledText;
 	public boolean isInventoryInterface;
@@ -385,9 +385,9 @@ public final class RSInterface {
 	public static int shading;
 	public static int lightness;
 	public boolean aBoolean268;
-	public int anInt269;
-	public int anInt270;
-	public int anInt271;
+	public int modelZoom;
+	public int modelRotationY;
+	public int modelRotationX;
 	public int[] childY;
 
 }

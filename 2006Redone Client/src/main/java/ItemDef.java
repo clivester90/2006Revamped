@@ -2210,7 +2210,7 @@ public final class ItemDef {
 			return null;
 		}
 		if (anInt167 != 128 || anInt192 != 128 || anInt191 != 128) {
-			model.method478(anInt167, anInt191, anInt192);
+			model.scaleModel(anInt167, anInt191, anInt192);
 		}
 		if (modifiedModelColors != null) {
 			for (int l = 0; l < modifiedModelColors.length; l++) {

@@ -9,17 +9,17 @@ final class SceneNode_Sub5 extends SceneNode {
 		int j = -1;
 		if (aAnimation_1607 != null) {
 			int k = Game.loopCycle - anInt1608;
-			if (k > 100 && aAnimation_1607.anInt356 > 0) {
+			if (k > 100 && aAnimation_1607.padding > 0) {
 				k = 100;
 			}
-			while (k > aAnimation_1607.method258(anInt1599)) {
-				k -= aAnimation_1607.method258(anInt1599);
+			while (k > aAnimation_1607.getDuration(anInt1599)) {
+				k -= aAnimation_1607.getDuration(anInt1599);
 				anInt1599++;
-				if (anInt1599 < aAnimation_1607.anInt352) {
+				if (anInt1599 < aAnimation_1607.length) {
 					continue;
 				}
-				anInt1599 -= aAnimation_1607.anInt356;
-				if (anInt1599 >= 0 && anInt1599 < aAnimation_1607.anInt352) {
+				anInt1599 -= aAnimation_1607.padding;
+				if (anInt1599 >= 0 && anInt1599 < aAnimation_1607.length) {
 					continue;
 				}
 				aAnimation_1607 = null;
@@ -27,7 +27,7 @@ final class SceneNode_Sub5 extends SceneNode {
 			}
 			anInt1608 = Game.loopCycle - k;
 			if (aAnimation_1607 != null) {
-				j = aAnimation_1607.anIntArray353[anInt1599];
+				j = aAnimation_1607.primary[anInt1599];
 			}
 		}
 		ObjectDef class46;
@@ -74,9 +74,9 @@ final class SceneNode_Sub5 extends SceneNode {
 			aAnimation_1607 = Animation.anims[l1];
 			anInt1599 = 0;
 			anInt1608 = Game.loopCycle;
-			if (flag && aAnimation_1607.anInt356 != -1) {
-				anInt1599 = (int) (Math.random() * aAnimation_1607.anInt352);
-				anInt1608 -= (int) (Math.random() * aAnimation_1607.method258(anInt1599));
+			if (flag && aAnimation_1607.padding != -1) {
+				anInt1599 = (int) (Math.random() * aAnimation_1607.length);
+				anInt1608 -= (int) (Math.random() * aAnimation_1607.getDuration(anInt1599));
 			}
 		}
 		ObjectDef class46 = ObjectDef.forID(anInt1610);

@@ -159,7 +159,7 @@ public class PacketHandler {
 	public static void processPacket(Player player, int packetType, int packetSize) {
         PacketType p = packetId[packetType];
         if(p != null && packetType > 0 && packetType < 257 && packetType == player.packetType && packetSize == player.packetSize) {
-            if (GameConstants.sendServerPackets && player.playerRights == 3) {
+            if (GameConstants.sendServerPackets && player.getPlayerRights() == 3) {
                 player.getPacketSender().sendMessage("PacketType: " + packetType + ". PacketSize: " + packetSize + ".");
             }
             try {

@@ -1405,7 +1405,7 @@ public class ItemAssistant {
 				case 5680:
 				case 5698:
 				case 1305:
-					if (player.lostCity != 3 && player.playerRights != 3) {
+					if (player.lostCity != 3 && player.getPlayerRights() != 3) {
 						player.getPacketSender().sendMessage("You must have completed the Lost City quest to equip this weapon.");
 						canWearItem = false;
 					}

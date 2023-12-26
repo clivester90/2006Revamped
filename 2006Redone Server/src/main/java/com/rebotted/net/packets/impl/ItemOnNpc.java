@@ -16,7 +16,7 @@ public class ItemOnNpc implements PacketType {
 		final int npcId = NpcHandler.npcs[i].npcType;
 		SkillHandler.resetItemOnNpc(player);
 		player.endCurrentTask();
-		if (player.playerRights == 3) {
+		if (player.getPlayerRights() == 3) {
 			player.getPacketSender().sendMessage("Item id: " + itemId + " slot: " + slot + " i: " + i);
 		}
 		if (player.getItemAssistant().freeSlots() < 1) {

@@ -43,7 +43,7 @@ public class Fishing extends SkillHandler {
 			{ 10, 76, 311, -1, 383, 110, 618, -1, -1, -1 } // Shark
 	};
 
-	private static String[][] messages = { { "You cast out your net." }, // SHRIMP
+	private static final String[][] messages = { { "You cast out your net." }, // SHRIMP
 																			// +
 																			// ANCHOVIES
 			{ "You cast out your line." }, // SARDINE + HERRING
@@ -64,39 +64,37 @@ public class Fishing extends SkillHandler {
 			return;
 		}
 		resetFishing(c);
-		for (int i = 0; i < data.length; i++) {
-			if (npcId == data[i][0]) {
-				if (c.playerLevel[c.playerFishing] < data[i][1]) {
+		for (int[] datum : data) {
+			if (npcId == datum[0]) {
+				if (c.playerLevel[c.playerFishing] < datum[1]) {
 					c.getDialogueHandler().sendStatement(
-							"You need a fishing level of at least "
-									+ data[i][1]
-									+ " in order to fish at this spot.");
+							"You need a fishing level of at least " + datum[1] + " in order to fish at this spot.");
 					return;
 				}
-				if (!hasFishingEquipment(c, data[i][2])) {
+				if (!hasFishingEquipment(c, datum[2])) {
 					return;
 				}
-				if (data[i][3] > 0) {
-					if (!c.getItemAssistant().playerHasItem(data[i][3])) {
+				if (datum[3] > 0) {
+					if (!c.getItemAssistant().playerHasItem(datum[3])) {
 						c.getDialogueHandler().sendStatement(
 								"You need more "
-										+ ItemAssistant.getItemName(data[i][3])
-												.toLowerCase().toLowerCase()
+										+ ItemAssistant.getItemName(datum[3])
+										.toLowerCase().toLowerCase()
 										+ " in order to fish at this spot.");
 						return;
 					}
 				}
-				c.playerSkillProp[10][0] = data[i][6]; // ANIM
-				c.playerSkillProp[10][1] = data[i][4]; // FISH
-				c.playerSkillProp[10][2] = data[i][5]; // XP
-				c.playerSkillProp[10][3] = data[i][3]; // BAIT
-				c.playerSkillProp[10][4] = data[i][2]; // EQUIP
-				c.playerSkillProp[10][5] = data[i][7]; // sFish
-				c.playerSkillProp[10][6] = data[i][8]; // sLvl
-				c.playerSkillProp[10][7] = data[i][4]; // FISH
-				c.playerSkillProp[10][8] = data[i][9]; // sXP
+				c.playerSkillProp[10][0] = datum[6]; // ANIM
+				c.playerSkillProp[10][1] = datum[4]; // FISH
+				c.playerSkillProp[10][2] = datum[5]; // XP
+				c.playerSkillProp[10][3] = datum[3]; // BAIT
+				c.playerSkillProp[10][4] = datum[2]; // EQUIP
+				c.playerSkillProp[10][5] = datum[7]; // sFish
+				c.playerSkillProp[10][6] = datum[8]; // sLvl
+				c.playerSkillProp[10][7] = datum[4]; // FISH
+				c.playerSkillProp[10][8] = datum[9]; // sXP
 				c.playerSkillProp[10][9] = Misc.random(1) == 0 ? 7 : 5;
-				c.playerSkillProp[10][10] = data[i][0]; // INDEX
+				c.playerSkillProp[10][10] = datum[0]; // INDEX
 
 				if (c.playerSkilling[10]) {
 					return;
@@ -106,7 +104,7 @@ public class Fishing extends SkillHandler {
 					c.startAnimation(c.playerSkillProp[10][0]);
 					c.stopPlayerSkill = true;
 					c.getPacketSender().drawHeadicon(0, 0, 0, 0); // deletes
-																		// headicon
+					// headicon
 					c.getPacketSender().chatbox(6180);
 					c.getDialogueHandler()
 							.chatboxText(
@@ -116,34 +114,34 @@ public class Fishing extends SkillHandler {
 									"", "Please wait");
 					c.getPacketSender().chatbox(6179);
 					CycleEventHandler.getSingleton().addEvent(c, new CycleEvent() {
-								@Override
-								public void execute(CycleEventContainer container) {
+						@Override
+						public void execute(CycleEventContainer container) {
 
-									if (c.playerSkillProp[10][5] > 0) {
-										if (c.playerLevel[c.playerFishing] >= c.playerSkillProp[10][6]) {
-											c.playerSkillProp[10][1] = c.playerSkillProp[10][Misc
-													.random(1) == 0 ? 7 : 5];
-										}
-									}
-
-									if (!c.stopPlayerSkill) {
-										container.stop();
-									}
-									if (!c.playerSkilling[10]) {
-										container.stop();
-									}
-
-									if (c.playerSkillProp[10][1] > 0) {
-										c.startAnimation(c.playerSkillProp[10][0]);
-									}
-
+							if (c.playerSkillProp[10][5] > 0) {
+								if (c.playerLevel[c.playerFishing] >= c.playerSkillProp[10][6]) {
+									c.playerSkillProp[10][1] = c.playerSkillProp[10][Misc
+											.random(1) == 0 ? 7 : 5];
 								}
+							}
 
-								@Override
-								public void stop() {
-									resetFishing(c);
-								}
-							}, 5);
+							if (!c.stopPlayerSkill) {
+								container.stop();
+							}
+							if (!c.playerSkilling[10]) {
+								container.stop();
+							}
+
+							if (c.playerSkillProp[10][1] > 0) {
+								c.startAnimation(c.playerSkillProp[10][0]);
+							}
+
+						}
+
+						@Override
+						public void stop() {
+							resetFishing(c);
+						}
+					}, 5);
 					CycleEventHandler.getSingleton().addEvent(c,
 							new CycleEvent() {
 
@@ -188,7 +186,7 @@ public class Fishing extends SkillHandler {
 
 				// end of tutorial island fishing
 
-				c.getPacketSender().sendMessage("" + messages(c));
+				c.getPacketSender().sendMessage(messages(c));
 				// c.getPA().sendSound(379, 100, 1); // fishing
 				c.startAnimation(c.playerSkillProp[10][0]);
 				c.stopPlayerSkill = true;
@@ -205,13 +203,13 @@ public class Fishing extends SkillHandler {
 												.sendMessage(
 														"You don't have any "
 																+ ItemAssistant
-																		.getItemName(c.playerSkillProp[10][3])
+																.getItemName(c.playerSkillProp[10][3])
 																+ " left!");
 										c.getPacketSender()
 												.sendMessage(
 														"You need "
 																+ ItemAssistant
-																		.getItemName(c.playerSkillProp[10][3])
+																.getItemName(c.playerSkillProp[10][3])
 																+ " to fish here.");
 										resetFishing(c);
 										container.stop();
@@ -267,16 +265,16 @@ public class Fishing extends SkillHandler {
 											.sendMessage(
 													"You catch "
 															+ (c.playerSkillProp[10][1] == 321
-																	|| c.playerSkillProp[10][1] == 317
-																	|| c.playerSkillProp[10][1] == 7944 ? "some "
-																	: "a ")
+															|| c.playerSkillProp[10][1] == 317
+															|| c.playerSkillProp[10][1] == 7944 ? "some "
+															: "a ")
 															+ ItemAssistant
-																	.getItemName(
-																			c.playerSkillProp[10][1])
-																	.toLowerCase()
-																	.replace(
-																			"raw ",
-																			"")
+															.getItemName(
+																	c.playerSkillProp[10][1])
+															.toLowerCase()
+															.replace(
+																	"raw ",
+																	"")
 															+ ".");
 								}
 								if (c.playerSkillProp[10][1] > 0 && c.randomEventsEnabled) {
@@ -304,10 +302,10 @@ public class Fishing extends SkillHandler {
 												.sendStatement(
 														"You have run out of "
 																+ ItemAssistant
-																		.getItemName(
-																				c.playerSkillProp[10][3])
-																		.toLowerCase()
-																		.toLowerCase()
+																.getItemName(
+																		c.playerSkillProp[10][3])
+																.toLowerCase()
+																.toLowerCase()
 																+ ".");
 										// c.getPacketDispatcher().sendMessage("You don't have any "+
 										// ItemAssistant.getItemName(c.playerSkillProp[10][3])

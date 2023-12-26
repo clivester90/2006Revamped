@@ -89,9 +89,9 @@ public class Trading {
 		resetOTItems(3416);
 		String out = o.playerName;
 
-		if (o.playerRights == 1) {
+		if (o.getPlayerRights() == 1) {
 			out = "@cr1@" + out;
-		} else if (o.playerRights == 2) {
+		} else if (o.getPlayerRights() == 2) {
 			out = "@cr2@" + out;
 		}
 		player.getPacketSender().sendString(
@@ -246,7 +246,7 @@ public class Trading {
 		}
 
 		for (int i : ItemConstants.ITEM_TRADEABLE) {
-			if (i == itemID && player.playerRights < 3) {
+			if (i == itemID && player.getPlayerRights() < 3) {
 				player.getPacketSender().sendMessage("You can't trade this item.");
 				return false;
 			}

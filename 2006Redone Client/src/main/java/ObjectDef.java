@@ -136,12 +136,12 @@ public final class ObjectDef {
 		if (adjustsToTerrain) {
 			int l1 = (k + l + i1 + j1) / 4;
 			for (int i2 = 0; i2 < model.anInt1626; i2++) {
-				int j2 = model.anIntArray1627[i2];
-				int k2 = model.anIntArray1629[i2];
+				int j2 = model.vertexX[i2];
+				int k2 = model.vertexZ[i2];
 				int l2 = k + (l - k) * (j2 + 64) / 128;
 				int i3 = j1 + (i1 - j1) * (j2 + 64) / 128;
 				int j3 = l2 + (i3 - l2) * (k2 + 64) / 128;
-				model.anIntArray1628[i2] += j3 - l1;
+				model.vertexY[i2] += j3 - l1;
 			}
 
 			model.method467();
@@ -276,7 +276,7 @@ public final class ObjectDef {
 
 		}
 		if (flag) {
-			model_3.method478(scaleX, anInt740, scaleY);
+			model_3.scaleModel(scaleX, anInt740, scaleY);
 		}
 		if (flag2) {
 			model_3.method475(offsetX, offsetY, offsetZ);

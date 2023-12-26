@@ -235,7 +235,7 @@ public class NpcActions {
 			break;
 
 		case 844:
-			if (player.runeMist < 4 && player.playerRights <= 1) {
+			if (player.runeMist < 4 && player.getPlayerRights() <= 1) {
 				player.getDialogueHandler().sendStatement("You need to beat rune mysteries first to do this.");
 				player.nextChat = 0;
 				return;
@@ -1074,7 +1074,7 @@ public class NpcActions {
 			break;
 
 		case 300:
-			if (player.runeMist < 4 && player.playerRights <= 1) {
+			if (player.runeMist < 4 && player.getPlayerRights() <= 1) {
 				player.getDialogueHandler().sendStatement("You need to beat rune mysteries first to do this.");
 				player.nextChat = 0;
 				return;
@@ -1117,7 +1117,7 @@ public class NpcActions {
 
 		case 844:
 		case 462:
-			if (player.runeMist < 4 && player.playerRights <= 1) {
+			if (player.runeMist < 4 && player.getPlayerRights() <= 1) {
 				player.getDialogueHandler().sendStatement("You need to beat rune mysteries first to do this.");
 				player.nextChat = 0;
 				return;
@@ -1215,7 +1215,7 @@ public class NpcActions {
 			}
 			break;
 		case 553:
-			if (player.runeMist < 4 && player.playerRights <= 1) {
+			if (player.runeMist < 4 && player.getPlayerRights() <= 1) {
 				player.getDialogueHandler().sendStatement("You need to beat rune mysteries first to do this.");
 				return;
 			}
@@ -1232,7 +1232,7 @@ public class NpcActions {
 			break;
 
 		default:
-			if (player.playerRights == 3) {
+			if (player.getPlayerRights() == 3) {
 				Misc.println("Third Click NPC : " + npcType);
 			}
 			break;

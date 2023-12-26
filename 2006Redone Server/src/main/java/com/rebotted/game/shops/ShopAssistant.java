@@ -341,7 +341,7 @@ public class ShopAssistant {
 				return false;
 			}
 		}
-		if (player.playerRights == 2 && !GameConstants.ADMIN_CAN_SELL_ITEMS) {
+		if (player.getPlayerRights() == 2 && !GameConstants.ADMIN_CAN_SELL_ITEMS) {
 			player.getPacketSender().sendMessage("Selling items as an admin has been disabled.");
 			return false;
 		}

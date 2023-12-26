@@ -34,7 +34,7 @@ public class ItemOnGroundItem implements PacketType {
 			break;
 
 		default:
-			if (player.playerRights == 3) {
+			if (player.getPlayerRights() == 3) {
 				Misc.println("ItemUsed " + itemUsed + " on Ground Item "
 						+ groundItem);
 			}

@@ -81,7 +81,7 @@ public class ClickingButtons implements PacketType {
 		if (player.isDead) {
 			return;
 		}
-		if (player.playerRights == 3) {
+		if (player.getPlayerRights() == 3) {
 			player.getPacketSender().sendMessage(player.playerName + " - actionbutton: " + actionButtonId);
 		}
 		if (player.isAutoButton(actionButtonId)) {
