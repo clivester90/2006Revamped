@@ -13,6 +13,7 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
+import java.nio.file.Path;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Calendar;
@@ -72,7 +73,7 @@ public class Game extends RSApplet {
 	}
 	
 	public String indexLocation(int cacheIndex, int index) {
-		return Signlink.findcachedir() + "index" + cacheIndex + "/" + (index != -1 ? index + ".gz" : "");
+		return Signlink.getCacheDirectory() + "index" + cacheIndex + "/" + (index != -1 ? index + ".gz" : "");
 	}
 
 	public void repackCacheIndex(int cacheIndex) {
@@ -123,7 +124,7 @@ public class Game extends RSApplet {
 	
 	public byte[] GetMusic(int Index) {
 		try {
-		File Music = new File(Signlink.findcachedir() + "./sounds/"+Index+".gz");
+		File Music = new File(Signlink.getCacheDirectory() + "./sounds/"+Index+".gz");
 		byte[] aByte = new byte[(int)Music.length()];
 		FileInputStream Fis = new FileInputStream(Music);
 		Fis.read(aByte);
@@ -166,14 +167,12 @@ public class Game extends RSApplet {
 		method853(0, null, bool);
 	}
 	
-	static boolean constructMusic() {
+	static void constructMusic() {
 		anInt720 = 20;
 		try {
 		    aClass56_749 = (Class56) Class.forName("Class56_Sub1_Sub1").newInstance();
 		} catch (Throwable throwable) {
-		    return false;
 		}
-		return true;
 	}
 	
 	final synchronized void method58(int i_30_, int volume,
@@ -2613,13 +2612,13 @@ public class Game extends RSApplet {
 		sprite.method346(-128, -171);
 		aRSImageProducer_1115.initDrawingArea();
 		sprite.method346(-562, -171);
-		int[] ai = new int[sprite.width];
+		int[] ai = new int[sprite.myWidth];
 		for (int j = 0; j < sprite.height; j++) {
-			for (int k = 0; k < sprite.width; k++) {
-				ai[k] = sprite.pixels[sprite.width - k - 1 + sprite.width * j];
+			for (int k = 0; k < sprite.myWidth; k++) {
+				ai[k] = sprite.pixels[sprite.myWidth - k - 1 + sprite.myWidth * j];
 			}
 
-			System.arraycopy(ai, 0, sprite.pixels, sprite.width * j, sprite.width);
+			System.arraycopy(ai, 0, sprite.pixels, sprite.myWidth * j, sprite.myWidth);
 
 		}
 
@@ -2643,7 +2642,7 @@ public class Game extends RSApplet {
 		sprite.method346(-180, -171);
 		sprite = new Sprite(titleStreamLoader, "logo", 0);
 		aRSImageProducer_1107.initDrawingArea();
-		sprite.drawSprite(382 - sprite.width / 2 - 128, 18);
+		sprite.drawSprite(382 - sprite.myWidth / 2 - 128, 18);
 		sprite = null;
 		System.gc();
 
@@ -6564,6 +6563,15 @@ public class Game extends RSApplet {
 		}
 		try {
 			connectServer();
+
+			try {
+				Path spriteDataPath = new File(Signlink.getCacheDirectory() + File.separator + "main_file_sprites.dat").toPath();
+				Path spriteMetaPath = new File(Signlink.getCacheDirectory() + File.separator + "main_file_sprites.idx").toPath();
+				spriteCache.init(spriteDataPath.toFile(), spriteMetaPath.toFile());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
 			titleStreamLoader = streamLoaderForName(1, "title screen", "title", expectedCRCs[1], 25);
 			aTextDrawingArea_1270 = new TextDrawingArea(false, "p11_full", titleStreamLoader);
 			aTextDrawingArea_1271 = new TextDrawingArea(false, "p12_full", titleStreamLoader);
@@ -6800,31 +6808,31 @@ public class Game extends RSApplet {
 			}
 
 			Sprite sprite = new Sprite(streamLoader_2, "backleft1", 0);
-			backLeftIP1 = new RSImageProducer(sprite.width, sprite.height, getGameComponent());
+			backLeftIP1 = new RSImageProducer(sprite.myWidth, sprite.height, getGameComponent());
 			sprite.method346(0, 0);
 			sprite = new Sprite(streamLoader_2, "backleft2", 0);
-			backLeftIP2 = new RSImageProducer(sprite.width, sprite.height, getGameComponent());
+			backLeftIP2 = new RSImageProducer(sprite.myWidth, sprite.height, getGameComponent());
 			sprite.method346(0, 0);
 			sprite = new Sprite(streamLoader_2, "backright1", 0);
-			backRightIP1 = new RSImageProducer(sprite.width, sprite.height, getGameComponent());
+			backRightIP1 = new RSImageProducer(sprite.myWidth, sprite.height, getGameComponent());
 			sprite.method346(0, 0);
 			sprite = new Sprite(streamLoader_2, "backright2", 0);
-			backRightIP2 = new RSImageProducer(sprite.width, sprite.height, getGameComponent());
+			backRightIP2 = new RSImageProducer(sprite.myWidth, sprite.height, getGameComponent());
 			sprite.method346(0, 0);
 			sprite = new Sprite(streamLoader_2, "backtop1", 0);
-			backTopIP1 = new RSImageProducer(sprite.width, sprite.height, getGameComponent());
+			backTopIP1 = new RSImageProducer(sprite.myWidth, sprite.height, getGameComponent());
 			sprite.method346(0, 0);
 			sprite = new Sprite(streamLoader_2, "backvmid1", 0);
-			backVmidIP1 = new RSImageProducer(sprite.width, sprite.height, getGameComponent());
+			backVmidIP1 = new RSImageProducer(sprite.myWidth, sprite.height, getGameComponent());
 			sprite.method346(0, 0);
 			sprite = new Sprite(streamLoader_2, "backvmid2", 0);
-			backVmidIP2 = new RSImageProducer(sprite.width, sprite.height, getGameComponent());
+			backVmidIP2 = new RSImageProducer(sprite.myWidth, sprite.height, getGameComponent());
 			sprite.method346(0, 0);
 			sprite = new Sprite(streamLoader_2, "backvmid3", 0);
-			backVmidIP3 = new RSImageProducer(sprite.width, sprite.height, getGameComponent());
+			backVmidIP3 = new RSImageProducer(sprite.myWidth, sprite.height, getGameComponent());
 			sprite.method346(0, 0);
 			sprite = new Sprite(streamLoader_2, "backhmid2", 0);
-			backVmidIP2_2 = new RSImageProducer(sprite.width, sprite.height, getGameComponent());
+			backVmidIP2_2 = new RSImageProducer(sprite.myWidth, sprite.height, getGameComponent());
 			sprite.method346(0, 0);
 			int i5 = (int) (Math.random() * 21D) - 10;
 			int j5 = (int) (Math.random() * 21D) - 10;
@@ -7842,7 +7850,7 @@ public class Game extends RSApplet {
 										} else {
 											class30_sub2_sub1_sub1_2.drawSprite(k5, j6);
 										}
-										if (class30_sub2_sub1_sub1_2.trimWidth == 33 || component.invStackSizes[i3] != 1) {
+										if (class30_sub2_sub1_sub1_2.maxWidth == 33 || component.invStackSizes[i3] != 1) {
 											int k10 = component.invStackSizes[i3];
 											aTextDrawingArea_1270.method385(0, intToKOrMil(k10), j6 + 10 + j7, k5 + 1 + k6);
 											aTextDrawingArea_1270.method385(0xffff00, intToKOrMil(k10), j6 + 9 + j7, k5 + k6);
@@ -9985,9 +9993,9 @@ public class Game extends RSApplet {
 		int k1 = j * i1 + i * j1 >> 16;
 		int l1 = j * j1 - i * i1 >> 16;
 		if (l > 2500) {
-			sprite.method354(mapBack, 83 - l1 - sprite.trimHeight / 2 - 4, 94 + k1 - sprite.trimWidth / 2 + 4);
+			sprite.method354(mapBack, 83 - l1 - sprite.maxHeight / 2 - 4, 94 + k1 - sprite.maxWidth / 2 + 4);
 		} else {
-			sprite.drawSprite(94 + k1 - sprite.trimWidth / 2 + 4, 83 - l1 - sprite.trimHeight / 2 - 4);
+			sprite.drawSprite(94 + k1 - sprite.maxWidth / 2 + 4, 83 - l1 - sprite.maxHeight / 2 - 4);
 		}
 	}
 
@@ -11813,6 +11821,7 @@ public class Game extends RSApplet {
 	public static int anInt1051;
 	public final int[] anIntArray1052;
 	public StreamLoader titleStreamLoader;
+	public static final SpriteCache spriteCache = new SpriteCache();
 	public int anInt1054;
 	public int anInt1055;
 	public NodeList spotanims;

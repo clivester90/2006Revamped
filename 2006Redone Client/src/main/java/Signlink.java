@@ -19,7 +19,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.FloatControl;
-import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
@@ -61,7 +60,7 @@ public final class Signlink implements Runnable {
 	@Override
 	public void run() {
 		active = true;
-		String s = findcachedir();
+		String s = getCacheDirectory();
 		try {
 			cache_dat = new RandomAccessFile(s + "main_file_cache.dat", "rw");
 			for (int j = 0; j < 5; j++)
@@ -271,7 +270,7 @@ public final class Signlink implements Runnable {
 	public static Sequence sequence = null;
 	public static Synthesizer synthesizer = null;
 
-	public static String findcachedir() {
+	public static String getCacheDirectory() {
 		String path = System.getProperty("user.home") + "/.2006rebotted_file_system/";
 		File file = new File(path);
 		if (!file.exists()) {
