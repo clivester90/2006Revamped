@@ -1,6 +1,6 @@
 package com;
 
-import com.client.sound.Midi;
+import com.runescape.core.sound.Midi;
 
 import java.applet.Applet;
 import java.io.DataInputStream;

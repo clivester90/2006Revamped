@@ -116,7 +116,7 @@ tasks {
         manifest {
             attributes["Implementation-Title"] = project.name
             attributes["Implementation-Version"] = "1.0"
-            attributes["Main-Class"] = "com.client.Client"
+            attributes["Main-Class"] = "com.runescape.Client"
         }
 
         shadowJar.get().finalizedBy(obfuscateTask)

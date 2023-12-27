@@ -1,6 +1,6 @@
 package com;
 
-import com.client.constants.ClientSettings;
+import com.runescape.constants.ClientSettings;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
